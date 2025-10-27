@@ -64,7 +64,7 @@ chain
 ```
 
 <details class="lake-collapse"><summary id="u3cee97de"><span class="ne-text">output：</span></summary><pre data-language="json" id="b2xq3" class="ne-codeblock language-json"><code>ChatPromptTemplate(input_variables=['topic'], messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['topic'], template='告诉我一个关于{topic}的短笑话'))])
-| ChatOpenAI(client=&lt;class 'openai.api_resources.chat_completion.ChatCompletion'&gt;, openai_api_key='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', openai_proxy='')
+| ChatOpenAI(client=&lt;class 'openai.api_resources.chat_completion.ChatCompletion'&gt;, openai_api_key='xxx', openai_proxy='')
 | StrOutputParser()</code></pre></details>
 #  更复杂的链 More complex chain
 接下来，会创建一个更复杂的链条，在之前的课程中，接触过如何进行检索增强生成。所以接下来使用 LCEL 来重复之前的过程，将用户的问题和向量数据库检索结果结合起来，使用 `RunnableMap` 来构建一个更复杂的链。
