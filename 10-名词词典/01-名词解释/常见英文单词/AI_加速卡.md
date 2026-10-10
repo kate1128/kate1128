@@ -9,7 +9,6 @@ AI 加速器是专门为加速人工智能计算（尤其是神经网络运算�
 | FPGA | Xilinx Alveo U280 | 8.9 TOPs (INT8) | 高 | ★★★★☆ | 微秒级 | 超低延迟定制化场景 |
 | ASIC | Graphcore IPU Bow | 350 TFLOPS (FP16) | 极高 | ★☆☆☆☆ | 纳秒级 | 专用模型推理加速 |
 
-
 ### 二、关键技术指标解析
 1. **计算密度优化**
 + **脉动阵列架构**（TPU核心设计）：通过数据流式处理减少内存访问
@@ -22,8 +21,8 @@ AI 加速器是专门为加速人工智能计算（尤其是神经网络运算�
 
 ```plain
 // 稀疏张量核代码示例
-cusparseLtMatmul(handle, &plan, &alpha, 
-                dA, dB, &beta, dC, dD, 
+cusparseLtMatmul(handle, &plan, &alpha,
+                dA, dB, &beta, dC, dD,
                 workspace, stream);
 ```
 
@@ -42,7 +41,6 @@ cusparseLtMatmul(handle, &plan, &alpha,
 | 华为昇腾 | CANN | 90% ONNX 模型直接部署 | MindSpore Lite |
 | Intel FPGA | OpenVINO | 需量化编译（FP32→FP16/INT8） | DL Streamer |
 
-
 ### 四、性能实测数据（ResNet-50 推理）
 | 设备 | 吞吐量 (images/s) | 功耗 (W) | 能效 (images/J) | 时延 (ms) |
 | --- | --- | --- | --- | --- |
@@ -50,7 +48,6 @@ cusparseLtMatmul(handle, &plan, &alpha,
 | Google TPU v4 | 9,800 | 250 | 39.2 | 3.8 |
 | 昇腾 910B | 7,200 | 75 | 96.0 | 1.2 |
 | Xilinx U280 | 3,150 | 65 | 48.5 | 0.8 |
-
 
 ### 五、选型决策树
 ```mermaid
@@ -62,11 +59,11 @@ graph TD
     D -->|>5ms| F{部署位置?}
     F -->|云端| G[GPU/TPU]
     F -->|边缘端| H[NPU/边缘GPU]
-    
+
     C --> I[预算充足?]
     I -->|是| J[多节点TPU Pod]
     I -->|否| K[A100/H100集群]
-    
+
     E --> L{是否需要定制?}
     L -->|是| M[FPGA开发]
     L -->|否| N[Graphcore IPU]
@@ -97,7 +94,6 @@ Intel 加速卡（包括 **Habana Gaudi**）是专为加速人工智能（AI）�
 | **Intel GPU Max系列** | HPC & AI混合负载 | 集成Xe架构，支持光线追踪 |
 | **Xeon CPU + AMX** | 通用AI推理 | 指令集加速（AVX-512, AMX） |
 
-
 ---
 
 ### **二、Habana Gaudi 详解**
@@ -112,7 +108,6 @@ Intel 加速卡（包括 **Habana Gaudi**）是专为加速人工智能（AI）�
 | FP16算力 (TFLOPS) | 1,800 | 312 | 275 |
 | 显存容量 | 96GB HBM2e | 80GB HBM2e | 32GB HBM2 |
 | 能效比（性能/瓦） | 3.2 TFLOPS/W | 2.1 TFLOPS/W | 2.8 TFLOPS/W |
-
 
 #### **3. 典型应用场景**
 + **大模型训练**：支持千亿参数模型（如GPT-3）
@@ -186,7 +181,6 @@ with ht.hpu.autocast():
 | 训练GPT-3 175B | $1.2M | $4.7M | $3.9M |
 | 能效成本比 | 1.0x | 2.8x | 2.1x |
 
-
 ---
 
 ### **六、未来路线图**
@@ -209,7 +203,6 @@ with ht.hpu.autocast():
 | **思元（MLU）边缘卡** | 边缘设备推理 | 低功耗，支持实时处理 |
 | **寒武纪1H/1M** | 端侧设备（手机/机器人） | 集成NPU，能效比优化 |
 
-
 ---
 
 ### **二、旗舰产品：MLU270/370系列加速卡**
@@ -226,7 +219,6 @@ with ht.hpu.autocast():
 | INT8算力 (TOPS) | 256 | 624 | 512 |
 | FP16算力 (TFLOPS) | 64 | 312 | 256 |
 | 能效比（TOPS/W） | 4.2 | 3.8 | 5.1 |
-
 
 ---
 
@@ -289,7 +281,6 @@ mluInfer(radar_data, &output, MLU_MODE_LOW_LATENCY);
 | **MLU-OPS** | 自定义算子开发库 | 支持C/C++/Python接口 |
 | **Cambricon Converter** | 模型转换工具 | ONNX/Caffe → 寒武纪格式 |
 
-
 ---
 
 ### **六、部署与采购**
@@ -306,7 +297,6 @@ mluInfer(radar_data, &output, MLU_MODE_LOW_LATENCY);
 | --- | --- | --- | --- |
 | 训练百亿参数模型 | ¥8.5万/卡/月 | ¥12万/卡/月 | ¥9.2万/卡/月 |
 | 推理能效成本比 | 1.0x | 1.3x | 0.9x |
-
 
 ---
 
@@ -334,4 +324,3 @@ print(output.cpu())
 ---
 
 寒武纪通过**全栈自研架构+开放生态**的策略，正在成为全球AI加速卡市场的重要竞争者，尤其在国产化替代和特定垂直领域（如安防、自动驾驶）展现出显著优势。
-

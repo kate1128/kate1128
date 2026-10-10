@@ -29,7 +29,6 @@ curl --request POST \
    "dbName": "default"
   }'
 
-
 curl --request POST \
   --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/list" \
   --header "Authorization: Bearer ${TOKEN}" \
@@ -157,10 +156,7 @@ target:
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731917618764-8ed60d02-7d5f-4d00-9324-6599b872fbaf.png)
 
-<br/>color2
 不是覆盖的，不会删除原数据
-
-<br/>
 
 # milvus_backup
 异机验不通
@@ -213,12 +209,10 @@ $ mc ls --versions milvus_minio_k8s
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731916891395-7287b877-6d5d-4b81-84b9-7d835e3dd67f.png)
 
-
-
 ```bash
 ./milvus-backup restore -n test_backup01 -s _recover --restore_index=true
 
-/opt/milvus_backup/milvus-backup restore -n bak_db_test_20240815 -d db_test --restore_index=true --config=/opt/milvus_backup/conf/backup.yaml 
+/opt/milvus_backup/milvus-backup restore -n bak_db_test_20240815 -d db_test --restore_index=true --config=/opt/milvus_backup/conf/backup.yaml
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731923262915-f7adde8a-b913-4b76-97ae-5f539e449599.png)
@@ -229,4 +223,3 @@ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5
 kubectl apply -f https://raw.githubusercontent.com/zilliztech/milvus-operator/main/config/samples/milvus_minimum.yaml
 
 ```
-

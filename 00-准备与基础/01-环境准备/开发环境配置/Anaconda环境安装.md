@@ -1,3 +1,5 @@
+# Anaconda环境安装
+
 1. 安装地址：[https://www.anaconda.com/download](https://www.anaconda.com/download)
 2. 安装环境
 
@@ -35,4 +37,3 @@ print(completion.choices[0].message)
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736931758857-27aedc95-0d17-42d4-9a7f-29c2382e0fe3.png)
-

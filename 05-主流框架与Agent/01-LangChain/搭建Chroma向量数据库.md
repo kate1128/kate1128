@@ -18,7 +18,7 @@ from dotenv import load_dotenv, find_dotenv
 
 # 读取本地/项目的环境变量。
 # find_dotenv()寻找并定位.env文件的路径
-# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 
@@ -36,7 +36,7 @@ for root, dirs, files in os.walk(folder_path):
 print(file_paths[:3])
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>['../../data_base/knowledge_db/prompt_engineering/6. 文本转换 Transforming.md', '../../data_base/knowledge_db/prompt_engineering/4. 文本概括 Summarizing.md', '../../data_base/knowledge_db/prompt_engineering/5. 推断 Inferring.md']</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>['../../data_base/knowledge_db/prompt_engineering/6. 文本转换 Transforming.md', '../../data_base/knowledge_db/prompt_engineering/4. 文本概括 Summarizing.md', '../../data_base/knowledge_db/prompt_engineering/5. 推断 Inferring.md']</code></pre></details>
 ## 读取文件
 ```python
 from langchain.document_loaders.pdf import PyMuPDFLoader
@@ -68,13 +68,13 @@ for loader in loaders: texts.extend(loader.load())
 
 ```python
 text = texts[1]
-print(f"每一个元素的类型：{type(text)}.", 
-    f"该文档的描述性数据：{text.metadata}", 
-    f"查看该文档的内容:\n{text.page_content[0:]}", 
+print(f"每一个元素的类型：{type(text)}.",
+    f"该文档的描述性数据：{text.metadata}",
+    f"查看该文档的内容:\n{text.page_content[0:]}",
     sep="\n------\n")
 ```
 
-<details class="lake-collapse"><summary id="u61a8e41f"><span class="ne-text">output：</span></summary><pre data-language="python" id="kB4lY" class="ne-codeblock language-python"><code>每一个元素的类型：&lt;class 'langchain_core.documents.base.Document'&gt;.
+<details><summary>output：</summary><pre><code class="language-python"><code>每一个元素的类型：&lt;class 'langchain_core.documents.base.Document'&gt;.
 ------
 该文档的描述性数据：{'source': '../../data_base/knowledge_db/pumkin_book/pumpkin_book.pdf', 'file_path': '../../data_base/knowledge_db/pumkin_book/pumpkin_book.pdf', 'page': 1, 'total_pages': 196, 'format': 'PDF 1.5', 'title': '', 'author': '', 'subject': '', 'keywords': '', 'creator': 'LaTeX with hyperref', 'producer': 'xdvipdfmx (20200315)', 'creationDate': &quot;D:20230303170709-00'00'&quot;, 'modDate': '', 'trapped': ''}
 ------
@@ -156,7 +156,7 @@ LangChain 可以直接使用 OpenAI 和百度千帆的 Embedding，同时，也�
 from zhipuai_embedding import ZhipuAIEmbeddings
 
 # 定义 Embeddings
-# embedding = OpenAIEmbeddings() 
+# embedding = OpenAIEmbeddings()
 embedding = ZhipuAIEmbeddings()
 # embedding = QianfanEmbeddingsEndpoint()
 
@@ -194,4 +194,4 @@ vectordb.persist()
 print(f"向量库中存储的数量：{vectordb._collection.count()}")
 ```
 
-<details class="lake-collapse"><summary id="u03faf356"><span class="ne-text">output：</span></summary><pre data-language="python" id="LMgZU" class="ne-codeblock language-python"><code>向量库中存储的数量：20</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>向量库中存储的数量：20</code></pre></details>

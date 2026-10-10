@@ -52,7 +52,7 @@ heavy_calculation(1)  # 输出：heavy_calculation 执行耗时: 1.00s
 
 **执行流程**：
 
-1. `<font style="color:#DF2A3F;">@timer</font>`<font style="color:#DF2A3F;"> 等价于 </font>`<font style="color:#DF2A3F;">heavy_calculation = timer(heavy_calculation)</font>`
+1. `@timer` 等价于 `heavy_calculation = timer(heavy_calculation)`
 2. 调用 `heavy_calculation(1)` 实际执行的是 `wrapper(1)`
 3. `wrapper` 包裹原函数，添加计时逻辑
 
@@ -132,7 +132,6 @@ print(add(2, 3))  # 先打印日志，再输出结果 5
 | API 路由 | Flask 的 `@app.route("/")` |
 | 输入验证 | `@validate_input(schema)` |
 
-
 # 总结要点
 1. `@`** 是语法糖**：`@decorator` 等价于 `func = decorator(func)`
 2. **装饰器执行顺序**：从下往上应用（就近原则）
@@ -151,4 +150,3 @@ def func(): ...
     - 复杂逻辑拆分为多个简单装饰器
 
 装饰器是 Python 元编程的重要工具，掌握它能大幅提升代码的简洁性和可维护性。
-

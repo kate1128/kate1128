@@ -25,4 +25,3 @@
 >
 
 [使用Embedding API](https://www.yuque.com/qiaokate/su87gb/tkg9v11uq9fvmmr8)
-

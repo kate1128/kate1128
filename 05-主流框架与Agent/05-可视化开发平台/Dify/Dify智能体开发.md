@@ -70,7 +70,7 @@ def main() -> dict:
 def generate_answer(numbers):
     if len(numbers) != 4:
         return {'code': 'error', 'msg': "随机数个数不正确"}
-    
+
     operations = ['+', '-', '*', '/']
     for num_perm in permutations(numbers):
         for ops in product(operations, repeat=3):
@@ -200,7 +200,7 @@ def main(numbers:str) -> dict:
     numbersArray = json.loads(numbers)
     if len(numbersArray) != 4:
         return {'code': 'error', 'msg': "随机数个数不正确", 'answer':''}
-    
+
     operations = ['+', '-', '*', '/']
     for num_perm in permutations(numbersArray):
         for ops in product(operations, repeat=3):
@@ -262,7 +262,7 @@ def main(numbers:str) -> dict:
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736596377006-35785d59-9244-4f59-b4f6-f755cf7cfdd7.png)
 
 #### 调试和预览
-在下方输入内容和Agent进行游戏互动。  
+在下方输入内容和Agent进行游戏互动。
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736596492467-5eb59551-b74f-42f3-af07-a17bd6e36611.png)
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736596508714-a90e9f93-1ed9-4605-b1a9-28d81d77495b.png)
@@ -272,4 +272,3 @@ def main(numbers:str) -> dict:
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736596547417-6b3d7940-2738-47c5-b49c-8016adc7fb81.png)
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736596559787-2ed4c0c2-0944-44c5-8874-b8900bb07cae.png)
-

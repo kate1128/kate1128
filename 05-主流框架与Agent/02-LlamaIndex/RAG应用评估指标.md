@@ -6,12 +6,9 @@
 ##  介绍
 本章节主要内容为评估 RAG 应用中常用的三个指标，分别为：
 
-<br/>color2
 1. `Answer relevance`：评估RAG系统的输出是否与问题相关；
 2. `Context relevance`：评估RAG系统召回的上下文是否与问题相关；
 3. `Groundness`: 评估RAG系统的输出是否基于召回的上下文；
-
-<br/>
 
 ![](https://raw.githubusercontent.com/datawhalechina/llm-cookbook/54ad6728cde23add6e96b1f521ace605b5e60ca3/content/%E9%80%89%E4%BF%AE-Building%20and%20Evaluating%20Advanced%20RAG%20Applications/images/ch03_traid.jpg)
 
@@ -36,7 +33,6 @@ warnings.filterwarnings('ignore')
 ```python
 # 导入Tru类
 from trulens_eval import Tru
-
 
 # 实例化Tru类
 tru = Tru()
@@ -135,8 +131,6 @@ sentence_window_engine = \
 get_sentence_window_query_engine(sentence_index)
 ```
 
-
-
 ```python
 sentence_window_engine_en = \
 get_sentence_window_query_engine(sentence_index_en)
@@ -155,8 +149,6 @@ To disable this warning, you can either:
 - Avoid using `tokenizers` before the fork if possible
 - Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
 ```
-
-
 
 ```python
 output_en = sentence_window_engine_en.query(
@@ -207,8 +199,6 @@ import nest_asyncio
 nest_asyncio.apply()
 ```
 
-
-
 ```python
 from trulens_eval import OpenAI as fOpenAI
 
@@ -230,7 +220,6 @@ answer relevance的feedback function的结构为：
 
 ```python
 from trulens_eval import Feedback
-
 
 # 这里为answer relevance设置feedback
 # 使用provider.relevance_with_cot_reasons作为评估函数，即，通过调用LLM使用chain of thought的方式进行评估
@@ -267,7 +256,6 @@ context_selection = TruLlama.select_source_nodes().node.text
 ```python
 import numpy as np
 
-
 # 使用provider.qs_relevance作为评估函数
 # on_input()表示在输入上进行评估
 # on(context_selection)表示在context_selection上进行评估
@@ -286,8 +274,6 @@ f_qs_relevance = (
 ✅ In Context Relevance, input question will be set to __record__.main_input or `Select.RecordInput` .
 ✅ In Context Relevance, input statement will be set to __record__.app.query.rets.source_nodes[:].node.text .
 ```
-
-
 
 ```python
 import numpy as np
@@ -344,7 +330,6 @@ f_groundedness = (
 from trulens_eval import TruLlama
 from trulens_eval import FeedbackMode
 
-
 # 实例化TruLlama类，用来记录评估结果
 # sentence_window_engine是之前创建的搜索引擎
 # app_id是应用的ID，用来标识应用
@@ -380,8 +365,6 @@ with open('./data/eval_questions.txt', 'r') as file:
         eval_questions.append(item)
 ```
 
-
-
 ```python
 eval_questions_en = []
 with open('./data/eval_questions_en.txt', 'r') as file:
@@ -390,13 +373,9 @@ with open('./data/eval_questions_en.txt', 'r') as file:
         eval_questions_en.append(item)
 ```
 
-
-
 ```python
 eval_questions
 ```
-
-
 
 ```python
 ['人工智能中的先验知识是如何被存储的？',
@@ -406,13 +385,9 @@ eval_questions
  '人工智能被滥用带来的危害？']
 ```
 
-
-
 ```python
 eval_questions_en
 ```
-
-
 
 ```python
 ['What are the keys to building a career in AI?',
@@ -427,19 +402,13 @@ eval_questions_en
  'Is it normal to find parts of AI challenging?']
 ```
 
-
-
 ```python
 eval_questions.append("如何在人工智能领域获得成功？")
 ```
 
-
-
 ```python
 eval_questions
 ```
-
-
 
 ```python
 ['人工智能中的先验知识是如何被存储的？',
@@ -460,8 +429,6 @@ for question in eval_questions:
         sentence_window_engine.query(question)
 ```
 
-
-
 ```python
 for question in eval_questions_en:
     with tru_recorder_en as recording:
@@ -469,8 +436,6 @@ for question in eval_questions_en:
 ```
 
 之后，需要进行编解码，将评估结果转换为中文可读的形式，方便分析。
-
-
 
 ```python
 records, feedback = tru.get_records_and_feedback(app_ids=[])
@@ -484,10 +449,6 @@ records['output'] = records['output'].apply(decode_unicode)
 
 records.head()
 ```
-
-
-
-
 
 ```python
 # 运行dashboard
@@ -508,8 +469,7 @@ To disable this warning, you can either:
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
 ```
 
-<details class="lake-collapse"><summary id="u993c8a90"><span class="ne-text">output：</span></summary><pre data-language="json" id="SxOag" class="ne-codeblock language-json"><code>Accordion(children=(VBox(children=(VBox(children=(Label(value='STDOUT'), Output())), VBox(children=(Label(valu…
+<details><summary>output：</summary><pre><code class="language-json"><code>Accordion(children=(VBox(children=(VBox(children=(Label(value='STDOUT'), Output())), VBox(children=(Label(valu…
 Dashboard started at http://10.31.153.170:8501 .</code></pre></details>
 
-
-<details class="lake-collapse"><summary id="u74628242"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="PrKuP" class="ne-codeblock language-json"><code>&lt;Popen: returncode: None args: ['streamlit', 'run', '--server.headless=True'...&gt;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>&lt;Popen: returncode: None args: ['streamlit', 'run', '--server.headless=True'...&gt;</code></pre></details>

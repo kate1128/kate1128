@@ -18,7 +18,7 @@ def wenxin_embedding(text: str):
         'Accept': 'application/json'
     }
     response = requests.request("POST", url, headers=headers, data=payload)
-    
+
     # 通过获取的Access token 来embedding text
     url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/embeddings/embedding-v1?access_token=" + str(response.json().get("access_token"))
     input = []
@@ -45,7 +45,7 @@ print('本次embedding id为：{}'.format(response['id']))
 print('本次embedding产生时间戳为：{}'.format(response['created']))
 ```
 
-<details class="lake-collapse"><summary id="u622537fe"><span class="ne-text">output：</span></summary><pre data-language="python" id="KT1uI" class="ne-codeblock language-python"><code>本次embedding id为：as-hvbgfuk29u
+<details><summary>output：</summary><pre><code class="language-python"><code>本次embedding id为：as-hvbgfuk29u
 本次embedding产生时间戳为：1711435238</code></pre></details>
 同样的也可以从`response`中获取`embedding`的类型和`embedding`。
 
@@ -55,8 +55,6 @@ print('embedding长度为：{}'.format(len(response['data'][0]['embedding'])))
 print('embedding（前10）为：{}'.format(response['data'][0]['embedding'][:10]))
 ```
 
-<details class="lake-collapse"><summary id="uecb14136"><span class="ne-text">output：</span></summary><pre data-language="python" id="AXqij" class="ne-codeblock language-python"><code>返回的embedding类型为:embedding_list
+<details><summary>output：</summary><pre><code class="language-python"><code>返回的embedding类型为:embedding_list
 embedding长度为：384
 embedding（前10）为：[0.060567744076251984, 0.020958080887794495, 0.053234219551086426, 0.02243831567466259, -0.024505289271473885, -0.09820500761270523, 0.04375714063644409, -0.009092536754906178, -0.020122773945331573, 0.015808865427970886]</code></pre></details>
-
-

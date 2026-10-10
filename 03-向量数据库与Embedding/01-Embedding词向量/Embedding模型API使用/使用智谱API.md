@@ -1,3 +1,5 @@
+# 使用智谱API
+
 > 模型是`model="embedding-2"`
 >
 > 参考：[https://open.bigmodel.cn/dev/howuse/model](https://open.bigmodel.cn/dev/howuse/model)
@@ -9,7 +11,6 @@
 | :--- | :--- | :--- | :--- |
 | `Embedding-3` | **最新模型**：支持自定义向量维度 | 8K | 2048 |
 | `Embedding-2` | **旧版模型**：目前已被`Embedding-3`取代 | 8K | 1024 |
-
 
 智谱有封装好的SDK，调用即可。
 
@@ -39,7 +40,7 @@ print(f'生成的embedding长度为：{len(response.data[0].embedding)}')
 print(f'embedding（前10）为: {response.data[0].embedding[:10]}')
 ```
 
-<details class="lake-collapse"><summary id="uba8328f6"><span class="ne-text">output：</span></summary><pre data-language="python" id="SXP16" class="ne-codeblock language-python"><code>response类型为：&lt;class 'zhipuai.types.embeddings.EmbeddingsResponded'&gt;
+<details><summary>output：</summary><pre><code class="language-python"><code>response类型为：&lt;class 'zhipuai.types.embeddings.EmbeddingsResponded'&gt;
 embedding类型为：list
 生成embedding的model为：embedding-2
 生成的embedding长度为：1024

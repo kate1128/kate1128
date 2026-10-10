@@ -14,12 +14,12 @@ from dotenv import load_dotenv, find_dotenv
 # 读取本地/项目的环境变量。
 
 # find_dotenv()寻找并定位.env文件的路径
-# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 
 # 获取环境变量 OPENAI_API_KEY
-openai.api_key = os.environ['OPENAI_API_KEY']  
+openai.api_key = os.environ['OPENAI_API_KEY']
 ```
 
 # 大语言模型链
@@ -42,7 +42,7 @@ df.head()
 ### 初始化语言模型
 ```python
 from langchain_community.chat_models import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate  
+from langchain.prompts import ChatPromptTemplate
 from langchain.chains.llm import LLMChain
 ```
 
@@ -52,13 +52,13 @@ from langchain.chains.llm import LLMChain
 llm = ChatOpenAI(temperature=0.0, openai_api_base="https://xiaoai.plus/v1")
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>/tmp/ipykernel_2525632/1886221320.py:3: LangChainDeprecationWarning: The class `ChatOpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-openai package and should be used instead. To use it run `pip install -U :class:`~langchain-openai` and import as `from :class:`~langchain_openai import ChatOpenAI``.
+<details><summary>output：</summary><pre><code class="language-json"><code>/tmp/ipykernel_2525632/1886221320.py:3: LangChainDeprecationWarning: The class `ChatOpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-openai package and should be used instead. To use it run `pip install -U :class:`~langchain-openai` and import as `from :class:`~langchain_openai import ChatOpenAI``.
   llm = ChatOpenAI(temperature=0.0, openai_api_base=&quot;https://xiaoai.plus/v1&quot;)</code></pre></details>
 ### 初始化提示模板
 初始化提示，这个提示将接受一个名为product的变量。该prompt将要求LLM生成一个描述制造该产品的公司的最佳名称
 
 ```python
-prompt = ChatPromptTemplate.from_template(   
+prompt = ChatPromptTemplate.from_template(
     "What is the best name to describe \
     a company that makes {product}?"
 )
@@ -71,7 +71,7 @@ prompt = ChatPromptTemplate.from_template(
 chain = LLMChain(llm=llm, prompt=prompt)
 ```
 
-<details class="lake-collapse"><summary id="u7ec7bd1a"><span class="ne-text">output：</span></summary><pre data-language="json" id="fz462" class="ne-codeblock language-json"><code>/tmp/ipykernel_2525632/1305865249.py:1: LangChainDeprecationWarning: The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use :meth:`~RunnableSequence, e.g., `prompt | llm`` instead.
+<details><summary>output：</summary><pre><code class="language-json"><code>/tmp/ipykernel_2525632/1305865249.py:1: LangChainDeprecationWarning: The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use :meth:`~RunnableSequence, e.g., `prompt | llm`` instead.
   chain = LLMChain(llm=llm, prompt=prompt)</code></pre></details>
 ### 运行大预言模型链
 因此，如果有一个名为"`Queen Size Sheet Set`"的产品，可以通过使用`chain.run`将其通过这个链运行
@@ -87,7 +87,7 @@ chain.run(product)
 
 ### 中文提示
 ```python
-prompt = ChatPromptTemplate.from_template(   
+prompt = ChatPromptTemplate.from_template(
     "描述制造{product}的一个公司的最佳名称是什么?"
 )
 chain = LLMChain(llm=llm, prompt=prompt)
@@ -95,7 +95,7 @@ product = "大号床单套装"
 chain.run(product)
 ```
 
-<details class="lake-collapse"><summary id="ua9868972"><span class="ne-text">output：</span></summary><pre data-language="json" id="VsFge" class="ne-codeblock language-json"><code>'&quot;巨大床铺&quot;'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'&quot;巨大床铺&quot;'</code></pre></details>
 # 顺序链
 ## 简单顺序链
 顺序链（`SequentialChains`）是按预定义顺序执行其链接的链。具体来说，使用简单顺序链（`SimpleSequentialChain`），这是顺序链的最简单类型，其中每个步骤都有一个输入/输出，一个步骤的输出是下一个步骤的输入。
@@ -151,17 +151,16 @@ overall_simple_chain.run(product)
 ```python
 # 中文
 
-first_prompt = ChatPromptTemplate.from_template(   
+first_prompt = ChatPromptTemplate.from_template(
     "描述制造{product}的一个公司的最好的名称是什么"
 )
 chain_one = LLMChain(llm=llm, prompt=first_prompt)
 
-second_prompt = ChatPromptTemplate.from_template(   
+second_prompt = ChatPromptTemplate.from_template(
     "写一个20字的描述对于下面这个\
     公司：{company_name}的"
 )
 chain_two = LLMChain(llm=llm, prompt=second_prompt)
-
 
 overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two],verbose=True)
 product = "大号床单套装"
@@ -238,8 +237,8 @@ chain_four = LLMChain(llm=llm, prompt=fourth_prompt, output_key="followup_messag
 
 ### 对四个子链进行组合
 ```python
-#输入：review    
-#输出：英文review，总结，后续回复 
+#输入：review
+#输出：英文review，总结，后续回复
 overall_chain = SequentialChain(
     chains=[chain_one, chain_two, chain_three, chain_four],
     input_variables=["Review"],
@@ -257,7 +256,7 @@ overall_chain(review)
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733259391-cbd07dac-fd59-4000-9d33-db272f590a29.png)
 
-<details class="lake-collapse"><summary id="ue46aa60e"><span class="ne-text">output：</span></summary><pre data-language="json" id="vvVdq" class="ne-codeblock language-json"><code>{'Review': &quot;Je trouve le goût médiocre. La mousse ne tient pas, c'est bizarre. J'achète les mêmes dans le commerce et le goût est bien meilleur...\nVieux lot ou contrefaçon !?&quot;,
+<details><summary>output：</summary><pre><code class="language-json"><code>{'Review': &quot;Je trouve le goût médiocre. La mousse ne tient pas, c'est bizarre. J'achète les mêmes dans le commerce et le goût est bien meilleur...\nVieux lot ou contrefaçon !?&quot;,
  'English_Review': &quot;I find the taste poor. The foam doesn't hold, it's strange. I buy the same ones in stores and the taste is much better... Old batch or counterfeit!?&quot;,
  'summary': 'The reviewer is disappointed by the poor taste and lack of foam in the product, suspecting that it may be an old batch or counterfeit compared to the ones purchased in stores that taste much better.',
  'followup_message': &quot;Je suis désolé d'apprendre que votre expérience avec notre produit n'a pas été à la hauteur de vos attentes. Nous sommes surpris par vos commentaires car nous veillons à ce que nos produits soient frais et authentiques. Nous aimerions en apprendre davantage sur votre expérience pour résoudre ce problème et améliorer la qualité de nos produits. N'hésitez pas à nous contacter directement pour discuter de cette situation en détail. Merci de nous avoir informés de ce problème.&quot;}</code></pre></details>
@@ -283,7 +282,6 @@ second_prompt = ChatPromptTemplate.from_template(
 # chain 2: 输入：英文的Review   输出：总结
 chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key="summary")
 
-
 #子链3
 # prompt模板 3: 下面review使用的什么语言
 third_prompt = ChatPromptTemplate.from_template(
@@ -291,7 +289,6 @@ third_prompt = ChatPromptTemplate.from_template(
 )
 # chain 3: 输入：Review  输出：语言
 chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key="language")
-
 
 #子链4
 # prompt模板 4: 使用特定的语言对下面的总结写一个后续回复
@@ -304,9 +301,8 @@ chain_four = LLMChain(llm=llm, prompt=fourth_prompt,
                       output_key="followup_message"
                      )
 
-
 # 对四个子链进行组合
-#输入：review    输出：英文review，总结，后续回复 
+#输入：review    输出：英文review，总结，后续回复
 overall_chain = SequentialChain(
     chains=[chain_one, chain_two, chain_three, chain_four],
     input_variables=["Review"],
@@ -314,14 +310,13 @@ overall_chain = SequentialChain(
     verbose=True
 )
 
-
 review = df.Review[5]
 overall_chain(review)
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733311898-de025293-cc9d-4608-93f1-6afc10cc496b.png)
 
-<details class="lake-collapse"><summary id="ud9c1a003"><span class="ne-text">output：</span></summary><pre data-language="json" id="v3xSX" class="ne-codeblock language-json"><code>{'Review': &quot;Je trouve le goût médiocre. La mousse ne tient pas, c'est bizarre. J'achète les mêmes dans le commerce et le goût est bien meilleur...\nVieux lot ou contrefaçon !?&quot;,
+<details><summary>output：</summary><pre><code class="language-json"><code>{'Review': &quot;Je trouve le goût médiocre. La mousse ne tient pas, c'est bizarre. J'achète les mêmes dans le commerce et le goût est bien meilleur...\nVieux lot ou contrefaçon !?&quot;,
  'English_Review': &quot;I find the taste mediocre. The foam doesn't hold, it's weird. I buy the same ones in stores and the taste is much better... Old batch or counterfeit!?&quot;,
  'summary': &quot;The taste is mediocre and the foam doesn't hold well, making me question if it's an old batch or counterfeit.&quot;,
  'followup_message': &quot;Je suis désolé d'apprendre que votre expérience avec le produit n'a pas été satisfaisante. Il est toujours frustrant de découvrir que quelque chose que l'on a acheté ne correspond pas à nos attentes. Avez-vous envisagé de contacter le vendeur ou le fabricant pour obtenir des réponses à vos préoccupations? Il est important de signaler toute préoccupation afin d'améliorer la qualité des produits et d'éviter les contrefaçons.&quot;}</code></pre></details>
@@ -330,13 +325,10 @@ overall_chain(review)
 
 一个相当常见但基本的操作是根据输入将其路由到一条链，具体取决于该输入到底是什么。如果**有多个子链，每个子链都专门用于特定类型的输入，那么可以组成一个路由链**，它首先决定将它传递给哪个子链，然后将它传递给那个链。
 
-<br/>color2
 路由器由两个组件组成：
 
 + 路由链（Router Chain）：路由器链本身，负责选择要调用的下一个链
 + `destination_chains`：路由器链可以路由到的链
-
-<br/>
 
 举一个具体的例子，看一下在不同类型的链之间路由的地方，这里有不同的prompt:
 
@@ -362,18 +354,16 @@ that you don't know.
 Here is a question:
 {input}"""
 
-
 #第二个提示适合回答数学问题
 math_template = """You are a very good mathematician. \
 You are great at answering math questions. \
 You are so good because you are able to break down \
-hard problems into their component parts, 
+hard problems into their component parts,
 answer the component parts, and then put them together\
 to answer the broader question.
 
 Here is a question:
 {input}"""
-
 
 #第三个适合回答历史问题
 history_template = """You are a very good historian. \
@@ -387,7 +377,6 @@ and judgements.
 Here is a question:
 {input}"""
 
-
 #第四个适合回答计算机问题
 computerscience_template = """ You are a successful computer scientist.\
 You have a passion for creativity, collaboration,\
@@ -398,7 +387,7 @@ You are so good because you know how to solve a problem by \
 describing the solution in imperative steps \
 that a machine can easily interpret and you know how to \
 choose a solution that has a good balance between \
-time complexity and space complexity. 
+time complexity and space complexity.
 
 Here is a question:
 {input}"""
@@ -410,36 +399,33 @@ Here is a question:
 ```python
 prompt_infos = [
     {
-        "name": "physics", 
-        "description": "Good for answering questions about physics", 
+        "name": "physics",
+        "description": "Good for answering questions about physics",
         "prompt_template": physics_template
     },
     {
-        "name": "math", 
-        "description": "Good for answering math questions", 
+        "name": "math",
+        "description": "Good for answering math questions",
         "prompt_template": math_template
     },
     {
-        "name": "History", 
-        "description": "Good for answering history questions", 
+        "name": "History",
+        "description": "Good for answering history questions",
         "prompt_template": history_template
     },
     {
-        "name": "computer science", 
-        "description": "Good for answering computer science questions", 
+        "name": "computer science",
+        "description": "Good for answering computer science questions",
         "prompt_template": computerscience_template
     }
 ]
 ```
 
-<br/>color2
 `LLMRouterChain`（此链使用 LLM 来确定如何路由事物）
 
 **多提示链**。这是一种特定类型的链，用于在多个不同的提示模板之间进行路由。 但是这只是路由的一种类型，也可以在任何类型的链之间进行路由。
 
 这里要实现的几个类是大模型路由器链。这个类本身使用语言模型来在不同的子链之间进行路由。这就是上面提供的描述和名称将被使用的地方。
-
-<br/>
 
 ## 基于提示模板信息创建相应目标链
 目标链是由路由链调用的链，每个目标链都是一个语言模型链
@@ -451,8 +437,8 @@ for p_info in prompt_infos:
     prompt_template = p_info["prompt_template"]
     prompt = ChatPromptTemplate.from_template(template=prompt_template)
     chain = LLMChain(llm=llm, prompt=prompt)
-    destination_chains[name] = chain  
-    
+    destination_chains[name] = chain
+
 destinations = [f"{p['name']}: {p['description']}" for p in prompt_infos]
 destinations_str = "\n".join(destinations)
 ```
@@ -514,10 +500,7 @@ eg:
 ```
 
 ## 构建路由链
-<br/>color2
 通过格式化上面定义的目标创建完整的路由器模板。这个模板可以适用许多不同类型的目标。
-
-<br/>
 
 这里添加一个不同的学科，如英语或拉丁语，而不仅仅是物理、数学、历史和计算机科学。从这个模板创建提示模板。最后，通过传入llm和整个路由提示来创建路由链。需要注意的是这里有路由输出解析，这很重要，因为它将帮助这个链路决定在哪些子链路之间进行路由。
 
@@ -540,11 +523,11 @@ router_chain = LLMRouterChain.from_llm(llm, router_prompt)
 chain = MultiPromptChain(router_chain=router_chain,    #l路由链路
                          destination_chains=destination_chains,   #目标链路
                          default_chain=default_chain,      #默认链路
-                         verbose=True   
+                         verbose=True
                         )
 ```
 
-<details class="lake-collapse"><summary id="u33e595bf"><span class="ne-text">output：</span></summary><pre data-language="json" id="vCjug" class="ne-codeblock language-json"><code>/tmp/ipykernel_2525632/3410607526.py:2: LangChainDeprecationWarning: Please see migration guide here for recommended implementation: https://python.langchain.com/docs/versions/migrating_chains/multi_prompt_chain/
+<details><summary>output：</summary><pre><code class="language-json"><code>/tmp/ipykernel_2525632/3410607526.py:2: LangChainDeprecationWarning: Please see migration guide here for recommended implementation: https://python.langchain.com/docs/versions/migrating_chains/multi_prompt_chain/
   chain = MultiPromptChain(router_chain=router_chain,    #l路由链路</code></pre></details>
 ## 进行提问
 如果我们问一个物理问题，我们希望看到他被路由到物理链路
@@ -556,7 +539,7 @@ chain.run("What is black body radiation?")
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733581535-ef83f9bc-088d-46b7-98c7-6c4ec7e4d2ea.png)
 
-<details class="lake-collapse"><summary id="ud99ff339"><span class="ne-text">output：</span></summary><pre data-language="json" id="aTNgr" class="ne-codeblock language-json"><code>&quot;Black body radiation refers to the electromagnetic radiation emitted by an idealized object known as a black body. A black body is an object that perfectly absorbs all incident radiation, regardless of frequency or angle, and reflects none. Because it is a perfect absorber, it is also a perfect emitter of radiation when it is at a uniform temperature.\n\nThe key characteristics of black body radiation are:\n\n1. **Spectral Distribution:** The radiation emitted by a black body has a characteristic spectrum that depends only on its temperature, not on its material or composition. This spectrum is continuous and spans a wide range of wavelengths.\n\n2. **Planck’s Law:** The spectral intensity of the radiation at a given temperature can be described by Planck’s law. It provides the distribution of energy at different wavelengths for a black body in thermal equilibrium.\n\n3. **Wien’s Displacement Law:** This law states that the peak wavelength of the emitted radiation shifts to shorter wavelengths as the temperature of the black body increases. Mathematically, it's given by \\(\\lambda_{\\text{max}} T = b\\), where \\(b\\) is Wien's constant.\n\n4. **Stefan-Boltzmann Law:** This law states that the total energy emitted per unit surface area of a black body per unit time (its emissive power) is proportional to the fourth power of the black body's absolute temperature. Mathematically, \\(E = \\sigma T^4\\), where \\(\\sigma\\) is the Stefan-Boltzmann constant.\n\nBlack body radiation is a fundamental concept in physics and played a crucial role in the development of quantum mechanics, as it led to the discovery of quantum effects in energy emission and absorption processes.&quot;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>&quot;Black body radiation refers to the electromagnetic radiation emitted by an idealized object known as a black body. A black body is an object that perfectly absorbs all incident radiation, regardless of frequency or angle, and reflects none. Because it is a perfect absorber, it is also a perfect emitter of radiation when it is at a uniform temperature.\n\nThe key characteristics of black body radiation are:\n\n1. **Spectral Distribution:** The radiation emitted by a black body has a characteristic spectrum that depends only on its temperature, not on its material or composition. This spectrum is continuous and spans a wide range of wavelengths.\n\n2. **Planck’s Law:** The spectral intensity of the radiation at a given temperature can be described by Planck’s law. It provides the distribution of energy at different wavelengths for a black body in thermal equilibrium.\n\n3. **Wien’s Displacement Law:** This law states that the peak wavelength of the emitted radiation shifts to shorter wavelengths as the temperature of the black body increases. Mathematically, it's given by \\(\\lambda_{\\text{max}} T = b\\), where \\(b\\) is Wien's constant.\n\n4. **Stefan-Boltzmann Law:** This law states that the total energy emitted per unit surface area of a black body per unit time (its emissive power) is proportional to the fourth power of the black body's absolute temperature. Mathematically, \\(E = \\sigma T^4\\), where \\(\\sigma\\) is the Stefan-Boltzmann constant.\n\nBlack body radiation is a fundamental concept in physics and played a crucial role in the development of quantum mechanics, as it led to the discovery of quantum effects in energy emission and absorption processes.&quot;</code></pre></details>
 如果我们问一个数学问题，我们希望看到他被路由到数学链路
 
 ```python
@@ -566,7 +549,7 @@ chain.run("what is 2 + 2")
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733685152-a040857e-79d2-434e-bee9-d0a1b3c8655a.png)
 
-<details class="lake-collapse"><summary id="u43ece72f"><span class="ne-text">output：</span></summary><pre data-language="json" id="OGYmb" class="ne-codeblock language-json"><code>'To solve the problem of 2 + 2, we can break it down into a simple addition of two numbers:\n\n1. Start with the first number: 2\n2. Add the second number: 2\n\nWhen you add these two numbers together:\n\n2 + 2 = 4\n\nTherefore, the answer is 4.'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'To solve the problem of 2 + 2, we can break it down into a simple addition of two numbers:\n\n1. Start with the first number: 2\n2. Add the second number: 2\n\nWhen you add these two numbers together:\n\n2 + 2 = 4\n\nTherefore, the answer is 4.'</code></pre></details>
 ```markdown
 如果我们传递一个与任何子链路都无关的问题时，会发生什么呢？
 
@@ -580,7 +563,7 @@ chain.run("Why does every cell in our body contain DNA?")
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733672741-59ae3c6b-113e-42a7-81f9-db659b80ddd0.png)
 
-<details class="lake-collapse"><summary id="u6e0dc839"><span class="ne-text">output：</span></summary><pre data-language="json" id="ypsO8" class="ne-codeblock language-json"><code>&quot;Every cell in our body contains DNA because DNA holds the instructions needed for the development, functioning, growth, and reproduction of the organism. Here are several reasons why DNA is present in almost every cell:\n\n1. **Genetic Blueprint**: DNA serves as the genetic blueprint for an organism. It contains the instructions for making proteins, which perform most of the functions within the cell. Proteins are crucial for cellular structure, function, and regulation.\n\n2. **Cellular Function**: Each cell type carries out specific functions, which are guided by certain genes within the DNA. Having DNA in each cell allows the necessary genes to be accessed and expressed as needed, enabling the cell to perform its specialized role effectively.\n\n3. **Cell Division and Growth**: DNA replication is essential for cell division, allowing each new cell to have a complete set of genetic instructions. This is vital for growth, repair, and maintenance of the organism.\n\n4. **Consistency and Control**: With DNA in every cell, there's a consistent source of genetic information to control cellular processes. This ensures that cells function harmoniously, based on a coherent set of genetic instructions.\n\n5. **Adaptation and Repair**: DNA contains not only the genetic information but also the ability to repair itself. If a cell experiences DNA damage, the presence of repair mechanisms can maintain the integrity of the genetic material, allowing cells to adapt or correct errors.\n\nIt's worth noting that some cells, like mature red blood cells in humans, do not contain DNA. These are specialized cells that lose their nucleus and, consequently, their DNA during development. However, this is an exception rather than the rule.&quot;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>&quot;Every cell in our body contains DNA because DNA holds the instructions needed for the development, functioning, growth, and reproduction of the organism. Here are several reasons why DNA is present in almost every cell:\n\n1. **Genetic Blueprint**: DNA serves as the genetic blueprint for an organism. It contains the instructions for making proteins, which perform most of the functions within the cell. Proteins are crucial for cellular structure, function, and regulation.\n\n2. **Cellular Function**: Each cell type carries out specific functions, which are guided by certain genes within the DNA. Having DNA in each cell allows the necessary genes to be accessed and expressed as needed, enabling the cell to perform its specialized role effectively.\n\n3. **Cell Division and Growth**: DNA replication is essential for cell division, allowing each new cell to have a complete set of genetic instructions. This is vital for growth, repair, and maintenance of the organism.\n\n4. **Consistency and Control**: With DNA in every cell, there's a consistent source of genetic information to control cellular processes. This ensures that cells function harmoniously, based on a coherent set of genetic instructions.\n\n5. **Adaptation and Repair**: DNA contains not only the genetic information but also the ability to repair itself. If a cell experiences DNA damage, the presence of repair mechanisms can maintain the integrity of the genetic material, allowing cells to adapt or correct errors.\n\nIt's worth noting that some cells, like mature red blood cells in humans, do not contain DNA. These are specialized cells that lose their nucleus and, consequently, their DNA during development. However, this is an exception rather than the rule.&quot;</code></pre></details>
 ## 中文提示
 ```python
 # 中文
@@ -593,7 +576,6 @@ physics_template = """你是一个非常聪明的物理专家。 \
 这是一个问题:
 {input}"""
 
-
 #第二个提示适合回答数学问题
 math_template = """你是一个非常优秀的数学家。 \
 你擅长回答数学问题。 \
@@ -604,7 +586,6 @@ math_template = """你是一个非常优秀的数学家。 \
 这是一个问题：
 {input}"""
 
-
 #第三个适合回答历史问题
 history_template = """你是以为非常优秀的历史学家。 \
 你对一系列历史时期的人物、事件和背景有着极好的学识和理解\
@@ -613,7 +594,6 @@ history_template = """你是以为非常优秀的历史学家。 \
 
 这是一个问题:
 {input}"""
-
 
 #第四个适合回答计算机问题
 computerscience_template = """ 你是一个成功的计算机科学专家。\
@@ -633,23 +613,23 @@ computerscience_template = """ 你是一个成功的计算机科学专家。\
 # 中文
 prompt_infos = [
     {
-        "名字": "物理学", 
-        "描述": "擅长回答关于物理学的问题", 
+        "名字": "物理学",
+        "描述": "擅长回答关于物理学的问题",
         "提示模板": physics_template
     },
     {
-        "名字": "数学", 
-        "描述": "擅长回答数学问题", 
+        "名字": "数学",
+        "描述": "擅长回答数学问题",
         "提示模板": math_template
     },
     {
-        "名字": "历史", 
-        "描述": "擅长回答历史问题", 
+        "名字": "历史",
+        "描述": "擅长回答历史问题",
         "提示模板": history_template
     },
     {
-        "名字": "计算机科学", 
-        "描述": "擅长回答计算机科学问题", 
+        "名字": "计算机科学",
+        "描述": "擅长回答计算机科学问题",
         "提示模板": computerscience_template
     }
 ]
@@ -664,8 +644,8 @@ for p_info in prompt_infos:
     prompt_template = p_info["提示模板"]
     prompt = ChatPromptTemplate.from_template(template=prompt_template)
     chain = LLMChain(llm=llm, prompt=prompt)
-    destination_chains[name] = chain  
-    
+    destination_chains[name] = chain
+
 destinations = [f"{p['名字']}: {p['描述']}" for p in prompt_infos]
 destinations_str = "\n".join(destinations)
 ```
@@ -685,7 +665,6 @@ MULTI_PROMPT_ROUTER_TEMPLATE = """给语言模型一个原始文本输入，\
 如果你认为修改原始输入最终会导致语言模型做出更好的响应，\
 你也可以修改原始输入。
 
-
 << 格式 >>
 返回一个带有JSON对象的markdown代码片段，该JSON对象的格式如下：
 ```json
@@ -694,7 +673,6 @@ MULTI_PROMPT_ROUTER_TEMPLATE = """给语言模型一个原始文本输入，\
     "next_inputs": 字符串 \ 原始输入的改进版本
 }}}}
 ```
-
 
 记住：“destination”必须是下面指定的候选提示名称之一，\
 或者如果输入不太适合任何候选提示，\
@@ -744,7 +722,7 @@ router_chain = LLMRouterChain.from_llm(llm, router_prompt)
 chain = MultiPromptChain(router_chain=router_chain,    #l路由链路
                          destination_chains=destination_chains,   #目标链路
                          default_chain=default_chain,      #默认链路
-                         verbose=True   
+                         verbose=True
                         )
 ```
 
@@ -755,7 +733,7 @@ chain.run("什么是黑体辐射？")
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733764788-4cfd2314-b5bf-4dcc-a947-f2e999ad7c12.png)
 
-<details class="lake-collapse"><summary id="uf2625937"><span class="ne-text">output：</span></summary><pre data-language="json" id="X5mTu" class="ne-codeblock language-json"><code>'黑体辐射是指一种理想化物体——黑体——发出的电磁辐射。黑体是一个能完全吸收和辐射所有波长电磁波的物体。它不反射也不透射任何光，因而得名“黑体”。\n\n在一定温度下，黑体会辐射出一种特定频谱的光，这种辐射只与黑体的温度有关，不依赖于它的形状或成分。黑体辐射的经典描述是由普朗克定律给出的，它成功地解释了辐射强度随波长变化的规律，并解决了经典物理学无法解释的“紫外灾难”问题。\n\n黑体辐射的研究是量子力学创建的重要起点，因其揭示了能量不是连续的，而是以离散的量子（称为光子）存在。最常见的黑体辐射实例包括热得发红的铁块、炽热的炉子，以及太阳的辐射。'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'黑体辐射是指一种理想化物体——黑体——发出的电磁辐射。黑体是一个能完全吸收和辐射所有波长电磁波的物体。它不反射也不透射任何光，因而得名“黑体”。\n\n在一定温度下，黑体会辐射出一种特定频谱的光，这种辐射只与黑体的温度有关，不依赖于它的形状或成分。黑体辐射的经典描述是由普朗克定律给出的，它成功地解释了辐射强度随波长变化的规律，并解决了经典物理学无法解释的“紫外灾难”问题。\n\n黑体辐射的研究是量子力学创建的重要起点，因其揭示了能量不是连续的，而是以离散的量子（称为光子）存在。最常见的黑体辐射实例包括热得发红的铁块、炽热的炉子，以及太阳的辐射。'</code></pre></details>
 ```python
 # 中文
 chain.run("你知道李白是谁嘛?")
@@ -763,7 +741,7 @@ chain.run("你知道李白是谁嘛?")
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733775265-f075d6cf-f22a-43f5-ab9c-d2a7a40d750b.png)
 
-<details class="lake-collapse"><summary id="u7165f4d7"><span class="ne-text">output：</span></summary><pre data-language="json" id="k8n42" class="ne-codeblock language-json"><code>'李白是中国唐代最著名的诗人之一，以其浪漫主义风格和丰富的想象力而闻名。他的人生和创作有许多广为人知的事迹，以下是几个重要的方面：\n\n1. **早年与求官之路**：李白出生于701年，祖籍甘肃成纪（今甘肃天水），但据说生于中亚的碎叶（位于今日吉尔吉斯斯坦境内）。他青少年时在四川读书，满怀抱负。李白一生都有追求功名前途的梦想。他曾经求仕于唐玄宗，获得短暂权臣高力士的赏识，但因个性洒脱和不拘小节，后来离开朝廷，成为一名游侠诗人。\n\n2. **仕途不顺**：李白曾在41岁时获召入长安，成为翰林，供职于皇帝身边。然而，他的宦途并不顺利，因受到诽谤和权臣排挤，仕途短暂，仅仅两年便离开了朝廷。这段经历虽然短暂，但对他的创作产生了重要影响。\n\n3. **游历生活**：离开长安后，李白开始了漫游生活，拜访各地名士和高僧，与杜甫、高适等人交往甚密。杜甫曾称赞李白为“白也诗无敌，飘然思不群”，赞扬其超凡的才华与洒脱的个性。\n\n4. **代表作品**：李白创作了大量脍炙人口的诗篇，如《将进酒》、《早发白帝城》、《月下独酌》、《庐山谣》、《蜀道难》等。他的诗歌风格豪放，语言奔放而富有想象力。\n\n5. **晚年与传说**：晚年的李白在政治动荡中经历了更多波折，甚至一度被流放夜郎（在今贵州境内），其间仍不乏诗作。关于他的死，有一个广为流传的传说：李白在一次泛舟湖上时醉酒扑月而死，当然这只是一种传说而非历史事实。李白的实际去世时间是762年。\n\n李白的诗歌至今备受推崇，他以豪放浪漫而不失细腻的笔触，为后世树立了古风诗的新高度，其诗作在中国文学史上有着不可替代的重要地位。'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'李白是中国唐代最著名的诗人之一，以其浪漫主义风格和丰富的想象力而闻名。他的人生和创作有许多广为人知的事迹，以下是几个重要的方面：\n\n1. **早年与求官之路**：李白出生于701年，祖籍甘肃成纪（今甘肃天水），但据说生于中亚的碎叶（位于今日吉尔吉斯斯坦境内）。他青少年时在四川读书，满怀抱负。李白一生都有追求功名前途的梦想。他曾经求仕于唐玄宗，获得短暂权臣高力士的赏识，但因个性洒脱和不拘小节，后来离开朝廷，成为一名游侠诗人。\n\n2. **仕途不顺**：李白曾在41岁时获召入长安，成为翰林，供职于皇帝身边。然而，他的宦途并不顺利，因受到诽谤和权臣排挤，仕途短暂，仅仅两年便离开了朝廷。这段经历虽然短暂，但对他的创作产生了重要影响。\n\n3. **游历生活**：离开长安后，李白开始了漫游生活，拜访各地名士和高僧，与杜甫、高适等人交往甚密。杜甫曾称赞李白为“白也诗无敌，飘然思不群”，赞扬其超凡的才华与洒脱的个性。\n\n4. **代表作品**：李白创作了大量脍炙人口的诗篇，如《将进酒》、《早发白帝城》、《月下独酌》、《庐山谣》、《蜀道难》等。他的诗歌风格豪放，语言奔放而富有想象力。\n\n5. **晚年与传说**：晚年的李白在政治动荡中经历了更多波折，甚至一度被流放夜郎（在今贵州境内），其间仍不乏诗作。关于他的死，有一个广为流传的传说：李白在一次泛舟湖上时醉酒扑月而死，当然这只是一种传说而非历史事实。李白的实际去世时间是762年。\n\n李白的诗歌至今备受推崇，他以豪放浪漫而不失细腻的笔触，为后世树立了古风诗的新高度，其诗作在中国文学史上有着不可替代的重要地位。'</code></pre></details>
 ```python
 # 中文
 chain.run("2 + 2 等于多少")
@@ -778,4 +756,4 @@ chain.run("为什么我们身体里的每个细胞都包含DNA？")
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736733819638-18cafc9e-5b51-45c6-b64f-4a08db16d7bc.png)
 
-<details class="lake-collapse"><summary id="ub2e79e3b"><span class="ne-text">output：</span></summary><pre data-language="json" id="j7uXe" class="ne-codeblock language-json"><code>'我们身体里的每个细胞都包含DNA，这是因为DNA是遗传信息的载体，负责指示和调控细胞的功能和活动。以下是几个具体的原因：\n\n1. **指令蓝图：** DNA包含着所有细胞功能所需的遗传信息，它是制作蛋白质的指令蓝图。蛋白质执行细胞中的几乎所有任务，例如结构支持、催化化学反应（酶）和调节基因表达。\n\n2. **细胞分裂：** 在细胞分裂过程中，细胞会将其DNA复制并传递给子细胞。这样，新的细胞可以继承原有细胞的基因信息，保证生物体的遗传连续性。\n\n3. **特异功能：** 虽然所有细胞都有相同的DNA，但不同类型的细胞可以通过表达不同的基因来执行特定的功能。例如，肌肉细胞和神经细胞虽然拥有相同的DNA，但由于表达了不同的基因，它们具有不同的结构和功能。\n\n4. **修复和维持：** DNA也参与细胞对损伤的修复和日常的维护。如果细胞遭受损伤，DNA可以提供修复所需的信息。\n\n正因为这些原因，每个细胞都需要包含DNA，以便在履行其生物功能时，获得正确的指令和信息。'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'我们身体里的每个细胞都包含DNA，这是因为DNA是遗传信息的载体，负责指示和调控细胞的功能和活动。以下是几个具体的原因：\n\n1. **指令蓝图：** DNA包含着所有细胞功能所需的遗传信息，它是制作蛋白质的指令蓝图。蛋白质执行细胞中的几乎所有任务，例如结构支持、催化化学反应（酶）和调节基因表达。\n\n2. **细胞分裂：** 在细胞分裂过程中，细胞会将其DNA复制并传递给子细胞。这样，新的细胞可以继承原有细胞的基因信息，保证生物体的遗传连续性。\n\n3. **特异功能：** 虽然所有细胞都有相同的DNA，但不同类型的细胞可以通过表达不同的基因来执行特定的功能。例如，肌肉细胞和神经细胞虽然拥有相同的DNA，但由于表达了不同的基因，它们具有不同的结构和功能。\n\n4. **修复和维持：** DNA也参与细胞对损伤的修复和日常的维护。如果细胞遭受损伤，DNA可以提供修复所需的信息。\n\n正因为这些原因，每个细胞都需要包含DNA，以便在履行其生物功能时，获得正确的指令和信息。'</code></pre></details>

@@ -65,8 +65,5 @@ res = llm("你好，请你自我介绍一下！")
 print(res)
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>您好，我是科大讯飞研发的认知智能大模型，我的名字叫讯飞星火认知大模型。我可以和人类进行自然交流，解答问题，高效完成各领域认知智能需求。</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>您好，我是科大讯飞研发的认知智能大模型，我的名字叫讯飞星火认知大模型。我可以和人类进行自然交流，解答问题，高效完成各领域认知智能需求。</code></pre></details>
 可以将星火大模型加入到 LangChain 架构中，实现在应用中对星火大模型的调用。
-
-
-

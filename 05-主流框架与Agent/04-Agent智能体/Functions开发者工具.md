@@ -47,12 +47,11 @@ def get_current_weather(location, unit="摄氏度"):
 ```
 
 ## 新参数：functions
-<br/>tips
+
+tips
 ⚠️如何将这样的函数传给语言模型呢？
 
 OpenAI引入了一个名为`functions`的新参数，通过该参数，可以传递一个函数定义列表。
-
-<br/>
 
 ```python
 # 定义一个函数
@@ -75,7 +74,6 @@ functions = [
 ]
 ```
 
-<br/>color2
 这是一个JSON对象，具有几个不同的参数。
 
 + `name`：函数的名称
@@ -86,8 +84,6 @@ functions = [
     - `required`：必填的参数，比如这里需要的参数就是`location`。
 
 在函数定义中，`description`以及在`properties`中的参数非常重要，因为这些将直接传递给语言模型，语言模型将使用这些描述来判断是否使用此函数。
-
-<br/>
 
 ## 相关提示调用结果
 接下来就可以定义一个有关于天气的问题，如”北京的天气怎么样？“，然后使用 OpenAI 的函数进行调用对话的 API。首先选模型`gpt-3.5-turbo-0613`，然后再将上述定义的 `function` 函数传入，查看最后的响应结果。
@@ -118,7 +114,7 @@ print(response)
 
 `Name`是`get_current_weather`，这与传递的函数的名称相同，然后`arguments`是这个 JSON 格式的字典，里面是需要的参数。
 
-<details class="lake-collapse"><summary id="uac7a6d99"><span class="ne-text" style="color: var(--jp-content-font-color1)">output：</span></summary><pre data-language="json" id="b4kom" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
     &quot;choices&quot;: [
         {
             &quot;finish_reason&quot;: &quot;function_call&quot;,
@@ -152,7 +148,7 @@ print(response)
 print(response["choices"][0]["message"]["function_call"]["arguments"])
 ```
 
-<details class="lake-collapse"><summary id="u1de34efa"><span class="ne-text" style="color: var(--jp-content-font-color1)">output：</span></summary><pre data-language="json" id="p2yQq" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;location&quot;: &quot;北京，北京市&quot;,
   &quot;unit&quot;: &quot;摄氏度&quot;
 }</code></pre></details>
@@ -165,7 +161,7 @@ response_message = response["choices"][0]["message"]
 print(response_message)
 ```
 
-<details class="lake-collapse"><summary id="ub51290e3"><span class="ne-text">output：</span></summary><pre data-language="json" id="Psq8J" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
     &quot;content&quot;: null,
     &quot;function_call&quot;: {
         &quot;arguments&quot;: &quot;{\n  \&quot;location\&quot;: \&quot;\u5317\u4eac\uff0c\u5317\u4eac\u5e02\&quot;,\n  \&quot;unit\&quot;: \&quot;\u6444\u6c0f\u5ea6\&quot;\n}&quot;,
@@ -180,7 +176,7 @@ print(response_message)
 print(response["choices"][0]["message"]["function_call"]["arguments"])
 ```
 
-<details class="lake-collapse"><summary id="uca74f973"><span class="ne-text" style="color: var(--jp-content-font-color1)">output：</span></summary><pre data-language="json" id="tIwuQ" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;location&quot;: &quot;北京，北京市&quot;,
   &quot;unit&quot;: &quot;摄氏度&quot;
 }</code></pre></details>
@@ -194,13 +190,13 @@ args = json.loads(response_message["function_call"]["arguments"])
 get_current_weather(args)
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;location&quot;: {
-    &quot;location&quot;: &quot;\\u5317\\u4eac\\uff0c\\u5317\\u4eac\\u5e02&quot;, 
+    &quot;location&quot;: &quot;\\u5317\\u4eac\\uff0c\\u5317\\u4eac\\u5e02&quot;,
     &quot;unit&quot;: &quot;\\u6444\\u6c0f\\u5ea6&quot;,
-  }, 
-  &quot;temperature&quot;: &quot;22&quot;, 
-  &quot;unit&quot;: &quot;\\u6444\\u6c0f\\u5ea6&quot;, 
+  },
+  &quot;temperature&quot;: &quot;22&quot;,
+  &quot;unit&quot;: &quot;\\u6444\\u6c0f\\u5ea6&quot;,
   &quot;forecast&quot;: [&quot;\\u6674&quot;, &quot;\\u591a\\u4e91&quot;],
 }</code></pre></details>
 所以，使用 OpenAI 进行函数调用不是直接调用工具函数，是告诉要调用的函数名称以及函数的参数。但由于它不会去执行函数，所以如果在使用`json.loads`解码的时候遇到了一些问题，实际上是模型的问题，所以这一部分可以考虑在写工具函数的时候做一些保护措施。（后续讨论）
@@ -229,7 +225,7 @@ print(response)
 
 从结果上来看，可以返回的内容正常并且没有`function_call`参数，也就是在语言模型中判断不使用工具函数。
 
-<details class="lake-collapse"><summary id="u5980c968"><span class="ne-text">output：</span></summary><pre data-language="json" id="ZMQyD" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;choices&quot;: [
     {
       &quot;finish_reason&quot;: &quot;stop&quot;,
@@ -259,16 +255,13 @@ print(response)
 print(response["choices"][0]["message"]["content"])
 ```
 
-<details class="lake-collapse"><summary id="u07a9524d"><span class="ne-text">output：</span></summary><pre data-language="json" id="oph8v" class="ne-codeblock language-json"><code>你好！有什么我可以帮助你的吗？</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>你好！有什么我可以帮助你的吗？</code></pre></details>
 # Function Call参数模式
-<br/>color2
 `function_call`参数一共有3种模式，可以传递其他参数，`function_call`以强制模型使用或不使用函数。
 
 1. 默认情况下，它设置为`auto`，也就是模型自行选择。
 2. 在第二种模式中，可以强制它调用一个函数。
 3. 另一种模式是`none`。强制语言模型不使用提供的任何函数。
-
-<br/>
 
 ## 自动判断是否调用
 `auto`模式就是大模型自行选择是否要返回参数，也是默认模式，上述所有的方式都是`auto`的模式
@@ -295,7 +288,7 @@ print(response)
 print(response["choices"][0]["message"]["content"])
 ```
 
-<details class="lake-collapse"><summary id="u9486bfa5"><span class="ne-text">output：</span></summary><pre data-language="json" id="K1HIO" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;id&quot;: &quot;chatcmpl-8nfuv5tlp6UaSwUfmeHppJkQyFpCW&quot;,
   &quot;object&quot;: &quot;chat.completion&quot;,
   &quot;created&quot;: 1706849893,
@@ -317,7 +310,7 @@ print(response["choices"][0]["message"]["content"])
     &quot;total_tokens&quot;: 105
   },
   &quot;system_fingerprint&quot;: null
-}</code></pre><p id="u0ddecea1" class="ne-p"><span class="ne-text">转换下：</span></p><pre data-language="json" id="sM7Nv" class="ne-codeblock language-json"><code>你好！有什么可以帮助你的吗？</code></pre></details>
+}</code></pre>转换下：<pre><code class="language-json"><code>你好！有什么可以帮助你的吗？</code></pre></details>
 那如果在需要使用工具的函数时候强制不调用会出现什么结果呢？
 
 ```python
@@ -340,7 +333,7 @@ print(response["choices"][0]["message"]["content"])
 
 从结果上来看，他依然有正常的`role`和`content`，但是因为强制不调用函数，所以他在试图返回正确的参数，但是并不正确。
 
-<details class="lake-collapse"><summary id="u238f5585"><span class="ne-text" style="color: var(--jp-content-font-color1)">output：</span></summary><pre data-language="json" id="z6dkL" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;id&quot;: &quot;chatcmpl-8nfv0wFX6tqcaoU2gT4KqICymXDxa&quot;,
   &quot;object&quot;: &quot;chat.completion&quot;,
   &quot;created&quot;: 1706849898,
@@ -362,7 +355,7 @@ print(response["choices"][0]["message"]["content"])
     &quot;total_tokens&quot;: 113
   },
   &quot;system_fingerprint&quot;: null
-}</code></pre><p id="ua127a10d" class="ne-p"><span class="ne-text">转换下：</span></p><pre data-language="json" id="rfL0G" class="ne-codeblock language-json"><code>请稍等，我为您查找北京的天气情况。</code></pre></details>
+}</code></pre>转换下：<pre><code class="language-json"><code>请稍等，我为您查找北京的天气情况。</code></pre></details>
 ## 强制调用
 `function_call`参数的最后一个模式是强制调用函数，方法也是很简单，只要在参数里面传入这个函数的名字即可。
 
@@ -388,7 +381,7 @@ print(response["choices"][0]["message"]["function_call"]["arguments"])
 
 这里面传了一个于天气无关的参数，然后强制使用`get_current_weather`函数，但传入的参数中绝对没有任何信息关于它应该如何调用该函数。所以在这里，结果编造了北京，北京市的参数，如果再次运行它，它会不断地调用北京市的参数。
 
-<details class="lake-collapse"><summary id="u548b6f54"><span class="ne-text">output：</span></summary><pre data-language="json" id="EPQsv" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;id&quot;: &quot;chatcmpl-8nfvkQDayf7kmYNdx4G84dkl1L5YC&quot;,
   &quot;object&quot;: &quot;chat.completion&quot;,
   &quot;created&quot;: 1706849944,
@@ -414,7 +407,7 @@ print(response["choices"][0]["message"]["function_call"]["arguments"])
     &quot;total_tokens&quot;: 107
   },
   &quot;system_fingerprint&quot;: null
-}</code></pre><p id="u597f935b" class="ne-p"><span class="ne-text">转换后</span></p><pre data-language="json" id="izNC5" class="ne-codeblock language-json"><code>{
+}</code></pre>转换后<pre><code class="language-json"><code>{
   &quot;location&quot;: &quot;北京，北京市&quot;
 }</code></pre></details>
 还可以尝试使用不同的模型函数来调用，不同的参数值，不同的输入消息，要注意的是，函数本身和描述都会计入传递给OpenAI的令牌使用限制。所以如果运行这个，可以看到返回的提示令牌是95。如果注释掉`functions`和`function_call`，可以看到提示令牌减少到15。因为OpenAI模型对令牌有限制，因此，在构造要传递给OpenAI的消息时，现在不仅需要注意消息的长度，还需要注意传递的函数的长度
@@ -433,7 +426,7 @@ print(response["choices"][0]["message"]["function_call"]["arguments"])
 
 然后使用这个消息列表调用语言模型，可以看到语言模型回答的非常好：北京的天气目前是22摄氏度，天气以晴天为主，也有多云的情况。
 
-> <font style="color:#DF2A3F;">这个示例待补充</font>
+> 这个示例待补充
 >
 
 #  英文版提示
@@ -497,7 +490,7 @@ response = openai.ChatCompletion.create(
 print(response)
 ```
 
-<details class="lake-collapse"><summary id="ucd86d42d"><span class="ne-text">output：</span></summary><pre data-language="python" id="GrWwq" class="ne-codeblock language-python"><code>{
+<details><summary>output：</summary><pre><code class="language-python"><code>{
   &quot;id&quot;: &quot;chatcmpl-8nfyFSmPyo4RoV79D5Urk1QzLCf1C&quot;,
   &quot;object&quot;: &quot;chat.completion&quot;,
   &quot;created&quot;: 1706850099,
@@ -559,7 +552,7 @@ response = openai.ChatCompletion.create(
 print(response)
 ```
 
-<details class="lake-collapse"><summary id="u996a0106"><span class="ne-text">output：</span></summary><pre data-language="python" id="VrzPe" class="ne-codeblock language-python"><code>{
+<details><summary>output：</summary><pre><code class="language-python"><code>{
   &quot;id&quot;: &quot;chatcmpl-8nfyHfC32MVE2gpE6HZxtmC7f7Mvi&quot;,
   &quot;object&quot;: &quot;chat.completion&quot;,
   &quot;created&quot;: 1706850101,
@@ -601,7 +594,7 @@ response = openai.ChatCompletion.create(
 print(response)
 ```
 
-<details class="lake-collapse"><summary id="u7c4dd0bf"><span class="ne-text">output：</span></summary><pre data-language="python" id="ds5t9" class="ne-codeblock language-python"><code>{
+<details><summary>output：</summary><pre><code class="language-python"><code>{
   &quot;id&quot;: &quot;chatcmpl-8nfyfrOoacEQCPO3O2sYLukAdbxX4&quot;,
   &quot;object&quot;: &quot;chat.completion&quot;,
   &quot;created&quot;: 1706850125,
@@ -720,4 +713,3 @@ print(response)
   "system_fingerprint": null
 }
 ```
-

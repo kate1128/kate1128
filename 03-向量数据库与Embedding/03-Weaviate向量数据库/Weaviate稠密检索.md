@@ -51,7 +51,7 @@ client = weaviate.Client(
 print(client.is_ready()) #检查服务是否已经连接
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>True</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>True</code></pre></details>
 ##  面向语义检索的向量数据库
 ![](https://raw.githubusercontent.com/datawhalechina/llm-cookbook/54ad6728cde23add6e96b1f521ace605b5e60ca3/content/%E9%80%89%E4%BF%AE-Large%20Language%20Models%20with%20Semantic%20Search/images/4-1.png)
 
@@ -125,7 +125,7 @@ dense_retrieval_results = dense_retrieval(query,results_lang='zh')
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="u890fccdf"><span class="ne-text" style="color: var(--jp-content-font-color1)">output：</span></summary><pre data-language="json" id="eXTIE" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -150.74162}
 
 lang:zh
@@ -137,7 +137,6 @@ title:哈姆雷特
 url:https://zh.wikipedia.org/wiki?curid=72611
 
 views:1000
-
 
 item 1
 _additional:{'distance': -150.65308}
@@ -152,7 +151,6 @@ url:https://zh.wikipedia.org/wiki?curid=7157095
 
 views:100
 
-
 item 2
 _additional:{'distance': -149.99219}
 
@@ -166,7 +164,6 @@ url:https://zh.wikipedia.org/wiki?curid=72611
 
 views:1000
 
-
 item 3
 _additional:{'distance': -149.72849}
 
@@ -179,7 +176,6 @@ title:哈姆雷特
 url:https://zh.wikipedia.org/wiki?curid=72611
 
 views:1000
-
 
 item 4
 _additional:{'distance': -149.68834}
@@ -204,7 +200,7 @@ dense_retrieval_results = dense_retrieval(query,results_lang='zh')
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="u0d47233a"><span class="ne-text">output：</span></summary><pre data-language="json" id="Qd55k" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -154.62271}
 
 lang:zh
@@ -216,7 +212,6 @@ title:山西省
 url:https://zh.wikipedia.org/wiki?curid=445
 
 views:1000
-
 
 item 1
 _additional:{'distance': -152.94821}
@@ -231,7 +226,6 @@ url:https://zh.wikipedia.org/wiki?curid=445
 
 views:1000
 
-
 item 2
 _additional:{'distance': -152.31085}
 
@@ -245,7 +239,6 @@ url:https://zh.wikipedia.org/wiki?curid=51821
 
 views:100
 
-
 item 3
 _additional:{'distance': -152.27774}
 
@@ -258,7 +251,6 @@ title:山西省
 url:https://zh.wikipedia.org/wiki?curid=445
 
 views:1000
-
 
 item 4
 _additional:{'distance': -151.57559}
@@ -282,7 +274,7 @@ keyword_search_results = keyword_search(query, client,results_lang='zh')
 print_result(keyword_search_results)
 ```
 
-<details class="lake-collapse"><summary id="ud1c10159"><span class="ne-text">output：</span></summary><pre data-language="json" id="XgWL6" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:None
 
 lang:zh
@@ -294,7 +286,6 @@ title:嘉靖大地震
 url:https://zh.wikipedia.org/wiki?curid=65483
 
 views:900
-
 
 item 1
 _additional:None
@@ -308,7 +299,6 @@ title:明世宗
 url:https://zh.wikipedia.org/wiki?curid=10973
 
 views:1000
-
 
 item 2
 _additional:None
@@ -335,7 +325,7 @@ keyword_search_results = keyword_search(query, client,results_lang='zh')
 print_result(keyword_search_results)
 ```
 
-<details class="lake-collapse"><summary id="u710e34be"><span class="ne-text">output：</span></summary><pre data-language="json" id="VKsmR" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:None
 
 lang:zh
@@ -347,7 +337,6 @@ title:高雄市政府警察局
 url:https://zh.wikipedia.org/wiki?curid=1826158
 
 views:300
-
 
 item 1
 _additional:None
@@ -361,7 +350,6 @@ title:昆仑山脉
 url:https://zh.wikipedia.org/wiki?curid=58008
 
 views:800
-
 
 item 2
 _additional:None
@@ -383,7 +371,7 @@ dense_retrieval_results = dense_retrieval(query, results_lang='zh')
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="ubc6cec44"><span class="ne-text">output：</span></summary><pre data-language="json" id="XLOk6" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -150.69139}
 
 lang:zh
@@ -395,7 +383,6 @@ title:鮑喜順
 url:https://zh.wikipedia.org/wiki?curid=180624
 
 views:100
-
 
 item 1
 _additional:{'distance': -150.47076}
@@ -410,7 +397,6 @@ url:https://zh.wikipedia.org/wiki?curid=2840966
 
 views:200
 
-
 item 2
 _additional:{'distance': -149.28877}
 
@@ -424,7 +410,6 @@ url:https://zh.wikipedia.org/wiki?curid=792357
 
 views:100
 
-
 item 3
 _additional:{'distance': -147.5022}
 
@@ -437,7 +422,6 @@ title:萊茵霍爾德·梅斯納爾
 url:https://zh.wikipedia.org/wiki?curid=1000939
 
 views:100
-
 
 item 4
 _additional:{'distance': -147.4777}
@@ -459,7 +443,7 @@ dense_retrieval_results = dense_retrieval(query)
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="ue825d46e"><span class="ne-text">output：</span></summary><pre data-language="json" id="Qw401" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -147.44199}
 
 lang:en
@@ -471,7 +455,6 @@ title:Robert Wadlow
 url:https://en.wikipedia.org/wiki?curid=359117
 
 views:3000
-
 
 item 1
 _additional:{'distance': -147.09518}
@@ -486,7 +469,6 @@ url:https://en.wikipedia.org/wiki?curid=8445237
 
 views:2000
 
-
 item 2
 _additional:{'distance': -146.9144}
 
@@ -500,7 +482,6 @@ url:https://en.wikipedia.org/wiki?curid=283871
 
 views:2000
 
-
 item 3
 _additional:{'distance': -146.62762}
 
@@ -513,7 +494,6 @@ title:Sultan Kösen
 url:https://en.wikipedia.org/wiki?curid=8445237
 
 views:2000
-
 
 item 4
 _additional:{'distance': -146.54651}
@@ -535,7 +515,7 @@ dense_retrieval_results = dense_retrieval(query,  results_lang='zh')
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="uc633d88b"><span class="ne-text">output：</span></summary><pre data-language="json" id="xTloi" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -149.38632}
 
 lang:zh
@@ -547,7 +527,6 @@ title:蘇丹·科塞
 url:https://zh.wikipedia.org/wiki?curid=2840966
 
 views:200
-
 
 item 1
 _additional:{'distance': -147.42696}
@@ -562,7 +541,6 @@ url:https://zh.wikipedia.org/wiki?curid=180624
 
 views:100
 
-
 item 2
 _additional:{'distance': -146.97598}
 
@@ -576,7 +554,6 @@ url:https://zh.wikipedia.org/wiki?curid=349732
 
 views:1000
 
-
 item 3
 _additional:{'distance': -146.52371}
 
@@ -589,7 +566,6 @@ title:平原印第安人
 url:https://zh.wikipedia.org/wiki?curid=7589221
 
 views:100
-
 
 item 4
 _additional:{'distance': -145.81403}
@@ -715,7 +691,7 @@ texts_zh = np.array([f"{title_zh} {t}" for t in texts_zh])
 print(texts_zh)
 ```
 
-<details class="lake-collapse"><summary id="u6d849586"><span class="ne-text">output：</span></summary><pre data-language="json" id="PhzAd" class="ne-codeblock language-json"><code>['新民主主义革命4个发展阶段 大革命时期(1919年—1927年)'
+<details><summary>output：</summary><pre><code class="language-json"><code>['新民主主义革命4个发展阶段 大革命时期(1919年—1927年)'
  '新民主主义革命4个发展阶段 1919年爆发的五四运动成为新民主主义革命的开端,并直接促成1921年7月23日中国共产党第一次全国代表大会召开,宣告中国共产党的成立'
  '新民主主义革命4个发展阶段 此后,中国共产党不断发起工人暴动,反抗北洋政府统治'
  '新民主主义革命4个发展阶段 1924年国民党“一大”后,国民党与共产党实现第一次合作,促成1926年开始的北伐战争的胜利进行'
@@ -756,7 +732,7 @@ embeds_zh = np.array(response_zh)
 print(embeds_zh.shape)
 ```
 
-<details class="lake-collapse"><summary id="ude2d7ff0"><span class="ne-text">output：</span></summary><pre data-language="json" id="NOsxX" class="ne-codeblock language-json"><code>(24, 768)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(24, 768)</code></pre></details>
 使用的模型不同，所以 Embedding 维度会有所不同
 
 ### 创建搜索索引
@@ -775,7 +751,7 @@ search_index_zh.build(10) # 10 棵树
 search_index_zh.save('test_zh.ann')
 ```
 
-<details class="lake-collapse"><summary id="uf7942574"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="KyyO5" class="ne-codeblock language-json"><code>True</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>True</code></pre></details>
 构建 search 函数的主要操作为：
 
 1. 把 query 映射到 Embeddings 空间
@@ -808,7 +784,7 @@ query = "大革命时期是哪几年？"
 search_zh(query)
 ```
 
-<details class="lake-collapse"><summary id="u085117cf"><span class="ne-text">output：</span></summary><pre data-language="json" id="PA2TH" class="ne-codeblock language-json"><code>['新民主主义革命4个发展阶段 大革命时期(1919年—1927年)' '新民主主义革命4个发展阶段 土地革命战争时期(1927年—1937年)'
+<details><summary>output：</summary><pre><code class="language-json"><code>['新民主主义革命4个发展阶段 大革命时期(1919年—1927年)' '新民主主义革命4个发展阶段 土地革命战争时期(1927年—1937年)'
  '新民主主义革命4个发展阶段 解放战争时期(1945年—1949年)']</code></pre></details>
 将结果存储为 pandas 的 Dataframe 格式，可以让更好的分析结果
 
@@ -818,7 +794,6 @@ search_zh(query)
 | **1** | 新民主主义革命4个发展阶段 土地革命战争时期(1927年—1937年) | 0.425366 |
 | **2** | 新民主主义革命4个发展阶段 解放战争时期(1945年—1949年) | 0.426011 |
 
-
 ## 英文版本
 ### 基础难度
 ```python
@@ -827,7 +802,7 @@ dense_retrieval_results = dense_retrieval(query)
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="uae04bc0a"><span class="ne-text">output：</span></summary><pre data-language="json" id="nx9wG" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -154.75615}
 
 lang:en
@@ -839,7 +814,6 @@ title:Hamlet
 url:https://en.wikipedia.org/wiki?curid=13554
 
 views:3000
-
 
 item 1
 _additional:{'distance': -154.56943}
@@ -854,7 +828,6 @@ url:https://en.wikipedia.org/wiki?curid=13554
 
 views:3000
 
-
 item 2
 _additional:{'distance': -154.2872}
 
@@ -868,7 +841,6 @@ url:https://en.wikipedia.org/wiki?curid=13554
 
 views:3000
 
-
 item 3
 _additional:{'distance': -153.54633}
 
@@ -881,7 +853,6 @@ title:Hamlet
 url:https://en.wikipedia.org/wiki?curid=13554
 
 views:3000
-
 
 item 4
 _additional:{'distance': -153.43037}
@@ -902,7 +873,7 @@ dense_retrieval_results = dense_retrieval(query)
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="uc45d38a6"><span class="ne-text">output：</span></summary><pre data-language="json" id="Vrnb6" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -150.8031}
 
 lang:en
@@ -914,7 +885,6 @@ title:Ottawa
 url:https://en.wikipedia.org/wiki?curid=22219
 
 views:2000
-
 
 item 1
 _additional:{'distance': -150.28354}
@@ -929,7 +899,6 @@ url:https://en.wikipedia.org/wiki?curid=64646
 
 views:3000
 
-
 item 2
 _additional:{'distance': -150.02524}
 
@@ -943,7 +912,6 @@ url:https://en.wikipedia.org/wiki?curid=22219
 
 views:2000
 
-
 item 3
 _additional:{'distance': -149.92365}
 
@@ -956,7 +924,6 @@ title:Quebec City
 url:https://en.wikipedia.org/wiki?curid=100727
 
 views:2000
-
 
 item 4
 _additional:{'distance': -149.71033}
@@ -979,7 +946,7 @@ keyword_search_results = keyword_search(query, client)
 print_result(keyword_search_results)
 ```
 
-<details class="lake-collapse"><summary id="uf8f1c818"><span class="ne-text">output：</span></summary><pre data-language="json" id="cUaRd" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:None
 
 lang:en
@@ -991,7 +958,6 @@ title:History of Japan
 url:https://en.wikipedia.org/wiki?curid=25890428
 
 views:2000
-
 
 item 1
 _additional:None
@@ -1006,7 +972,6 @@ url:https://en.wikipedia.org/wiki?curid=220861
 
 views:2000
 
-
 item 2
 _additional:None
 
@@ -1020,14 +985,13 @@ url:https://en.wikipedia.org/wiki?curid=295929
 
 views:2000</code></pre></details>
 
-
 ```python
 query = "Tallest person in history"
 dense_retrieval_results = dense_retrieval(query)
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="u97f4a6a1"><span class="ne-text">output：</span></summary><pre data-language="json" id="uVhXe" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -148.98888}
 
 lang:en
@@ -1039,7 +1003,6 @@ title:Robert Wadlow
 url:https://en.wikipedia.org/wiki?curid=359117
 
 views:3000
-
 
 item 1
 _additional:{'distance': -148.09317}
@@ -1054,7 +1017,6 @@ url:https://en.wikipedia.org/wiki?curid=283871
 
 views:2000
 
-
 item 2
 _additional:{'distance': -146.75945}
 
@@ -1068,7 +1030,6 @@ url:https://en.wikipedia.org/wiki?curid=359117
 
 views:3000
 
-
 item 3
 _additional:{'distance': -146.63979}
 
@@ -1081,7 +1042,6 @@ title:Sultan Kösen
 url:https://en.wikipedia.org/wiki?curid=8445237
 
 views:2000
-
 
 item 4
 _additional:{'distance': -146.57892}
@@ -1245,8 +1205,7 @@ search_index.build(10) # 10 棵树
 search_index.save('test.ann')
 ```
 
-<details class="lake-collapse"><summary id="u10cd0dc4"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="nPQp9" class="ne-codeblock language-json"><code>True</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>True</code></pre></details>
 
 ```python
 pd.set_option('display.max_colwidth', None)
@@ -1269,8 +1228,6 @@ def search(query):
   return results
 ```
 
-
-
 ```python
 query = "How much did the film make?"
 search(query)
@@ -1291,5 +1248,3 @@ default model on embed will be deprecated in the future, please specify a model 
 | **0** | Interstellar (film) The film had a worldwide gross over 677million(and773 million with subsequent re-releases), making it the tenth-highest grossing film of 2014 | 1.018955 |
 | **1** | Interstellar (film) Interstellar premiered on October 26, 2014, in Los Angeles | 1.145063 |
 | **2** | Interstellar (film) In the United States, it was first released on film stock, expanding to venues using digital projectors | 1.167268 |
-
-

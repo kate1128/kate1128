@@ -63,7 +63,7 @@ services:
     # 运行 minio 服务启动命令，/data 参数是 docker 容器内部的数据目录
     # 由于 web 管理后台是动态端口，因此必须指定为固定的端口
     command: server --console-address ":9001" http://minio{1...4}:9000/data
- 
+
   minio2:
     image: minio/minio
     container_name: minio2
@@ -77,7 +77,7 @@ services:
     volumes:
       - /root/kate/minio-cluster/data2:/data
     command: server --console-address ":9001" http://minio{1...4}:9000/data
- 
+
   minio3:
     image: minio/minio
     container_name: minio3
@@ -91,7 +91,7 @@ services:
     volumes:
       - /root/kate/minio-cluster/data3:/data
     command: server --console-address ":9001" http://minio{1...4}:9000/data
- 
+
   minio4:
     image: minio/minio
     container_name: minio4
@@ -105,7 +105,7 @@ services:
     volumes:
       - /root/kate/minio-cluster/data4:/data
     command: server --console-address ":9001" http://minio{1...4}:9000/data
- 
+
   minio_nginx:
     image: nginx
     container_name: minio_nginx
@@ -125,7 +125,7 @@ services:
       - minio2
       - minio3
       - minio4
- 
+
 # 网络配置
 networks:
   minio_net:
@@ -140,90 +140,90 @@ docker-compose down
 
 ```bash
 worker_processes  2;
- 
+
 error_log  /var/log/nginx/error.log warn;
 pid        /var/run/nginx.pid;
- 
+
 events {
     worker_connections  1024;
 }
- 
+
 http {
     include       /etc/nginx/mime.types;
     default_type  application/octet-stream;
- 
+
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
- 
+
     access_log  /var/log/nginx/access.log  main;
     sendfile        on;
     keepalive_timeout  65;
- 
+
     # include /etc/nginx/conf.d/*.conf;
- 
+
     upstream minio-api {
         server minio1:9000;
         server minio2:9000;
         server minio3:9000;
         server minio4:9000;
     }
- 
+
     upstream minio-web {
         server minio1:9001;
         server minio2:9001;
         server minio3:9001;
         server minio4:9001;
     }
- 
+
     server {
         listen       9000;
         listen  [::]:9000;
         server_name  localhost;
- 
+
         # To allow special characters in headers
         ignore_invalid_headers off;
- 
+
         # Allow any size file to be uploaded.
         # Set to a value such as 1000m; to restrict file size to a specific value
         client_max_body_size 0;
- 
+
         # To disable buffering
         proxy_buffering off;
- 
+
         location / {
             proxy_http_version 1.1;
             proxy_set_header   Upgrade $http_upgrade;
             proxy_set_header   Connection keep-alive;
             proxy_set_header   Host $host;
- 
+
             # 转发客户浏览器的 ip 地址
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   X-Forwarded-Proto $scheme;
- 
+
             proxy_pass http://minio-api;
         }
     }
- 
+
     server {
         listen       9001;
         listen  [::]:9001;
         server_name  localhost;
- 
+
         ignore_invalid_headers off;
         client_max_body_size 0;
         proxy_buffering off;
- 
+
         location / {
             proxy_http_version 1.1;
             proxy_set_header   Upgrade $http_upgrade;
             proxy_set_header   Connection keep-alive;
             proxy_set_header   Host $host;
- 
+
             # 转发客户浏览器的 ip 地址
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   X-Forwarded-Proto $scheme;
- 
+
             proxy_pass http://minio-web;
         }
     }
@@ -239,4 +239,3 @@ http {
 # 参考
 1. 单机：[https://www.cnblogs.com/studyjobs/p/18011692](https://www.cnblogs.com/studyjobs/p/18011692)
 2. 集群：[https://www.cnblogs.com/studyjobs/p/18012323](https://www.cnblogs.com/studyjobs/p/18012323)
-

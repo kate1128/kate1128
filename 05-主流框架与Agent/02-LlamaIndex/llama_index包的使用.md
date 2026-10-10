@@ -28,7 +28,7 @@ documents = SimpleDirectoryReader(input_files=["path/to/file1.pdf"]).load_data()
 ### `Document`
 + `Document` 是核心的组件之一，用于表示和封装单个文档的内容。
 + 文档通常包含文本数据，以及一些元数据（如标题、来源等）。
-+ 示例：  
++ 示例：
 
 ```python
 from llama_index import Document
@@ -38,9 +38,9 @@ documents = [Document(t) for t in text_list]
 ```
 
 ## 将文档解析为 Node
-<font style="color:rgb(25, 27, 31);">Node以数据 Chunks 的形式呈现文档，同时 Node 保留与其他 Node 和 索引结构 的关系。</font>
+Node以数据 Chunks 的形式呈现文档，同时 Node 保留与其他 Node 和 索引结构 的关系。
 
-<font style="color:rgb(25, 27, 31);">直接解析文档</font>
+直接解析文档
 
 ```python
 from llama_index.node_parser import SimpleNodeParser
@@ -67,8 +67,8 @@ nodes = [node1, node2]
 ### `GPTSimpleVectorIndex`
 + `GPTSimpleVectorIndex` 是一个简单的索引结构，用于存储和管理文档的向量表示（通常是文档的嵌入向量）。
 + 它将文档与 OpenAI GPT 模型或其他嵌入模型结合，以便可以高效地进行相似性搜索和查询。
-+ <font style="color:rgb(25, 27, 31);">可以直接将文档构建为 Index，这种简单构建的方式是在 Index 初始化时直接加载 文档</font>
-+ 示例：<font style="color:rgb(25, 27, 31);">这种方式可以跳过 Node 构建</font>
++ 可以直接将文档构建为 Index，这种简单构建的方式是在 Index 初始化时直接加载 文档
++ 示例：这种方式可以跳过 Node 构建
 
 ```python
 from llama_index import GPTSimpleVectorIndex
@@ -76,7 +76,7 @@ from llama_index import GPTSimpleVectorIndex
 index = GPTSimpleVectorIndex.from_documents(documents)
 ```
 
-<font style="color:rgb(25, 27, 31);">或者从 Node 构建 Index</font>
+或者从 Node 构建 Index
 
 ```python
 from llama_index import GPTSimpleVectorIndex
@@ -97,8 +97,8 @@ vector_store = VectorStore(documents)
 + `DocumentStore` 是一种存储管理组件，用于高效地存储和查询大量文档数据。
 + 它支持基于不同后端的数据存储（如数据库、文件系统等）。
 
-## 多个 Index 结构复用 Node 
-<font style="color:rgb(25, 27, 31);">当想在多个索引中，复用一个 Node 时，可以通过定义 DocumentStore 结构，并在添加Nodes时指定 DocumentStore</font>
+## 多个 Index 结构复用 Node
+当想在多个索引中，复用一个 Node 时，可以通过定义 DocumentStore 结构，并在添加Nodes时指定 DocumentStore
 
 ```python
 from gpt_index.docstore import SimpleDocumentStore
@@ -110,7 +110,7 @@ index1 = GPTSimpleVectorIndex(nodes, docstore=docstore)
 index2 = GPTListIndex(nodes, docstore=docstore)
 ```
 
-<font style="color:rgb(25, 27, 31);">如果没指定 docstore，则会在创建 Index 时隐式创建一个。</font>
+如果没指定 docstore，则会在创建 Index 时隐式创建一个。
 
 ### `StorageContext`
 + `StorageContext` 是与文档存储相关的组件，支持索引和文档数据的持久化存储。
@@ -323,4 +323,3 @@ graph = Graph(documents)
 ## 返回
 ### `QueryResponse`
 + `QueryResponse` 是查询结果的返回对象，通常包含与查询相关的文档、答案或其他推理结果。
-

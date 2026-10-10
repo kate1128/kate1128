@@ -1,4 +1,4 @@
-> 大语言模型推理框架 LLM Inference Framework 
+> 大语言模型推理框架 LLM Inference Framework
 >
 
 ### C Implementation
@@ -80,6 +80,3 @@
 + [llama2.zig](https://github.com/cgbur/llama2.zig) ![](https://img.shields.io/github/stars/cgbur/llama2.zig?style=social) : Inference Llama 2 in one file of pure Zig.
 + [renerocksai/gpt4all.zig](https://github.com/renerocksai/gpt4all.zig) ![](https://img.shields.io/github/stars/renerocksai/gpt4all.zig?style=social) : ZIG build for a terminal-based chat client for an assistant-style large language model with ~800k GPT-3.5-Turbo Generations based on LLaMa.
 + [EugenHotaj/zig_inference](https://github.com/EugenHotaj/zig_inference) ![](https://img.shields.io/github/stars/EugenHotaj/zig_inference?style=social) : Neural Network Inference Engine in Zig.
-
-
-

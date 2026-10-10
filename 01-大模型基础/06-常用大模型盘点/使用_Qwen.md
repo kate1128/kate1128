@@ -18,13 +18,12 @@ messages = [{'role': 'system', 'content': 'You are a helpful assistant.'},
 
 responses = dashscope.Generation.call(
     dashscope.Generation.Models.qwen_max, # 请选择参考官方文档，填写需要调用的模型名称
-    api_key=DASHSCOPE_API_KEY, 
+    api_key=DASHSCOPE_API_KEY,
     messages=messages,
     result_format='message',  # 将结果设置为“消息”格式
     stream=True, #流式输出
-    incremental_output=True  
+    incremental_output=True
 )
-
 
 full_content = ''  # 合并输出
 for response in responses:
@@ -46,7 +45,3 @@ Datawhale积极推广开源文化，鼓励成员参与并贡献开源项目，�
 总之，Datawhale是一个充满活力、富有社会责任感的开源学习社区，无论你是数据科学的小白还是资深从业者，都能在这里找到适合自己的学习路径和交流空间。
 """
 ```
-
-  
- 
-

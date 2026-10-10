@@ -1,7 +1,4 @@
-<br/>color2
 Least to Most prompting 将问题分解为子问题逐个解决
-
-<br/>
 
 最少到最多提示过程 (`Least to Most prompting, LtM`) 是思维链提示过程(CoT prompting)的进一步发展。具体来说，首先**将问题分解为子问题，然后逐个解决**。这是受到针对儿童的现实教育策略的启发而发展出的一种技术。
 
@@ -48,7 +45,7 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="ub17973b6"><span class="ne-text">output：</span></summary><pre data-language="json" id="b1nW5" class="ne-codeblock language-json"><code>'qrx '</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'qrx '</code></pre></details>
 即使是ChatGPT，`few-shot`示例的表现也非常糟糕。
 
 #### COT思维链过程
@@ -85,8 +82,7 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="u74e2060b"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="Pl9Hd" class="ne-codeblock language-json"><code>' The last letter of &quot;foo&quot; is &quot;o&quot;. The last letter of &quot;bar&quot; is &quot;r&quot;. The last letter of &quot;baz&quot; is &quot;z&quot;. The last letter of &quot;blip&quot; is &quot;p&quot;. So &quot;foo, bar, baz, blip&quot; is &quot;orzp&quot;.'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>' The last letter of &quot;foo&quot; is &quot;o&quot;. The last letter of &quot;bar&quot; is &quot;r&quot;. The last letter of &quot;baz&quot; is &quot;z&quot;. The last letter of &quot;blip&quot; is &quot;p&quot;. So &quot;foo, bar, baz, blip&quot; is &quot;orzp&quot;.'</code></pre></details>
 
 ```python
 from openai import OpenAI
@@ -121,10 +117,10 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="u27d3f3cf"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="FKxbQ" class="ne-codeblock language-json"><code>' The last letter of each word in the list is: &quot;o, r, z, p, n, g, d, g, t, r, a, e&quot;. So the sequence is &quot;orzpngdgtreae&quot;.'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>' The last letter of each word in the list is: &quot;o, r, z, p, n, g, d, g, t, r, a, e&quot;. So the sequence is &quot;orzpngdgtreae&quot;.'</code></pre></details>
 思维链的表现比标准提示好得多。这是因为它现在允许模型考虑自己提取每个单词的最后一个字母，将复杂性降低到分组已经收集的字母的行为。然而，这种方法在更长的输入下也可能慢慢出现问题。
 
-> "foo,bar,baz,blip" --> "orzp"  
+> "foo,bar,baz,blip" --> "orzp"
 "foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe" --> "orzpngdgrae"
 >
 
@@ -173,25 +169,20 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="u404ac713"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="fAzUL" class="ne-codeblock language-json"><code>'&quot;foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe&quot; outputs &quot;oebnrdsenrafe&quot;.'</code></pre></details>
-> COT : "foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe" --> "orzpngdgrae"  
+<details><summary>output：</summary><pre><code class="language-json"><code>'&quot;foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe&quot; outputs &quot;oebnrdsenrafe&quot;.'</code></pre></details>
+> COT : "foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe" --> "orzpngdgrae"
 LtM : "foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe" --> "orzpngdgtrea"
 >
 
 根据上述的结果，可以看到，由于COT的方法中，得到的结果漏掉了"t"，所以正确率8/12=75%。相比之下，LtM方法完全答对了。
 
-<br/>color2
 综上所述，LtM 带来了多项提升：
 
 + 相对于思维链提高了准确性
 + 在难度高于提示的问题上提升了泛化能力
 + 在组合泛化方面的性能得到了显著提高，特别是在SCAN基准测试中
 
-<br/>
-
 使用 text-davinci-002（论文中使用的模型）的标准提示解决了 6% 的 SCAN 问题，而 LtM 提示则取得了惊人的 76% 的成功率。在 code-davinci-002 中，结果更为显著，LtM 达到了 99.7% 的成功率。
-
-
 
 此外，在ChatGPT中，还可以通过角色扮演、指令提示等方法让ChatGPT进行隐式的LtM过程。
 
@@ -220,8 +211,7 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="u091ecffe"><span class="ne-text">output：</span></summary><pre data-language="json" id="JDMkY" class="ne-codeblock language-json"><code>'ChatGPT：50 - 30 = 20； MultistageGPT：5*10 - 3*10 = 50 - 30 = 20。'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'ChatGPT：50 - 30 = 20； MultistageGPT：5*10 - 3*10 = 50 - 30 = 20。'</code></pre></details>
 
 ```python
 from openai import OpenAI
@@ -248,7 +238,5 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="u27966bd1"><span class="ne-text">output：</span></summary><pre data-language="json" id="Ri0A4" class="ne-codeblock language-json"><code>ChatGPT：{最大的数在[32, 21, 90]中，最小的数在[19, 233, 90]中，相差多少？}；
+<details><summary>output：</summary><pre><code class="language-json"><code>ChatGPT：{最大的数在[32, 21, 90]中，最小的数在[19, 233, 90]中，相差多少？}；
 MultistageGPT：在[32, 21, 90]中，最大的数是90，在[19, 233, 90]中，最小的数是19，它们之间的差值为71。</code></pre></details>
-
-

@@ -52,4 +52,3 @@ AIGC 是 "人工智能生成内容"（Artificial Intelligence Generated Content�
 22. [Copy.ai](https://www.copy.ai/) : Whatever you want to ask, our chat has the answers.
 23. [Peppertype.ai](https://www.peppercontent.io/peppertype-ai/) : Leverage the AI-powered platform to ideate, create, distribute, and measure your content and prove your content marketing ROI.
 24. [ChatPPT](https://chat-ppt.com/) : ChatPPT来袭命令式一键生成PPT。
-

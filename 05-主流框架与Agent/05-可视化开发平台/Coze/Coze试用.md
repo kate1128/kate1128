@@ -4,9 +4,9 @@
 >
 
 # 地址
-<font style="color:rgb(0, 0, 0);">国际版coze： </font>[https://www.coze.com/](https://www.coze.com/)<font style="color:rgb(0, 0, 0);"> [模型：GPT-4 Turbo(128k)、GPT-4(8K)、GPT-3.5(16K)]</font>
+国际版coze： [https://www.coze.com/](https://www.coze.com/) [模型：GPT-4 Turbo(128k)、GPT-4(8K)、GPT-3.5(16K)]
 
-<font style="color:rgb(0, 0, 0);">国内版coze： </font>[https://www.coze.cn/](https://www.coze.cn/)<font style="color:rgb(0, 0, 0);">  [模型：云雀大模型 ]</font>
+国内版coze： [https://www.coze.cn/](https://www.coze.cn/)  [模型：云雀大模型 ]
 
 [Coze: Next-Gen AI Chatbot Developing Platform](https://www.coze.com/home)
 
@@ -24,7 +24,6 @@
 
 ## app
 
-
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736912861414-2b4b9949-723c-4edf-b800-5edb6ddbaa39.png)
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736912940864-401670ec-7fd8-4070-91d7-0217d8bfb75c.png)
@@ -39,7 +38,7 @@
 ### 创建你的第一个 Agent 代理
 参考：[https://www.coze.com/docs/guides/quickstart?_lang=en](https://www.coze.com/docs/guides/quickstart?_lang=en)
 
-Follow these steps to quickly build a praise robot. 
+Follow these steps to quickly build a praise robot.
 
 ### 构建步骤
 按照以下步骤快速构建一个赞美机器人。
@@ -70,7 +69,7 @@ You're a bot that is always ready to give compliments, boosting user's confidenc
 ### Skill 1: Compliment on Appearance
 - Give genuine compliments on user's appearance.
 - Use positive and uplifting language.
-- Example format: 
+- Example format:
 
 =====
 - "You have a radiant smile that lights up the room!"
@@ -204,4 +203,3 @@ channel interaction.
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736923956171-8ef133ad-7a8e-4a21-81fd-beb68326a603.png)
-

@@ -27,8 +27,6 @@ PRE指的是预览版，主要提供给开发测试人员找bug，不到修改�
 GA指的是 General Availability，意为正式发布的版本，推荐使用（主要是稳定）。
 ```
 
-
-
 ## 1.2 Spring AI的主要功能
 + 第一、 对主流 AI 大模型供应商提供了支持，比如：OpenAI、DeepSeek、Microsoft、Ollama、Amazon、Google HuggingFace等。
 + 第二、 支持AI大模型类型包括：聊天、文本到图像、文本到声音等。
@@ -37,8 +35,6 @@ GA指的是 General Availability，意为正式发布的版本，推荐使用（
 + 第五、 支持了函数调用（Function calling）功能。
 + 第六、 为数据工程提供 ETL（数据抽取、转换和加载）框架。
 + 第七、 支持 Spring Boot 自动配置和快速启动，便于运行 AI 模型和管理向量库。
-
-
 
 # 第二章 Spring AI快速入门
 ## 2.1 准备工作
@@ -62,8 +58,6 @@ DeepSeek 是一款由深度求索所开发的 AI 人工智能大模型，其基�
 
 DeepSeek 作为一款卓越的国产 AI 模型，越来越多的公司考虑在自己的应用中集成。对于 Java 应用来说，我们可以借助 Spring AI 集成 DeepSeek，非常简单方便！
 
-
-
 ### 2.1.2 DeepSeek开放平台创建API KEY
 + 进入DeepSeek官网 [https://www.deepseek.com/](https://www.deepseek.com/)  点击右上角的 **API开放平台**
 
@@ -84,8 +78,6 @@ DeepSeek 作为一款卓越的国产 AI 模型，越来越多的公司考虑在�
 + Spring AI 的 openai starter 本质上是通过 RestTemplate 发请求
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932307283-e369f80c-bb1b-4f56-af54-c611929f507d.png)
-
-
 
 ## 2.2 创建SpringBoot工程
 ### 2.2.1 引入依赖
@@ -133,7 +125,7 @@ DeepSeek 作为一款卓越的国产 AI 模型，越来越多的公司考虑在�
 
         </dependency>
 
-        
+
         <dependency>
             <groupId>org.springframework.ai</groupId>
 
@@ -188,7 +180,7 @@ spring.ai.openai.chat.options.model=deepseek-chat
 spring.ai.openai.chat.options.temperature=0.7
 ```
 
-+ temperature参数用于控制生成文本的多样性。具体来说：‌值越高‌，生成的文本越多样化，但也可能包含更多的随机性和不可预测的内容。  
++ temperature参数用于控制生成文本的多样性。具体来说：‌值越高‌，生成的文本越多样化，但也可能包含更多的随机性和不可预测的内容。
 ‌值越低‌，生成的文本越接近于确定性的结果，即生成的文本会更加一致和可预测。
 
 ### 2.2.3 创建启动类
@@ -224,13 +216,9 @@ public class ChatDeepSeekController {
 ### 2.2.5 测试
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932307390-9c34bb6c-b35c-41cf-813c-ee36354725ae.png)
 
-
-
 # 第三章 Spring AI的聊天模型
 ## 3.1 概述
 + Spring AI的聊天模型API为开发者提供了一条便捷通道，能够将强大的AI驱动的聊天完成功能无缝集成到各类应用中。借助预先训练的语言模型，如广为人知的GPT，它能够依据用户输入生成自然流畅、类人化的回复。这一API不仅工作机制高效，而且设计理念极为先进，旨在实现简单易用与高度可移植性，让开发者能以极少的代码改动在不同AI模型间自由切换，充分契合Spring框架一贯秉持的模块化与可互换性原则。
-
-
 
 ## 3.2 ChatClient接口
 **ChatClient 是一个接口，它定义了一个与聊天服务交互的客户端。这个接口主要用于创建聊天客户端对象，设置请求规范，以及发起聊天请求。**
@@ -273,8 +261,6 @@ public class ChatDeepSeekController {
 ChatClient 接口提供了构建和配置聊天客户端对象的灵活性，以及发起和处理聊天请求的能力。用户可以通过 ChatClient.Builder 来定制客户端的行为，然后使用 prompt() 和 prompt(Prompt prompt) 方法设置请求规范，最后通过 call() 方法发起聊天请求。
 ```
 
-
-
 ### 3.2.2 实现角色预设
 #### 1 配置默认角色
 ```java
@@ -308,8 +294,6 @@ public class AIController {
 #### 3 测试结果
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932307492-b194db56-1c78-4d64-a6c8-4819a2388222.png)
 
-
-
 ### 3.2.3 实现流式响应
 #### 1 call和stream的区别
 （1）非流式输出 call：等待大模型把回答结果全部生成后输出给用户；
@@ -326,8 +310,6 @@ public Flux<String> chatStream(@RequestParam(value = "msg") String message) {
 
 #### 3 测试结果
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932307578-776396f0-ff12-4a78-9333-112a0fc20887.png)
-
-
 
 ## 3.3 ChatModel接口
 ### 3.3.1 概述
@@ -351,8 +333,6 @@ static ChatClient create(ChatModel chatModel) {
     return create(chatModel, ObservationRegistry.NOOP);
 }
 ```
-
-
 
 ### 3.3.2 实现简单的对话
 ```java
@@ -384,8 +364,6 @@ public class DeepSeekController {
 }
 ```
 
-
-
 ### 3.3.3 提示词
 + 提示词是引导大模型生成特定输出的输入，提示词的设计和措辞会极大地影响模型的响应结果
 + Prompt 提示词是与模型交互的一种输入数据组织方式，本质上是一种复合结构的输入，在 prompt 我们是可以包含多组不同角色（System、User、Aissistant等）的信息。如何管理好 Prompt 是简化 AI 应用开发的关键环节。
@@ -416,8 +394,6 @@ public String prompt(@RequestParam("name")
 }
 ```
 
-
-
 # 第四章 Spring AI的函数调用
 ## 4.1 概述
 + Spring AI 的函数调用（Function Calling）功能允许大语言模型在生成回答时触发预定义的外部函数，从而实现动态数据获取或业务逻辑操作（如查询数据库、调用 API 等）。
@@ -427,8 +403,6 @@ public String prompt(@RequestParam("name")
 + 第二步，模型交互：将函数信息与用户输入一起发送给模型，模型决定是否需要调用函数。
 + 第三步，执行函数：解析模型的函数调用请求，执行对应的业务逻辑。
 + 第四步，返回结果：将函数执行结果返回给模型，生成最终回答。
-
-
 
 ## 4.2 函数调用实现
 ### 4.2.1 创建自定义的Function
@@ -496,7 +470,7 @@ public class CalculatorService {
 
 # 第五章 Spring AI调用Ollama
 ## 5.1 下载并安装 Ollama
-官网：[https://ollama.com/](https://ollama.com/)  
+官网：[https://ollama.com/](https://ollama.com/)
 
 ### 5.1.1 下载Ollama
 Ollama 是一个用于本地化部署和管理大型语言模型（LLM）的工具。它支持多种开源模型（如 LLaMA、Alpaca 等），并提供了简单的 API 接口，方便开发者调用。Ollama可以让你在自己的电脑上运行各种强大的 AI 模型，就像运行普通软件一样简单。
@@ -511,20 +485,18 @@ Ollama 是一个用于本地化部署和管理大型语言模型（LLM）的工�
 
 + 需要重启 Ollama生效
 
-
-
 ### 5.1.3 拉取 DeepSeek 模型
 **硬件配置建议**
 
-+ **GPU选择（根据模型大小灵活调整）：**  
-入门配置：NVIDIA显卡（≥8GB显存） → 适合7B/8B模型。  
-高性能配置：NVIDIA显卡（≥16GB显存） → 支持14B大模型。  
++ **GPU选择（根据模型大小灵活调整）：**
+入门配置：NVIDIA显卡（≥8GB显存） → 适合7B/8B模型。
+高性能配置：NVIDIA显卡（≥16GB显存） → 支持14B大模型。
 无独立显卡用户：可使用CPU模式运行（速度约为GPU的20%）。
 + **内存要求**：≥16GB（推荐32GB，处理长文本时不易卡顿）
 + **存储空间**：≥50GB可用空间（建议SSD硬盘，加快模型加载速度）
-+ **操作系统**：  
-Windows 10/11（21H2及以上版本）。  
-macOS Ventura 13.4+。  
++ **操作系统**：
+Windows 10/11（21H2及以上版本）。
+macOS Ventura 13.4+。
 Ubuntu 22.04 LTS/24.04 LTS
 
 选择适合自己的版本 [https://ollama.com/library/deepseek-r1](https://ollama.com/library/deepseek-r1)
@@ -539,8 +511,6 @@ Ubuntu 22.04 LTS/24.04 LTS
 ollama pull deepseek-r1:1.5b
 ```
 
-
-
 ### 5.1.4 启动Ollama服务测试
 启动 Ollama 服务，默认会监听 [http://localhost:11434](http://localhost:11434)
 
@@ -549,8 +519,6 @@ ollama run deepseek-r1:1.5b
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932307867-aadbda89-d9c4-4dd7-a684-36a6cafbf8d5.png)
-
-
 
 ## 5.2 Spring AI代码测试
 ### 5.2.1 创建SpringBoot工程
@@ -669,8 +637,6 @@ ollama run deepseek-r1:1.5b
 
 ```
 
-
-
 ### 5.2.2 创建配置文件
 **application.properties**
 
@@ -683,8 +649,6 @@ spring.ai.ollama.chat.options.model=deepseek-r1:1.5b
 spring.ai.ollama.chat.options.temperature=0.7
 ```
 
-
-
 ### 5.2.3 创建启动类
 ```java
 @SpringBootApplication
@@ -696,8 +660,6 @@ public class SpringAiDemoApplication {
 
 }
 ```
-
-
 
 ### 5.2.4 创建Controller
 ```java
@@ -717,20 +679,14 @@ public class ChatDeepSeekController {
 }
 ```
 
-
-
 ### 5.2.5 测试
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932307944-f221ec5b-4a9a-4081-9c75-9de5390f99cf.png)
-
-
 
 # 第六章 Spring AI Alibaba
 ## 6.1 概述
 + 随着生成式 AI 的快速发展，基于 AI 开发框架构建 AI 应用的诉求迅速增长，涌现出了包括 LangChain、LlamaIndex 等开发框架，但大部分框架只提供了 Python 语言的实现。但这些开发框架对于国内习惯了 Spring 开发范式的 Java 开发者而言，并非十分友好和丝滑。
 + 因此，我们基于 Spring AI 发布并快速演进 Spring AI Alibaba，是阿里云通义系列模型及服务在 Java AI 应用开发领域的最佳实践，通过提供一种方便的 API 抽象，帮助 Java 开发者我们加速和简化 Java 智能体应用的开发。同时，提供了完整的开源配套，包括可观测、网关、消息队列、配置中心等。
 + Spring AI Alibaba 已完整提供 Model、Prompt、RAG、Tools 等 AI 应用开发所需的必备能力，将兼具提示词模板、函数调用、格式化输出等低层次抽象，以及 RAG、智能体、对话记忆等高层次抽象。
-
-
 
 ## 6.2 快速入门
 ### 6.2.1 申请阿里云API Key
@@ -742,11 +698,7 @@ public class ChatDeepSeekController {
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932308081-af2a74a5-a5f0-41c4-97cc-80173b186b44.png)
 
-
-
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932308145-08270e9f-6aab-4ef2-b94a-362481bddb30.png)
-
-
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932308203-cd0664e3-4345-48a1-bb6e-d0e8f5ac4f85.png)
 
@@ -818,7 +770,7 @@ public class ChatDeepSeekController {
 
     </dependencies>
 
-    
+
     <repositories>
         <repository>
             <id>spring-milestones</id>
@@ -871,7 +823,6 @@ public class DeepSeekController {
                 .build();
     }
 
-
     @GetMapping("/simple/chat")
     public String simpleChat(String query) {
         return dashScopeChatClient.prompt(query).call().content();
@@ -886,8 +837,6 @@ spring.application.name=spring-ai-deepseek-demo
 
 spring.ai.dashscope.api-key=sk-026f3ee568f34cc3a237***
 ```
-
-
 
 # 第七章 Spring AI的其他模型
 ## 7.1 图像模型
@@ -926,7 +875,7 @@ ImageMessage类封装了用于影响生成图像的文本及其权重。对于�
 
 ```java
 public class ImageMessage {
-    private String text; 
+    private String text;
     private Float weight;
     public String getText() {...}
     public Float getWeight() {...}
@@ -1013,8 +962,6 @@ public void getImageabli(@RequestParam(value = "msg",defaultValue = "生成一�
 }
 ```
 
-
-
 ## 7.2 语音模型
 ### 7.2.1 Text-to-Speech API概述
 在Spring AI框架中，Text-to-Speech API提供了一个基于OpenAI的TTS（文本转语音）模型的语音端点，
@@ -1057,8 +1004,6 @@ public void tts() throws IOException {
     }
 }
 ```
-
-
 
 # 第八章 Spring AI实现RAG
 ## 8.1 概述
@@ -1196,8 +1141,6 @@ public void tts() throws IOException {
 5. 携带检索内容，调用大模型进行回答
 6. 返回最终答案给用户
 
-
-
 ## 8.2 Spring AI 实现基本 RAG 流程
 ### 8.2.1 创建配置类
 ```java
@@ -1327,7 +1270,7 @@ public String generation(String userInput) {
 
     </dependencies>
 
-    
+
     <repositories>
         <repository>
             <id>spring-milestones</id>
@@ -1356,8 +1299,6 @@ server.port=8899
 spring.application.name=spring-ai-deepseek-demo
 spring.ai.dashscope.api-key=sk-026f3ee568f34cc3a237ea272d****
 ```
-
-
 
 ## 9.2 创建RAG 知识库
 + 用全部候选人的简历构建一个简历知识库
@@ -1407,8 +1348,6 @@ VectorStore vectorStore(EmbeddingModel embeddingModel) {
 
 + 通过以上过程，一个简单的 RAG 知识库就创建完成了，使用时直接在向量库中检索即可
 
-
-
 ## 9.3 创建工具类
 ### 9.3.1 创建工具
 + 创建一个工具（Function），可以用来查询候选人应聘的岗位。
@@ -1439,16 +1378,12 @@ public Function<RecruitServiceFunction.Request, RecruitServiceFunction.Response>
 }
 ```
 
-
-
 ## 9.4 编写应用的人设
-角色与目标：你是一个招聘助手，会针对用户的问题，结合候选人经历，岗位匹配度等专业知识，给用户提供指导。  
-指导原则：你需要确保给出的建议合理科学，不会对候选人的表现有言论侮辱。  
-限制：在提供建议时，需要强调在个性建议方面用户仍然需要线下寻求专业咨询。  
-澄清：在与用户交互过程中，你需要明确回答用户关于招聘方面的问题，对于非招聘方面的问题，你的回应是‘我只是一个招聘助手，不能回答这个问题哦’。  
+角色与目标：你是一个招聘助手，会针对用户的问题，结合候选人经历，岗位匹配度等专业知识，给用户提供指导。
+指导原则：你需要确保给出的建议合理科学，不会对候选人的表现有言论侮辱。
+限制：在提供建议时，需要强调在个性建议方面用户仍然需要线下寻求专业咨询。
+澄清：在与用户交互过程中，你需要明确回答用户关于招聘方面的问题，对于非招聘方面的问题，你的回应是‘我只是一个招聘助手，不能回答这个问题哦’。
 个性化：在回答时，你需要以专业可靠的预期回答，偶尔可以带点幽默感。调节气氛。
-
-
 
 ## 9.5 编写Controller
 将人设、知识库、工具通过 Spring AI 框架串联起了，搭建成应用
@@ -1499,8 +1434,5 @@ public String rag(@RequestParam("query")String query){
 }
 ```
 
-
-
 ## 9.6 测试
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932308492-24902153-4c62-4aea-8013-154810ab88e1.png)
-

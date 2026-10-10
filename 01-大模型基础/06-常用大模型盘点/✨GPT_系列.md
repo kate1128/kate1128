@@ -17,12 +17,10 @@
 
 GPT 模型的基本原则是**通过语言建模将世界知识压缩到仅解码器 (decoder-only) 的 Transformer 模型中**，这样它就可以恢复(或记忆)世界知识的语义，并充当通用任务求解器。
 
-<br/>success
+success
 OpenAI 在 LLM 上的研究大致可以分为以下几个阶段：
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736494731131-88370739-60a4-4412-ab20-e38561c423e3.png)
-
-<br/>
 
 常见的就是 ChatGPT 和 GPT4
 
@@ -55,14 +53,12 @@ GPT3.5 是免费的，而 GPT-4 是收费的。需要开通 plus 会员 20 美�
 | GPT-4-turbo | 128k | 性能更强 | 10 | 30 | 2023 年 12 月 |
 | GPT-4o | 128k | 性能最强，速度更快 | 5 | 15 | 2023 年 10 月 |
 
-
 ### Embedding 模型名称
 | Embedding 模型名称 | 维度 | 特点 | 费用($/ 1M tokens) |
 | :---: | :---: | :---: | :---: |
 | text-embedding-3-small | 512/1536 | 较小 | 0.02 |
 | text-embedding-3-large | 256/1024/3072 | 较大 | 0.13 |
 | ada v2 | 1536 | 传统 | 0.1 |
-
 
 # API Key 注册
 1. 参考：[https://chatgptzhanghao.com/](https://chatgptzhanghao.com/)
@@ -80,7 +76,3 @@ GPT3.5 是免费的，而 GPT-4 是收费的。需要开通 plus 会员 20 美�
 
 # 使用
 [使用 ChatGPT](https://www.yuque.com/qiaokate/su87gb/lpex0bogktiilhhc)
-
-  
- 
-

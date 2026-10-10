@@ -86,4 +86,3 @@ streamlit run /root/autodl-tmp/ChatGLM3/composite_demo/main.py --server.address 
 如下图所示，可以愉快的玩耍代码解释器了~
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1735718011280-5b0938e6-31b0-47a0-8ebd-9429d7866871.png)
-

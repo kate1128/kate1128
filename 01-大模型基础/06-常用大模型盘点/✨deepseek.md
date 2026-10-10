@@ -37,4 +37,3 @@ print(response.choices[0].message.content)
 
 # 其他
 参考这个：[DeepSeek图解10页PDF.pdf](https://www.yuque.com/attachments/yuque/0/2025/pdf/2639475/1738719596981-a1bd2b7d-4f11-4173-b4fc-f4af69e554e4.pdf)
-

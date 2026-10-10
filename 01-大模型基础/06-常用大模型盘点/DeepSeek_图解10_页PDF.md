@@ -86,7 +86,6 @@ LLM训练通常采用大规模无监督学习，即：
 | * 步骤 2: 模型学习人类评分标准，提高输出质量。* |
 | * 步骤 3: 强化训练，使得生成的文本更符合人类偏好。* |
 
-
 ---
 
 ## 3. DeepSeek-R1 精华图解
@@ -150,4 +149,3 @@ DeepSeek-R1是训练流程的终点，结合了R1-Zero的推理能力和通用�
 + [The Illustrated DeepSeek-R1](https://newsletter.languagemodels.co/p/the-illustrated-deepseek-r1)
 + [DeepSeek-R1 Recipe for O1](https://www.interconnects.ai/p/deepseek-r1-recipe-for-o1)
 + [A Visual Guide to Mixture of Experts](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts)
-

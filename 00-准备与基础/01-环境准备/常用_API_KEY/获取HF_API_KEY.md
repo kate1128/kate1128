@@ -29,4 +29,3 @@ print(generator("Hello, I'm interested in learning about AI", max_length=50))
 ```
 
 通过这种方式，你可以使用 Hugging Face 上的模型，进行各种 AI 任务。
-

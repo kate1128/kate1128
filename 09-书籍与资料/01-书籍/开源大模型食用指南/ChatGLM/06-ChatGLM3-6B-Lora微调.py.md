@@ -5,12 +5,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, DataCollatorForSeq
 import pandas as pd
 from peft import TaskType, get_peft_model, LoraConfig
 
-
 # 数据处理流程,参考GLM3仓库:https://github.com/THUDM/ChatGLM3/blob/main/finetune_chatmodel_demo/preprocess_utils
 def process_func(example):
     MAX_LENGTH = 512
     input_ids, labels = [], []
-    instruction = tokenizer.encode(text="\n".join(["<|system|>", "现在你要扮演皇帝身边的女人--甄嬛", "<|user|>", 
+    instruction = tokenizer.encode(text="\n".join(["<|system|>", "现在你要扮演皇帝身边的女人--甄嬛", "<|user|>",
                                     example["instruction"] + example["input"] + "<|assistant|>"]).strip() + "\n",
                                     add_special_tokens=True, truncation=True, max_length=MAX_LENGTH)
     response = tokenizer.encode(text=example["output"], add_special_tokens=False, truncation=True, max_length=MAX_LENGTH)
@@ -34,7 +33,6 @@ args = TrainingArguments(
     logging_steps=20,
     num_train_epochs=1
 )
-
 
 if "__main__" == __name__:
     # 将JSON文件转换为CSV文件,处理数据集
@@ -74,4 +72,3 @@ if "__main__" == __name__:
     # 开始训练
     trainer.train()
 ```
-

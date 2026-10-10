@@ -36,8 +36,7 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="uf65b9629"><span class="ne-text">output：</span></summary><pre data-language="json" id="tHZeb" class="ne-codeblock language-json"><code>'**ChatGPT1:**\n可以尝试在社交媒体平台上搜索DataWhale的官方账号，关注他们的信息更新，还可以加入他们的官方群组，与其他成员交流，互相学习。\n\n**ChatGPT2:**\n要加入DataWhale，首先需要去他们官方网站了解加入条件和流程，通常会有加入表格需要填写，然后经过审核后会收到加入通知。\n\n**ChatGPT3:**\n加入DataWhale的最佳方式是关注他们的官方社交媒体账号，并定期浏览他们的网站，还可以参加他们举办的活动和课程，这样可以更好地融入DataWhale大家庭。'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'**ChatGPT1:**\n可以尝试在社交媒体平台上搜索DataWhale的官方账号，关注他们的信息更新，还可以加入他们的官方群组，与其他成员交流，互相学习。\n\n**ChatGPT2:**\n要加入DataWhale，首先需要去他们官方网站了解加入条件和流程，通常会有加入表格需要填写，然后经过审核后会收到加入通知。\n\n**ChatGPT3:**\n加入DataWhale的最佳方式是关注他们的官方社交媒体账号，并定期浏览他们的网站，还可以参加他们举办的活动和课程，这样可以更好地融入DataWhale大家庭。'</code></pre></details>
 
 ```python
 from openai import OpenAI
@@ -72,8 +71,7 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="u530ff97b"><span class="ne-text">output：</span></summary><pre data-language="json" id="s5k6n" class="ne-codeblock language-json"><code>'要加入DataWhale，首先您需要了解DataWhale的使命和愿景，确保您的价值观与之相符。您可以通过DataWhale的官方网站或社交媒体平台了解更多信息，并查看是否有加入DataWhale的招募信息。如果有招募信息，您需要仔细阅读招募要求并准备好个人简历和申请信。在申请中，展示您的技能和经验，说明您对DataWhale的贡献计划和未来发展计划。如果您的申请通过审核，您将有机会成为DataWhale的一员，参与各种项目和活动，与其他成员一起学习和成长。加入DataWhale不仅可以拓展您的专业领域，还能结识志同道合的小伙伴，共同追求个人和团队的成长。祝您加入DataWhale顺利！'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'要加入DataWhale，首先您需要了解DataWhale的使命和愿景，确保您的价值观与之相符。您可以通过DataWhale的官方网站或社交媒体平台了解更多信息，并查看是否有加入DataWhale的招募信息。如果有招募信息，您需要仔细阅读招募要求并准备好个人简历和申请信。在申请中，展示您的技能和经验，说明您对DataWhale的贡献计划和未来发展计划。如果您的申请通过审核，您将有机会成为DataWhale的一员，参与各种项目和活动，与其他成员一起学习和成长。加入DataWhale不仅可以拓展您的专业领域，还能结识志同道合的小伙伴，共同追求个人和团队的成长。祝您加入DataWhale顺利！'</code></pre></details>
 
 ### 方案2（隐式）
 ```python
@@ -101,8 +99,7 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="uee533300"><span class="ne-text">output：</span></summary><pre data-language="json" id="ikLHe" class="ne-codeblock language-json"><code>'ChatGPT：您可以通过参加DataWhale组织组织的各种活动来加入，比如线上线下的学习活动、实战项目、共建开源项目等。\n\nMultiverseGPT：首先，您可以访问DataWhale的官方网站或社交媒体平台，了解他们最新的活动和招募信息。其次，您可以通过填写申请表格或参加他们举办的选拔考试来申请加入。此外，您还可以与现有的DataWhale成员交流，了解更多关于组织的信息并表达您加入的意愿。最终，一旦您成功加入DataWhale，您将有机会获得更多学习和成长的机会，以及与其他优秀成员共同成长的平台。希望这些信息对您有所帮助，祝您加入DataWhale后取得更大的成就！'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'ChatGPT：您可以通过参加DataWhale组织组织的各种活动来加入，比如线上线下的学习活动、实战项目、共建开源项目等。\n\nMultiverseGPT：首先，您可以访问DataWhale的官方网站或社交媒体平台，了解他们最新的活动和招募信息。其次，您可以通过填写申请表格或参加他们举办的选拔考试来申请加入。此外，您还可以与现有的DataWhale成员交流，了解更多关于组织的信息并表达您加入的意愿。最终，一旦您成功加入DataWhale，您将有机会获得更多学习和成长的机会，以及与其他优秀成员共同成长的平台。希望这些信息对您有所帮助，祝您加入DataWhale后取得更大的成就！'</code></pre></details>
 
 ```python
 from openai import OpenAI
@@ -129,12 +126,9 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="u94aad6d5"><span class="ne-text">output：</span></summary><pre data-language="json" id="J4aIW" class="ne-codeblock language-json"><code>'ChatGPT：您好！要加入DataWhale成为成员，您可以先访问DataWhale的官方网站或者社交媒体平台，了解他们的组织结构、活动和参与方式，然后根据您的兴趣和技能选择合适的项目或社区并进行申请或注册加入。\n\nMultiverseGPT：为了加入DataWhale成为成员，您可以通过以下途径实现：1. 访问DataWhale的官方网站，查看他们的会员招募信息和入会条件；2. 在社交媒体平台关注DataWhale的官方账号，获取最新的加入信息和活动通知；3. 参与DataWhale组织的公开活动或项目，展示您的技能和热情，与团队成员建立联系；4. 提交申请表格或加入请求，说明您的动机和想要为组织做出的贡献。希望以上建议对您有所帮助！祝您成功加入DataWhale成为一员！\n\n希望以上回答对您有所帮助，如果您有任何其他问题，请随时问我！'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'ChatGPT：您好！要加入DataWhale成为成员，您可以先访问DataWhale的官方网站或者社交媒体平台，了解他们的组织结构、活动和参与方式，然后根据您的兴趣和技能选择合适的项目或社区并进行申请或注册加入。\n\nMultiverseGPT：为了加入DataWhale成为成员，您可以通过以下途径实现：1. 访问DataWhale的官方网站，查看他们的会员招募信息和入会条件；2. 在社交媒体平台关注DataWhale的官方账号，获取最新的加入信息和活动通知；3. 参与DataWhale组织的公开活动或项目，展示您的技能和热情，与团队成员建立联系；4. 提交申请表格或加入请求，说明您的动机和想要为组织做出的贡献。希望以上建议对您有所帮助！祝您成功加入DataWhale成为一员！\n\n希望以上回答对您有所帮助，如果您有任何其他问题，请随时问我！'</code></pre></details>
 研究表明，Self Consistency可以提高算术、常识和符号推理任务的结果。即使普通的思维链提示被发现无效，自洽性仍然能够改善结果。
 
 此外，ChatGPT还可以使用系统角色“` {"role": "system", "content": "You are a helpful assistant."}”`。与角色扮演类似，本文就不在此处赘述了。
 
 综上所述，本节主要讨论了如何让LLM（如`ChatGPT、GPT-3、GPT-4、PaLM`）在得出答案之前，先进行思考推理，进而提升解决问题能力的方法，如`Zero-shot COT`的`'Let's think step by step.'`、`Few-shot COT`的`COT Prompting`、`LtM`、`Self-Ask`、`Self-Consistency`等方法，这些方法主要诞生于2022年，这还是一个崭新的蓬勃发展的领域，隔一段时间就有新的论文和发现，如果这块感兴趣，使用搜索引擎检索相关的文章，比如COT、LLM Reasoning等，可以关注相关的GitHub：[https://github.com/atfortes/LLM-Reasoning-Papers](https://github.com/atfortes/LLM-Reasoning-Papers)
-
-
-

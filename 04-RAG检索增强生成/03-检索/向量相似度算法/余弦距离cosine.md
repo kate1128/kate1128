@@ -26,7 +26,7 @@ cosine_ab
 
 `**cosine**`**相似度输出：**
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>0.9925833339709301</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>0.9925833339709301</code></pre></details>
 举个例子：
 
 ```python
@@ -73,7 +73,7 @@ def get_embedding_zhipu(text):
     return emb_req.data[0].embedding
 ```
 
-4. 调用 `get_embedding` 
+4. 调用 `get_embedding`
 
 ```python
 # 注意它支持多种模型，可以通过接口查看
@@ -97,28 +97,28 @@ emb3_zhipu = get_embedding_zhipu(text3)
 len(emb1), type(emb1), len(emb1_zhipu), type(emb1_zhipu)
 ```
 
-<details class="lake-collapse"><summary id="ubf60ac74"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="cGMU0" class="ne-codeblock language-json"><code>(3072, list, 1024, list)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(3072, list, 1024, list)</code></pre></details>
 6. 输出 `"我喜欢你"` VS `"我钟意你"` 相似度
 
 ```python
 cosine_similarity(emb1, emb2), cosine_similarity(emb1_zhipu, emb2_zhipu)
 ```
 
-<details class="lake-collapse"><summary id="u6620545c"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="ifI3q" class="ne-codeblock language-json"><code>(0.6394042188605163, 0.7285893279997394)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(0.6394042188605163, 0.7285893279997394)</code></pre></details>
 7. 输出 `"我喜欢你"` VS `"我不喜欢你"`相似度
 
 ```python
 cosine_similarity(emb1, emb3), cosine_similarity(emb1_zhipu, emb3_zhipu)
 ```
 
-<details class="lake-collapse"><summary id="u8762df7d"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="mAFM5" class="ne-codeblock language-json"><code>(0.6301946964388336, 0.8184660238355184)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(0.6301946964388336, 0.8184660238355184)</code></pre></details>
 8. 输出 `"我钟意你"` VS `"我不喜欢你"`相似度
 
 ```python
 cosine_similarity(emb2, emb3), cosine_similarity(emb2_zhipu, emb3_zhipu)
 ```
 
-<details class="lake-collapse"><summary id="u096d7c01"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="sXguX" class="ne-codeblock language-json"><code>(0.4754155774838153, 0.627373690062137)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(0.4754155774838153, 0.627373690062137)</code></pre></details>
 > 理论上是`"我喜欢你"` VS `"我钟意你"` 相似度会高一些
 >
 > 看起来智谱模型不是很靠谱，不如 gpt
@@ -142,21 +142,21 @@ emb3 = get_embedding(text3, "text-embedding-ada-002")
 cosine_similarity(emb1, emb2)
 ```
 
-<details class="lake-collapse"><summary id="u4268720c"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="XBH1U" class="ne-codeblock language-json"><code>0.893848389131725</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>0.893848389131725</code></pre></details>
 2. 输出 `"我喜欢你"` VS `"我不喜欢你"`相似度
 
 ```python
 cosine_similarity(emb1, emb3)
 ```
 
-<details class="lake-collapse"><summary id="u94fc818a"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="LCzLM" class="ne-codeblock language-json"><code>0.9260871172497087</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>0.9260871172497087</code></pre></details>
 3. 输出 `"我钟意你"` VS `"我不喜欢你"`相似度
 
 ```python
 cosine_similarity(emb2, emb3)
 ```
 
-<details class="lake-collapse"><summary id="ubc160f11"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="Sxf5j" class="ne-codeblock language-json"><code>0.8456616389291356</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>0.8456616389291356</code></pre></details>
 > 看起来这个模型也不行，不靠谱
 >
 
@@ -176,14 +176,14 @@ content = "请告诉我下面三句话的相似程度：\n1. 我喜欢你。\n2.
 
 ```python
 response = client.chat.completions.create(
-    model="gpt-3.5-turbo", 
+    model="gpt-3.5-turbo",
     messages=[{"role": "user", "content": content}]
 )
 
 print(response.choices[0].message.content)
 ```
 
-<details class="lake-collapse"><summary id="u1770ef67"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="TJFi9" class="ne-codeblock language-json"><code>这三句话的相似程度是很高的，因为它们都是在表达对他人情感的态度。第一句和第二句表示对对方的喜欢和钟意，而第三句则表示对对方的不喜欢。虽然情感不同，但都是在表达对他人的感情态度。</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>这三句话的相似程度是很高的，因为它们都是在表达对他人情感的态度。第一句和第二句表示对对方的喜欢和钟意，而第三句则表示对对方的不喜欢。虽然情感不同，但都是在表达对他人的感情态度。</code></pre></details>
 2. 智谱AI结果如下：
 
 ```python
@@ -196,7 +196,7 @@ response = zhipu_client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-<details class="lake-collapse"><summary id="uc959c9a6"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="ifvqn" class="ne-codeblock language-json"><code>这三句话表达的情感是截然不同的：
+<details><summary>output：</summary><pre><code class="language-json"><code>这三句话表达的情感是截然不同的：
 
 1. &quot;我喜欢你&quot; 明确表达了积极的情感倾向，表示对某人有好感或爱慕之情。
 2. &quot;我钟意你&quot; 是中文里较为口语化和老式的表达方式，也传达了喜欢的意思，和第一句的表达基本相同。
@@ -220,14 +220,14 @@ content = """请告诉我下面三句话的相似程度：
 
 ```python
 response = client.chat.completions.create(
-    model="gpt-3.5-turbo", 
+    model="gpt-3.5-turbo",
     messages=[{"role": "user", "content": content}],
 )
 
 print(response.choices[0].message.content)
 ```
 
-<details class="lake-collapse"><summary id="ue945a18f"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="szBLb" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
   &quot;a-b&quot;: 0.9,
   &quot;a-c&quot;: 0.2,
   &quot;b-c&quot;: 0.3
@@ -244,7 +244,7 @@ response = zhipu_client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-<details class="lake-collapse"><summary id="u474e8450"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="cq7xM" class="ne-codeblock language-json"><code>```json
+<details><summary>output：</summary><pre><code class="language-json"><code>```json
 {
   &quot;a-b&quot;: 0.9,
   &quot;a-c&quot;: -1,
@@ -264,6 +264,3 @@ memo：
 + [openai-cookbook/Semantic_text_search_using_embeddings.ipynb at main · openai/openai-cookbook](https://github.com/openai/openai-cookbook/blob/main/examples/Semantic_text_search_using_embeddings.ipynb)
 + [openai-cookbook/getting-started-with-redis-and-openai.ipynb at main · openai/openai-cookbook](https://github.com/openai/openai-cookbook/blob/main/examples/vector_databases/redis/getting-started-with-redis-and-openai.ipynb)
 + [openai-cookbook/Visualizing_embeddings_in_3D.ipynb at main · openai/openai-cookbook](https://github.com/openai/openai-cookbook/blob/main/examples/Visualizing_embeddings_in_3D.ipynb)
-
- 
-

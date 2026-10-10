@@ -39,10 +39,9 @@ llm = LLMEngine(
 或者：
 
 ```python
-non_finetuned = BasicModelRunner("meta-llama/Llama-2-7b-hf", 
+non_finetuned = BasicModelRunner("meta-llama/Llama-2-7b-hf",
                                  config={"production.key": "<YOUR-KEY-HERE>"})
 
 ```
 
 只需将`<YOUR-KEY-HERE>`替换为在`lamini`官网的api key即可。如果担心代码泄露api key的话，可以仿照使用ChatGPT的方式，用一个配置文件来存储`production.key`
-

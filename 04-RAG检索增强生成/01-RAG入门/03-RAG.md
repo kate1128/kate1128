@@ -5,28 +5,20 @@
 2. LLM可能不知道你私有的领域/业务知识.
 3. LLM有时会在回答中生成看似合理但实际上是错误的信息.
 
-
-
 ## 2.为什么会用到RAG
 1. 提高准确性: 通过检索相关的信息，RAG可以提高生成文本的准确性。
 2. 减少训练成本：与需要大量数据来训练的大型生成模型相比，RAG可以通过检索机制来减少所需的训练数据量，从而降低训练成本。
 3. 适应性强：RAG模型可以适应新的或不断变化的数据。由于它们能够检索最新的信息，因此在新数据和事件出现时，它们能够快速适应并生成相关的文本。
-
-
 
 ## 3.RAG概念
 	RAG（Retrieval Augmented Generation）顾名思义，通过检索外部数据，增强⼤模型的⽣成效果。
 
 	RAG即检索增强⽣成，为LLM提供了从某些数据源检索到的信息，并基于此修正⽣成的答案。RAG 基本上是Search + LLM 提示，可以通过⼤模型回答查询，并将搜索算法所找到的信息作为⼤模型的上下⽂。查询和检索到的上下⽂都会被注⼊到发送到 LLM 的提示语中。
 
-
-
 ## 4.RAG vs Fine-tuning
 	RAG（检索增强⽣成）是把内部的⽂档数据先进⾏embedding，借助检索先获得⼤致的知识范围答案，再结合prompt给到LLM，让LLM⽣成最终的答案
 
 	Fine-tuning（微调）是⽤⼀定量的数据集对LLM进⾏局部参数的调整，以期望LLM更加理解我们的业务逻辑，有更好的zero-shot能⼒。
-
-
 
 ## 5.RAG工作流程
 RAG论⽂：[https://arxiv.org/pdf/2312.10997](https://arxiv.org/pdf/2312.10997)
@@ -37,16 +29,12 @@ RAG论⽂：[https://arxiv.org/pdf/2312.10997](https://arxiv.org/pdf/2312.10997)
 
 ![](img/image-20250217204629756.png)
 
-
-
 ## 6.RAG系统的搭建流程
 	具体的搭建流程图如下：
 
 ![](img/图片1.png)
 
 **索引**（Indexing）：索引⾸先清理和提取各种格式的原始数据，如 PDF、HTML、 Word 和 Markdown，然后将其转换为统⼀的纯⽂本格式。为了适应语⾔模型的上下⽂限制，⽂本被分割成更⼩的、可消化的块（chunk）。**然后使⽤嵌⼊模型将块编码成向量表示**，并存储在向量数据库中。这⼀步对于在随后的检索阶段实现⾼效的相似性搜索⾄关重要。知识库分割成 chunks，并将 chunks 向量化⾄向量库中。
-
-
 
 **检索**（Retrieval）：在收到⽤户查询（Query）后，RAG 系统采⽤与索引阶段**相同的编码模型**将查询转换为向量表示，然后计算索引语料库中查询向量与块向量的相似性得分。该系统优先级和检索最⾼ k （Top-K）块，显示最⼤的相似性查询。
 
@@ -62,19 +50,13 @@ RAG论⽂：[https://arxiv.org/pdf/2312.10997](https://arxiv.org/pdf/2312.10997)
 
 这些块随后被⽤作 prompt 中的扩展上下⽂。Query 向量化，匹配向量空间中相近的 chunks。
 
-
-
 RAG具体实现流程：加载⽂件 => 读取⽂本 => ⽂本分割 =>⽂本向量化 =>输⼊问题向量化 =>在⽂本向量中匹配出与问题向量最相似的 top k 个 =>匹配出的⽂本作为上下⽂和问题⼀起添加到 prompt 中 =>提交给 LLM ⽣成回答
-
-
 
 # 二、RAG核心
 ## 1.传统VS⼤模型
 	智能客服系统在没有大模型之前我们也是可以设计完成的只是实现的效果没有大模型那么好。下面是两则设计的原理
 
 ![](img/image-20250217210117700.png)
-
-
 
 ## 2.向量与Embeddings的定义
 	在数学中，向量（也称为欧⼏⾥得向量、⼏何向量），指具有⼤⼩（magnitude）和⽅向的量。它可以形象化地表示为带箭头的线段。箭头所指：代表向量的⽅向；线段⻓度：代表向量的⼤⼩。
@@ -110,12 +92,8 @@ print(len(vec[0]))
 
 **text-embedding-3-large**  是 OpenAI 推出的一个文本嵌入模型，属于 **text-embedding-3** 系列中的大尺寸版本。是一个功能强大、灵活性高的文本嵌入模型，适合处理复杂的自然语言任务。
 
-
-
 ## 3.向量间的相似度计算
 ![](img/image-20250217211053356.png)
-
-
 
 具体的案例演示代码
 
@@ -184,10 +162,8 @@ Euclidean distance:
 1.1403465897787535
 ```
 
-
-
 ## 4.文档的加载和分割
-	
+
 
 ### 4.1 基于文档的LLM回复系统搭建
 ![](img/image-20250217211624986.png)
@@ -199,8 +175,6 @@ Euclidean distance:
 2. 按照字符数来切分
 3. 按固定字符数 结合overlapping window
 4. 递归⽅法 RecursiveCharacterTextSplitter
-
-
 
 #### 4.2.1 按照句⼦来切分
 ```python
@@ -231,8 +205,6 @@ for i, chunk in enumerate(chunks):
 块 7: 41: NLP的研究推进不仅优化了人机交流，也对提升机器的自主性和智能水平起到了关键作用。
 ```
 
-
-
 #### 4.2.2 按照字符数来切分
 ```python
 # coding=utf-8
@@ -240,10 +212,8 @@ import re
 
 text = "自然语言处理（NLP），作为计算机科学、人工智能与语言学的交融之地，致力于赋予计算机解析和处理人类语言的能力。在这个领域，机器学习发挥着至关重要的作用。利用多样的算法，机器得以分析、领会乃至创造我们所理解的语言。从机器翻译到情感分析，从自动摘要到实体识别，NLP的应用已遍布各个领域。随着深度学习技术的飞速进步，NLP的精确度与效能均实现了巨大飞跃。如今，部分尖端的NLP系统甚至能够处理复杂的语言理解任务，如问答系统、语音识别和对话系统等。NLP的研究推进不仅优化了人机交流，也对提升机器的自主性和智能水平起到了关键作用。"
 
-
 def split_by_fixed_char_count(text, count):
  return [text[i:i + count] for i in range(0, len(text), count)]
-
 
 # 假设我们按照每100个字符来切分文本
 chunks = split_by_fixed_char_count(text, 100)
@@ -260,10 +230,6 @@ for i, chunk in enumerate(chunks):
 块 3: 62: 解任务，如问答系统、语音识别和对话系统等。NLP的研究推进不仅优化了人机交流，也对提升机器的自主性和智能水平起到了关键作用。
 ```
 
-
-
-
-
 #### 4.2.3 按固定字符数加滑动窗口
 ```python
 # coding=utf-8
@@ -271,10 +237,8 @@ import re
 
 text = "自然语言处理（NLP），作为计算机科学、人工智能与语言学的交融之地，致力于赋予计算机解析和处理人类语言的能力。在这个领域，机器学习发挥着至关重要的作用。利用多样的算法，机器得以分析、领会乃至创造我们所理解的语言。从机器翻译到情感分析，从自动摘要到实体识别，NLP的应用已遍布各个领域。随着深度学习技术的飞速进步，NLP的精确度与效能均实现了巨大飞跃。如今，部分尖端的NLP系统甚至能够处理复杂的语言理解任务，如问答系统、语音识别和对话系统等。NLP的研究推进不仅优化了人机交流，也对提升机器的自主性和智能水平起到了关键作用。"
 
-
 def sliding_window_chunks(text, chunk_size, stride):
  return [text[i:i + chunk_size] for i in range(0, len(text), stride)]
-
 
 chunks = sliding_window_chunks(text, 100, 50)  # 100个字符的块，步长为50
 
@@ -292,8 +256,6 @@ for i, chunk in enumerate(chunks):
 块 5: 62: 解任务，如问答系统、语音识别和对话系统等。NLP的研究推进不仅优化了人机交流，也对提升机器的自主性和智能水平起到了关键作用。
 块 6: 12: 智能水平起到了关键作用。
 ```
-
-
 
 #### 4.2.4 递归方法
  通过递归的方式处理我们需要借助langchain来实现。所以需要添加对应的模块
@@ -338,8 +300,6 @@ for i, chunk in enumerate(chunks):
 块 6: 50: 理解任务，如问答系统、语音识别和对话系统等。NLP的研究推进不仅优化了人机交流，也对提升机器的自主性
 块 7: 23: 也对提升机器的自主性和智能水平起到了关键作用。
 ```
-
-
 
 ## 5. 向量检索
 检索的⽅式有哪些？列举两种:
@@ -397,7 +357,6 @@ outputs = [entry['output'] for entry in data[0:1000]]
 for instruction, output in zip(instructions, outputs):
     r.set(instruction, output)  # 存入 Redis，值序列化为 JSON
 
-
 # 搜索函数：根据关键字搜索 instruction 中包含该关键字的条目
 def search_instructions(keyword, top_n=3):
     # 通过模糊匹配
@@ -411,8 +370,6 @@ def search_instructions(keyword, top_n=3):
 然后可以通过RDM工具来查看导入的数据：[https://blog.csdn.net/itbysj/article/details/145383177](https://blog.csdn.net/itbysj/article/details/145383177)
 
 ![](img/image-20250217215820940.png)
-
-
 
 **LLM 接⼝封装**:
 
@@ -469,8 +426,6 @@ print("===回复===")
 print(response)
 ```
 
-
-
 ### 5.2 向量数据库
 	在⼈⼯智能时代，向量数据库已成为数据管理和AI模型不可或缺的⼀部分。向量数据库是⼀种专⻔设计⽤来存储和查询向量嵌⼊数据的数据库。这些向量嵌⼊是AI模型⽤于识别模式、关联和潜在结构的关键数据表示。
 
@@ -525,8 +480,6 @@ Faiss的关键特性包括：
 + 返回查询位置附近指定半径内的所有元素（范围搜索）
 + 可以将索引存储在磁盘上，⽽不仅仅是RAM中
 
-
-
 **如何选型向量数据库**
 
 	在选择适合项⽬的向量数据库时，需要根据项⽬的具体需求、团队的技术背景和资源情况来综合评估。以下是⼀些建议和注意事项：
@@ -565,9 +518,7 @@ import json
 load_dotenv()
 import os
 
-
 client = OpenAI()
-
 
 # 要换成  text-embedding-3-large
 def get_embeddings(texts, model="text-embedding-3-large"):
@@ -575,15 +526,12 @@ def get_embeddings(texts, model="text-embedding-3-large"):
     data = client.embeddings.create(input=texts, model=model).data
     return [x.embedding for x in data]
 
-
 with open('train_zh.json', 'r', encoding='utf-8') as f:
     data = [json.loads(line) for line in f]
-
 
 # print(data[0:100])
 instructions = [entry['instruction'] for entry in data[0:100]]
 outputs = [entry['output'] for entry in data[0:100]]
-
 
 class MyVectorDBConnector:
     def __init__(self, collection_name, embedding_fn):
@@ -610,7 +558,6 @@ class MyVectorDBConnector:
 
         # print(self.collection.count())
 
-
     def search(self, query, top_n):
         '''检索向量数据库'''
         results = self.collection.query(
@@ -619,7 +566,6 @@ class MyVectorDBConnector:
             n_results=top_n
         )
         return results
-
 
 # 创建一个向量数据库对象
 vector_db = MyVectorDBConnector("demo", get_embeddings)
@@ -645,10 +591,6 @@ for para in results['documents'][0]:
 
 ```
 
-
-
-
-
 ### 5.3 基于向量检索的RAG实现
 ```python
 from dotenv import load_dotenv
@@ -659,7 +601,6 @@ import chromadb
 from chromadb.config import Settings
 
 import json
-
 
 client = OpenAI()
 
@@ -685,7 +626,6 @@ with open('train_zh.json', 'r', encoding='utf-8') as f:
 instructions = [entry['instruction'] for entry in data[0:1000]]
 outputs = [entry['output'] for entry in data[0:1000]]
 
-
 def get_completion(prompt, model="gpt-4o"):
     '''封装 openai 接口'''
     messages = [{"role": "user", "content": prompt}]
@@ -695,7 +635,6 @@ def get_completion(prompt, model="gpt-4o"):
         temperature=0,  # 模型输出的随机性，0 表示随机性最小
     )
     return response.choices[0].message.content
-
 
 def build_prompt(prompt_template, **kwargs):
     '''将 Prompt 模板赋值'''
@@ -709,7 +648,6 @@ def build_prompt(prompt_template, **kwargs):
             val = str(v)
         prompt = prompt.replace(f"__{k.upper()}__", val)
     return prompt
-
 
 class MyVectorDBConnector:
     def __init__(self, collection_name, embedding_fn):
@@ -743,19 +681,16 @@ class MyVectorDBConnector:
         )
         return results
 
-
 def get_embeddings(texts, model="text-embedding-3-large"):
     '''封装 OpenAI 的 Embedding 模型接口'''
     data = client.embeddings.create(input=texts, model=model).data
     return [x.embedding for x in data]
-
 
 # 创建一个向量数据库对象
 vector_db = MyVectorDBConnector("demo", get_embeddings)
 
 # 向向量数据库中添加文档
 vector_db.add_documents(instructions, outputs)
-
 
 class RAG_Bot:
     def __init__(self, vector_db, llm_api, n_results=2):
@@ -776,7 +711,6 @@ class RAG_Bot:
         # 3. 调用 LLM
         response = self.llm_api(prompt)
         return response
-
 
 # 创建一个RAG机器人
 bot = RAG_Bot(
@@ -804,15 +738,11 @@ print(response)
 如果症状严重或持续加重，建议您去医院就诊，接受医生的诊断和治疗。
 ```
 
-
-
 # 三、各大平台RAG实现
 ## 1.阿⾥云-百炼RAG
 创建应⽤->上传数据->知识索引   [https://bailian.console.aliyun.com/](https://bailian.console.aliyun.com/)
 
 ![](img/image-20250218165554173.png)
-
-
 
 通过Python来调用ARG服务
 
@@ -836,50 +766,34 @@ else:
     print(response.output.text)
 ```
 
-
-
-
-
 ## 2. 智普RAG
 创建应⽤->上传数据
 
 [https://www.zhipuai.cn/](https://www.zhipuai.cn/)
-
-
-
-
 
 ## 3.Google的NoteBook
 [https://notebooklm.google/](https://notebooklm.google/)
 
 ![](img/image-20250218201049604.png)
 
-
-
-
-
 # 四、本地向量库
 	前面的案例中我们的向量化模型使用的是OpenAI提供的`text-embedding-3-large`,针对这块我们可以本地话一个向量模型。这样处理起来效率会更高一些。
 
-**将向量化的结果保存**      
+**将向量化的结果保存**
 
-        huggingface：[https://huggingface.co/models](https://huggingface.co/models)      
+        huggingface：[https://huggingface.co/models](https://huggingface.co/models)
 
-        国内的镜像：[https://hf-mirror.com/](https://hf-mirror.com/) 
-
-
+        国内的镜像：[https://hf-mirror.com/](https://hf-mirror.com/)
 
 直接使用我们提供的本地的向量模型，并且拷贝到项目中
 
-![](img/image-20250218223652144.png)     
+![](img/image-20250218223652144.png)
 
 需要安装下这个依赖
 
 ```plain
 pip install sentence_transformers
 ```
-
-
 
 然后将数据保存到向量数据库并且持久化到本地
 
@@ -897,7 +811,6 @@ with open('train_zh.json', 'r', encoding='utf-8') as f:
 
 instructions = [entry['instruction'] for entry in data[0:1000]]
 outputs = [entry['output'] for entry in data[0:1000]]
-
 
 instruction_embeddings = model.encode(instructions, convert_to_numpy=True)
 np.save('instruction_embeddings.npy', instruction_embeddings)
@@ -926,7 +839,6 @@ from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
-
 client_openai = OpenAI()
 
 # 获取知识库对应的向量信息
@@ -939,7 +851,6 @@ print(collection.count())
 
 model = SentenceTransformer(r'maidalun1020')
 
-
 def retrieve_response(query, top_k=5):
     query_embedding = model.encode([query], convert_to_numpy=True)
     # print(query_embedding)
@@ -948,7 +859,6 @@ def retrieve_response(query, top_k=5):
         n_results=top_k
     )
     return [metadata['output'] for metadata_list in results['metadatas'] for metadata in metadata_list]
-
 
 prompt_template = """你是一个问答机器人。
 你的任务是根据下述给定的已知信息回答用户问题。
@@ -964,14 +874,12 @@ __QUERY__
 请用中文回答用户问题。
 """
 
-
 def build_prompt(prompt_template, **kwargs):
     prompt = prompt_template
     for k, v in kwargs.items():
         val = v if isinstance(v, str) else '\n'.join(v) if isinstance(v, list) else str(v)
         prompt = prompt.replace(f"__{k.upper()}__", val)
     return prompt
-
 
 def get_completion(prompt, model="gpt-4o"):
     messages = [{"role": "user", "content": prompt}]
@@ -981,7 +889,6 @@ def get_completion(prompt, model="gpt-4o"):
         temperature=0,
     )
     return response.choices[0].message.content
-
 
 class RAG_Bot:
     def __init__(self, llm_api, n_results=5):
@@ -998,16 +905,12 @@ class RAG_Bot:
         response = self.llm_api(prompt)
         return response
 
-
 user_query = "全身没劲，没精神，吃不下饭，怎么办？"
 bot = RAG_Bot(llm_api=get_completion)
 response = bot.chat(user_query)
 print(response)
 
-
 ```
-
-
 
 然后获取到对应的响应结果
 
@@ -1027,7 +930,7 @@ print(response)
 根据您的描述，这可能是一个鸡眼，也可能是一个肉瘤，建议您去医院就诊，由专业医生进行诊断。如果是鸡眼，可以使用一些药膏软化鸡眼，再用专业的工具去除。如果是肉瘤，需要进行手术治疗。在就诊之前，避免用手抠挖或切割，以免感染。
 根据您的描述，这可能是皮肤受到了创伤或感染，建议您在保持手部清洁的前提下，使用一些抗生素软膏来预防感染。您可以前往药店购买一些非处方药，比如盐酸氯霉素软膏、红霉素软膏等，按照说明使用即可。如果症状加重或持续不缓解，建议您及时就医。
 这种情况可能是因为毛囊炎或粉刺引起的。毛囊炎是毛囊感染或炎症，通常会在皮肤上形成红色丘疹或红点。粉刺是一种常见的皮肤问题，通常是因为皮脂和角质堵塞了毛孔。如果这些情况不引起疼痛或瘙痒，通常不需要治疗，只需保持皮肤清洁，避免挤压或摩擦区域。如果出现疼痛、发热、红肿等症状，建议就医咨询。
-如果您的中指长了一个透明的水泡状物，但不痛不痒，这可能是一个无害的皮肤病变，例如皮肤囊肿。囊肿通常是由于皮肤下的毛囊或皮脂腺堵塞而形成的，可以出现在任何部位，包括手指。 
+如果您的中指长了一个透明的水泡状物，但不痛不痒，这可能是一个无害的皮肤病变，例如皮肤囊肿。囊肿通常是由于皮肤下的毛囊或皮脂腺堵塞而形成的，可以出现在任何部位，包括手指。
 建议您去看皮肤科医生，让医生进行诊断和治疗。医生可能会建议将囊肿切开和排出囊内物质，或者开处方药物来治疗。
 用户问：
 手臂上有小红点不痒不过怎样可以去除
@@ -1041,43 +944,33 @@ print(response)
 请注意，以上措施仅能缓解症状，如情况严重或症状持续，还是需要及时就医。
 ```
 
-
-
-
-
 # 五、RAG的缺陷
- **RAG痛点问题分析论文**      
+ **RAG痛点问题分析论文**
 
-论文:《Seven Failure Points When Engineering a Retrieval Augmented         Generation System》      
+论文:《Seven Failure Points When Engineering a Retrieval Augmented         Generation System》
 
-        地址:[https://arxiv.org/pdf/2401.05856](https://arxiv.org/pdf/2401.05856)      
+        地址:[https://arxiv.org/pdf/2401.05856](https://arxiv.org/pdf/2401.05856)
 
-        [https://www.163.com/dy/article/JFTQNA200511D3QS.html](https://www.163.com/dy/article/JFTQNA200511D3QS.html)      
-
-
-
-
+        [https://www.163.com/dy/article/JFTQNA200511D3QS.html](https://www.163.com/dy/article/JFTQNA200511D3QS.html)
 
 ## 1. 具体痛点问题总结
 Index Process（文本向量化构建索引的过程）:
 
-+ **MIssing Content(内容缺失):** 原本的文本中就没有问题的答案   
-+ **文档加载准确性和效率：** 比如pdf文件的加载，如何提取其中的有用文字信息和图片信息等  
++ **MIssing Content(内容缺失):** 原本的文本中就没有问题的答案
++ **文档加载准确性和效率：** 比如pdf文件的加载，如何提取其中的有用文字信息和图片信息等
 + **文档切分的粒度：** 文本切分的大小和位置会影响后面检索出来的上下文完整性和与大模型交互的token数量，怎么控制好文档切分的度，是个难题。
 
-Query Process（检索增强回答的过程中）:  
-+ **Missed Top Ranked:** 错过排名靠前的文档  
-+ **Not in Context:**  提取上下文与答案无关  
-+ **Wrong Format(格式错误):** 例如需要Json，给了字符串  
-+ **Incomplete(答案不完整):** 答案只回答了问题的一部分  
-+ **Not Extracted(未提取到答案:)** 提取的上下文中有答案，但大模型没有提取出来  
+Query Process（检索增强回答的过程中）:
++ **Missed Top Ranked:** 错过排名靠前的文档
++ **Not in Context:**  提取上下文与答案无关
++ **Wrong Format(格式错误):** 例如需要Json，给了字符串
++ **Incomplete(答案不完整):** 答案只回答了问题的一部分
++ **Not Extracted(未提取到答案:)** 提取的上下文中有答案，但大模型没有提取出来
 + **Incorrect Specificity:** 答案不够具体或过于具体
-
-
 
 ## 2. 痛点问题策略分析
 ### 2.1 文档加载准确性和效率
-**优化文档读取器**  
+**优化文档读取器**
 
 	一般知识库中的文档格式都不尽相同，HTML、PDF、MarkDown、TXT、CSV等。每种格式文档都有其都有的数据组织方式。怎么在读取这些数据时将干扰项去除（如一些特殊符号等），同时还保留原文本之间的关联关系（如csv文件保留其原有的表格结构），是主要的优化方向。
 
@@ -1085,13 +978,9 @@ Query Process（检索增强回答的过程中）:
 
 	网址:[https://python.langchain.com/v0.1/docs/modules/data_connection/document_loaders/](https://python.langchain.com/v0.1/docs/modules/data_connection/document_loaders/)
 
-
-
 **数据清洗与增强**
 
 	输入垃圾，那也必定输出垃圾。如果你的源数据质量低劣，比如包含互相冲突的信息，那不管你的 RAG 工作构建得多么好，它都不可能用你输入的垃圾神奇地输出高质量结果。这个解决方案不仅适用于这个痛点，任何RAG工作流程想要获得优良表现，都必须先清洁数据。
-
-
 
 ### 2.2 文档切分的粒度
 	粒度太大可能导致检索到的文本包含太多不相关的信息，降低检索准确性，粒度太小可能导致信息不全面，导致答案的片面性。问题的答案可能跨越两个甚至多个片段。
@@ -1104,34 +993,22 @@ Query Process（检索增强回答的过程中）:
 
 	在固定大小分块的基础上，为了保持文本块之间语义上下文的连贯性，在分块时，保持文本块之间有一定的内容重叠。
 
-
-
 **基于结构的分块**
 
 	基于结构的分块方法利用文档的固有结构，如HTML或Markdown中的标题和段落，以保持内容的逻辑性和完整性。
-
-
 
 **基于递归的分块**
 
 	重复的利用分块规则不断细分文本块。在langchain中会先通过段落换行符（\n\n）进行分割。然后，检查这些块的大小。如果大小不超过一定阈值，则该块被保留。对于大小超过标准的块，使用单换行符（\n）再次分割。以此类推，不断根据块大小更新更小的分块规则（如空格，句号）。
 
-
-
 **分块大小的选择**
 
 （1）不同的嵌入模型有其最佳输入大小。比如Openai的text-embedding-ada-002的模型在256 或 512大小的块上效果更好。
 
-
-
 （2）文档的类型和用户查询的长度及复杂性也是决定分块大小的重要因素。处理长篇文章或书籍时，较大的分块有助于保留更多的上下文和主题连贯性；而对于社交媒体帖子，较小的分块可能更适合捕捉每个帖子的精确语义。如果用户的查询通常是简短和具体的，较小的分块可能更为合适；相反，如果查询较为复杂，可能需要更大的分块。
-
-
 
 ### 2.3 内容缺失
 	准备的外挂文本中没有回答问题所需的知识。这时候，RAG可能会提供一个自己编造的答案。
-
-
 
 **增加相应知识库**
 
@@ -1141,13 +1018,9 @@ Query Process（检索增强回答的过程中）:
 
 	输入垃圾，那也必定输出垃圾。如果你的源数据质量低劣，比如包含互相冲突的信息，那不管你的 RAG 工作构建得多么好，它都不可能用你输入的垃圾神奇地输出高质量结果。这个解决方案不仅适用于这个痛点，任何RAG工作流程想要获得优良表现，都必须先清洁数据。
 
-
-
 **更好的Prompt设计**
 
 	通过Prompts，让大模型在找不到答案的情况下，输出“根据当前知识库，无法回答该问题”等提示。这样的提示，就能鼓励模型承认自己的局限，并更透明地向用户传达它的不确定。虽然不能保证 100% 准确度，但在清洁数据之后，精心设计 prompt 是最好的做法之一。
-
-
 
 ### 2.4 错过排名靠前的文档
 	外挂知识库中存在回答问题所需的知识，但是可能这个知识块与问题的向量相似度排名并不是靠前的，导致无法召回该知识块传给大模型，导致大模型始终无法得到正确的答案.
@@ -1160,56 +1033,38 @@ Query Process（检索增强回答的过程中）:
 
 	该方法的步骤是，首先检索出 topN 个知识块（N > K，过召回），然后再对这 topN 个知识块进行重排序，取重排序后的 K 个知识块当作上下文。重排是利用另一个排序模型或排序策略，对知识块和问题之间进行关系计算与排序。
 
-
-
 ### 2.5 提取上下文与答案无关
 **内容缺失** 或 **错过排名靠前的文档** 的具体体现
-
-
 
 ### 2.6 格式错误
 **Prompt调优**
 
 	优化Prompt逐渐让大模型返回正确的格式。
 
-
-
 ### 2.7 答案不完整
 将问题分开提问:一方面引导用户精简问题，一次只提问一个问题。 另一方面，针对用户的问题进行内部拆分处理，拆分成数个子问题，等子问题答案都找到后，再总结起来回复给用户
 
-
-
 ### 2.8 未提取到答案
 提示压缩技术: 网址:[https://mp.weixin.qq.com/s/61LZgc1a5yRP2J7MTIVZ4Q](https://mp.weixin.qq.com/s/61LZgc1a5yRP2J7MTIVZ4Q)
-
-
 
 ## 3. RAG评估
 ### 3.1 RAG效果评估的必要性
 + 评估出RAG对大模型能力改善的程度
 + RAG优化过程，通过评估可以知道改善的方向和参数调整的程度
 
-
-
 ### 3.2 RAG评估方法
 **人工评估**
 
 	最Low的方式是进行人工评估：邀请专家或人工评估员对RAG生成的结果进行评估。他们可以根据预先定义的标准对生成的答案进行质量评估，如准确性、连贯性、相关性等。这种评估方法可以提供高质量的反馈，但可能会消耗大量的时间和人力资源。
 
-
-
 **自动化评估**
 
 	自动化评估肯定是RAG评估的主流和发展方向。
 
-
-
 **LangSmith**
 
-需要准备测试数据集  
+需要准备测试数据集
 不仅可以评估RAG效果，对于LangChain中的Prompt模板等步骤都可进行测试评估。
-
-
 
 **RAGAS**
 
@@ -1222,10 +1077,6 @@ Query Process（检索增强回答的过程中）:
 + contexts：从用于回答question外部知识源中检索的上下文。
 + ground_truths：question的基本事实答案。这是唯一人工注释的信息。
 
-
-
-
-
 ### 3.3 评估指标
 评估检索质量:
 
@@ -1237,9 +1088,7 @@ Query Process（检索增强回答的过程中）:
 + faithfulness（忠实性，越高表示答案的生成使用了越多的参考文档（检索出来的内容））
 + answer_relevancy（答案的相关性）
 
-Context Recall：上下文召回衡量检索到的上下文(contexts)与标准答案（ground_truths）的匹配程度。      
-
-
+Context Recall：上下文召回衡量检索到的上下文(contexts)与标准答案（ground_truths）的匹配程度。
 
 ```python
 from datasets import Dataset
@@ -1249,7 +1098,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 import os
-
 
 data_samples = {
     'question': ['When was the first super bowl?', 'Who won the most super bowls?'],
@@ -1308,4 +1156,3 @@ Evaluating: 100%|██████████| 2/2 [00:36<00:00, 18.45s/it]
 [2 rows x 5 columns]
 
 ```
-

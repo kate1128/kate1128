@@ -24,13 +24,13 @@ BERT可以通过`bit`这一单词理解句子A中的Python是用来表示蟒蛇�
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736746747585-3fec145b-04b4-47bc-aae5-790f0406609c.png)
 
-<font style="color:rgb(0,0,0);">下面来看句子B：</font>`<font style="color:rgb(0,0,0);">Python is my favorite programming language</font>`<font style="color:rgb(0,0,0);">。同理，BERT将这句话中的每个单词与句子中的所有单词联系起来，以了解每个单词的上下文含义。所以，通过</font>`<font style="color:rgb(0,0,0);">programming</font>`<font style="color:rgb(0,0,0);"> 这个单词， BERT理解了句子B中的单词Python与编程语言有关，如图2-2所示。 </font>
+下面来看句子B：`Python is my favorite programming language`。同理，BERT将这句话中的每个单词与句子中的所有单词联系起来，以了解每个单词的上下文含义。所以，通过`programming` 这个单词， BERT理解了句子B中的单词Python与编程语言有关，如图2-2所示。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736746797710-ff6611d7-6b31-4660-8075-5f43c50d997b.png)
 
-<font style="color:rgb(0,0,0);">由此可见，与</font>`<font style="color:rgb(0,0,0);">word2vec</font>`<font style="color:rgb(0,0,0);">等无上下文模型生成静态嵌入不同，</font>`<font style="color:rgb(0,0,0);">BERT</font>`<font style="color:rgb(0,0,0);">能够根据语境生成动态嵌入。 </font>
+由此可见，与`word2vec`等无上下文模型生成静态嵌入不同，`BERT`能够根据语境生成动态嵌入。
 
-<font style="color:rgb(0,0,0);">更多：</font>
+更多：
 
 [BERT基础教程：Transformer大模型实战.pdf](https://www.yuque.com/attachments/yuque/0/2025/pdf/2639475/1736747116200-a6281a37-ffa9-4dd7-9f7d-8f4e92bb25d3.pdf)
 
@@ -55,4 +55,3 @@ BERT是一种基于Transformer架构的预训练语言模型，由Google AI在20
 BERT的出现标志着自然语言处理领域的一个重大突破。由于其强大的上下文理解能力，它迅速成为了许多NLP任务中的基础模型，并且对后续的一些模型（如RoBERTa、DistilBERT、ALBERT等）产生了深远影响。这些基于BERT的变体也不断改进其效率和性能。
 
 总的来说，BERT是一个强大的语言模型，它通过深度学习方法和大规模语料库的预训练，显著提高了多个自然语言处理任务的表现。
-

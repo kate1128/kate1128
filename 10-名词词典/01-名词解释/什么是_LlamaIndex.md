@@ -1,17 +1,40 @@
-Llamalndex项目由Jerry Liu创建，在2023年6月获得850万美元的种子资金。由于这个项目解决了大模型训练时只具有数据知识的局限性，因此比它在AI社区广受欢迎。
+<!-- type: glossary -->
+# LlamaIndex
 
-和LangChain的策略略有不同，Llamalndex并不是那么"大"而"全"，而是特别关注如何开发先进的基于AI的RAG技术，以及多租户RAG系统的建立。基于Llamalndex的企业解决方案旨在消除技术和安全壁垒，增强企业的数据使用和服务能力。
+> 一个专注于**数据索引和检索增强**的 Python 框架。与 LangChain 的"大而全"不同，LlamaIndex 将精力集中在 RAG 领域——如何更好地加载文档、构建索引、检索和增强 LLM 回答。
 
-Llamalndex的相关工作不仅关注技术开发，还涉及将这些技术应用于实际场景，以提高业务效率和顾客体验。
+## 是什么
 
-> 租户是什么?
->
-> 想象一下，在一个RAG系统中，用户1和用户2各自拥有一一套独特的文档。
->
-> 多租户可确保当用户1发出查询时，他只从自己的文档中获取响应，而不受用户2数据的干扰，反之亦然。这种方法是保持数据机密性和安全性的关键。
->
+LlamaIndex 的核心抽象是一个从**数据 → 索引 → 查询**的管道：
 
-还有一点不得不说，Llamalndex在文档的组织结构和可执行性方面可比LangChain好多了。这也许反映了 Llamalndex在用户体验、接口设计和技术实现方面的投入。在Al领域，Llamalndex的这些优势对于开发者和最终用户都非常重要，能够促进技术的普及和使用效率。
+1. **数据连接器（Data Connectors）**：加载 PDF、网页、数据库、API 等各种来源的数据
+2. **索引（Indexes）**：将数据组织成不同的检索结构——向量索引、摘要索引、树形索引、知识图谱索引
+3. **查询引擎（Query Engine）**：提供统一的查询接口，背后自动处理检索、排序、上下文组装和 LLM 调用
 
-当然，或许是LangChain的摊子铺得太大全，面面俱到，反而令人摸不着头脑，很多细节不到位。如果浏览LangChain的GitHub主页，会发现其Open Issues(已提出但是尚未解决的问题)高达上千个。因此，如果专攻文档的检索和增强生成，那么或许应该选择"小"而"美"的Llamalndex。
+与 LangChain 的关键差异：LlamaIndex 专注于"怎么让 LLM 更好地利用你的数据"，而 LangChain 试图覆盖整个 LLM 应用开发的链条。
 
+## 为什么重要
+
+- **RAG 的第二个选择**：如果 LangChain 太"重"，LlamaIndex 通常更轻量、文档更好、上手更快
+- **多租户 RAG 原生支持**：内置了数据隔离机制，适合企业级"不同用户只能看自己的文档"场景
+- **索引结构丰富**：不光有向量索引，还有树形索引（用于长文档摘要）、知识图谱索引等高级结构
+- **GitHub Open Issues 管理好于 LangChain**：代码质量和文档维护在社区中有较好口碑
+
+## 关键要点
+
+- **创始人 Jerry Liu**，2023 年 6 月获 850 万美元种子轮
+- **适用场景**：文档问答、知识库构建、多租户数据检索——这些是 LlamaIndex 的甜点
+- **不适合的场景**：需要通用 Agent、复杂链式编排的生产应用——这些场景 LangChain 生态更成熟
+- **可以互补使用**：LlamaIndex 做索引和检索，LangChain 做链和 Agent——两个框架可以混合使用
+
+## 相关概念
+
+- [[LangChain]] — LlamaIndex 的主要竞品/互补框架
+- [[RAG 检索增强生成]] — LlamaIndex 聚焦的核心技术领域
+- [[向量数据库]] — LlamaIndex 索引层的底层存储
+
+## 参考
+
+- [LlamaIndex 官方文档](https://docs.llamaindex.ai/)
+- [LlamaIndex GitHub](https://github.com/run-llama/llama_index)
+- 本知识库: [05-主流框架与Agent/02-LlamaIndex](../../05-主流框架与Agent/02-LlamaIndex/)

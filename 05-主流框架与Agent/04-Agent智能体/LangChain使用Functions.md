@@ -39,7 +39,7 @@ foo = User(name="Joe",age=32, email="joe@gmail.com")
 print(foo.name)
 ```
 
-<details class="lake-collapse"><summary id="ub3760eb3"><span class="ne-text">output：</span></summary><pre data-language="json" id="bAMUy" class="ne-codeblock language-json"><code>Joe</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>Joe</code></pre></details>
 2. 生成user对象
 
 ```python
@@ -51,7 +51,7 @@ foo = User(name="Joe",age="bar", email="joe@gmail.com")
 print(foo.age)
 ```
 
-<details class="lake-collapse"><summary id="u395f94e2"><span class="ne-text">output：</span></summary><pre data-language="json" id="H11M0" class="ne-codeblock language-json"><code>bar</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>bar</code></pre></details>
 ## 使用 Pydantic 创建类
 使用 Pydantic 创建类，可以对类的属性值进行格式约束。在创建类的时候会进行格式验证，如果格式不符合要求会报错。
 
@@ -75,7 +75,7 @@ foo_p = pUser(name="Jane", age=32, email="jane@gmail.com")
 print(foo_p.name)
 ```
 
-<details class="lake-collapse"><summary id="ueaf499ca"><span class="ne-text">output：</span></summary><pre data-language="json" id="CIzBQ" class="ne-codeblock language-json"><code>Jane</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>Jane</code></pre></details>
 3. 使用了pydantic，由于age不是int，因此会报错。输出报错内容
 
 ```python
@@ -86,7 +86,7 @@ except Exception as e:
     print(e)
 ```
 
-<details class="lake-collapse"><summary id="u84436c84"><span class="ne-text">output：</span></summary><pre data-language="json" id="pBLZA" class="ne-codeblock language-json"><code>1 validation error for pUser age value is not a valid integer (type=type_error.integer)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>1 validation error for pUser age value is not a valid integer (type=type_error.integer)</code></pre></details>
 4. 修改
 
 ```python
@@ -101,7 +101,7 @@ obj = Class(
 obj
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>Class(students=[pUser(name='Jane', age=32, email='jane@gmail.com')])</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>Class(students=[pUser(name='Jane', age=32, email='jane@gmail.com')])</code></pre></details>
 #  基于Pydantic的OpenAI函数定义
 ## 构造 OpenAI 的 function
 我们创建了一个`WeatherSearch`类，它继承自 `Pydantic` 的 `BaseModel` 子类。因此`WeatherSearch`类的所有成员都被具备了数据类型校验机制，该类有一个`str`类型的成员`airport_code`表示机场代码，并有一个描述信息`description`，用来说明 `airport_code` 的作用，在 `airport_code` 的上方也有一段文本描述信息：输入机场代码，获取该机场的天气信息。这段文本信息是对类`WeatherSearch`的说明，意思是通过机场代码可以查询天气情况。同时，我们使用 `langchain` 将这个`WeatherSearch`类转换成`openai`的函数描述对象：
@@ -131,7 +131,7 @@ weather_function = convert_pydantic_to_openai_function(WeatherSearch)
 weather_function
 ```
 
-<details class="lake-collapse"><summary id="ucf930685"><span class="ne-text">output：</span></summary><pre data-language="json" id="QafRk" class="ne-codeblock language-json"><code>{
+<details><summary>output：</summary><pre><code class="language-json"><code>{
     'name': 'WeatherSearch',
     'description': '输入机场代码，获取该机场的天气信息',
     'parameters': {
@@ -160,7 +160,7 @@ class WeatherSearch1(BaseModel):
 convert_pydantic_to_openai_function(WeatherSearch1)
 ```
 
-<details class="lake-collapse"><summary id="u56863b11"><span class="ne-text">output：报错</span></summary><pre data-language="json" id="jLPPU" class="ne-codeblock language-json"><code>---------------------------------------------------------------------------
+<details><summary>output：报错</summary><pre><code class="language-json"><code>---------------------------------------------------------------------------
 
 KeyError                                  Traceback (most recent call last)
 
@@ -171,8 +171,6 @@ Cell In[15], line 5
       3     airport_code: str = Field(description=&quot;输入机场代码查询天气&quot;)
 
 ----&gt; 5 convert_pydantic_to_openai_function(WeatherSearch1)
-
-
 
 File ~/anaconda3/lib/python3.11/site-packages/langchain/utils/openai_functions.py:28, in convert_pydantic_to_openai_function(model, name, description)
 
@@ -190,8 +188,6 @@ File ~/anaconda3/lib/python3.11/site-packages/langchain/utils/openai_functions.p
 
      30 }
 
-
-
 KeyError: 'description'</code></pre></details>
 + `WeatherSearch2`加入对本身的描述信息，因此不会报错。
 
@@ -206,7 +202,7 @@ class WeatherSearch2(BaseModel):
 convert_pydantic_to_openai_function(WeatherSearch2)
 ```
 
-<details class="lake-collapse"><summary id="u0beabd18"><span class="ne-text">output：</span></summary><pre data-language="json" id="rpCkA" class="ne-codeblock language-json"><code>{'name': 'WeatherSearch2',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'name': 'WeatherSearch2',
   'description': '输入机场代码，获取该机场的天气信息',
   'parameters': {'title': 'WeatherSearch2',
   'description': '输入机场代码，获取该机场的天气信息',
@@ -235,7 +231,7 @@ model = ChatOpenAI()
 model.invoke("今天旧金山的天气怎么样？", functions=[weather_function])
 ```
 
-<details class="lake-collapse"><summary id="u7a5eef78"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="K0cIp" class="ne-codeblock language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
 2. 直接在构造模型中声明functions，对话时不需要在声明
 
 ```python
@@ -244,7 +240,7 @@ model_with_function = model.bind(functions=[weather_function])
 model_with_function.invoke("今天旧金山的天气怎么样？")
 ```
 
-<details class="lake-collapse"><summary id="u545ac97b"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="IkqkT" class="ne-codeblock language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
 ## 强制使用function
 如果想要强制使用 function，需要在`bind`中增加`function_call`参数。
 
@@ -260,7 +256,7 @@ model_with_forced_function = model.bind(functions=[weather_function], function_c
 model_with_forced_function.invoke("旧金山的天气怎么样？")
 ```
 
-<details class="lake-collapse"><summary id="ub6e83c41"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="B6CT5" class="ne-codeblock language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
 2. 输入hi，强制使用function的模型，即使prompt与函数description无关也会命中
 
 ```python
@@ -268,7 +264,7 @@ model_with_forced_function.invoke("旧金山的天气怎么样？")
 model_with_forced_function.invoke("你好!")
 ```
 
-<details class="lake-collapse"><summary id="uc4d2e11c"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="jtxMX" class="ne-codeblock language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;LAX&quot;\n}'}}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;LAX&quot;\n}'}}, example=False)</code></pre></details>
 3. 输入hi，未强制使用function的模型，prompt与函数description无关不会命中
 
 ```python
@@ -276,7 +272,7 @@ model_with_forced_function.invoke("你好!")
 model_with_function.invoke("你好!")
 ```
 
-<details class="lake-collapse"><summary id="u6c277e98"><span class="ne-text">output：</span></summary><pre data-language="json" id="w7chd" class="ne-codeblock language-json"><code>AIMessage(content='Hello! How can I assist you today?', additional_kwargs={}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='Hello! How can I assist you today?', additional_kwargs={}, example=False)</code></pre></details>
 # 使用function
 在一般情况下我们会使用 chain 来实现整个问答的流程，接下来我们通过创建 chain 来实现函数调用功能
 
@@ -312,7 +308,7 @@ chain = prompt | model_with_function
 chain.invoke({"input": "今天旧金山的天气怎么样？"})
 ```
 
-<details class="lake-collapse"><summary id="uf44bf307"><span class="ne-text">output：</span></summary><pre data-language="json" id="mqHpv" class="ne-codeblock language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
 创建未命中function的问答
 
 ```python
@@ -361,7 +357,7 @@ model_with_functions = model.bind(functions=functions)
 model_with_functions.invoke("旧金山的天气怎么样？")
 ```
 
-<details class="lake-collapse"><summary id="ud06a1166"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="x4GMb" class="ne-codeblock language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'WeatherSearch', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}}, example=False)</code></pre></details>
 命中 ArtistSearch function
 
 ```python
@@ -369,7 +365,7 @@ model_with_functions.invoke("旧金山的天气怎么样？")
 model_with_functions.invoke("找到泰勒·斯威夫特的三首歌？")
 ```
 
-<details class="lake-collapse"><summary id="ufd761516"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="znKgr" class="ne-codeblock language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'ArtistSearch', 'arguments': '{\n  &quot;artist_name&quot;: &quot;taylor swift&quot;,\n  &quot;n&quot;: 3\n}'}}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'ArtistSearch', 'arguments': '{\n  &quot;artist_name&quot;: &quot;taylor swift&quot;,\n  &quot;n&quot;: 3\n}'}}, example=False)</code></pre></details>
 命中都未命中
 
 ```python
@@ -377,7 +373,7 @@ model_with_functions.invoke("找到泰勒·斯威夫特的三首歌？")
 model_with_functions.invoke("你好!")
 ```
 
-<details class="lake-collapse"><summary id="u633bd9fe"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="ExvSG" class="ne-codeblock language-json"><code>AIMessage(content='Hello! How can I assist you today?', additional_kwargs={}, example=False)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AIMessage(content='Hello! How can I assist you today?', additional_kwargs={}, example=False)</code></pre></details>
 # 英文版提示
 ## 构造OpenAI的function
 ```python
@@ -412,4 +408,3 @@ class ArtistSearch(BaseModel):
     artist_name: str = Field(description="name of artist to look up")
     n: int = Field(description="number of results")
 ```
-

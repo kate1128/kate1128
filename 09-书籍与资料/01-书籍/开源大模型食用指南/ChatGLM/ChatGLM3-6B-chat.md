@@ -74,4 +74,3 @@ streamlit run ./basic_demo/web_demo2.py --server.address 127.0.0.1 --server.port
 注意：要在浏览器打开`http://localhost:6006`页面后，模型才会加载，如下图所示：
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1735717920930-60489cee-f77b-4788-8150-2b438b2f0748.png)
-

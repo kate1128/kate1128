@@ -18,8 +18,8 @@ import datetime
 
 # 定义输入格式
 class OpenMeteoInput(BaseModel):
-    latitude: float = Field(..., description="要获取天气数据的位置的纬度") 
-    longitude: float = Field(..., description="要获取天气数据的位置的经度") 
+    latitude: float = Field(..., description="要获取天气数据的位置的纬度")
+    longitude: float = Field(..., description="要获取天气数据的位置的经度")
 
 # 使用 @tool 装饰器并指定输入格式
 @tool(args_schema=OpenMeteoInput)
@@ -81,7 +81,7 @@ def search_wikipedia(query: str) -> str:
     for page_title in page_titles[: 3]: #取前三个页面标题
         try:
             #使用 wikipedia 模块的 page 函数，获取指定标题的维基百科页面对象。
-            wiki_page =  wikipedia.page(title=page_title, auto_suggest=False) 
+            wiki_page =  wikipedia.page(title=page_title, auto_suggest=False)
             # 获取页面摘要
             summaries.append(f"页面: {page_title}\n摘要: {wiki_page.summary}")
         except (
@@ -143,7 +143,7 @@ result = chain.invoke({"input": "现在圣佛朗西斯科的温度是多少?"})
 result.tool
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>'get_current_temperature'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'get_current_temperature'</code></pre></details>
 7. 查看工具的输入
 
 ```python
@@ -151,14 +151,14 @@ result.tool
 result.tool_input
 ```
 
-<details class="lake-collapse"><summary id="u382d0bd2"><span class="ne-text">output：</span></summary><pre data-language="json" id="y628T" class="ne-codeblock language-json"><code>{'latitude': 37.7749, 'longitude': -122.4194}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>{'latitude': 37.7749, 'longitude': -122.4194}</code></pre></details>
 8. 查看工具
 
 ```python
 result.tool
 ```
 
-<details class="lake-collapse"><summary id="u4ef66197"><span class="ne-text">output：</span></summary><pre data-language="json" id="QU5e4" class="ne-codeblock language-json"><code>'get_current_temperature'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'get_current_temperature'</code></pre></details>
 ## 加入中间步骤结果
 1. 创建 `ChatPromptTemplate`，从消息模板中获取用户输入
 
@@ -196,7 +196,7 @@ result1 = chain.invoke({
 result1.tool
 ```
 
-<details class="lake-collapse"><summary id="u42b512ca"><span class="ne-text">output：</span></summary><pre data-language="json" id="M8DRL" class="ne-codeblock language-json"><code>'get_current_temperature'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'get_current_temperature'</code></pre></details>
 4. 获取`tool`调用的结果
 
 ```python
@@ -211,7 +211,7 @@ observation = get_current_temperature(result1.tool_input)
 observation
 ```
 
-<details class="lake-collapse"><summary id="u9644048e"><span class="ne-text">output：</span></summary><pre data-language="json" id="b8pkY" class="ne-codeblock language-json"><code>'现在温度是 9.2°C'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'现在温度是 9.2°C'</code></pre></details>
 6. 查看输出类型
 
 ```python
@@ -219,7 +219,7 @@ observation
 type(result1)
 ```
 
-<details class="lake-collapse"><summary id="u11cca840"><span class="ne-text">output：</span></summary><pre data-language="json" id="cypI0" class="ne-codeblock language-json"><code>langchain_core.agents.AgentActionMessageLog</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>langchain_core.agents.AgentActionMessageLog</code></pre></details>
 ```python
 from langchain.agents.format_scratchpad import format_to_openai_functions
 ```
@@ -231,7 +231,7 @@ from langchain.agents.format_scratchpad import format_to_openai_functions
 result1.message_log
 ```
 
-<details class="lake-collapse"><summary id="uad01fa41"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="RBVKa" class="ne-codeblock language-json"><code>[AIMessage(content='', additional_kwargs={'function_call': {'arguments': '{&quot;latitude&quot;:37.7749,&quot;longitude&quot;:-122.4194}', 'name': 'get_current_temperature'}})]</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>[AIMessage(content='', additional_kwargs={'function_call': {'arguments': '{&quot;latitude&quot;:37.7749,&quot;longitude&quot;:-122.4194}', 'name': 'get_current_temperature'}})]</code></pre></details>
 8. 将`Function`和`Tool`的结果转换成`openai`函数格式
 
 ```python
@@ -239,14 +239,14 @@ result1.message_log
 format_to_openai_functions([(result1, observation), ])
 ```
 
-<details class="lake-collapse"><summary id="ua477f915"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="iUxMZ" class="ne-codeblock language-json"><code>[AIMessage(content='', additional_kwargs={'function_call': {'arguments': '{&quot;latitude&quot;:37.7749,&quot;longitude&quot;:-122.4194}', 'name': 'get_current_temperature'}}),
+<details><summary>output：</summary><pre><code class="language-json"><code>[AIMessage(content='', additional_kwargs={'function_call': {'arguments': '{&quot;latitude&quot;:37.7749,&quot;longitude&quot;:-122.4194}', 'name': 'get_current_temperature'}}),
  FunctionMessage(content='现在温度是 9.2°C', name='get_current_temperature')]</code></pre></details>
 9. 构造成`Agent`的输入格式，`agent_scratchpad`是中间步骤的结果
 
 ```python
 # 构造成Agent的输入格式，agent_scratchpad是中间步骤的结果
 result2 = chain.invoke({
-    "input": "现在圣佛朗西斯科的温度是多少?", 
+    "input": "现在圣佛朗西斯科的温度是多少?",
     "agent_scratchpad": format_to_openai_functions([(result1, observation)])
 })
 ```
@@ -256,7 +256,7 @@ result2 = chain.invoke({
 result2
 ```
 
-<details class="lake-collapse"><summary id="ud31c78b5"><span class="ne-text">output：</span></summary><pre data-language="json" id="tCmgq" class="ne-codeblock language-json"><code>AgentFinish(return_values={'output': '圣佛朗西斯科现在的温度是9.2°C。'}, log='圣佛朗西斯科现在的温度是9.2°C。')</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AgentFinish(return_values={'output': '圣佛朗西斯科现在的温度是9.2°C。'}, log='圣佛朗西斯科现在的温度是9.2°C。')</code></pre></details>
 10. 循环执行 `agent` 操作
 
 ```python
@@ -339,22 +339,21 @@ def run_agent(user_input):
 run_agent("圣弗朗西斯科的温度是多少？")
 ```
 
-<details class="lake-collapse"><summary id="u0549055e"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="SVshB" class="ne-codeblock language-json"><code>AgentFinish(return_values={'output': '圣弗朗西斯科现在的温度是9.2°C。'}, log='圣弗朗西斯科现在的温度是9.2°C。')</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AgentFinish(return_values={'output': '圣弗朗西斯科现在的温度是9.2°C。'}, log='圣弗朗西斯科现在的温度是9.2°C。')</code></pre></details>
 13. `run_agent`
 
 ```python
 run_agent("什么是langchain?")
 ```
 
-<details class="lake-collapse"><summary id="ub78b2313"><span class="ne-text">output：</span></summary><pre data-language="json" id="hjS3X" class="ne-codeblock language-json"><code>AgentFinish(return_values={'output': 'LangChain是一个旨在简化使用大型语言模型（LLMs）创建应用程序的框架。作为一个语言模型集成框架，LangChain的用例主要涵盖了文档分析和摘要、聊天机器人以及代码分析等领域。'}, log='LangChain是一个旨在简化使用大型语言模型（LLMs）创建应用程序的框架。作为一个语言模型集成框架，LangChain的用例主要涵盖了文档分析和摘要、聊天机器人以及代码分析等领域。')</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>AgentFinish(return_values={'output': 'LangChain是一个旨在简化使用大型语言模型（LLMs）创建应用程序的框架。作为一个语言模型集成框架，LangChain的用例主要涵盖了文档分析和摘要、聊天机器人以及代码分析等领域。'}, log='LangChain是一个旨在简化使用大型语言模型（LLMs）创建应用程序的框架。作为一个语言模型集成框架，LangChain的用例主要涵盖了文档分析和摘要、聊天机器人以及代码分析等领域。')</code></pre></details>
 14. `run_agent`
 
 ```python
 run_agent("你好！")
 ```
 
-<details class="lake-collapse"><summary id="u35f55c06"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="jAewr" class="ne-codeblock language-json"><code>AgentFinish(return_values={'output': '你好！有什么可以帮助你的吗？'}, log='你好！有什么可以帮助你的吗？')</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>AgentFinish(return_values={'output': '你好！有什么可以帮助你的吗？'}, log='你好！有什么可以帮助你的吗？')</code></pre></details>
 
 ```python
 # 使用AgentExecutor对agent进行封装
@@ -368,10 +367,9 @@ agent_executor = AgentExecutor(agent=agent_chain, tools=tools, verbose=True)
 agent_executor.invoke({"input": "什么是langchain?"})
 ```
 
-<details class="lake-collapse"><summary id="u556d749e"><span class="ne-text">output：</span></summary><pre data-language="json" id="MrgmW" class="ne-codeblock language-json"><code>&gt; Entering new AgentExecutor chain...
+<details><summary>output：</summary><pre><code class="language-json"><code>&gt; Entering new AgentExecutor chain...
 
 Invoking: `search_wikipedia` with `{'query': 'Langchain'}`
-
 
 Page: LangChain
 Summary: LangChain is a framework designed to simplify the creation of applications using large language models (LLMs). As a language model integration framework, LangChain's use-cases largely overlap with those of language models in general, including document analysis and summarization, chatbots, and code analysis.
@@ -384,7 +382,6 @@ Page: DataStax
 Summary: DataStax, Inc. is a real-time data for AI company based in Santa Clara, California. Its product Astra DB is a cloud database-as-a-service based on Apache Cassandra. DataStax also offers DataStax Enterprise (DSE), an on-premises database built on Apache Cassandra, and Astra Streaming, a messaging and event streaming cloud service based on Apache Pulsar. As of June 2022, the company has roughly 800 customers distributed in over 50 countries.LangChain 是一个旨在简化使用大型语言模型（LLMs）创建应用程序的框架。作为一个语言模型集成框架，LangChain 的用例主要涵盖了文档分析和摘要、聊天机器人以及代码分析等领域。
 
 &gt; Finished chain.</code></pre></details>
-
 
 ```python
 {'input': '什么是langchain?',
@@ -404,7 +401,7 @@ agent_executor.invoke({"input": "我的名字是bob"})
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="u5c20175d"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="rLkHq" class="ne-codeblock language-json"><code>{'input': '我的名字是bob', 'output': '你好，Bob！有什么可以帮助你的吗？'}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>{'input': '我的名字是bob', 'output': '你好，Bob！有什么可以帮助你的吗？'}</code></pre></details>
 14. `invoke`
 
 ```python
@@ -418,7 +415,7 @@ agent_executor.invoke({"input": "我的名字是什么？"})
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="u0227164d"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="nY14T" class="ne-codeblock language-json"><code>{'input': '我的名字是什么？', 'output': '你的名字是用户。'}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>{'input': '我的名字是什么？', 'output': '你的名字是用户。'}</code></pre></details>
 ## 加入对话历史
 1. 加入用户的对话历史
 
@@ -462,10 +459,10 @@ agent_executor = AgentExecutor(agent=agent_chain, tools=tools, verbose=True, mem
 agent_executor.invoke({"input": "我的名字是bob"})
 ```
 
-<details class="lake-collapse"><summary id="ue3bdc417"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="python" id="Lqme3" class="ne-codeblock language-python"><code>&gt; Entering new AgentExecutor chain...
+<details><summary>output：</summary><pre><code class="language-python"><code>&gt; Entering new AgentExecutor chain...
 Nice to meet you, Bob! How can I assist you today?
 
-&gt; Finished chain.</code></pre><pre data-language="json" id="uswcn" class="ne-codeblock language-json"><code>{'input': '我的名字是bob',
+&gt; Finished chain.</code></pre><pre><code class="language-json"><code>{'input': '我的名字是bob',
  'chat_history': [HumanMessage(content='my name is bob'),
   AIMessage(content='Nice to meet you, Bob! How can I assist you today?'),
   HumanMessage(content='我的名字是bob'),
@@ -477,10 +474,10 @@ Nice to meet you, Bob! How can I assist you today?
 agent_executor.invoke({"input": "我的名字是什么？"})
 ```
 
-<details class="lake-collapse"><summary id="u994c5596"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="python" id="o0XJr" class="ne-codeblock language-python"><code>&gt; Entering new AgentExecutor chain...
+<details><summary>output：</summary><pre><code class="language-python"><code>&gt; Entering new AgentExecutor chain...
 你的名字是 Bob。有什么我可以帮助你的吗？
 
-&gt; Finished chain.</code></pre><pre data-language="json" id="qzWZw" class="ne-codeblock language-json"><code>{'input': '我的名字是什么？',
+&gt; Finished chain.</code></pre><pre><code class="language-json"><code>{'input': '我的名字是什么？',
  'chat_history': [HumanMessage(content='my name is bob'),
   AIMessage(content='Nice to meet you, Bob! How can I assist you today?'),
   HumanMessage(content='我的名字是bob'),
@@ -496,14 +493,13 @@ agent_executor.invoke({"input": "我的名字是什么？"})
 agent_executor.invoke({"input": "圣弗朗西斯科现在的温度是多少？"})
 ```
 
-<details class="lake-collapse"><summary id="u1549bbfd"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="python" id="oybZ2" class="ne-codeblock language-python"><code>&gt; Entering new AgentExecutor chain...
+<details><summary>output：</summary><pre><code class="language-python"><code>&gt; Entering new AgentExecutor chain...
 
 Invoking: `get_current_temperature` with `{'latitude': 37.7749, 'longitude': -122.4194}`
 
-
 The current temperature is 9.1°CThe current temperature in San Francisco is 9.1°C. Is there anything else you would like to know?
 
-&gt; Finished chain.</code></pre><pre data-language="json" id="HgYx2" class="ne-codeblock language-json"><code>{'input': '圣弗朗西斯科现在的温度是多少？',
+&gt; Finished chain.</code></pre><pre><code class="language-json"><code>{'input': '圣弗朗西斯科现在的温度是多少？',
  'chat_history': [HumanMessage(content='my name is bob'),
   AIMessage(content='Nice to meet you, Bob! How can I assist you today?'),
   HumanMessage(content='我的名字是bob'),
@@ -544,7 +540,7 @@ import param
 
 # 定义 cbfs 类
 class cbfs(param.Parameterized):
-    
+
     # 初始化函数
     def __init__(self, tools, **params):
         super(cbfs, self).__init__(**params)
@@ -562,7 +558,7 @@ class cbfs(param.Parameterized):
             agent_scratchpad=lambda x: format_to_openai_functions(x["intermediate_steps"])
         ) | self.prompt | self.model | OpenAIFunctionsAgentOutputParser()  # 创建处理链
         self.qa = AgentExecutor(agent=self.chain, tools=tools, verbose=False, memory=self.memory)  # 创建 AgentExecutor
-    
+
     # 对话链函数
     def convchain(self, query):
         if not query:
@@ -592,7 +588,7 @@ cb = cbfs(tools)
 inp = pn.widgets.TextInput(placeholder='请输入文本...')
 
 # 将 convchain 方法与输入框进行绑定，形成对话链
-conversation = pn.bind(cb.convchain, inp) 
+conversation = pn.bind(cb.convchain, inp)
 
 # 创建第一个选项卡组件
 tab1 = pn.Column(
@@ -677,13 +673,12 @@ Your name is Bob. How can I assist you today, Bob?
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="u9b236e85"><span class="ne-text">output：</span></summary><pre data-language="json" id="drAPY" class="ne-codeblock language-json"><code>{'input': 'what is my name',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'input': 'what is my name',
  'chat_history': [HumanMessage(content='my name is bob'),
   AIMessage(content='Nice to meet you, Bob! How can I assist you today?'),
   HumanMessage(content='what is my name'),
   AIMessage(content='Your name is Bob. How can I assist you today, Bob?')],
  'output': 'Your name is Bob. How can I assist you today, Bob?'}</code></pre></details>
-
 
 ```python
 agent_executor.invoke({"input": "whats the weather in sf?"})
@@ -694,13 +689,12 @@ agent_executor.invoke({"input": "whats the weather in sf?"})
 
 Invoking: `get_current_temperature` with `{'latitude': 37.7749, 'longitude': -122.4194}`
 
-
 现在温度是 9.5°CThe current temperature in San Francisco is 9.5°C.
 
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="u4e730202"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="W4Drl" class="ne-codeblock language-json"><code>{'input': 'whats the weather in sf?',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'input': 'whats the weather in sf?',
   'chat_history': [HumanMessage(content='my name is bob'),
   AIMessage(content='Nice to meet you, Bob! How can I assist you today?'),
   HumanMessage(content='what is my name'),

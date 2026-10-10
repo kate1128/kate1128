@@ -68,7 +68,6 @@ three_words
 | **1** | happiness |
 | **2** | potato |
 
-
 ```python
 # 中文版本
 three_words = pd.DataFrame({'text':
@@ -86,7 +85,6 @@ three_words
 | **0** | 欢乐 |
 | **1** | 快乐 |
 | **2** | 马铃薯 |
-
 
 接下来，为这三个单词创建 Embeddings。 使用 Cohere 库中的 embed 函数来创建这些 Embeddings。 embed 函数接受一些输入。第一个输入是要嵌入的数据集"three_words"，还需要指定所使用的列为"text"，以及要使用的模型。
 
@@ -114,7 +112,7 @@ print(word_1[:10])
 # 注：下面输出的结果是英文版本的结果，如果是中文版本，会有所不同。
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: var(--jp-content-font-color1)">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>[2.3203125, -0.18334961, -0.578125, -0.7314453, -2.2050781, -2.59375, 0.35205078, -1.6220703, 0.27954102, 0.3083496]</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>[2.3203125, -0.18334961, -0.578125, -0.7314453, -2.2050781, -2.59375, 0.35205078, -1.6220703, 0.27954102, 0.3083496]</code></pre></details>
 ##  句嵌入（Sentence Embeddings）
 ###  理解句嵌入的概念
 Embeddings 不仅可以用于单词，还可以用于更长的文本片段。实际上，它可以是非常长的文本片段。
@@ -146,13 +144,13 @@ sentences = pd.DataFrame({'text':
 sentences = pd.DataFrame({'text':
                           [
                               '世界杯在哪里？',
-                              '世界杯在卡塔尔', 
-                              '天空是什么颜色的?', 
-                              '天空是蓝色的', 
-                              '熊住在哪里？',  
-                              '熊住在森林里', 
-                              '苹果是什么?',  
-                              '苹果是一种水果',  
+                              '世界杯在卡塔尔',
+                              '天空是什么颜色的?',
+                              '天空是蓝色的',
+                              '熊住在哪里？',
+                              '熊住在森林里',
+                              '苹果是什么?',
+                              '苹果是一种水果',
                           ]})
 ```
 
@@ -177,7 +175,7 @@ for e in emb:
 # 注：下面输出的结果是英文版本的结果，如果是中文版本，会有所不同。
 ```
 
-<details class="lake-collapse"><summary id="u1b98bb96"><span class="ne-text">output：</span></summary><pre data-language="json" id="hq82Q" class="ne-codeblock language-json"><code>[0.27319336, -0.37768555, -1.0273438]
+<details><summary>output：</summary><pre><code class="language-json"><code>[0.27319336, -0.37768555, -1.0273438]
 [0.49804688, 1.2236328, 0.4074707]
 [-0.23571777, -0.9375, 0.9614258]
 [0.08300781, -0.32080078, 0.9272461]
@@ -248,4 +246,3 @@ chart.interactive()
 ![](https://raw.githubusercontent.com/datawhalechina/llm-cookbook/54ad6728cde23add6e96b1f521ace605b5e60ca3/content/%E9%80%89%E4%BF%AE-Large%20Language%20Models%20with%20Semantic%20Search/images/3-5.png)
 
 这就是关于 Embeddings 的内容。
-

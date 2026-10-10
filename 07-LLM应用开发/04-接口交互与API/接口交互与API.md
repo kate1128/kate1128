@@ -184,9 +184,9 @@ async def chat(payload: dict):
 
 ```html
 <!-- index.html -->
-<textarea id="q"></textarea>
+<textarea></textarea>
 <button onclick="ask()">发送</button>
-<div id="out"></div>
+<div></div>
 <script>
 async function ask() {
   // EventSource 只能 GET，因此用 fetch 先建任务或改用 POST+SSE：这里用 GET 简化演示

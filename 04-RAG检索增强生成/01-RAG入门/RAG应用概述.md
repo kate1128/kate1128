@@ -6,7 +6,7 @@
 >
 
 ## 系统运作原理
-Chorma进行检索增强的方式是，用户请求通过用有相同 Embedding 的模型运行该请求来生成Embedding。 嵌入后，检索系统采用最近邻的方法找到最相关的文档。 最后把查询请求和相关文档一起交给LLM， LLM从检索到的文档中的综合信息来生成答案。 
+Chorma进行检索增强的方式是，用户请求通过用有相同 Embedding 的模型运行该请求来生成Embedding。 嵌入后，检索系统采用最近邻的方法找到最相关的文档。 最后把查询请求和相关文档一起交给LLM， LLM从检索到的文档中的综合信息来生成答案。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736144066375-7b12837c-b970-4968-89d8-cbe24a1be4c8.png)
 
@@ -32,7 +32,7 @@ pdf_texts=[text for text in pdf_texts if text]
 print(word_wrap(pdf_texts[0]))
 ```
 
-<details class="lake-collapse"><summary id="ub643daa7"><span class="ne-text">output：</span></summary><pre data-language="json" id="twUU9" class="ne-codeblock language-json"><code>各位代表：
+<details><summary>output：</summary><pre><code class="language-json"><code>各位代表：
 现在，我代表北京市人民政府，向大会报告政府工作，请予审议，并请市政协委员提出
 意见。
 一、2023年工作回顾
@@ -117,7 +117,7 @@ print(word_wrap(character_split_texts[10]))
 print(f"\nTotal chunks: {len(character_split_texts)}")
 ```
 
-<details class="lake-collapse"><summary id="u25d8bf91"><span class="ne-text">output：</span></summary><pre data-language="json" id="SL8nV" class="ne-codeblock language-json"><code>着力做好以下十一个方面工作：
+<details><summary>output：</summary><pre><code class="language-json"><code>着力做好以下十一个方面工作：
 （一）持续提升首都功能，推动京津冀协同发展取得新的更大进展
 牢牢牵住疏解非首都功能这个“牛鼻子”，推进现代化首都都
 圈建设，携手津冀共同
@@ -176,7 +176,7 @@ print(word_wrap(token_split_texts[10]))
 print(f"\nTotal chunks: {len(token_split_texts)}")
 ```
 
-<details class="lake-collapse"><summary id="uf5ff6a2b"><span class="ne-text">output：</span></summary><pre data-language="json" id="B7wfF" class="ne-codeblock language-json"><code>进展,一批创新药品、 医疗器械获批上市,小米智能手机工厂、理想汽车旗舰工厂提前投产。精心打造全球数字经
+<details><summary>output：</summary><pre><code class="language-json"><code>进展,一批创新药品、 医疗器械获批上市,小米智能手机工厂、理想汽车旗舰工厂提前投产。精心打造全球数字经
 济标杆城市,率先建成全球性能领先的区块链基础设施,新增5G基站3万个,获准向公众
 开放的生成式人工智能大模型产品占全国近一半,“京通”“京办”“京智”三个智慧城市应
 用终端快速升级拓展,高级别自动驾驶示范区实现160平方公里连片运行,全国首个数据基 础制度先行区启动建设,数字经济增加值占地区生产总值比
@@ -193,7 +193,7 @@ import chromadb
 import chromadb.utils.embedding_functions as embedding_functions
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv()) 
+_ = load_dotenv(find_dotenv())
 openai_api_key = os.environ['OPENAI_API_KEY']
 
 # chromadb支持的嵌入函数有许多种，这里介绍常用的几种：
@@ -235,7 +235,7 @@ chroma_collection.add(ids=ids, documents=token_split_texts)
 chroma_collection.count()
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>102</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>102</code></pre></details>
 ### 连接一个LLM
 现在所有内容都加载到了Chorma中，让我们连接一个LLM并构建一个完整的检索增强生成（RAG)系统
 
@@ -253,27 +253,23 @@ for document in retrieved_documents:
     print('\n')
 ```
 
-<details class="lake-collapse"><summary id="uee4a8f3c"><span class="ne-text">output：</span></summary><pre data-language="json" id="XmBHY" class="ne-codeblock language-json"><code>基层执法能力和规范化水平。持之以恒改进 作风,压减一般性支出和非紧急非刚性支出23.9亿元,“三公”经费减少5%;深化全成本
+<details><summary>output：</summary><pre><code class="language-json"><code>基层执法能力和规范化水平。持之以恒改进 作风,压减一般性支出和非紧急非刚性支出23.9亿元,“三公”经费减少5%;深化全成本
 预算绩效管理改革,推动市区街成本绩效管理全覆盖,实现经营性国有资产集中统一监管;
 重点纠治形式主义、官僚主义,扎实推进精文简会和基层减负工作;加大审计监督、财会监
 督力度,完成首轮统计督察,以严的基调强化正风肃纪反腐,清廉守正、求真
 
-
 、劳有 所得。持续增加城乡居民收入,扩大中等收入群体规模。
-
 
 ,加强“四个中心”功能建设,提高“四个服务”水平,深化 “五子”联动服务和融入新发展格局,统筹发展和安全,着力提信心、强创新、优功能、促
 协同、抓治理、惠民生,经受住多种考验,经济整体回升向好,社会大局保持稳定,各项事
 业取得新进展新成效,较好完成了市十六届人大一次会议确定的目标任务。全市地区生产总
 值增长5.2%、约4.4万亿元,一般公共预算收入增长8.2%、突破6000亿元,城镇调查失业
 
-
 率4.4%,居民消费价格总体平稳,居民收入增长与经济增长同步,人均地区生产总值、全
 员劳动生产率、万元地区生产总值能耗水耗等多项指标保持全国省级地区最优水平。 一年来,主要做了以下工作。
 一是深入落实首都城市战略定位,京津冀协同发展不断走深走实。进一步优化提升首都
 功能,坚持首都规划权属党中央,完善首规委工作制度,加快首都规划体系建设,深化规自
 领域问题整改,严格规划执行;实施核心区控规新一轮三年行动计划,
-
 
 ”规划,提出今年全市经济社 会发展的主要预期目标是:地区生产总值增长5%左右,一般公共预算收入增长5%,城镇调
 查失业率控制在5%以内,居民消费价格涨幅3%左右,居民收入增长与经济增长同步,生态 环境质量、能源、水资源等指标达到国家要求。
@@ -339,4 +335,4 @@ output = rag(query=query, retrieved_documents=retrieved_documents)
 print(word_wrap(output))
 ```
 
-<details class="lake-collapse"><summary id="ua04332f0"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="kU1fc" class="ne-codeblock language-json"><code>根据年度报告中的信息，一般公共预算收入达到了6000亿元，增长了8.2%。所以，财政总收入为6000亿元。</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>根据年度报告中的信息，一般公共预算收入达到了6000亿元，增长了8.2%。所以，财政总收入为6000亿元。</code></pre></details>

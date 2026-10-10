@@ -76,4 +76,3 @@ SerpApi 提供了详细的 [API 文档](https://serpapi.com/docs)，你可以在
 ---
 
 通过这些步骤，你可以轻松获取 SerpApi 的 API 密钥并开始使用该服务。如果你遇到任何问题，SerpApi 的文档和支持团队都能提供帮助。
-

@@ -30,4 +30,3 @@
 **注：本文对应源代码在，如需复现可下载运行源代码。**
 
 [llm-universe/notebook/C2 使用 LLM API 开发应用/2. 使用 LLM API.ipynb at main · datawhalechina/llm-universe](https://github.com/datawhalechina/llm-universe/blob/main/notebook/C2%20%E4%BD%BF%E7%94%A8%20LLM%20API%20%E5%BC%80%E5%8F%91%E5%BA%94%E7%94%A8/2.%20%E4%BD%BF%E7%94%A8%20LLM%20API.ipynb)
-

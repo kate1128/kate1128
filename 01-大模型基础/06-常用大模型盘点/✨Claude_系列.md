@@ -1,24 +1,36 @@
-Claude 系列模型是由 OpenAI 离职人员创建的 **Anthropic** 公司开发的闭源语言大模型。
+<!-- type: glossary -->
+# Claude 系列（Anthropic）
 
-> Claude 使用地址：[https://claude.ai/login?returnTo=%2F%3F](https://claude.ai/login?returnTo=%2F%3F)
->
+> Anthropic 公司开发的闭源大语言模型系列，以**安全性、诚实性和长上下文处理**著称，是 GPT-4 最重要的竞品。
 
-最早的 **Claude** 于 `2023 年 3 月 15 日`发布，在 2023 年 7 月 11 日，更新至 **Claude-2**， 并在 `2024 年 3 月 4 日`更新至 **Claude-3**。
+## 基本情况
 
-Claude 3 系列包括三个不同的模型，分别是 Claude 3 Haiku、Claude 3 Sonnet 和 Claude 3 Opus，它们的能力依次递增，旨在满足不同用户和应用场景的需求。
+- **开发者**：Anthropic（由前 OpenAI 员工 Dario Amodei 和 Daniela Amodei 于 2021 年创立）
+- **核心理念**：Constitutional AI（宪法 AI）——通过预设的"宪法"规则来约束模型行为，而非纯 RLHF
+- **使用地址**：[claude.ai](https://claude.ai)
 
-| 模型名称 | 上下文长度 | 特点 | input 费用($/1M tokens) | output 费用($/1M tokens) |
-| :---: | :---: | :---: | :---: | :---: |
-| Claude 3 Haiku | 200k | 速度最快 | 0.25 | 1.25 |
-| Claude 3 Sonnet | 200k | 平衡 | 3 | 15 |
-| Claude 3 Opus | 200k | 性能最强 | 15 | 75 |
+## 主要模型
 
+| 模型 | 定位 | 上下文 | 输入价格 ($/1M tokens) | 输出价格 |
+| :--- | :--- | :--- | :--- | :--- |
+| Claude 3.5 Haiku | 最快、最便宜 | 200K | 0.25 | 1.25 |
+| Claude 3.5 Sonnet | 平衡（推荐） | 200K | 3 | 15 |
+| Claude 3.5 Opus | 最强推理 | 200K | 15 | 75 |
 
-这个也得科学上网，直接用谷歌账号登录就行
+## 关键区别点
 
-![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1737618777472-4e8bbedb-c89f-4609-911d-8ac6ec47e149.png)
+- **长上下文是标配**：全系列 200K token（约 15 万词），比 GPT-4 标准版（128K）更长
+- **代码和推理**：Claude 3.5 Sonnet 在编程任务上表现突出，是 Cursor/Copilot 等编程助手的常用后端
+- **Artifacts 功能**：对话中直接生成可预览的代码/文档/React 组件
+- **Constitutional AI**：更注重安全对齐，拒绝回答有害请求的准确性更高
 
+## 相关笔记
 
+- [[GPT 系列]] — Claude 的主要竞品
+- [[System Prompt]] — Claude 对 System Prompt 的遵循度很高
+- [[模型选型指南](../../../07-LLM应用开发/01-LLM应用开发/对话型应用的设计/第一步_模型选型.md)] — 何时选 Claude
 
+## 参考
 
-
+- [Anthropic 官网](https://www.anthropic.com/)
+- [Claude API 文档](https://docs.anthropic.com/)

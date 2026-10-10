@@ -1,3 +1,5 @@
+# 03-Paper Overview
+
 + [RUCAIBox/LLMSurvey](https://github.com/RUCAIBox/LLMSurvey) ![](https://img.shields.io/github/stars/RUCAIBox/LLMSurvey?style=social) : The official GitHub page for the survey paper "A Survey of Large Language Models". ([arXiv 2023](https://arxiv.org/abs/2303.18223)). " 微信公众号「RUC AI Box」《[大模型综述升级啦](https://mp.weixin.qq.com/s/9YMUSSrGLSBKMFY3JYlaoQ)》"。
 + [BradyFU/Awesome-Multimodal-Large-Language-Models](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models) ![](https://img.shields.io/github/stars/BradyFU/Awesome-Multimodal-Large-Language-Models?style=social) : ✨✨Latest Papers and Datasets on Multimodal Large Language Models, and Their Evaluation. "A Survey on Multimodal Large Language Models". ([arXiv 2023](https://arxiv.org/abs/2306.13549)). " 微信公众号「我爱计算机视觉」《[中科大腾讯发布首篇《多模态大语言模型综述》](https://mp.weixin.qq.com/s/IiPZWEVdAJ4xrlgyWtDwng)》"。
 + [hymie122/RAG-Survey](https://github.com/hymie122/RAG-Survey) ![](https://img.shields.io/github/stars/hymie122/RAG-Survey?style=social) : Collecting awesome papers of RAG for AIGC. We propose a taxonomy of RAG foundations, enhancements, and applications in paper "Retrieval-Augmented Generation for AI-Generated Content: A Survey". ([arXiv 2024](https://arxiv.org/abs/2402.19473)). " 微信公众号「数智笔记」《[2024检索增强生成RAG最新综述](https://mp.weixin.qq.com/s/F-shRy1m7wQIS87ujOS7Dw)》"。
@@ -6,4 +8,3 @@
 + "Challenges and Applications of Large Language Models". ([arXiv 2023](https://arxiv.org/abs/2307.10169)).
 + "A Survey on Vision Transformer". ([IEEE TPAMI, 2022](https://ieeexplore.ieee.org/abstract/document/9716741)).
 + "Transformers in Vision: A Survey". ([CM computing surveys (CSUR), 2022](https://dl.acm.org/doi/abs/10.1145/3505244)).
-

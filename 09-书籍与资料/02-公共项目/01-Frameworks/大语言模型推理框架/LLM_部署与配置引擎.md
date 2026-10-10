@@ -1,4 +1,4 @@
-> 大语言模型推理框架 LLM Inference Framework 
+> 大语言模型推理框架 LLM Inference Framework
 >
 > LLM Deployment Engine 部署与配置引擎
 >
@@ -14,6 +14,3 @@
 
 # Self-LLM
 + [datawhalechina/self-llm](https://github.com/datawhalechina/self-llm) ![](https://img.shields.io/github/stars/datawhalechina/self-llm?style=social) :  《开源大模型食用指南》基于Linux环境快速部署开源大模型，更适合中国宝宝的部署教程。
-
-
-

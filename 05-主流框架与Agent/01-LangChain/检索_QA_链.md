@@ -3,7 +3,7 @@
 > `from langchain.chains import RetrievalQA`
 >
 
-在  [搭建Chroma向量数据库](https://www.yuque.com/qiaokate/su87gb/dkg8d18dh04a6nw2)章节，已经介绍了如何根据自己的本地知识文档，搭建一个向量知识库。 在接下来的内容里，将使用搭建好的向量数据库，对 query 查询问题进行召回，并将召回结果和 query 结合起来构建 prompt，输入到大模型中进行问答。   
+在  [搭建Chroma向量数据库](https://www.yuque.com/qiaokate/su87gb/dkg8d18dh04a6nw2)章节，已经介绍了如何根据自己的本地知识文档，搭建一个向量知识库。 在接下来的内容里，将使用搭建好的向量数据库，对 query 查询问题进行召回，并将召回结果和 query 结合起来构建 prompt，输入到大模型中进行问答。
 
 # 加载向量数据库
 首先，加载之前已经构建的向量数据库。注意，此处你需要使用和构建时相同的 Emedding。
@@ -48,15 +48,12 @@ vectordb = Chroma(
 print(f"向量库中存储的数量：{vectordb._collection.count()}")
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>向量库中存储的数量：20</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>向量库中存储的数量：20</code></pre></details>
 可以测试一下加载的向量数据库，使用一个问题 query 进行向量检索。如下代码会在向量数据库中根据相似性进行检索，返回前 k 个最相似的文档。
 
-<br/>color2
 ⚠️使用相似性搜索前，请确保已安装了 OpenAI 开源的快速分词工具 `tiktoken` 包：
 
 `pip install tiktoken`
-
-<br/>
 
 ```python
 question = "什么是prompt engineering?"
@@ -64,7 +61,7 @@ docs = vectordb.similarity_search(question,k=3)
 print(f"检索到的内容数：{len(docs)}")
 ```
 
-<details class="lake-collapse"><summary id="uc5b0d38f"><span class="ne-text">output：</span></summary><pre data-language="python" id="tvn3W" class="ne-codeblock language-python"><code>检索到的内容数：3</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>检索到的内容数：3</code></pre></details>
 打印一下检索到的内容
 
 ```python
@@ -72,7 +69,7 @@ for i, doc in enumerate(docs):
     print(f"检索到的第{i}个内容: \n {doc.page_content}", end="\n-----------------------------------------------------\n")
 ```
 
-<details class="lake-collapse"><summary id="uc558fb75"><span class="ne-text">output：</span></summary><pre data-language="python" id="LY8BY" class="ne-codeblock language-python"><code>检索到的第0个内容: 
+<details><summary>output：</summary><pre><code class="language-python"><code>检索到的第0个内容:
 相反，我们应通过 Prompt 指引语言模型进行深入思考。可以要求其先列出对问题的各种看法，说明推理依据，然后再得出最终结论。在 Prompt 中添加逐步推理的要求，能让语言模型投入更多时间逻辑思维，输出结果也将更可靠准确。
 
 综上所述，给予语言模型充足的推理时间，是 Prompt Engineering 中一个非常重要的设计原则。这将大大提高语言模型处理复杂问题的效果，也是构建高质量 Prompt 的关键之处。开发者应注意给模型留出思考空间，以发挥语言模型的最大潜力。
@@ -83,7 +80,7 @@ for i, doc in enumerate(docs):
 
 首先我们描述了杰克和吉尔的故事，并给出提示词执行以下操作：首先，用一句话概括三个反引号限定的文本。第二，将摘要翻译成英语。第三，在英语摘要中列出每个名称。第四，输出包含以下键的 JSON 对象：英语摘要和人名个数。要求输出以换行符分隔。
 -----------------------------------------------------
-检索到的第1个内容: 
+检索到的第1个内容:
 第二章 提示原则
 
 如何去使用 Prompt，以充分发挥 LLM 的性能？首先我们需要知道设计 Prompt 的原则，它们是每一个开发者设计 Prompt 所必须知道的基础概念。本章讨论了设计高效 Prompt 的两个关键原则：编写清晰、具体的指令和给予模型充足思考时间。掌握这两点，对创建可靠的语言模型交互尤为重要。
@@ -96,7 +93,7 @@ for i, doc in enumerate(docs):
 
 一、原则一 编写清晰、具体的指令
 -----------------------------------------------------
-检索到的第2个内容: 
+检索到的第2个内容:
 一、原则一 编写清晰、具体的指令
 
 亲爱的读者，在与语言模型交互时，您需要牢记一点:以清晰、具体的方式表达您的需求。假设您面前坐着一位来自外星球的新朋友，其对人类语言和常识都一无所知。在这种情况下，您需要把想表达的意图讲得非常明确，不要有任何歧义。同样的，在提供 Prompt 的时候，也要以足够详细和容易理解的方式，把您的需求与上下文说清楚。
@@ -113,7 +110,7 @@ for i, doc in enumerate(docs):
 在这里，我们调用 OpenAI 的 API 创建一个 LLM，当然你也可以使用其他 LLM 的 API 进行创建
 
 ```python
-import os 
+import os
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 ```
 
@@ -124,7 +121,7 @@ llm = ChatOpenAI(model_name = "gpt-3.5-turbo", temperature = 0, openai_api_base=
 llm.invoke("请你自我介绍一下自己！")
 ```
 
-<details class="lake-collapse"><summary id="ue66c8d9e"><span class="ne-text">output：</span></summary><pre data-language="python" id="Me3JR" class="ne-codeblock language-python"><code>AIMessage(content='你好，我是一个智能助手，专门为用户提供各种服务和帮助。我可以回答问题、提供信息、解决问题等等。如果您有任何需要，请随时告诉我，我会尽力帮助您的。感谢您的使用！', response_metadata={'token_usage': {'completion_tokens': 81, 'prompt_tokens': 20, 'total_tokens': 101}, 'model_name': 'gpt-3.5-turbo', 'system_fingerprint': 'fp_3bc1b5746c', 'finish_reason': 'stop', 'logprobs': None})</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>AIMessage(content='你好，我是一个智能助手，专门为用户提供各种服务和帮助。我可以回答问题、提供信息、解决问题等等。如果您有任何需要，请随时告诉我，我会尽力帮助您的。感谢您的使用！', response_metadata={'token_usage': {'completion_tokens': 81, 'prompt_tokens': 20, 'total_tokens': 101}, 'model_name': 'gpt-3.5-turbo', 'system_fingerprint': 'fp_3bc1b5746c', 'finish_reason': 'stop', 'logprobs': None})</code></pre></details>
 # 构建检索问答链
 ```python
 from langchain.prompts import PromptTemplate
@@ -152,15 +149,12 @@ qa_chain = RetrievalQA.from_chain_type(llm,
 
 ```
 
-<br/>color2
 创建检索** QA 链的方法 **`**RetrievalQA.from_chain_type()** `有如下参数：
 
 + `**llm**`**：指定使用的 LLM**
 + **指定 **`**chain type **`: `RetrievalQA.from_chain_type(chain_type="map_reduce")`，也可以利用`load_qa_chain()`方法指定chain type。
 + **自定义 **`**prompt**` ：通过在`RetrievalQA.from_chain_type()`方法中，指定chain_type_kwargs参数，而该参数：`chain_type_kwargs = {"prompt": PROMPT}`
 + **返回源文档**：通过`RetrievalQA.from_chain_type()`方法中指定：`return_source_documents=True`参数；也可以使用`RetrievalQAWithSourceChain()`方法，返回源文档的引用（坐标或者叫主键、索引）
-
-<br/>
 
 # 检索问答链效果测试
 ```python
@@ -175,7 +169,7 @@ print("大模型+知识库后回答 question_1 的结果：")
 print(result["result"])
 ```
 
-<details class="lake-collapse"><summary id="u3da6b84f"><span class="ne-text">output：</span></summary><pre data-language="python" id="d9XIE" class="ne-codeblock language-python"><code>/Users/lta/anaconda3/envs/llm_universe_2.x/lib/python3.10/site-packages/langchain_core/_api/deprecation.py:119: LangChainDeprecationWarning: The method `Chain.__call__` was deprecated in langchain 0.1.0 and will be removed in 0.2.0. Use invoke instead.
+<details><summary>output：</summary><pre><code class="language-python"><code>/Users/lta/anaconda3/envs/llm_universe_2.x/lib/python3.10/site-packages/langchain_core/_api/deprecation.py:119: LangChainDeprecationWarning: The method `Chain.__call__` was deprecated in langchain 0.1.0 and will be removed in 0.2.0. Use invoke instead.
   warn_deprecated(
 大模型+知识库后回答 question_1 的结果：
 南瓜书是对《机器学习》（西瓜书）中难以理解的公式进行解析和补充推导的书籍。
@@ -186,7 +180,7 @@ print("大模型+知识库后回答 question_2 的结果：")
 print(result["result"])
 ```
 
-<details class="lake-collapse"><summary id="uba810a2c"><span class="ne-text">output：</span></summary><pre data-language="python" id="tMZie" class="ne-codeblock language-python"><code>大模型+知识库后回答 question_2 的结果：
+<details><summary>output：</summary><pre><code class="language-python"><code>大模型+知识库后回答 question_2 的结果：
 Prompt Engineering for Developer是由吴恩达老师与OpenAI技术团队成员Isa Fulford老师合作编写的。谢谢你的提问！</code></pre></details>
 ## 大模型自己回答的效果
 ```python
@@ -197,12 +191,8 @@ prompt_template = """请回答下列问题:
 llm.predict(prompt_template)
 ```
 
-<details class="lake-collapse"><summary id="u6844c34c"><span class="ne-text">output：</span></summary><pre data-language="python" id="j0fbV" class="ne-codeblock language-python"><code>d:\Miniconda\miniconda3\envs\llm2\lib\site-packages\langchain_core\_api\deprecation.py:117: LangChainDeprecationWarning: The function `predict` was deprecated in LangChain 0.1.7 and will be removed in 0.2.0. Use invoke instead.
+<details><summary>output：</summary><pre><code class="language-python"><code>d:\Miniconda\miniconda3\envs\llm2\lib\site-packages\langchain_core\_api\deprecation.py:117: LangChainDeprecationWarning: The function `predict` was deprecated in LangChain 0.1.7 and will be removed in 0.2.0. Use invoke instead.
   warn_deprecated(
-
-
-
-
 
 '南瓜书是指一种关于南瓜的书籍，通常是指介绍南瓜的种植、养护、烹饪等方面知识的书籍。南瓜书也可以指一种以南瓜为主题的文学作品。'</code></pre></details>
 ```python
@@ -213,7 +203,7 @@ prompt_template = """请回答下列问题:
 llm.predict(prompt_template)
 ```
 
-<details class="lake-collapse"><summary id="u477cb81c"><span class="ne-text">output：</span></summary><pre data-language="python" id="ggAHD" class="ne-codeblock language-python"><code>'这本书是由作者 Chris Johnson 编写的。'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'这本书是由作者 Chris Johnson 编写的。'</code></pre></details>
 > ⭐ 通过以上两个问题，我们发现 LLM 对于一些近几年的知识以及非常识性的专业问题，回答的并不是很好。而加上我们的本地知识，就可以帮助 LLM 做出更好的回答。另外，也有助于缓解大模型的“幻觉”问题。
 >
 
@@ -237,15 +227,12 @@ memory = ConversationBufferMemory(
 ## 对话检索链（ConversationalRetrievalChain）
 对话检索链（ConversationalRetrievalChain）在检索 QA 链的基础上，增加了处理对话历史的能力。
 
-<br/>color2
 它的工作流程是:
 
 1. 将之前的对话与新问题合并生成一个完整的查询语句。
 2. 在向量数据库中搜索该查询的相关文档。
 3. 获取结果后,存储所有答案到对话记忆区。
 4. 用户可在 UI 中查看完整的对话流程。
-
-<br/>
 
 这种链式方式将新问题放在之前对话的语境中进行检索，可以处理依赖历史信息的查询。并保留所有信息在对话记忆中，方便追踪。
 
@@ -268,7 +255,7 @@ result = qa({"question": question})
 print(result['answer'])
 ```
 
-<details class="lake-collapse"><summary id="uddba7c98"><span class="ne-text">output：</span></summary><pre data-language="python" id="GF1sM" class="ne-codeblock language-python"><code>是的，您可以学习到关于提示工程的知识。本模块内容基于吴恩达老师的《Prompt Engineering for Developer》课程编写，旨在分享使用提示词开发大语言模型应用的最佳实践和技巧。课程将介绍设计高效提示的原则，包括编写清晰、具体的指令和给予模型充足思考时间等。通过学习这些内容，您可以更好地利用大语言模型的性能，构建出色的语言模型应用。</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>是的，您可以学习到关于提示工程的知识。本模块内容基于吴恩达老师的《Prompt Engineering for Developer》课程编写，旨在分享使用提示词开发大语言模型应用的最佳实践和技巧。课程将介绍设计高效提示的原则，包括编写清晰、具体的指令和给予模型充足思考时间等。通过学习这些内容，您可以更好地利用大语言模型的性能，构建出色的语言模型应用。</code></pre></details>
 然后基于答案进行下一个问题“为什么这门课需要教这方面的知识？”：
 
 ```python
@@ -277,7 +264,7 @@ result = qa({"question": question})
 print(result['answer'])
 ```
 
-<details class="lake-collapse"><summary id="u452b1274"><span class="ne-text">output：</span></summary><pre data-language="python" id="AXtpH" class="ne-codeblock language-python"><code>这门课程需要教授关于Prompt Engineering的知识，主要是为了帮助开发者更好地使用大型语言模型（LLM）来完成各种任务。通过学习Prompt Engineering，开发者可以学会如何设计清晰明确的提示词，以指导语言模型生成符合预期的文本输出。这种技能对于开发基于大型语言模型的应用程序和解决方案非常重要，可以提高模型的效率和准确性。</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>这门课程需要教授关于Prompt Engineering的知识，主要是为了帮助开发者更好地使用大型语言模型（LLM）来完成各种任务。通过学习Prompt Engineering，开发者可以学会如何设计清晰明确的提示词，以指导语言模型生成符合预期的文本输出。这种技能对于开发基于大型语言模型的应用程序和解决方案非常重要，可以提高模型的效率和准确性。</code></pre></details>
 可以看到，LLM 它准确地判断了这方面的知识，指代内容是强化学习的知识，也就是我们成功地传递给了它历史信息。这种持续学习和关联前后问题的能力，可大大增强问答系统的连续性和智能水平。
 
 # 参考
@@ -285,4 +272,4 @@ print(result['answer'])
 
 [llm-universe/notebook/C3 搭建知识库 at main · datawhalechina/llm-universe](https://github.com/datawhalechina/llm-universe/tree/main/notebook/C3%20%E6%90%AD%E5%BB%BA%E7%9F%A5%E8%AF%86%E5%BA%93)
 
-#### 
+####

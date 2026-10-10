@@ -2,16 +2,13 @@
 >
 > 其实就是查完把信息搞成数据集告诉模型，增强检索能力
 >
-> <br/>color2
-遍历生成的查询和每个查询检索到的文档，计算查询和文档的嵌入向量。
+> 遍历生成的查询和每个查询检索到的文档，计算查询和文档的嵌入向量。
 >
 + 使用`evaluate_results`函数评估了每对查询和文档的相关性。
 + `adapter_query_embeddings`存储查询的嵌入向量
 + `adapter_doc_embeddings`存储文档的嵌入向量
 + `adapter_labels`存储对应的标签
 >
-<br/>
-
 
 ## Embedding Adaptors原理及准备工作
 ![](https://raw.githubusercontent.com/datawhalechina/llm-cookbook/54ad6728cde23add6e96b1f521ace605b5e60ca3/content/%E9%80%89%E4%BF%AE-Advanced%20Retrieval%20for%20AI%20with%20Chroma/images/Embedding%20Adapter.png)
@@ -20,12 +17,9 @@
 
 在一个系统中，用户通过应用程序(App)提交一个查询（例如“Revenue Growth”），查询会被发送到大型语言模型（LLM）中。而在检索部分，嵌入模型会根据查询生成嵌入向量，嵌入适配器会对这些嵌入进行进一步处理或转换。最后，系统会基于嵌入向量检索相关文档（例如“Annual Income...”），最终，LLM会使用这些信息来生成答案。
 
-<br/>color2
 `Embedding Adaptors`（嵌入适配器）是一种改变查询的嵌入，直接为了产生更好的检索结果。
 
 在检索系统中插入一个额外的阶段，称为嵌入适配器。这发生在嵌入模型之后，但在得到最相关的结果之前。
-
-<br/>
 
 首先，加载需要的辅助函数，为了有效地训练模型，这次需要使用`torch`。
 
@@ -39,7 +33,7 @@ from tqdm import tqdm
 import torch
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>D:\Anaconda3\Lib\site-packages\umap\distances.py:1063: NumbaDeprecationWarning: The 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
+<details><summary>output：</summary><pre><code class="language-json"><code>D:\Anaconda3\Lib\site-packages\umap\distances.py:1063: NumbaDeprecationWarning: The 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
   @numba.jit()
 D:\Anaconda3\Lib\site-packages\umap\distances.py:1071: NumbaDeprecationWarning: The 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
   @numba.jit()
@@ -58,7 +52,7 @@ chroma_collection = load_chroma(filename='./data/2024年北京市政府工作报
 chroma_collection.count()
 ```
 
-<details class="lake-collapse"><summary id="u83a3abe4"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="MZuKd" class="ne-codeblock language-json"><code>1028</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>1028</code></pre></details>
 投射的嵌入数据。
 
 ```python
@@ -67,7 +61,7 @@ umap_transform = umap.UMAP(random_state=0, transform_seed=0).fit(embeddings)
 projected_dataset_embeddings = project_embeddings(embeddings, umap_transform)
 ```
 
-<details class="lake-collapse"><summary id="u2ff99bf6"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="LfBHw" class="ne-codeblock language-json"><code>100%|██████████| 1028/1028 [21:21&lt;00:00,  1.25s/it]</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>100%|██████████| 1028/1028 [21:21&lt;00:00,  1.25s/it]</code></pre></details>
 与以前相同，配置`OPENAI_API_KEY`。
 
 ```python
@@ -76,7 +70,7 @@ import openai
 from openai import OpenAI
 
 from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv()) 
+_ = load_dotenv(find_dotenv())
 openai.api_key = os.environ['OPENAI_API_KEY']
 
 openai_client = OpenAI()
@@ -112,7 +106,7 @@ def generate_queries(model="gpt-3.5-turbo"):
     return content
 ```
 
-<font style="color:rgba(0, 0, 0, 0.87);">使用LLM进行生成的15个问题。</font>
+使用LLM进行生成的15个问题。
 
 ```python
 generated_queries = generate_queries()
@@ -120,7 +114,7 @@ for query in generated_queries:
     print(query)
 ```
 
-<details class="lake-collapse"><summary id="u66466f5d"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="Pp8Xz" class="ne-codeblock language-json"><code>1. 政府在过去一年中主要实施了哪些经济政策？
+<details><summary>output：</summary><pre><code class="language-json"><code>1. 政府在过去一年中主要实施了哪些经济政策？
 2. 政府在年度报告中提及的财政支出重点是什么？
 3. 政府在年度报告中提及的经济增长率是多少？
 4. 政府在年度报告中是否提及了通货膨胀率？
@@ -174,7 +168,7 @@ def evaluate_results(query, statement, model="gpt-3.5-turbo"):
     if content == "yes":
         return 1
     return -1
-     
+
 ```
 
 从检索结果中提取嵌入向量，然后为生成的查询计算嵌入向量。
@@ -184,10 +178,7 @@ retrieved_embeddings = results['embeddings']
 query_embeddings = embedding_function(generated_queries)
 ```
 
-<br/>color2
 `adapter_query_embeddings`、`adapter_doc_embeddings`和`adapter_labels`三个空列表将被用于存储适配器查询的嵌入向量、文档的嵌入向量，以及对应的标签。
-
-<br/>
 
 ```python
 adapter_query_embeddings = []
@@ -213,14 +204,14 @@ for q, query in enumerate(tqdm(generated_queries)):
         time.sleep(30)
 ```
 
-<details class="lake-collapse"><summary id="u8a1ce534"><span class="ne-text">output：</span></summary><pre data-language="json" id="wUUaN" class="ne-codeblock language-json"><code>100%|██████████| 15/15 [2:05:28&lt;00:00, 501.89s/it]</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>100%|██████████| 15/15 [2:05:28&lt;00:00, 501.89s/it]</code></pre></details>
 查看新的数据集的长度。
 
 ```python
 len(adapter_labels)
 ```
 
-<details class="lake-collapse"><summary id="u87b11dbf"><span class="ne-text">output：</span></summary><pre data-language="json" id="aG6y5" class="ne-codeblock language-json"><code>150</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>150</code></pre></details>
 得到150个，这是15个查询和10个结果，并且每一个都标有相关性。使用的`torch`进行训练的嵌入适配器。将的数据集转换成`torch tensor`类型数据集，并全部装进`torch`。
 
 使用这些`Tensor`类型数据训练一个分类模型，该模型预测给定查询和文档对是否相关（即标签为 1 表示相关，−1 表示不相关）。
@@ -279,10 +270,10 @@ for epoch in tqdm(range(100)):
         with torch.no_grad():
             adapter_matrix -= 0.01 * adapter_matrix.grad
             adapter_matrix.grad.zero_()
-        
+
 ```
 
-<details class="lake-collapse"><summary id="ubba84524"><span class="ne-text">output：</span></summary><pre data-language="json" id="RrNPT" class="ne-codeblock language-json"><code>0%|          | 0/100 [00:00&lt;?, ?it/s]D:\Anaconda3\Lib\site-packages\torch\nn\modules\loss.py:535: UserWarning: Using a target size (torch.Size([1])) that is different to the input size (torch.Size([])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+<details><summary>output：</summary><pre><code class="language-json"><code>0%|          | 0/100 [00:00&lt;?, ?it/s]D:\Anaconda3\Lib\site-packages\torch\nn\modules\loss.py:535: UserWarning: Using a target size (torch.Size([1])) that is different to the input size (torch.Size([])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
     return F.mse_loss(input, target, reduction=self.reduction)
     100%|██████████| 100/100 [00:05&lt;00:00, 16.91it/s]</code></pre></details>
 打印最佳损失值。
@@ -291,7 +282,7 @@ for epoch in tqdm(range(100)):
 print(f"Best loss: {min_loss.detach().numpy()}")
 ```
 
-<details class="lake-collapse"><summary id="ub9cba46b"><span class="ne-text">output：</span></summary><pre data-language="json" id="qM8ua" class="ne-codeblock language-json"><code>Best loss: 0.3013603091239929</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>Best loss: 0.3013603091239929</code></pre></details>
 最佳损失值约为0.30，意味有了很大的进步。
 
 接下来，看看适配器矩阵是如何影响的查询向量的。
@@ -325,7 +316,7 @@ projected_query_embeddings = project_embeddings(query_embeddings, umap_transform
 projected_adapted_query_embeddings = project_embeddings(adapted_query_embeddings, umap_transform)
 ```
 
-<details class="lake-collapse"><summary id="u69d59bdd"><span class="ne-text">output：</span></summary><pre data-language="json" id="xlj3c" class="ne-codeblock language-json"><code>100%|██████████| 15/15 [00:09&lt;00:00,  1.64it/s]
+<details><summary>output：</summary><pre><code class="language-json"><code>100%|██████████| 15/15 [00:09&lt;00:00,  1.64it/s]
 100%|██████████| 15/15 [00:08&lt;00:00,  1.71it/s]</code></pre></details>
 绘制原始查询嵌入向量、调整后的查询嵌入向量以及数据集嵌入向量的分布图。
 
@@ -344,10 +335,9 @@ plt.axis('off')
 plt.legend()
 ```
 
-<details class="lake-collapse"><summary id="ue9e8d689"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="KwTLB" class="ne-codeblock language-json"><code>&lt;matplotlib.legend.Legend at 0x2cebec6d0d0&gt;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>&lt;matplotlib.legend.Legend at 0x2cebec6d0d0&gt;</code></pre></details>
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736144928822-78f6fe38-135b-477c-895d-e8106d1b4b16.png)
 
 红色`X`标记表示原始查询嵌入向量的分布，绿色`X`标记表示调整后的查询嵌入向量的分布。
 
 可以直接获得关于适配器矩阵调整效果的直观感受，的原始查询非常分散，但是的调整后的查询更接近某些特定的文档嵌入向量。
-

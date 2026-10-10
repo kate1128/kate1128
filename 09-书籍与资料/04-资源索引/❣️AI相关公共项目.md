@@ -1,6 +1,8 @@
-<font style="color:rgb(42, 43, 46);">这个知识库列出了一些关于大型语言模型、视觉基础模型、人工智能生成内容、相关数据集和应用程序的很棒的公共项目。</font>
+# ❣️AI相关公共项目
 
-<font style="color:rgb(42, 43, 46);">参考：</font>
+这个知识库列出了一些关于大型语言模型、视觉基础模型、人工智能生成内容、相关数据集和应用程序的很棒的公共项目。
+
+参考：
 
 [GitHub - coderonion/awesome-llm-and-aigc: 🚀🚀🚀A collection of some wesome public projects about Large Language Model(LLM), Visual Language Model(VLM), AI Generated Content(AIGC), the related Datasets and Applications.](https://github.com/coderonion/awesome-llm-and-aigc)
 
@@ -29,4 +31,3 @@
 [11-Videos](https://www.yuque.com/qiaokate/su87gb/oswge41fvzipkgkl)
 
 [12-Interview](https://www.yuque.com/qiaokate/su87gb/wxmg87nxoeuzyrfd)
-

@@ -38,12 +38,10 @@ llm = Wenxin_LLM(api_key=wenxin_api_key, secret_key=wenxin_secret_key, system="�
 llm.invoke("你好，请你自我介绍一下！")
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>[INFO] [03-31 22:12:53] openapi_requestor.py:316 [t:27812]: requesting llm api endpoint: /chat/eb-instant
-
+<details><summary>output：</summary><pre><code class="language-python"><code>[INFO] [03-31 22:12:53] openapi_requestor.py:316 [t:27812]: requesting llm api endpoint: /chat/eb-instant
 
 1
 2
-
 
 '你好！我是助手，负责协助您完成各种任务。我具备快速响应、高效执行和灵活适应的能力，致力于为您提供优质的服务。无论您需要什么帮助，我都会尽力满足您的需求。'</code></pre></details>
 ```python
@@ -51,13 +49,10 @@ llm.invoke("你好，请你自我介绍一下！")
 llm(prompt="你好，请你自我介绍一下！")
 ```
 
-<details class="lake-collapse"><summary id="u9bd9fe29"><span class="ne-text">output：</span></summary><pre data-language="python" id="y8v2h" class="ne-codeblock language-python"><code>[INFO] [03-31 22:12:41] openapi_requestor.py:316 [t:27812]: requesting llm api endpoint: /chat/eb-instant
-
+<details><summary>output：</summary><pre><code class="language-python"><code>[INFO] [03-31 22:12:41] openapi_requestor.py:316 [t:27812]: requesting llm api endpoint: /chat/eb-instant
 
 1
 2
-
-
 
 '你好！我是助手，负责协助您完成各种任务。我具备快速学习和处理信息的能力，能够根据您的需求提供帮助和回答问题。无论您需要什么帮助，我都会尽力提供支持。'</code></pre></details>
 从而可以将文心大模型加入到 LangChain 架构中，实现在应用中对文心大模型的调用。
@@ -96,13 +91,10 @@ res = llm("你好，请你自我介绍一下！")
 print(res)
 ```
 
-<details class="lake-collapse"><summary id="uf7fafbaa"><span class="ne-text">output：</span></summary><pre data-language="python" id="IE5SA" class="ne-codeblock language-python"><code>d:\Miniconda\miniconda3\envs\llm2\lib\site-packages\langchain_core\_api\deprecation.py:117: LangChainDeprecationWarning: The function `__call__` was deprecated in LangChain 0.1.7 and will be removed in 0.2.0. Use invoke instead.
+<details><summary>output：</summary><pre><code class="language-python"><code>d:\Miniconda\miniconda3\envs\llm2\lib\site-packages\langchain_core\_api\deprecation.py:117: LangChainDeprecationWarning: The function `__call__` was deprecated in LangChain 0.1.7 and will be removed in 0.2.0. Use invoke instead.
   warn_deprecated(
 [INFO] [03-31 22:40:14] openapi_requestor.py:316 [t:3684]: requesting llm api endpoint: /chat/eb-instant
 [INFO] [03-31 22:40:14] oauth.py:207 [t:3684]: trying to refresh access_token for ak `MxBM7W***`
 [INFO] [03-31 22:40:15] oauth.py:220 [t:3684]: sucessfully refresh access_token
 
-
 你好！我是文心一言，英文名是ERNIE Bot。我是一款人工智能语言模型，可以协助你完成范围广泛的任务并提供有关各种主题的信息，比如回答问题，提供定义和解释及建议，还能提供上下文知识和对话管理。如果你有任何问题或需要帮助，随时向我提问，我会尽力回答。</code></pre></details>
-
-

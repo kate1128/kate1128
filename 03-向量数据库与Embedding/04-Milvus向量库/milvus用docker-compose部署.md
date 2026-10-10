@@ -224,6 +224,3 @@ networks:
     driver: bridge
 
 ```
-
-
-

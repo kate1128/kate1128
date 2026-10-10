@@ -34,7 +34,7 @@ devices:
     nodeSelector:
       ascend: "on"
     tolerations: []
-    customresources: 
+    customresources:
        # 有其他型号也要加上，比如910B2
       - huawei.com/Ascend910A
       - huawei.com/Ascend910A-memory
@@ -51,8 +51,6 @@ devices:
 
 如果满足要求就不用加
 
-
-
 如果不满足
 
 查一下算力切分的模板信息
@@ -64,8 +62,6 @@ npu-smi info -t template-info
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1747823051797-46c8be06-6dee-41d8-8cae-055cc3b7451a.png)
 
 或者是从文档去找：[https://www.hiascend.com/document/detail/zh/mindx-dl/600/clusterscheduling/clusterscheduling/cpaug/mxdlug_021.html](https://www.hiascend.com/document/detail/zh/mindx-dl/600/clusterscheduling/clusterscheduling/cpaug/mxdlug_021.html)
-
-
 
 把对应的分区信息加上
 
@@ -115,7 +111,7 @@ vnpus:
     - name: vir12_3c_32g
       memory: 32768
       aiCore: 12
-      aiCPU: 3  
+      aiCPU: 3
 - chipName: 910B3
   commonWord: Ascend910B
   resourceName: huawei.com/Ascend910B
@@ -894,4 +890,3 @@ vnpu上跑的进程在宿主机上查不到
 ![](https://cdn.nlark.com/yuque/0/2025/jpeg/2639475/1747823054094-4d630a11-2ba0-41e6-87f7-f66990191cee.jpeg)
 
 ![](https://cdn.nlark.com/yuque/0/2025/jpeg/2639475/1747823054453-d2dcd522-9d6d-4f78-aa46-dfb1b5ed6655.jpeg)
-

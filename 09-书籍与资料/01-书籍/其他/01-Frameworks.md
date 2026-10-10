@@ -1,9 +1,9 @@
-## Official Version 
-### 神经网络架构（<font style="color:rgb(31, 35, 40);">Neural Network Architecture）</font>
+## Official Version
+### 神经网络架构（Neural Network Architecture）
 + [Transformer](https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/models/transformer.py) ![](https://img.shields.io/github/stars/tensorflow/tensor2tensor?style=social) : "Attention is All You Need". ([arXiv 2017](https://arxiv.org/abs/1706.03762)).
 + [KAN](https://github.com/KindXiaoming/pykan) ![](https://img.shields.io/github/stars/KindXiaoming/pykan?style=social) : "KAN: Kolmogorov-Arnold Networks". ([arXiv 2024](https://arxiv.org/abs/2404.19756)).
 
-### 大语言模型（LLM）Large Language Model 
+### 大语言模型（LLM）Large Language Model
 #### GPT
 + GPT-1 : "Improving Language Understanding by Generative Pre-Training". ([cs.ubc.ca, 2018](https://www.cs.ubc.ca/~amuham01/LING530/papers/radford2018improving.pdf)).
 + [GPT-2](https://github.com/openai/gpt-2) ![](https://img.shields.io/github/stars/openai/gpt-2?style=social) : "Language Models are Unsupervised Multitask Learners". ([OpenAI blog, 2019](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf)). [Better language models and their implications](https://openai.com/research/better-language-models).
@@ -161,8 +161,6 @@
 + [Fooocus](https://github.com/lllyasviel/Fooocus) ![](https://img.shields.io/github/stars/lllyasviel/Fooocus?style=social) : Fooocus is an image generating software. Fooocus is a rethinking of Stable Diffusion and Midjourney’s designs. "微信公众号「GitHubStore」《[Fooocus : 集Stable Diffusion 和 Midjourney 优点于一身的开源AI绘图软件](https://mp.weixin.qq.com/s/adyXek6xcz5aOPAGqZBrvg)》"。
 + [MindDiffuser](https://github.com/ReedOnePeck/MindDiffuser) ![](https://img.shields.io/github/stars/ReedOnePeck/MindDiffuser?style=social) : "MindDiffuser: Controlled Image Reconstruction from Human Brain Activity with Semantic and Structural Diffusion". ([arXiv 2023](https://arxiv.org/abs/2308.04249)).
 
-
-
 + [Midjourney](https://www.midjourney.com/) : Midjourney is an independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.
 + [DreamStudio](https://dreamstudio.ai/) : Effortless image generation for creators with big dreams.
 + [Firefly](https://www.adobe.com/sensei/generative-ai/firefly.html) : Adobe Firefly: Experiment, imagine, and make an infinite range of creations with Firefly, a family of creative generative AI models coming to Adobe products.
@@ -179,17 +177,17 @@
 + [LiteChain](https://github.com/rogeriochaves/litechain) ![](https://img.shields.io/github/stars/rogeriochaves/litechain?style=social) : Build robust LLM applications with true composability 🔗. [rogeriochaves.github.io/litechain/](https://rogeriochaves.github.io/litechain/)
 + [Open-Assistant](https://github.com/LAION-AI/Open-Assistant) ![](https://img.shields.io/github/stars/LAION-AI/Open-Assistant?style=social) : OpenAssistant is a chat-based assistant that understands tasks, can interact with third-party systems, and retrieve information dynamically to do so. [open-assistant.io](https://open-assistant.io/)
 
-## 微调框架 Fine-Tuning Framework 
+## 微调框架 Fine-Tuning Framework
 + [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) ![](https://img.shields.io/github/stars/hiyouga/LLaMA-Factory?style=social) : Unify Efficient Fine-Tuning of 100+ LLMs. Fine-tuning a large language model can be easy as...
 
-## ❇️检索增强生成框架 RAG Framework 
-+ [LlamaIndex](https://github.com/run-llama/llama_index) ![](https://img.shields.io/github/stars/run-llama/llama_index?style=social) : <font style="background-color:#FBDE28;">LlamaIndex is a data framework for your LLM applications. </font>[docs.llamaindex.ai](https://docs.llamaindex.ai/)
+## ❇️检索增强生成框架 RAG Framework
++ [LlamaIndex](https://github.com/run-llama/llama_index) ![](https://img.shields.io/github/stars/run-llama/llama_index?style=social) : LlamaIndex is a data framework for your LLM applications. [docs.llamaindex.ai](https://docs.llamaindex.ai/)
 + [Embedchain](https://github.com/embedchain/embedchain) ![](https://img.shields.io/github/stars/embedchain/embedchain?style=social) : The Open Source RAG framework. [docs.embedchain.ai](https://docs.embedchain.ai/)
 + [QAnything](https://github.com/netease-youdao/QAnything) ![](https://img.shields.io/github/stars/netease-youdao/QAnything?style=social) : Question and Answer based on Anything. [qanything.ai](https://qanything.ai/)
 + [R2R](https://github.com/SciPhi-AI/R2R) ![](https://img.shields.io/github/stars/SciPhi-AI/R2R?style=social) : A framework for rapid development and deployment of production-ready RAG systems. [docs.sciphi.ai](https://docs.sciphi.ai/)
 + [langchain-ai/rag-from-scratch](https://github.com/langchain-ai/rag-from-scratch) ![](https://img.shields.io/github/stars/langchain-ai/rag-from-scratch?style=social) : Retrieval augmented generation (RAG) comes is a general methodology for connecting LLMs with external data sources. These notebooks accompany a video series will build up an understanding of RAG from scratch, starting with the basics of indexing, retrieval, and generation.
 
-## 大语言模型推理框架 LLM Inference Framework 
+## 大语言模型推理框架 LLM Inference Framework
 ### LLM Inference Benchmark 推理基准
 + [ninehills/llm-inference-benchmark](https://github.com/ninehills/llm-inference-benchmark) ![](https://img.shields.io/github/stars/ninehills/llm-inference-benchmark?style=social) : LLM Inference benchmark.
 + [csbench/csbench](https://github.com/csbench/csbench) ![](https://img.shields.io/github/stars/csbench/csbench?style=social) : "CS-Bench: A Comprehensive Benchmark for Large Language Models towards Computer Science Mastery". ([arXiv 2024](https://arxiv.org/abs/2406.08587)).
@@ -285,9 +283,8 @@
 + [go-skynet/LocalAI](https://github.com/go-skynet/LocalAI) ![](https://img.shields.io/github/stars/go-skynet/LocalAI?style=social) : 🤖 Self-hosted, community-driven, local OpenAI-compatible API. Drop-in replacement for OpenAI running LLMs on consumer-grade hardware. Free Open Source OpenAI alternative. No GPU required. LocalAI is an API to run ggml compatible models: llama, gpt4all, rwkv, whisper, vicuna, koala, gpt4all-j, cerebras, falcon, dolly, starcoder, and many other. [localai.io](https://localai.io/)
 
 ## ❇️Vector Database 向量数据库
-+ [Milvus](https://github.com/milvus-io/milvus) ![](https://img.shields.io/github/stars/milvus-io/milvus?style=social) : <font style="background-color:#FBDE28;">Milvus is an open-source vector database built to power embedding similarity search and AI applications. Milvus makes unstructured data search more accessible, and provides a consistent user experience regardless of the deployment environment. </font>[milvus.io](https://milvus.io/)
++ [Milvus](https://github.com/milvus-io/milvus) ![](https://img.shields.io/github/stars/milvus-io/milvus?style=social) : Milvus is an open-source vector database built to power embedding similarity search and AI applications. Milvus makes unstructured data search more accessible, and provides a consistent user experience regardless of the deployment environment. [milvus.io](https://milvus.io/)
 + [Qdrant](https://github.com/qdrant/qdrant) ![](https://img.shields.io/github/stars/qdrant/qdrant?style=social) : Qdrant - Vector Database for the next generation of AI applications. Also available in the cloud [https://cloud.qdrant.io/](https://cloud.qdrant.io/). [qdrant.tech](https://qdrant.tech/)
 
 ## 模型的私有化部署
 地址：[https://github.com/gptlink/gptlink-deploy/blob/master/README.md](https://github.com/gptlink/gptlink-deploy/blob/master/README.md)
-

@@ -39,7 +39,6 @@ auth_config = weaviate.auth.AuthApiKey(
 ```
 
 ## 连接数据库
-<br/>color2
 字段解释：
 
 + `weaviate.Client() `：`Weaviate` 客户端对象。
@@ -47,11 +46,9 @@ auth_config = weaviate.auth.AuthApiKey(
 + `auth_client_secret` ：`Weaviate`  客户端的身份验证密钥属性
 + `additional_headers` ：额外的请求头信息。
 
-<br/>
-
 ```python
 client = weaviate.Client(
-    url=os.environ['WEAVIATE_API_URL'],  
+    url=os.environ['WEAVIATE_API_URL'],
     auth_client_secret=auth_config,
     additional_headers={
         "X-Cohere-Api-Key": os.environ['COHERE_API_KEY'],  # 这里添加了一个名为 X-Cohere-Api-Key 的请求头，其值为环境变量中的 Cohere API 密钥。
@@ -115,15 +112,12 @@ def keyword_search(query,
     return result
 ```
 
-<br/>color2
 这个函数接受四个参数：
 
 + `query`（要搜索的关键词）
 + `results_lang`（搜索结果的语言，默认为英文）
 + `properties`（要返回的属性列表，默认为标题、URL 和文本）
 + `num_results`（要返回的结果数量，默认为 3 个）
-
-<br/>
 
 代码解释：
 
@@ -200,7 +194,7 @@ def print_result(result):
 print_result(keyword_search_results)
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>item 0 text:The most active Gamergate supporters or &quot;Gamergaters&quot; said that Gamergate was a movement for ethics in games journalism, for protecting the &quot;gamer&quot; identity, and for opposing &quot;political correctness&quot; in video games and that any harassment of women was done by others not affiliated with Gamergate. They argued that the close relationships between journalists and developers demonstrated a conspiracy among reviewers to focus on progressive social issues. Some supporters pointed to what they considered disproportionate praise for games such as &quot;Depression Quest&quot; and &quot;Gone Home&quot;, which feature unconventional gameplay and stories with social implications, while they viewed traditional AAA games as downplayed. False claims of the &quot;ethics in game journalism&quot; had started as early as 2012, when Geoff Keighley was accused of such unethical behavior when he was presenting information about &quot;Halo 4&quot; among advertisements for Mountain Dew and Doritos, an event called &quot;Doritosgate&quot; in the gamer culture.
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0 text:The most active Gamergate supporters or &quot;Gamergaters&quot; said that Gamergate was a movement for ethics in games journalism, for protecting the &quot;gamer&quot; identity, and for opposing &quot;political correctness&quot; in video games and that any harassment of women was done by others not affiliated with Gamergate. They argued that the close relationships between journalists and developers demonstrated a conspiracy among reviewers to focus on progressive social issues. Some supporters pointed to what they considered disproportionate praise for games such as &quot;Depression Quest&quot; and &quot;Gone Home&quot;, which feature unconventional gameplay and stories with social implications, while they viewed traditional AAA games as downplayed. False claims of the &quot;ethics in game journalism&quot; had started as early as 2012, when Geoff Keighley was accused of such unethical behavior when he was presenting information about &quot;Halo 4&quot; among advertisements for Mountain Dew and Doritos, an event called &quot;Doritosgate&quot; in the gamer culture.
 title:Gamergate (harassment campaign)
 url:https://en.wikipedia.org/wiki?curid=43758363
 
@@ -221,7 +215,7 @@ keyword_search_results = keyword_search(query，results_lang='zh')  # 中文用�
 print_result(keyword_search_results)
 ```
 
-<details class="lake-collapse"><summary id="u6ca332db"><span class="ne-text">output：</span></summary><pre data-language="json" id="AWXlB" class="ne-codeblock language-json"><code>item 0 text:古时“中国”含义不一：或指天子所在的京师为“中国”。《》：“惠此中国，以绥四方。”毛传：“中国，京师也。”《》：“夫而后之中国，践天子位焉。”《集解》：“刘熙曰；‘帝王所都为中，故曰中国’。”或指华夏族、汉族地区为中国（以其在四夷之中）。《》：“《小雅》尽废，则四夷交侵，中国微矣。”又《》：“是以声名洋溢乎中国，施及蛮貊。”而华夏族多建都于黄河南、北，因称其地为“中国”，与“中土”、“中原”、“中州”、“中夏”、“中华”含义相同，初时本指今河南省北部、山西省南部和陕西省南部及附近地区，后来中原王朝的活动范围扩大，黄河中下游一带，也被称为“中国”。或指统辖中原之国，《》：“盂达于是连吴固蜀，潜图中国。”，也把所统辖的地区，包括不属于黄河流域的地方，也全部称为“中国”。《》：“其后秦遂以兵灭六国，并中国。”在统一的情况下，中央王朝常自称为“中国”；而分裂时期，“中国”也能指稱黄河中下游地区（即中原）或延續正統的王朝。《晉書·載記第十四》苻堅對其弟苻融言“劉禪可非漢之遺祚；然終為中國之所並”。此處「中国」指三國時期于華北地區的魏国，原因是魏繼承漢的正統。此外，古時「中國」一詞也具有單獨代指漢民族的用法。
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0 text:古时“中国”含义不一：或指天子所在的京师为“中国”。《》：“惠此中国，以绥四方。”毛传：“中国，京师也。”《》：“夫而后之中国，践天子位焉。”《集解》：“刘熙曰；‘帝王所都为中，故曰中国’。”或指华夏族、汉族地区为中国（以其在四夷之中）。《》：“《小雅》尽废，则四夷交侵，中国微矣。”又《》：“是以声名洋溢乎中国，施及蛮貊。”而华夏族多建都于黄河南、北，因称其地为“中国”，与“中土”、“中原”、“中州”、“中夏”、“中华”含义相同，初时本指今河南省北部、山西省南部和陕西省南部及附近地区，后来中原王朝的活动范围扩大，黄河中下游一带，也被称为“中国”。或指统辖中原之国，《》：“盂达于是连吴固蜀，潜图中国。”，也把所统辖的地区，包括不属于黄河流域的地方，也全部称为“中国”。《》：“其后秦遂以兵灭六国，并中国。”在统一的情况下，中央王朝常自称为“中国”；而分裂时期，“中国”也能指稱黄河中下游地区（即中原）或延續正統的王朝。《晉書·載記第十四》苻堅對其弟苻融言“劉禪可非漢之遺祚；然終為中國之所並”。此處「中国」指三國時期于華北地區的魏国，原因是魏繼承漢的正統。此外，古時「中國」一詞也具有單獨代指漢民族的用法。
 title:中國的稱號
 url:https://zh.wikipedia.org/wiki?curid=527278
 
@@ -247,14 +241,10 @@ BM25 只需要有一个共同出现的关键词，就可以将其评分为某种
 以上是一些高级示例。它展示了用 query 查询数据库，并随后查看结果的过程。
 
 # 关键词检索的更深理解
-<br/>color2
 接下来从更高的层次上回顾一下**搜索**。如下图所示，搜索的主要组成部分包括 **Query** 、**搜索系统（Search System）** 和 **搜索系统可以访问的之前处理过的数据库（Document Archive）**。搜索系统会按照数据库中的数据与 query 的相关性从高到低的顺序，给出一系列搜索结果作为响应。
-
-<br/>
 
 ![](https://raw.githubusercontent.com/datawhalechina/llm-cookbook/54ad6728cde23add6e96b1f521ace605b5e60ca3/content/%E9%80%89%E4%BF%AE-Large%20Language%20Models%20with%20Semantic%20Search/images/2-1.png)
 
-<br/>color2
 可以将 **搜索系统（Search System）** 视为具有两个阶段。
 
 + 第一阶段通常是 `**Retrieval**`**（检索或搜索）** 阶段
@@ -264,8 +254,6 @@ BM25 只需要有一个共同出现的关键词，就可以将其评分为某种
 + 之后还有一个称为 **Reranking（重排）** 的阶段
 
 而 `Reranking` 指的是在 `Retrieval` 返回初始排序结果后，对这些结果进行进一步排序的过程。`Reranking` 可以基于各种因素，例如语义相关性、用户偏好、领域特定信息等。`Reranking` 通常是必需的，因为希望包含或者引入除了文本相关性之外的其他信息。
-
-<br/>
 
 此外，第一阶段 Retrieval 的实现通常需要 `**Inverted Index（倒排索引）**` 。`Inverted Index`是信息检索领域中一种常用的数据结构，用于快速查找包含特定词项（term）的文档。它的基本思想是将文档集合中每个词项与包含该词项的文档列表建立关联，从而实现通过词项快速定位包含该词项的文档。
 
@@ -282,19 +270,16 @@ BM25 只需要有一个共同出现的关键词，就可以将其评分为某种
 
 ![](https://raw.githubusercontent.com/datawhalechina/llm-cookbook/54ad6728cde23add6e96b1f521ace605b5e60ca3/content/%E9%80%89%E4%BF%AE-Large%20Language%20Models%20with%20Semantic%20Search/images/2-3.png)
 
-<br/>color2
 Language Model 可以改进搜索的两个阶段（Retrieval 和 Reranking），语言模型通过 Embedding（嵌入）来改进。Embedding 将是下一节。看一下 Reranking 是如何进行的，以及 Laguange Model 如何改进它。
-
-<br/>
 
 ![](https://raw.githubusercontent.com/datawhalechina/llm-cookbook/54ad6728cde23add6e96b1f521ace605b5e60ca3/content/%E9%80%89%E4%BF%AE-Large%20Language%20Models%20with%20Semantic%20Search/images/2-4.png)
 
 # 其他
 ```python
 
-def keyword_search(query, 
+def keyword_search(query,
                    client,
-                   results_lang='en', 
+                   results_lang='en',
                    properties = ["text", "title", "url", "views", "lang", "_additional {distance}"],
                    num_results=3):
 
@@ -316,15 +301,14 @@ def keyword_search(query,
     result = response['data']['Get']['Articles']
     return result
 
-
-def dense_retrieval(query, 
+def dense_retrieval(query,
                     client,
-                    results_lang='en', 
+                    results_lang='en',
                     properties = ["text", "title", "url", "views", "lang", "_additional {distance}"],
                     num_results=5):
 
     nearText = {"concepts": [query]}
-    
+
     # To filter by language
     where_filter = {
     "path": ["lang"],
@@ -344,7 +328,6 @@ def dense_retrieval(query,
 
     return result
 
-
 def print_result(result):
     """ Print results with colorful formatting """
     for i,item in enumerate(result):
@@ -354,4 +337,3 @@ def print_result(result):
             print()
         print()
 ```
-

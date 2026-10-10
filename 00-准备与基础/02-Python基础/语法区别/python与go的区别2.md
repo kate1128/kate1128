@@ -1,5 +1,5 @@
-# <font style="color:rgb(0, 0, 0);"> 变量与类型系统</font>
-## <font style="color:rgb(0, 0, 0);">多变量声明</font>
+#  变量与类型系统
+## 多变量声明
 ```python
 # Python
 x, y, z = 10, 3.14, "text"
@@ -17,7 +17,7 @@ var (
 x, y := 42, "hello"   // 同时声明多个不同类型变量
 ```
 
-## <font style="color:rgb(0, 0, 0);">零值机制</font>
+## 零值机制
 ```python
 # Python没有零值概念，未赋值的变量会报错
 # 但类属性可以有默认值
@@ -33,7 +33,7 @@ var (
 )
 ```
 
-## <font style="color:rgb(0, 0, 0);">类型转换</font>
+## 类型转换
 ```python
 # Python自动类型转换
 result = 3 + 5.2  # 自动转为float
@@ -46,15 +46,15 @@ var b float64 = float64(a)  // 强制类型转换
 var c int32 = int32(a)
 ```
 
-# <font style="color:rgb(0, 0, 0);">作用域与可见性</font>
-## <font style="color:rgb(0, 0, 0);">Python</font>
+# 作用域与可见性
+## Python
 ```python
 # 通过命名约定区分
 _private_var = "内部使用"  # 单下划线约定私有
 public_var = "公开"      # 模块级作用域
 ```
 
-## <font style="color:rgb(0, 0, 0);">Go</font>
+## Go
 ```go
 // 通过首字母大小写控制可见性
 var privateVar string = "包内可见"  // 小写字母开头
@@ -68,8 +68,8 @@ func demo() {
 }
 ```
 
-# <font style="color:rgb(0, 0, 0);">函数参数处理</font>
-## <font style="color:rgb(0, 0, 0);">默认参数</font>
+# 函数参数处理
+## 默认参数
 ```python
 # Python支持默认参数
 def greet(name="Guest"):
@@ -93,7 +93,7 @@ func Greet(opts GreetOptions) {
 Greet(GreetOptions{Name: "Alice"})
 ```
 
-## <font style="color:rgb(0, 0, 0);">可变参数</font>
+## 可变参数
 ```python
 # Python
 def sum(*nums):
@@ -111,8 +111,8 @@ func Sum(nums ...int) int {  // ...语法
 }
 ```
 
-# <font style="color:rgb(0, 0, 0);">结构体 vs 类</font>
-## <font style="color:rgb(0, 0, 0);">Python类</font>
+# 结构体 vs 类
+## Python类
 ```python
 class Vector:
     def __init__(self, x, y):
@@ -126,7 +126,7 @@ v = Vector(3, 4)
 print(v.magnitude())
 ```
 
-## <font style="color:rgb(0, 0, 0);">Go结构体</font>
+## Go结构体
 ```go
 type Vector struct {
     X, Y float64  // 字段首字母大写才可导出
@@ -148,8 +148,8 @@ func (v *Vector) Scale(f float64) {
 }
 ```
 
-# <font style="color:rgb(0, 0, 0);">接口实现</font>
-## <font style="color:rgb(0, 0, 0);">Python鸭子类型</font>
+# 接口实现
+## Python鸭子类型
 ```python
 class Writer:
     def write(self, data):
@@ -164,7 +164,7 @@ class FileWriter(Writer):
 # 实现网络传输
 ```
 
-## <font style="color:rgb(0, 0, 0);">Go接口</font>
+## Go接口
 ```go
 type Writer interface {
     Write([]byte) (int, error)
@@ -187,8 +187,8 @@ func (n NetworkWriter) Write(data []byte) (int, error) {
 // 隐式实现接口，无需显式声明
 ```
 
-# <font style="color:rgb(0, 0, 0);">包与导入</font>
-## <font style="color:rgb(0, 0, 0);">Python模块</font>
+# 包与导入
+## Python模块
 ```python
 # utils.py
 def helper():
@@ -199,7 +199,7 @@ from utils import helper
 import math as mth
 ```
 
-## <font style="color:rgb(0, 0, 0);">Go包</font>
+## Go包
 ```go
 // utils/utils.go
 package utils
@@ -226,8 +226,8 @@ func main() {
 }
 ```
 
-# <font style="color:rgb(0, 0, 0);">特殊语法结构</font>
-## <font style="color:rgb(0, 0, 0);">defer 语句</font>
+# 特殊语法结构
+## defer 语句
 ```go
 func fileOperation() {
     f, _ := os.Open("file.txt")
@@ -238,7 +238,7 @@ func fileOperation() {
 }
 ```
 
-## <font style="color:rgb(0, 0, 0);">指针操作</font>
+## 指针操作
 ```go
 func pointerDemo() {
     a := 10
@@ -248,7 +248,7 @@ func pointerDemo() {
 }
 ```
 
-## <font style="color:rgb(0, 0, 0);">类型断言</font>
+## 类型断言
 ```go
 func typeAssertion(val interface{}) {
     if s, ok := val.(string); ok {
@@ -259,39 +259,45 @@ func typeAssertion(val interface{}) {
 }
 ```
 
-# <font style="color:rgb(0, 0, 0);">深度语法对比表</font>
-| **<font style="color:rgb(0, 0, 0);">语法特性</font>** | **<font style="color:rgb(0, 0, 0);">Python</font>** | **<font style="color:rgb(0, 0, 0);">Go</font>** |
+# 深度语法对比表
+| **语法特性** | **Python** | **Go** |
 | :--- | :--- | :--- |
-| <font style="color:rgb(0, 0, 0);">空值表示</font> | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">None</font>` | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">nil</font>`<br/><font style="color:rgb(0, 0, 0);">（指针/引用类型的零值）</font> |
-| <font style="color:rgb(0, 0, 0);">循环结构</font> | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">for...in</font>`<br/><font style="color:rgb(0, 0, 0);">,</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">while</font>` | <font style="color:rgb(0, 0, 0);">只有</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">for</font>`<br/><font style="color:rgb(0, 0, 0);">（三种形式）</font> |
-| <font style="color:rgb(0, 0, 0);">错误处理</font> | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">try...except</font>` | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">error</font>`<br/><font style="color:rgb(0, 0, 0);">返回值 +</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">panic/recover</font>` |
-| <font style="color:rgb(0, 0, 0);">模块/包</font> | <font style="color:rgb(0, 0, 0);">文件即模块</font> | <font style="color:rgb(0, 0, 0);">必须声明package + 严格目录结构</font> |
-| <font style="color:rgb(0, 0, 0);">继承</font> | <font style="color:rgb(0, 0, 0);">显式类继承</font> | <font style="color:rgb(0, 0, 0);">通过结构体嵌入实现组合</font> |
-| <font style="color:rgb(0, 0, 0);">多态</font> | <font style="color:rgb(0, 0, 0);">鸭子类型</font> | <font style="color:rgb(0, 0, 0);">接口隐式实现</font> |
-| <font style="color:rgb(0, 0, 0);">内存管理</font> | <font style="color:rgb(0, 0, 0);">自动GC</font> | <font style="color:rgb(0, 0, 0);">自动GC + 手动控制指针</font> |
-| <font style="color:rgb(0, 0, 0);">代码格式化</font> | <font style="color:rgb(0, 0, 0);">PEP8规范</font> | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">gofmt</font>`<br/><font style="color:rgb(0, 0, 0);">强制统一格式</font> |
-| <font style="color:rgb(0, 0, 0);">异步编程</font> | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">async/await</font>` | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">goroutine</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">+</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">channel</font>` |
-| <font style="color:rgb(0, 0, 0);">元编程</font> | <font style="color:rgb(0, 0, 0);">装饰器、元类</font> | <font style="color:rgb(0, 0, 0);">有限反射（reflect包）</font> |
-| <font style="color:rgb(0, 0, 0);">泛型</font> | <font style="color:rgb(0, 0, 0);">鸭子类型/Type Hints</font> | <font style="color:rgb(0, 0, 0);">1.18+ 加入泛型</font> |
-| <font style="color:rgb(0, 0, 0);">依赖管理</font> | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">pip</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">+</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">requirements.txt</font>` | `<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">go.mod</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">+</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.05);">go.sum</font>` |
+| 空值表示 | `None` | `nil`
+（指针/引用类型的零值） |
+| 循环结构 | `for...in`
+, `while` | 只有 `for`
+（三种形式） |
+| 错误处理 | `try...except` | `error`
+返回值 + `panic/recover` |
+| 模块/包 | 文件即模块 | 必须声明package + 严格目录结构 |
+| 继承 | 显式类继承 | 通过结构体嵌入实现组合 |
+| 多态 | 鸭子类型 | 接口隐式实现 |
+| 内存管理 | 自动GC | 自动GC + 手动控制指针 |
+| 代码格式化 | PEP8规范 | `gofmt`
+强制统一格式 |
+| 异步编程 | `async/await` | `goroutine`
+ + `channel` |
+| 元编程 | 装饰器、元类 | 有限反射（reflect包） |
+| 泛型 | 鸭子类型/Type Hints | 1.18+ 加入泛型 |
+| 依赖管理 | `pip`
+ + `requirements.txt` | `go.mod`
+ + `go.sum` |
 
+# 关键差异总结
+1. **类型系统**
+Go的严格静态类型要求显式声明，而Python的动态类型允许灵活的类型变化
+2. **错误哲学**
+Go强调显式错误处理（`**if err != nil**`模式），Python推崇异常机制
+3. **并发模型**
+Go的`**goroutine**`和`**channel**`提供原生的CSP并发支持，Python依赖线程/进程+异步IO
+4. **代码组织**
+Go强制使用包和明确的代码结构，Python的模块系统更加灵活
+5. **运行时效率**
+Go编译为本地机器码，Python通过解释器执行字节码
+6. **元编程能力**
+Python在运行时修改类/对象的行为更灵活，Go需要依赖反射（有限支持）
 
-# <font style="color:rgb(0, 0, 0);">关键差异总结</font>
-1. **<font style="color:rgb(0, 0, 0);">类型系统</font>**<font style="color:rgb(0, 0, 0);">  
-</font><font style="color:rgb(0, 0, 0);">Go的严格静态类型要求显式声明，而Python的动态类型允许灵活的类型变化</font>
-2. **<font style="color:rgb(0, 0, 0);">错误哲学</font>**<font style="color:rgb(0, 0, 0);">  
-</font><font style="color:rgb(0, 0, 0);">Go强调显式错误处理（</font>`**<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.08);">if err != nil</font>**`<font style="color:rgb(0, 0, 0);">模式），Python推崇异常机制</font>
-3. **<font style="color:rgb(0, 0, 0);">并发模型</font>**<font style="color:rgb(0, 0, 0);">  
-</font><font style="color:rgb(0, 0, 0);">Go的</font>`**<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.08);">goroutine</font>**`<font style="color:rgb(0, 0, 0);">和</font>`**<font style="color:rgb(0, 0, 0);background-color:rgba(27, 31, 35, 0.08);">channel</font>**`<font style="color:rgb(0, 0, 0);">提供原生的CSP并发支持，Python依赖线程/进程+异步IO</font>
-4. **<font style="color:rgb(0, 0, 0);">代码组织</font>**<font style="color:rgb(0, 0, 0);">  
-</font><font style="color:rgb(0, 0, 0);">Go强制使用包和明确的代码结构，Python的模块系统更加灵活</font>
-5. **<font style="color:rgb(0, 0, 0);">运行时效率</font>**<font style="color:rgb(0, 0, 0);">  
-</font><font style="color:rgb(0, 0, 0);">Go编译为本地机器码，Python通过解释器执行字节码</font>
-6. **<font style="color:rgb(0, 0, 0);">元编程能力</font>**<font style="color:rgb(0, 0, 0);">  
-</font><font style="color:rgb(0, 0, 0);">Python在运行时修改类/对象的行为更灵活，Go需要依赖反射（有限支持）</font>
+建议根据项目需求选择：
 
-<font style="color:rgb(0, 0, 0);">建议根据项目需求选择：</font>
-
-+ **<font style="color:rgb(0, 0, 0);">选择Python</font>**<font style="color:rgb(0, 0, 0);">：快速原型开发、数据科学、脚本任务</font>
-+ **<font style="color:rgb(0, 0, 0);">选择Go</font>**<font style="color:rgb(0, 0, 0);">：高性能网络服务、系统编程、需要严格类型检查的场景</font>
-
++ **选择Python**：快速原型开发、数据科学、脚本任务
++ **选择Go**：高性能网络服务、系统编程、需要严格类型检查的场景

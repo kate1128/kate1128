@@ -23,7 +23,7 @@
 程序是指挥cpu工作的“工作手册”。计算机只能执行二进制代码，程序设计语言一般类似英文，想要让计算机理解你写的程序，必须把程序代码“翻译”成计算机能理解的二进制代码，根据翻译形式的不同，可以分为：
 
 + 编译：将程序代码翻译成计算机能理解的二进制目标代码，会生成特定的可执行代码（在window上是exe文件），可执行代码是二进制的，无法看到源代码。然后执行可执行代码就可以得到想要的结果
-    - C/C++、oc 等，<font style="color:#DF2A3F;">go 也是</font>
+    - C/C++、oc 等，go 也是
 + 解释：将程序代码一句一句翻译为计算机可以执行的指令，立即执行，不会生成可执行文件
     - python、php、JavaScript等
 
@@ -35,7 +35,7 @@
 + 缺点：运行需要解释环境，运行起来比编译的要慢，占用资源也要多一些，代码效率低，代码修改后就可运行，不需要编译过程
 
 ### 编译型语言
-在程序执行之前，有一个单独的编译过程，将程序翻译成机器语言，以后执行这个程序的时候，就不用再进行翻译了。比如C、C++、Java、<font style="color:#DF2A3F;">go</font>
+在程序执行之前，有一个单独的编译过程，将程序翻译成机器语言，以后执行这个程序的时候，就不用再进行翻译了。比如C、C++、Java、go
 
 + 优点：运行速度快，代码效率高，编译后的程序不可修改，保密性较好
 + 缺点：代码需要经过编译方可运行，可移植性差，只能在兼容的操作系统上运行
@@ -88,9 +88,9 @@ python排名TIOBE排行榜中C和Java一直占据着前两位，近20年来没�
 + 可以在一个Python提示符，直接互动执行程序
 + python 是面向对象语言
 + python支持面向对象的风格或代码封装在对象的编程技术
-+ python 是完全面向对象的语言    
-    - 函数、模块、数字、字符串都是**对象**，在 **Python 中一切皆对象**    
-    - 完全支持继承、重载、多重继承    
++ python 是完全面向对象的语言
+    - 函数、模块、数字、字符串都是**对象**，在 **Python 中一切皆对象**
+    - 完全支持继承、重载、多重继承
     - 支持重载运算符，也支持泛型设计
 + python 是初学者的语言
 + python 对初级程序员而言，是一种伟大的语言，它支持广泛的应用程序开发，从简单的文字处理到 WWW 浏览器再到游戏
@@ -183,7 +183,6 @@ Python官方提供了多个解释器，包括CPython、Jython、IronPython、PyP
 | 远程开发能力 | ✓ |  |
 | 支持数据库和SQL | ✓ |  |
 
-
 学生可以申请免费使用：[https://www.jetbrains.com/shop/eform/students社区版是免费的，包括所需的所有基本功能。建议使用社区版即可。](https://www.jetbrains.com/shop/eform/students社区版是免费的，包括所需的所有基本功能。建议使用社区版即可。)
 
 #### 特点：
@@ -257,7 +256,7 @@ PyCharm 适合开发大型项目
 
 根据自己的电脑配置，选择合适的版本
 
-![](https://cdn-mineru.openxlab.org.cn/result/2025-07-21/cdcedad3-efda-431d-9d7b-f64b30198bbd/d2622a03fcf658afa8f423d17e5faffdcd9d367a6521c4ffc726a4c10151e1a4.jpg)  
+![](https://cdn-mineru.openxlab.org.cn/result/2025-07-21/cdcedad3-efda-431d-9d7b-f64b30198bbd/d2622a03fcf658afa8f423d17e5faffdcd9d367a6521c4ffc726a4c10151e1a4.jpg)
 免费，开源构建
 
 点击“下一步”
@@ -283,10 +282,10 @@ PyCharm 适合开发大型项目
 
 ![](https://cdn-mineru.openxlab.org.cn/result/2025-07-21/cdcedad3-efda-431d-9d7b-f64b30198bbd/a96daea7da2883edfee1aa6cf9a2964246066f75a00639bee81f5ac7629d0793.jpg)
 
-+ 启动- 点击继续- 汉化方法  
-+ 点击Plugins，搜索 chinese  
-+ 选择中文语言包  
-+ 点击install  
++ 启动- 点击继续- 汉化方法
++ 点击Plugins，搜索 chinese
++ 选择中文语言包
++ 点击install
 + 点击restart IDE，重启ide
 
 ![](https://cdn-mineru.openxlab.org.cn/result/2025-07-21/cdcedad3-efda-431d-9d7b-f64b30198bbd/9c49fa2fb64a56142968943a2e17b6de3f1f0db75ce81173247a6a391dba60a9.jpg)
@@ -303,7 +302,7 @@ PyCharm 适合开发大型项目
 
 ## 运行代码的方式
 ### Python 源代码
-1. Python 源代码就是一个特殊格式的文本文件，可以使用任意文本编辑软件做 Python 的开发  
+1. Python 源代码就是一个特殊格式的文本文件，可以使用任意文本编辑软件做 Python 的开发
 2. Python 程序的文件扩展名是 .py
 
 ### 交互式
@@ -360,11 +359,11 @@ PyCharm 适合开发大型项目
 编辑测试.py并且输入以下内容：
 
 ```python
-print("hello python")  
+print("hello python")
 print("hello world")
 ```
 
-+ print是python中我们学习的第一个函数  
++ print是python中我们学习的第一个函数
 + print函数的作用，可以把""内部的内容，输出到屏幕上
 
 ### 运行python源代码
@@ -408,7 +407,6 @@ print("hello world")
 | 基本的输入输出 | print() | 输出 | `print(*objects, sep=',' end='\n', file=None, flush=False)` |
 | |  |  |  |
 
-
 ## 单词总结
 | 单词 | 释义 |
 | :---: | :---: |
@@ -424,5 +422,3 @@ print("hello world")
 | uninstall | 卸载 |
 | IPO | Input-Process-Output（输入-处理-输出） |
 | PEP | Python Enhancement Proposals Python改进提案 |
-
-

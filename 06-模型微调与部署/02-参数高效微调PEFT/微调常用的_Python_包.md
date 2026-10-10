@@ -9,7 +9,7 @@
 pip install transformers
 ```
 
-+ **用途**：  
++ **用途**：
 `transformers` 提供了各种预训练模型（如 GPT、BERT、T5、BART 等）以及相关的工具，支持在自定义数据集上进行微调。
 + **示例代码**：
 
@@ -49,7 +49,7 @@ trainer.train()
 pip install peft
 ```
 
-+ **用途**：  
++ **用途**：
 `peft` 库支持 LoRA、Adapter 和其他参数高效微调方法，可以只微调特定参数而不是整个模型。
 + **示例代码**（以 LoRA 为例）：
 
@@ -82,7 +82,7 @@ Adapter 是另一种参数高效微调方法。`transformers` 库也提供了对
 pip install adapter-transformers
 ```
 
-+ **用途**：  
++ **用途**：
 Adapter 方法通过在模型中插入小的适配器层来进行微调，而不需要调整原始预训练模型的参数。
 + **示例代码**：
 
@@ -108,7 +108,7 @@ model.train_adapter("adapter_name")
 pip install deepspeed
 ```
 
-+ **用途**：  
++ **用途**：
 DeepSpeed 提供了分布式训练、模型并行和低精度训练等功能，可以在微调过程中大幅提升效率，尤其是在大规模模型上。
 + **示例代码**：
 
@@ -125,7 +125,7 @@ deepspeed train.py --deepspeed_config deepspeed_config.json
 pip install accelerate
 ```
 
-+ **用途**：  
++ **用途**：
 `Accelerate` 提供了简化的接口，可以方便地在多GPU、多TPU上进行模型微调，极大地简化了分布式训练的复杂性。
 + **示例代码**：
 
@@ -142,7 +142,7 @@ accelerate launch train.py
 pip install optimum
 ```
 
-+ **用途**：  
++ **用途**：
 `Optimum` 可以对模型进行优化，支持量化、混合精度训练等优化技术，提高微调过程的效率。
 + **示例代码**：
 
@@ -164,4 +164,3 @@ quantized_model = quantizer.quantize()
 + **Optimum**：用于优化模型，支持硬件加速和优化技术。
 
 这些库可以根据你的具体需求（如微调目标、资源限制等）进行选择，帮助你更高效地完成模型微调任务。
-

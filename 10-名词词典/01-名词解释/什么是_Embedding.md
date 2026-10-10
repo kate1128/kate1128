@@ -3,42 +3,30 @@
 [什么是 token](https://www.yuque.com/qiaokate/su87gb/ozsbnrrkz5awc15r)
 
 ## `Embedding`的主要思想
-<br/>color2
 1. **把特征固定在某一个维度D**，比如256、300、768等等，总之不再是词表那么大的数字。这就**避免了维度过高的问题**。
-
-<br/>
 
 > 比如说 3000 维映射成 30 维，以某种规则去映射
 >
 
-<br/>color2
 2. **利用自然语言文本的上下文关系学习一个稠密表示**。
-
-<br/>
 
 > 原来全是 1 和 0，现在全变成小数了，这句话的向量是根据上下文动态变化的
 >
 
-<br/>color2
 也就是说，每个Token的表示不再是预先算好的了，而是在过程中学习到的，元素也不再是很多个0，而是每个位置都有一个小数，这D个小数构成了一个Token表示。至于D个特征到底是什么，不知道，也不重要。只需要知道这D个小数就表示这个Token。
-
-<br/>
 
 还是继续以前面的例子来说明，这时候词表的表示变成下面这样了：
 
-> 我 0.xxx0, 0.yyy0, 0.zzz0, ... D个小数  
-们 0.xxx1, 0.yyy1, 0.zzz1, ... D个小数  
-相 0.xxx2, 0.yyy2, 0.zzz2, ... D个小数  
-信 0.xxx3, 0.yyy3, 0.zzz3, ... D个小数  
+> 我 0.xxx0, 0.yyy0, 0.zzz0, ... D个小数
+们 0.xxx1, 0.yyy1, 0.zzz1, ... D个小数
+相 0.xxx2, 0.yyy2, 0.zzz2, ... D个小数
+信 0.xxx3, 0.yyy3, 0.zzz3, ... D个小数
 ……下面省略
 >
-
 
 ⚠️这些小数怎么来的？
 
 随机来的。
-
-<br/>
 
 就像下面这样：
 
@@ -56,14 +44,14 @@ table = rng.uniform(size=(16, 256))
 table.shape
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>(16, 256)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(16, 256)</code></pre></details>
 打印 `table`：
 
 ```python
 table
 ```
 
-<details class="lake-collapse"><summary id="u94182f67"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="z80wh" class="ne-codeblock language-json"><code>array([[0.77395605, 0.43887844, 0.85859792, ..., 0.24783956, 0.23666236,
+<details><summary>output：</summary><pre><code class="language-json"><code>array([[0.77395605, 0.43887844, 0.85859792, ..., 0.24783956, 0.23666236,
         0.74601428],
        [0.81656876, 0.10527808, 0.06655886, ..., 0.11585672, 0.07205915,
         0.84199321],
@@ -90,10 +78,4 @@ table
 >
 
 ## 总结
-<br/>color2
 Embedding本质就是**一组稠密向量**，用来表示一段文本（可以是字、词、句、段等），获取到这个表示后，就可以进一步做一些任务。
-
-<br/>
-
-
-

@@ -88,4 +88,3 @@ $ FFN(x) = \text{ReLU}(xW_1 + b_1)W_2 + b_2 $
 4. **Vision Transformer (ViT)**：将 Transformer 应用于图像处理。
 
 Transformer 是现代深度学习的重要基石，其创新的架构在多个领域引发了革命性的发展。
-

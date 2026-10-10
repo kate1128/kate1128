@@ -1,29 +1,39 @@
-**LLaMA-Factory** 是一个与 Meta（前 Facebook）推出的 LLaMA（Large Language Model Meta AI）系列大型语言模型相关的项目或工具。LLaMA 是 Meta 研发的一系列开源语言模型，旨在为学术界和研究人员提供更加透明、易于使用的大型语言模型。LLaMA-Factory 可能是一个与 LLaMA 模型相关的开发工具、框架或库，帮助用户在不同的硬件和环境下高效地训练、调优和部署这些语言模型。
+<!-- type: glossary -->
+# LLaMA-Factory
 
-具体而言，LLaMA 模型系列的目标是提供一个强大的、可扩展的语言模型，它们具有竞争力的性能，并且是开源的，允许研究人员和开发者根据自己的需求进行修改和优化。LLaMA-Factory 可能是为了进一步简化这一过程，提供更便捷的接口、优化训练过程或增强模型部署能力的工具集。
+> 一个开源的**LLM 微调框架**，支持对 100+ 种大模型进行高效微调（全参数/LoRA/QLoRA），提供 Web UI 和命令行两种操作方式。是目前中文社区最流行的 LLM 微调工具之一。
 
-### LLaMA 模型系列概览
-LLaMA（Large Language Model Meta AI）系列是 Meta 推出的开放源代码大型语言模型，其设计目标是提供一种比 GPT 更高效且更易于训练的模型架构。Meta 发布了 LLaMA 模型的多个版本，包括 LLaMA-7B、LLaMA-13B、LLaMA-30B 和 LLaMA-65B，它们的参数数量分别为 7 亿、13 亿、30 亿和 65 亿个。
+## 是什么
 
-这些模型被设计为具有较低的训练和推理成本，同时在多个自然语言处理任务上表现出色，包括文本生成、翻译、总结、问答等。
+LLaMA-Factory 解决了一个核心痛点：**把 LLM 微调从"需要深入理解分布式训练和 CUDA"降级到"选个模型、选个数据集、点一下训练"**。
 
-### LLaMA-Factory 的可能功能
-虽然目前没有官方明确描述名为 "LLaMA-Factory" 的工具或框架，但基于该名称的推测，LLaMA-Factory 可能会包括以下功能：
+核心能力：
+- **多模型支持**：LLaMA、Mistral、Falcon、ChatGLM、Qwen、Baichuan、DeepSeek 等 100+ 模型
+- **多微调方法**：Full Fine-tuning（全参数）、LoRA/QLoRA（参数高效）、Freeze（冻结部分层）
+- **训练特性**：混合精度训练、梯度累积、Flash Attention、DeepSpeed 加速、多卡分布式训练
+- **Web UI**：通过 Gradio 提供可视化界面，不写代码也能完成微调
 
-1. **模型训练与微调**：  
-提供一个便捷的界面或框架，帮助用户快速在自定义数据集上训练 LLaMA 模型，或者对已经预训练的模型进行微调，以适应特定领域或任务。
-2. **高效的训练优化**：  
-通过硬件优化（如 GPU/TPU 的利用）和算法优化（如混合精度训练、梯度累积等），LLaMA-Factory 可能旨在提升训练过程中的效率和性能，降低训练成本。
-3. **集成与部署支持**：  
-提供集成的工具，简化模型的部署和应用过程，帮助用户将 LLaMA 模型嵌入到生产环境中，或者通过 API 提供模型的访问。
-4. **实验管理与版本控制**：  
-可能提供功能帮助开发者管理不同版本的模型，记录实验数据和结果，便于回溯和优化训练过程。
-5. **与其他工具集成**：  
-可能与开源机器学习库（如 Hugging Face Transformers、PyTorch、TensorFlow 等）紧密集成，提供更易用的接口，提升用户的工作流效率。
+## 为什么重要
 
-### LLaMA 系列模型的开源背景
-LLaMA 模型的发布是 Meta 推动 AI 开放和透明的重要一步，目标是让研究人员和开发者能够更加容易地使用大型语言模型，进行自定义调整和扩展。LLaMA 模型的开源意味着它可以用于各种学术研究、创新应用和企业级解决方案。
+- **微调民主化**：以前微调 LLM 需要深厚工程能力，现在 LLaMA-Factory 让中级开发者也能做
+- **生产力工具**：大大缩短"数据 → 微调 → 评估"的迭代周期
+- **集成生态**：与 Hugging Face Transformers、PEFT、DeepSpeed 等无缝对接
 
-### 总结
-LLaMA-Factory 可能是一个与 LLaMA 系列语言模型相关的开发工具或平台，用于简化模型的训练、调优和部署过程，尤其是针对 Meta 的开源 LLaMA 模型。虽然 LLaMA-Factory 本身的信息较少，但它可能提供更高效的工具集，帮助开发者和研究人员更好地利用 LLaMA 模型进行应用开发。如果有具体的工具或项目发布，相关的文档和介绍可能会进一步明确其功能和用途。
+## 关键要点
 
+- **GitHub Stars 快速增长**（截至 2024 年已超 20k），中文社区活跃度很高
+- **核心工作流**：准备数据（JSON/CSV）→ 选择模型和方法 → 配置参数 → 训练 → 评估 → 导出/部署
+- **LoRA 是推荐起点**：全参数微调需要大量显存（如 LLaMA-7B 全参数约需 60GB+），LoRA 在消费级 GPU（24GB）上就能跑
+- **与 Hugging Face 的关系**：底层使用 Transformers 和 PEFT 库，LLaMA-Factory 做的是"包装和易用化"
+
+## 相关概念
+
+- [[Fine-tuning 微调]] — LLaMA-Factory 解决的核心问题
+- [[PEFT 参数高效微调]] — LoRA/QLoRA 等高效方法的统称
+- [[LoRA 低秩适应]] — LLaMA-Factory 最推荐的微调方法
+- [[HuggingFace]] — LLaMA-Factory 底层依赖的模型生态
+
+## 参考
+
+- [LLaMA-Factory GitHub](https://github.com/hiyouga/LLaMA-Factory)
+- 本知识库: [06-模型微调与部署/03-LlamaFactory微调框架](../../06-模型微调与部署/03-LlamaFactory微调框架/)

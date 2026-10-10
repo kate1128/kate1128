@@ -45,7 +45,6 @@ Ollama 支持的模型库列表 [https://ollama.com/library](https://ollama.com/
 | llava | Vision | 7b | 4.7GB | `ollama run llava:7b` |
 | nomic-embed-text | Embedding | v1.5 | 274MB | `ollama pull nomic-embed-text:v1.5` |
 
-
 > 还有好多其他的模型自己看一下，注意：运行 7B 模型至少需要 8GB 内存，运行 13B 模型至少需要 16GB 内存，运行 33B 模型至少需要 32GB 内存。
 >
 
@@ -91,14 +90,12 @@ Flags:
 | `ollama rm` | 删除模型 |
 | `ollama help` | 显示任意命令的帮助信息 |
 
-
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1738748584369-b38dadcb-561e-487a-b771-14861d05f27f.png)
 
 | 标志 | 描述 |
 | --- | --- |
 | `-h, --help` | 显示 Ollama 的帮助信息 |
 | `-v, --version` | 显示版本信息 |
-
 
 终止 Ollama 模型推理服务，可以使用 `/bye`。
 
@@ -112,4 +109,3 @@ Get-Process | Where-Object {$_.ProcessName -like '*ollama*'} | Stop-Process
 
 ## 参考
 参考：[https://github.com/datawhalechina/handy-ollama/blob/main/docs/C1/1.%20Ollama%20%E4%BB%8B%E7%BB%8D.md](https://github.com/datawhalechina/handy-ollama/blob/main/docs/C1/1.%20Ollama%20%E4%BB%8B%E7%BB%8D.md)
-

@@ -79,7 +79,6 @@ llm = ChatOpenAI(model_name = "gpt-3.5-turbo", temperature = 0)
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
-
 template_v1 = """使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答
 案。最多使用三句话。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。
 {context}
@@ -88,8 +87,6 @@ template_v1 = """使用以下上下文来回答最后的问题。如果你不知
 
 QA_CHAIN_PROMPT = PromptTemplate(input_variables=["context","question"],
                                  template=template_v1)
-
-
 
 qa_chain = RetrievalQA.from_chain_type(llm,
                                        retriever=vectordb.as_retriever(),
@@ -500,17 +497,15 @@ client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
-
 def gen_gpt_messages(prompt):
     '''
     构造 GPT 模型请求参数 messages
-    
+
     请求参数：
         prompt: 对应的用户提示词
     '''
     messages = [{"role": "user", "content": prompt}]
     return messages
-
 
 def get_completion(prompt, model="gpt-3.5-turbo", temperature = 0):
     '''
@@ -569,4 +564,3 @@ response
 **注：本文对应的源代码在 **
 
 [llm-universe/notebook/C5 系统评估与优化/1.如何评估 LLM 应用.ipynb at main · datawhalechina/llm-universe](https://github.com/datawhalechina/llm-universe/blob/main/notebook/C5%20%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BC%B0%E4%B8%8E%E4%BC%98%E5%8C%96/1.%E5%A6%82%E4%BD%95%E8%AF%84%E4%BC%B0%20LLM%20%E5%BA%94%E7%94%A8.ipynb)
-

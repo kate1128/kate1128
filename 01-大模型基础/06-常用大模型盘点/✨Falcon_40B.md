@@ -1,21 +1,34 @@
-> 注意不支持中文哈
->
+<!-- type: glossary -->
+# Falcon 40B
 
-# 参考地址
-1. 发布指南：[https://www.datalearner.com/ai-organizations/TII](https://www.datalearner.com/ai-organizations/TII)
-2. huggingface 地址：[https://huggingface.co/tiiuae/falcon-40b](https://huggingface.co/tiiuae/falcon-40b)
+> 由阿联酋 **Technology Innovation Institute（TII）** 开发的开源大语言模型，2023 年 5 月发布时曾是"最强开源 LLM"，超 LLaMA-65B。
 
-# 简介
-**Falcon 40B** 是一款由 **Chinese technology company** **Beijing Falcon AI** 开发的 **大型语言模型**，属于 **“Falcon”** 系列的一部分。与 OpenAI 的 GPT 系列、Google 的 PaLM 系列等相类似，Falcon 40B 也是一种基于 Transformer 架构的大型预训练语言模型，专门用于处理自然语言理解和生成任务。
+## 基本情况
 
-**Falcon 40B** 的名称中的 “40B” 表示其模型包含 **40 billion**（40 亿）个参数，意味着这是一个具有非常高计算能力的深度学习模型，能够完成多种自然语言处理任务，如文本生成、翻译、问答、摘要等。
+- **开发者**：TII（Technology Innovation Institute），阿联酋阿布扎比
+- **发布**：2023 年 5 月
+- **参数**：40B（400 亿）
+- **架构**：Decoder-only Transformer，与 GPT/LLaMA 类似
+- **开源地址**：[HuggingFace - tiiuae/falcon-40b](https://huggingface.co/tiiuae/falcon-40b)
 
-**参考：**[**2023-05-27，Falcon-40B：截止目前最强大的开源大语言模型，超越MetaAI的LLaMA-65B的开源大语言模型**](https://mp.weixin.qq.com/s/Vy_xWBuZU0AaaPMCIhKIyw)
+## 历史地位
 
-以下是 Falcon 40B 的一些关键特点：
+- 2023 年 5 月发布时，Falcon-40B 在 Open LLM Leaderboard 排名第一，超越了当时最强的开源模型 LLaMA-65B
+- 证明了**数据质量 > 参数规模**——40B 的 Falcon 效果超过 65B 的 LLaMA
+- 是中东地区在 AI 领域的重要技术展示
 
-1. **开源**：Falcon 40B 是开源的，这意味着研究人员和开发者可以自由地访问和使用该模型进行实验和应用开发。
-2. **高效的训练**：Falcon 40B 在大规模数据集上进行了训练，旨在提高在多种自然语言处理任务中的表现。
-3. **适用于多种任务**：该模型能够在各种 NLP 任务中提供强大的支持，例如文本生成、语义理解、问题回答、机器翻译等。
-4. **较为先进的架构**：与 GPT 系列和其他类似的模型相比，Falcon 40B 采用了一些优化，使得它在计算效率和生成质量上都有一定的优势。
+## 注意事项
 
+- **不支持中文**——只支持英文。国内使用场景有限
+- **后续版本 Falcon-180B**（1800 亿参数）于 2023 年 9 月发布，但已逐渐被 LLaMA 3 和 Mistral 系列取代
+- 2024 年开源 LLM 格局已变，LLaMA 3、Qwen 2.5、DeepSeek 是当前主流
+
+## 相关笔记
+
+- [[LLaMA 系列]] — 当前开源 LLM 的标杆
+- [[开源大模型生态概览]]
+
+## 参考
+
+- [HuggingFace - tiiuae/falcon-40b](https://huggingface.co/tiiuae/falcon-40b)
+- [Falcon-40B 技术解读](https://mp.weixin.qq.com/s/Vy_xWBuZU0AaaPMCIhKIyw)

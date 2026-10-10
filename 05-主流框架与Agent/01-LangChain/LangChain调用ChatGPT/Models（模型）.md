@@ -10,7 +10,7 @@ from dotenv import load_dotenv, find_dotenv
 # 读取本地/项目的环境变量。
 
 # find_dotenv()寻找并定位.env文件的路径
-# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 
@@ -40,7 +40,7 @@ llm
 
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>ChatOpenAI(client=&lt;openai.resources.chat.completions.Completions object at 0x000001B17F799BD0&gt;, async_client=&lt;openai.resources.chat.completions.AsyncCompletions object at 0x000001B17F79BA60&gt;, temperature=0.0, openai_api_key=SecretStr('**********'), openai_api_base='https://api.chatgptid.net/v1', openai_proxy='')</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>ChatOpenAI(client=&lt;openai.resources.chat.completions.Completions object at 0x000001B17F799BD0&gt;, async_client=&lt;openai.resources.chat.completions.AsyncCompletions object at 0x000001B17F79BA60&gt;, temperature=0.0, openai_api_key=SecretStr('**********'), openai_api_base='https://api.chatgptid.net/v1', openai_proxy='')</code></pre></details>
 上面的 cell 假设 OpenAI API 密钥是在环境变量中设置的，如果希望手动指定API密钥，使用以下代码：
 
 ```python
@@ -48,7 +48,6 @@ llm = ChatOpenAI(temperature=0, openai_api_base="https://xiaoai.plus/v1",openai_
 llm
 ```
 
-<br/>color2
 可以看到，默认调用的是 ChatGPT-3.5 模型。另外，几种常用的超参数设置包括：
 
 + `model_name`：所要使用的模型，默认为 ‘`gpt-3.5-turbo`’，参数设置与 OpenAI 原生接口参数设置一致。
@@ -58,8 +57,6 @@ llm
 + `streaming`：是否使用流式传输，即逐字输出模型回答，默认为 False，此处不赘述
 + `max_tokens`：模型输出的最大 token 数，意义及取值同上。
 + `openai_api_base`：如果用的是代理，就把这个 url 填上
-
-<br/>
 
 当初始化了选择的`LLM`后，就可以尝试使用它！问一下“请你自我介绍一下自己！”
 
@@ -71,7 +68,7 @@ output = llm.invoke("请你自我介绍一下自己！")
 output
 ```
 
-<details class="lake-collapse"><summary id="ucd734aa9"><span class="ne-text">output：</span></summary><pre data-language="python" id="TPStQ" class="ne-codeblock language-python"><code>AIMessage(content='你好，我是一个智能助手，专注于为用户提供各种服务和帮助。我可以回答问题、提供信息、解决问题，帮助用户更高效地完成工作和生活。如果您有任何疑问或需要帮助，请随时告诉我，我会尽力帮助您。感谢您的使用！', response_metadata={'token_usage': {'completion_tokens': 104, 'prompt_tokens': 20, 'total_tokens': 124}, 'model_name': 'gpt-3.5-turbo', 'system_fingerprint': 'fp_b28b39ffa8', 'finish_reason': 'stop', 'logprobs': None})</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>AIMessage(content='你好，我是一个智能助手，专注于为用户提供各种服务和帮助。我可以回答问题、提供信息、解决问题，帮助用户更高效地完成工作和生活。如果您有任何疑问或需要帮助，请随时告诉我，我会尽力帮助您。感谢您的使用！', response_metadata={'token_usage': {'completion_tokens': 104, 'prompt_tokens': 20, 'total_tokens': 124}, 'model_name': 'gpt-3.5-turbo', 'system_fingerprint': 'fp_b28b39ffa8', 'finish_reason': 'stop', 'logprobs': None})</code></pre></details>
 ## ModelLaboratory
 > langchain 可以集成很多模型的调用
 >
@@ -108,4 +105,3 @@ model_lab.compare("百合花是来源自哪个国家?")
 3个模型给出3种答案。很明显，`OpenAl`公司的`ChatGPT`（未指定具体模型,默认使用`GPT-3.5Turboinstruct`，这是上一代的模型）的答案最佳，`Cohere`的答案不正确。`HuggingFaceHub`的开源模型falcon-7b甚至只是将问题夏述一遍并作为回应，相当敷衍。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736757657194-84fd864e-8336-4c91-bd16-1da84317f5ff.png)
-

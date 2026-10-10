@@ -4,7 +4,7 @@
 ```bash
 # 添加 Milvus Helm 存储库
 helm repo add zilliztech https://zilliztech.github.io/milvus-helm
-# 从存储库中获取 Milvus 
+# 从存储库中获取 Milvus
 helm repo update
 # upgrade existing helm release
 helm upgrade my-release zilliztech/milvus
@@ -50,6 +50,3 @@ docker run -d --name=attu -p 8089:3000 -e MILVUS_URL=10.0.5.73:32269 zilliz/attu
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731642241140-300e82ce-a053-4145-b03c-261429f48891.png)
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731642309680-82cfcfb4-471c-4d8b-b16a-b35022beee71.png)
-
-
-

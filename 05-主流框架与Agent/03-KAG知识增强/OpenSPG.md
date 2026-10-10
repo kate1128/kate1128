@@ -14,4 +14,3 @@ $ docker-compose up -d
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1737624123350-087e27c5-728a-40d7-98f5-aa42347f1faf.png)
-

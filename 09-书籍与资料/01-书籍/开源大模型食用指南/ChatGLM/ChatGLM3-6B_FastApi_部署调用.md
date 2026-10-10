@@ -1,5 +1,5 @@
-# <font style="color:rgb(31, 35, 40);">环境准备</font>
-<font style="color:rgb(31, 35, 40);">在</font>[autodl](https://www.autodl.com/)<font style="color:rgb(31, 35, 40);">平台租机器，pip换源和安装依赖包：</font>
+# 环境准备
+在[autodl](https://www.autodl.com/)平台租机器，pip换源和安装依赖包：
 
 ```python
 # 升级pip
@@ -17,10 +17,10 @@ pip install sentencepiece==0.1.99
 pip install accelerate==0.24.1
 ```
 
-# <font style="color:rgb(31, 35, 40);">模型下载</font>
-<font style="color:rgb(31, 35, 40);">使用</font><font style="color:rgb(31, 35, 40);"> </font>`<font style="color:rgb(31, 35, 40);">modelscope</font>`<font style="color:rgb(31, 35, 40);"> </font><font style="color:rgb(31, 35, 40);">中的</font>`<font style="color:rgb(31, 35, 40);">snapshot_download</font>`<font style="color:rgb(31, 35, 40);">函数下载模型，第一个参数为模型名称，参数</font>`<font style="color:rgb(31, 35, 40);">cache_dir</font>`<font style="color:rgb(31, 35, 40);">为模型的下载路径。</font>
+# 模型下载
+使用 `modelscope` 中的`snapshot_download`函数下载模型，第一个参数为模型名称，参数`cache_dir`为模型的下载路径。
 
-<font style="color:rgb(31, 35, 40);">在</font><font style="color:rgb(31, 35, 40);"> </font>`<font style="color:rgb(31, 35, 40);">/root/autodl-tmp</font>`<font style="color:rgb(31, 35, 40);"> </font><font style="color:rgb(31, 35, 40);">路径下新建</font><font style="color:rgb(31, 35, 40);"> </font>`<font style="color:rgb(31, 35, 40);">download.py</font>`<font style="color:rgb(31, 35, 40);"> </font><font style="color:rgb(31, 35, 40);">文件并在其中输入以下内容，粘贴代码后记得保存文件，如下图所示。并运行</font><font style="color:rgb(31, 35, 40);"> </font>`<font style="color:rgb(31, 35, 40);">python /root/autodl-tmp/download.py</font>`<font style="color:rgb(31, 35, 40);">执行下载，模型大小为 14 GB，下载模型大概需要 10~20 分钟</font>
+在 `/root/autodl-tmp` 路径下新建 `download.py` 文件并在其中输入以下内容，粘贴代码后记得保存文件，如下图所示。并运行 `python /root/autodl-tmp/download.py`执行下载，模型大小为 14 GB，下载模型大概需要 10~20 分钟
 
 ```python
 import torch
@@ -29,8 +29,8 @@ import os
 model_dir = snapshot_download('ZhipuAI/chatglm3-6b', cache_dir='/root/autodl-tmp', revision='master')
 ```
 
-# <font style="color:rgb(31, 35, 40);">代码准备</font>
-<font style="color:rgb(31, 35, 40);">在</font>`<font style="color:rgb(31, 35, 40);">/root/autodl-tmp</font>`<font style="color:rgb(31, 35, 40);">路径下新建</font>`<font style="color:rgb(31, 35, 40);">api.py</font>`<font style="color:rgb(31, 35, 40);">文件并在其中输入以下内容：</font>
+# 代码准备
+在`/root/autodl-tmp`路径下新建`api.py`文件并在其中输入以下内容：
 
 ```python
 from fastapi import FastAPI, Request
@@ -67,7 +67,7 @@ async def create_item(request: Request):
     max_length = json_post_list.get('max_length')  # 获取请求中的最大长度
     top_p = json_post_list.get('top_p')  # 获取请求中的top_p参数
     temperature = json_post_list.get('temperature')  # 获取请求中的温度参数
-    
+
     # 调用模型进行对话生成
     response, history = model.chat(
         tokenizer,
@@ -79,7 +79,7 @@ async def create_item(request: Request):
     )
     now = datetime.datetime.now()  # 获取当前时间
     time = now.strftime("%Y-%m-%d %H:%M:%S")  # 格式化时间为字符串
-    
+
     # 构建响应JSON
     answer = {
         "response": response,
@@ -87,7 +87,7 @@ async def create_item(request: Request):
         "status": 200,
         "time": time
     }
-    
+
     # 构建日志信息
     log = "[" + time + "] " + '", prompt:"' + prompt + '", response:"' + repr(response) + '"'
     print(log)  # 打印日志
@@ -98,25 +98,25 @@ async def create_item(request: Request):
 if __name__ == '__main__':
     # 加载预训练的分词器和模型
     tokenizer = AutoTokenizer.from_pretrained("/root/autodl-tmp/ZhipuAI/chatglm3-6b", trust_remote_code=True)
-    
+
     model = AutoModelForCausalLM.from_pretrained("/root/autodl-tmp/ZhipuAI/chatglm3-6b", trust_remote_code=True).to(torch.bfloat16).cuda()
-    
+
     model.eval()  # 设置模型为评估模式
-    
+
     # 启动FastAPI应用
     # 用6006端口可以将autodl的端口映射到本地，从而在本地使用api
     uvicorn.run(app, host='0.0.0.0', port=6006, workers=1)  # 在指定端口和主机上启动应用
 ```
 
-# <font style="color:rgb(31, 35, 40);">Api 部署</font>
-<font style="color:rgb(31, 35, 40);">在终端输入以下命令启动</font>`<font style="color:rgb(31, 35, 40);">api</font>`<font style="color:rgb(31, 35, 40);">服务</font>
+# Api 部署
+在终端输入以下命令启动`api`服务
 
 ```python
 cd /root/autodl-tmp
 python api.py
 ```
 
-<font style="color:rgb(31, 35, 40);">默认部署在 6006 端口，通过 POST 方法进行调用，可以使用</font>`<font style="color:rgb(31, 35, 40);">curl</font>`<font style="color:rgb(31, 35, 40);">调用，如下所示：</font>
+默认部署在 6006 端口，通过 POST 方法进行调用，可以使用`curl`调用，如下所示：
 
 ```python
 curl -X POST "http://127.0.0.1:6006" \
@@ -124,11 +124,11 @@ curl -X POST "http://127.0.0.1:6006" \
 -d '{"prompt": "你好", "history": []}'
 ```
 
-<font style="color:rgb(31, 35, 40);">调用示例结果如下图所示</font>
+调用示例结果如下图所示
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1735717701539-9a9f5a94-3a20-4b66-88fc-e51f1e6b4d87.png)
 
-<font style="color:rgb(31, 35, 40);">也可以使用</font>`<font style="color:rgb(31, 35, 40);">python</font>`<font style="color:rgb(31, 35, 40);">中的</font>`<font style="color:rgb(31, 35, 40);">requests</font>`<font style="color:rgb(31, 35, 40);">库进行调用，如下所示：</font>
+也可以使用`python`中的`requests`库进行调用，如下所示：
 
 ```python
 import requests
@@ -144,7 +144,7 @@ if __name__ == '__main__':
     print(get_completion('你好'))
 ```
 
-<font style="color:rgb(31, 35, 40);">得到的返回值如下所示：</font>
+得到的返回值如下所示：
 
 ```python
 {
@@ -155,7 +155,6 @@ if __name__ == '__main__':
 }
 ```
 
-<font style="color:rgb(31, 35, 40);">调用结果如下图所示</font>
+调用结果如下图所示
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1735717724709-07464527-572a-49c2-a87f-2b0218f6497a.png)
-

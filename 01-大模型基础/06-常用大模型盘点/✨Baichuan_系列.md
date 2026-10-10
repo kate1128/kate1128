@@ -1,17 +1,37 @@
-> [百川使用地址](https://www.baichuan-ai.com/chat)
->
+<!-- type: glossary -->
+# Baichuan 系列（百川智能）
 
-> [百川开源地址](https://github.com/baichuan-inc)
->
+> 由前搜狗 CEO 王小川创立的**百川智能**开发的开源语言大模型系列，以**中文能力和商用友好**为特点。
 
-**Baichuan** 是由**百川智能**开发的**开源可商用**的语言大模型。其基于**Transformer 解码器架构（decoder-only）**。
+## 基本情况
 
-2023 年 6 月 15 日发布了 **Baichuan-7B** 和 **Baichuan-13B**。百川同时开源了**预训练**和**对齐**模型，`预训练模型是面向开发者的“基座”`，而`对齐模型则面向广大需要对话功能的普通用户`。
+- **开发者**：百川智能（王小川创立，2023 年 4 月成立）
+- **首次发布**：Baichuan-7B/13B（2023.06）
+- **使用地址**：[baichuan-ai.com](https://www.baichuan-ai.com/chat)
+- **开源地址**：[github.com/baichuan-inc](https://github.com/baichuan-inc)
 
-**Baichuan2** 于 `2023年 9 月 6 日`推出。发布了 **7B、13B** 的 **Base** 和 **Chat** 版本，并提供了 Chat 版本的 **4bits 量化**。
+## 主要版本
 
-`2024 年 1 月 29 日` 发布了 **Baichuan 3**。但是**目前还没有开源**。
+| 版本 | 发布时间 | 规模 | 特点 |
+| --- | --- | --- | --- |
+| Baichuan-7B/13B | 2023.06 | 7B, 13B | 首批模型，开源可商用 |
+| Baichuan 2 | 2023.09 | 7B, 13B | 预训练 + 对齐模型，提供 4-bit 量化版 |
+| Baichuan 3 | 2024.01 | 未公开 | **尚未开源**，能力大幅提升 |
 
-以下是百川大模型的使用界面：  
-![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736494981927-065d75b6-6e86-4828-9901-373b6202923c.png)
+## 特点
 
+- **Decoder-only Transformer** 架构
+- **开源可商用**：这对国内企业用户是重要优势（很多开源模型有商用限制）
+- **中文优化**：在中文理解和生成上针对性训练
+- **提供量化版本**：4-bit 量化降低部署门槛
+
+## 相关笔记
+
+- [[GLM 系列]] — 清华/智谱的 LLM
+- [[通义千问 Qwen]] — 阿里的 LLM
+- [[模型选型指南](../../../07-LLM应用开发/01-LLM应用开发/对话型应用的设计/第一步_模型选型.md)]
+
+## 参考
+
+- [百川智能官网](https://www.baichuan-ai.com/)
+- [Baichuan GitHub](https://github.com/baichuan-inc)

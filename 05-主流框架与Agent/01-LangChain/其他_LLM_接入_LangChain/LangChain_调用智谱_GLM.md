@@ -21,7 +21,7 @@ class ZhipuAILLM(LLM):
     temperature: float = 0.1
     # API_Key
     api_key: str = None
-    
+
     def _call(self, prompt : str, stop: Optional[List[str]] = None,
                 run_manager: Optional[CallbackManagerForLLMRun] = None,
                 **kwargs: Any):
@@ -38,7 +38,7 @@ class ZhipuAILLM(LLM):
             '''
             messages = [{"role": "user", "content": prompt}]
             return messages
-        
+
         messages = gen_glm_params(prompt)
         response = client.chat.completions.create(
             model = self.model,
@@ -49,7 +49,6 @@ class ZhipuAILLM(LLM):
         if len(response.choices) > 0:
             return response.choices[0].message.content
         return "generate answer error"
-
 
     # 首先定义一个返回默认参数的方法
     @property
@@ -80,7 +79,6 @@ class ZhipuAILLM(LLM):
 | chatglm_std | 2024 年 12 月 31 日 | glm-3-turbo |
 | chatglm_lite | 2024 年 12 月 31 日 | glm-3-turbo |
 
-
 ## 自定义chatglm接入 langchain
 ```python
 # 需要下载源码
@@ -110,6 +108,4 @@ zhipuai_model = ZhipuAILLM(model = "glm-4", temperature = 0.1, api_key = api_key
 zhipuai_model("你好，请你自我介绍一下！")
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>'你好！我是智谱清言，是清华大学 KEG 实验室和智谱 AI 公司于 2023 年共同训练的语言模型。我的目标是通过回答用户提出的问题来帮助他们解决问题。由于我是一个计算机程序，所以我没有自我意识，也不能像人类一样感知世界。我只能通过分析我所学到的信息来回答问题。'</code></pre></details>
-
-
+<details><summary>output：</summary><pre><code class="language-python"><code>'你好！我是智谱清言，是清华大学 KEG 实验室和智谱 AI 公司于 2023 年共同训练的语言模型。我的目标是通过回答用户提出的问题来帮助他们解决问题。由于我是一个计算机程序，所以我没有自我意识，也不能像人类一样感知世界。我只能通过分析我所学到的信息来回答问题。'</code></pre></details>

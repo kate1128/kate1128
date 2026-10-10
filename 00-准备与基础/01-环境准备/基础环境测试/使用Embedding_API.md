@@ -13,4 +13,3 @@
 本文对应源代码
 
 [llm-universe/notebook/C3 搭建知识库/2.使用 Embedding API.ipynb at main · datawhalechina/llm-universe](https://github.com/datawhalechina/llm-universe/blob/main/notebook/C3%20%E6%90%AD%E5%BB%BA%E7%9F%A5%E8%AF%86%E5%BA%93/2.%E4%BD%BF%E7%94%A8%20Embedding%20API.ipynb)
-

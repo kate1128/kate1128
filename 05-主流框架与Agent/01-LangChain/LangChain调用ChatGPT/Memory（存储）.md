@@ -11,7 +11,7 @@ LangChain 提供了多种储存类型。其中，缓冲区储存允许保留最�
 + 对话令牌缓存储存 (ConversationTokenBufferMemory）
 + 对话摘要缓存储存 (ConversationSummaryBufferMemory）
 
-在LangChain中，储存 指的是大语言模型（LLM）的短期记忆。为什么是短期记忆？那是因为LLM训练好之后 (获得了一些长期记忆)，它的参数便不会因为用户的输入而发生改变。当用户与训练好的LLM进行对话时，LLM会暂时记住用户的输入和它已经生成的输出，以便预测之后的输出，而模型输出完毕后，它便会“遗忘”之前用户的输入和它的输出。因此，之前的这些信息只能称作为LLM的短期记忆。  
+在LangChain中，储存 指的是大语言模型（LLM）的短期记忆。为什么是短期记忆？那是因为LLM训练好之后 (获得了一些长期记忆)，它的参数便不会因为用户的输入而发生改变。当用户与训练好的LLM进行对话时，LLM会暂时记住用户的输入和它已经生成的输出，以便预测之后的输出，而模型输出完毕后，它便会“遗忘”之前用户的输入和它的输出。因此，之前的这些信息只能称作为LLM的短期记忆。
 
 为了延长LLM短期记忆的保留时间，则需要借助一些外部储存方式来进行记忆，以便在用户与LLM对话中，LLM能够尽可能的知道用户与它所进行的历史对话信息。
 
@@ -44,7 +44,7 @@ from langchain.memory import ConversationBufferMemory
 ```python
 # 这里我们将参数temperature设置为0.0，从而减少生成答案的随机性。
 # 如果你想要每次得到不一样的有新意的答案，可以尝试增大该参数。
-llm = ChatOpenAI(temperature=0.0,openai_api_base="https://xiaoai.plus/v1") 
+llm = ChatOpenAI(temperature=0.0,openai_api_base="https://xiaoai.plus/v1")
 
 memory = ConversationBufferMemory()
 
@@ -79,7 +79,7 @@ conversation.predict(input="What is my name?")
 存储存储-->储存了当前为止所有的对话信息
 
 ```python
-print(memory.buffer) 
+print(memory.buffer)
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736500340517-f6629a57-edd0-4714-908c-11c05bc625b1.png)
@@ -90,7 +90,7 @@ print(memory.buffer)
 print(memory.load_memory_variables({}))
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>{'history': &quot;Human: Hi, my name is Andrew\nAI: Hello Andrew! It's nice to meet you. How can I assist you today?\nHuman: What is 1+1?\nAI: 1+1 is equal to 2. Is there anything else you would like to know?\nHuman: What is my name?\nAI: Your name is Andrew. Is there anything else you would like to know or discuss?&quot;}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>{'history': &quot;Human: Hi, my name is Andrew\nAI: Hello Andrew! It's nice to meet you. How can I assist you today?\nHuman: What is 1+1?\nAI: 1+1 is equal to 2. Is there anything else you would like to know?\nHuman: What is my name?\nAI: Your name is Andrew. Is there anything else you would like to know or discuss?&quot;}</code></pre></details>
 ### 直接添加内容到缓存
 ```python
 memory = ConversationBufferMemory()  # 新建一个空的对话缓存记忆
@@ -98,13 +98,13 @@ memory.save_context({"input": "Hi"}, {"output": "What's up"})  # 向缓存区添
 print(memory.buffer)  # 查看缓存区结果
 ```
 
-<details class="lake-collapse"><summary id="uf6c34afc"><span class="ne-text">output：</span></summary><pre data-language="python" id="WdZEq" class="ne-codeblock language-python"><code>Human: Hi
+<details><summary>output：</summary><pre><code class="language-python"><code>Human: Hi
 AI: What's up</code></pre></details>
 ```python
 print(memory.load_memory_variables({}))# 再次加载记忆变量
 ```
 
-<details class="lake-collapse"><summary id="u2259ccb9"><span class="ne-text">output：</span></summary><pre data-language="python" id="u5wun" class="ne-codeblock language-python"><code>{'history': &quot;Human: Hi\nAI: What's up&quot;}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>{'history': &quot;Human: Hi\nAI: What's up&quot;}</code></pre></details>
 继续添加新的内容，对话历史都保存下来在了！
 
 ```python
@@ -115,7 +115,7 @@ memory.save_context({"input": "Not much, just hanging"}, {"output": "Cool"})
 memory.load_memory_variables({})
 ```
 
-<details class="lake-collapse"><summary id="u94b1ab48"><span class="ne-text">output：</span></summary><pre data-language="python" id="KTy9p" class="ne-codeblock language-python"><code>{'history': &quot;Human: Hi\nAI: What's up\nHuman: Not much, just hanging\nAI: Cool&quot;}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>{'history': &quot;Human: Hi\nAI: What's up\nHuman: Not much, just hanging\nAI: Cool&quot;}</code></pre></details>
 ### 中文
 中文很拉跨，记不住名字
 
@@ -129,7 +129,7 @@ memory.load_memory_variables({})
 from langchain.memory import ConversationBufferWindowMemory
 
 # k 为窗口参数，k=1表明只保留一个对话记忆
-memory = ConversationBufferWindowMemory(k=1)  
+memory = ConversationBufferWindowMemory(k=1)
 ```
 
 ```python
@@ -143,7 +143,7 @@ memory.save_context({"input": "Not much, just hanging"}, {"output": "Cool"})
 memory.load_memory_variables({})
 ```
 
-<details class="lake-collapse"><summary id="u3d1425f7"><span class="ne-text">output：</span></summary><pre data-language="python" id="SwNSr" class="ne-codeblock language-python"><code>{'history': 'Human: Not much, just hanging\nAI: Cool'}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>{'history': 'Human: Not much, just hanging\nAI: Cool'}</code></pre></details>
 ### 在对话链中应用窗口缓存
 ```python
 llm = ChatOpenAI(temperature=0.0,openai_api_base="https://xiaoai.plus/v1")
@@ -157,17 +157,17 @@ conversation = ConversationChain(llm=llm, memory=memory, verbose=False  )
 conversation.predict(input="Hi, my name is Andrew")
 ```
 
-<details class="lake-collapse"><summary id="u0979ecc1"><span class="ne-text">output：</span></summary><pre data-language="python" id="Xty15" class="ne-codeblock language-python"><code>&quot;Hello Andrew! I'm an AI designed to help with a wide range of topics and conversations. How can I assist you today?&quot;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>&quot;Hello Andrew! I'm an AI designed to help with a wide range of topics and conversations. How can I assist you today?&quot;</code></pre></details>
 ```python
 conversation.predict(input="What is 1+1?")
 ```
 
-<details class="lake-collapse"><summary id="uc9a33e6b"><span class="ne-text">output：</span></summary><pre data-language="python" id="VIJwl" class="ne-codeblock language-python"><code>&quot;1 + 1 equals 2. It's a basic arithmetic operation that results in the sum of two single-digit numbers. Is there anything else you'd like to know or discuss?&quot;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>&quot;1 + 1 equals 2. It's a basic arithmetic operation that results in the sum of two single-digit numbers. Is there anything else you'd like to know or discuss?&quot;</code></pre></details>
 ```python
 conversation.predict(input="What is my name?")
 ```
 
-<details class="lake-collapse"><summary id="u0c545ab1"><span class="ne-text">output：</span></summary><pre data-language="python" id="o9Qsr" class="ne-codeblock language-python"><code>&quot;I'm sorry, but as an AI, I do not have access to personal information about individuals unless it has been provided to me during our conversation. Would you like to share your name with me?&quot;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>&quot;I'm sorry, but as an AI, I do not have access to personal information about individuals unless it has been provided to me during our conversation. Would you like to share your name with me?&quot;</code></pre></details>
 ## 对话 token 缓存存储
 使用对话token缓存记忆，内存将限制保存的token数量。如果token数量超出指定数目，它会切掉这个对话的早期部分
 
@@ -190,11 +190,11 @@ memory.save_context({"input": "Chatbots are what?"}, {"output": "Charming!"})
 memory.load_memory_variables({})
 ```
 
-<details class="lake-collapse"><summary id="u7e494f93"><span class="ne-text">output：</span></summary><pre data-language="python" id="dhzmq" class="ne-codeblock language-python"><code>{'history': 'AI: Beautiful!\nHuman: Chatbots are what?\nAI: Charming!'}</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>{'history': 'AI: Beautiful!\nHuman: Chatbots are what?\nAI: Charming!'}</code></pre></details>
 可以看到前面超出的的token已经被舍弃了
 
 ### 补充
-ChatGPT使用一种基于字节对编码（Byte Pair Encoding，BPE）的方法来进行tokenization（将输入文本拆分为token）。BPE是一种常见的tokenization技术，它将输入文本分割成较小的子词单元。 
+ChatGPT使用一种基于字节对编码（Byte Pair Encoding，BPE）的方法来进行tokenization（将输入文本拆分为token）。BPE是一种常见的tokenization技术，它将输入文本分割成较小的子词单元。
 
 OpenAI在其官方GitHub上公开了一个最新的开源Python库 [tiktoken](https://github.com/openai/tiktoken)，这个库主要是用来计算tokens数量的。相比较HuggingFace的tokenizer，其速度提升了好几倍。
 
@@ -222,7 +222,7 @@ Be sure to bring your laptop to show the latest LLM demo."
 
 # 使用对话摘要缓存记忆
 llm = ChatOpenAI(temperature=0.0,openai_api_base="https://xiaoai.plus/v1")
-memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=100) 
+memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=100)
 memory.save_context({"input": "Hello"}, {"output": "What's up"})
 memory.save_context({"input": "Not much, just hanging"}, {"output": "Cool"})
 memory.save_context(
@@ -234,7 +234,7 @@ memory.save_context(
 print(memory.load_memory_variables({})['history'])
 ```
 
-<details class="lake-collapse"><summary id="u458b48cf"><span class="ne-text">output：</span></summary><pre data-language="python" id="PaCha" class="ne-codeblock language-python"><code>System: The human and AI exchange greetings and discuss the day's schedule, including a meeting with the product team, work on the LangChain project, and a lunch meeting with a customer interested in AI. The AI emphasizes the power of LangChain as a tool.</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>System: The human and AI exchange greetings and discuss the day's schedule, including a meeting with the product team, work on the LangChain project, and a lunch meeting with a customer interested in AI. The AI emphasizes the power of LangChain as a tool.</code></pre></details>
 ### 基于对话摘要缓存储存的对话链
 基于上面的对话摘要缓存储存，新建一个对话链
 
@@ -248,9 +248,9 @@ conversation.predict(input="What would be a good demo to show?")
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736501273688-3c7302f0-8225-49d5-9c14-bfd9c8988c9d.png)
 
-<details class="lake-collapse"><summary id="u137e6353"><span class="ne-text">output：</span></summary><pre data-language="python" id="LNCH4" class="ne-codeblock language-python"><code>'For the meeting with the product team, a demo showcasing the latest updates to the user interface and the new features added to the existing product would be impressive. For the LangChain project work time, a demo of the progress made on implementing the translation algorithms and the integration with external APIs would be beneficial. And for the lunch appointment with the customer interested in AI, a demo highlighting the natural language processing capabilities and the machine learning models built into the AI platform would be engaging.'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'For the meeting with the product team, a demo showcasing the latest updates to the user interface and the new features added to the existing product would be impressive. For the LangChain project work time, a demo of the progress made on implementing the translation algorithms and the integration with external APIs would be beneficial. And for the lunch appointment with the customer interested in AI, a demo highlighting the natural language processing capabilities and the machine learning models built into the AI platform would be engaging.'</code></pre></details>
 ```python
 print(memory.load_memory_variables({})['history'])
 ```
 
-<details class="lake-collapse"><summary id="uabd78bec"><span class="ne-text">output：</span></summary><pre data-language="python" id="W3iWM" class="ne-codeblock language-python"><code>System: The human greets the AI and asks about the day's schedule. The AI informs the human about the upcoming meeting with the product team, time to work on the LangChain project, and a lunch appointment with a customer interested in AI. The AI suggests demos to show, including updates to the user interface and new features for the product team, progress on translation algorithms and API integration for LangChain project, and highlighting natural language processing and machine learning models for the customer interested in AI.</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>System: The human greets the AI and asks about the day's schedule. The AI informs the human about the upcoming meeting with the product team, time to work on the LangChain project, and a lunch appointment with a customer interested in AI. The AI suggests demos to show, including updates to the user interface and new features for the product team, progress on translation algorithms and API integration for LangChain project, and highlighting natural language processing and machine learning models for the customer interested in AI.</code></pre></details>

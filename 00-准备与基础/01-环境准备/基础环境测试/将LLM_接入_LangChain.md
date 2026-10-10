@@ -12,7 +12,7 @@ LangChain 为基于 LLM 开发自定义应用提供了高效的开发框架，�
 # 使用 LangChain 调用智谱 GLM
 [LangChain 调用智谱 GLM](https://www.yuque.com/qiaokate/su87gb/vptqccctcdc5ob1c)
 
-# 基于**<font style="color:rgb(38, 38, 38);">LangChain自定义 LLM</font>**
+# 基于**LangChain自定义 LLM**
 [LangChain自定义 LLM](https://www.yuque.com/qiaokate/su87gb/pag54tm6sopqgh0g)
 
 # 参考
@@ -23,4 +23,3 @@ LangChain 为基于 LLM 开发自定义应用提供了高效的开发框架，�
 [llm-universe/notebook/C4 构建 RAG 应用/wenxin_llm.py at main · datawhalechina/llm-universe](https://github.com/datawhalechina/llm-universe/blob/main/notebook/C4%20%E6%9E%84%E5%BB%BA%20RAG%20%E5%BA%94%E7%94%A8/wenxin_llm.py)
 
 [zhipuai_llm.py](https://github.com/datawhalechina/llm-universe/blob/main/notebook/C4%20%E6%9E%84%E5%BB%BA%20RAG%20%E5%BA%94%E7%94%A8/zhipuai_llm.py)
-

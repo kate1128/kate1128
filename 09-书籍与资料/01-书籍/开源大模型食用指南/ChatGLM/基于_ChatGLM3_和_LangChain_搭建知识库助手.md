@@ -43,7 +43,7 @@ unset http_proxy && unset https_proxy
 首先将上述仓库中所有满足条件的文件路径找出来，定义一个函数，该函数将递归指定文件夹路径，返回其中所有满足条件（即后缀名为 .md 或者 .txt 的文件）的文件路径：
 
 ```python
-import os 
+import os
 def get_files(dir_path):
     # args：dir_path，目标文件夹路径
     file_list = []
@@ -239,7 +239,7 @@ class ChatGLM_LLM(LLM):
         # 重写调用函数
         response, history = self.model.chat(self.tokenizer, prompt , history=[])
         return response
-        
+
     @property
     def _llm_type(self) -> str:
         return "ChatGLM3-6B"
@@ -267,7 +267,7 @@ persist_directory = 'data_base/vector_db/chroma'
 
 # 加载数据库
 vectordb = Chroma(
-    persist_directory=persist_directory, 
+    persist_directory=persist_directory,
     embedding_function=embeddings
 )
 ```
@@ -362,7 +362,7 @@ def load_chain():
 
     # 运行 chain
     qa_chain = RetrievalQA.from_chain_type(llm,retriever=vectordb.as_retriever(),return_source_documents=True,chain_type_kwargs={"prompt":QA_CHAIN_PROMPT})
-    
+
     return qa_chain
 ```
 
@@ -371,7 +371,7 @@ def load_chain():
 ```bash
 class Model_center():
     """
-    存储检索问答链的对象 
+    存储检索问答链的对象
     """
     def __init__(self):
         # 构造函数，加载检索问答链
@@ -403,7 +403,7 @@ model_center = Model_center()
 # 创建一个 Web 界面
 block = gr.Blocks()
 with block as demo:
-    with gr.Row(equal_height=True):   
+    with gr.Row(equal_height=True):
         with gr.Column(scale=15):
             # 展示的页面标题
             gr.Markdown("""<h1><center>Self LLM</center></h1>
@@ -426,14 +426,16 @@ with block as demo:
                 # 创建一个清除按钮，用于清除聊天机器人组件的内容。
                 clear = gr.ClearButton(
                     components=[chatbot], value="Clear console")
-                
+
         # 设置按钮的点击事件。当点击时，调用上面定义的 qa_chain_self_answer 函数，并传入用户的消息和聊天历史记录，然后更新文本框和聊天机器人组件。
         db_wo_his_btn.click(model_center.qa_chain_self_answer, inputs=[
                             msg, chatbot], outputs=[msg, chatbot])
-        
-    gr.Markdown("""提醒：<br>
+
+    gr.Markdown("""提醒：
+
     1. 初始化数据库时间可能较长，请耐心等待。
-    2. 使用中如果出现异常，将会在文本输入框进行展示，请不要惊慌。 <br>
+    2. 使用中如果出现异常，将会在文本输入框进行展示，请不要惊慌。
+
     """)
 gr.close_all()
 # 直接启动
@@ -445,4 +447,3 @@ demo.launch()
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1735706203742-acca93df-1acb-471e-9405-a6a2396793cf.png)
 
 ![](https://github.com/datawhalechina/self-llm/raw/master/models/ChatGLM/images/image-9.png)![](https://github.com/datawhalechina/self-llm/raw/master/models/ChatGLM/images/image-9.png)
-

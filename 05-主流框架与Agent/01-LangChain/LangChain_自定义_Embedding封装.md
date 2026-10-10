@@ -32,7 +32,7 @@ class ZhipuAIEmbeddings(BaseModel, Embeddings):
     """`zhipuai.ZhipuAI"""
 ```
 
-## 定义`root_validator` 
+## 定义`root_validator`
 在 Python 中，`root_validator` 是 `Pydantic` 模块中一个用于自定义数据校验的装饰器函数。`root_validator` 用于在校验整个数据模型之前对整个数据模型进行自定义校验，以确保所有的数据都符合所期望的数据结构。
 
 `root_validator` 接收一个函数作为参数，该函数包含需要校验的逻辑。函数应该返回一个字典，其中包含经过校验的数据。如果校验失败，则抛出一个 ValueError 异常。
@@ -57,7 +57,7 @@ def validate_environment(cls, values: Dict) -> Dict:
     return values
 ```
 
-## `embed_query` 
+## `embed_query`
 `embed_query` 是对单个文本（str）计算 embedding 的方法，这里重写该方法，调用验证环境时实例化的`ZhipuAI`来 调用远程 API 并返回 embedding 结果。
 
 ```python
@@ -78,7 +78,7 @@ def embed_query(self, text: str) -> List[float]:
     return embeddings.data[0].embedding
 ```
 
-## `embed_documents` 
+## `embed_documents`
 `embed_documents` 是对字符串列表（List[str]）计算embedding 的方法，对于这种类型输入采取循环方式挨个计算列表内子字符串的 embedding 并返回。
 
 ```python
@@ -104,7 +104,6 @@ from __future__ import annotations
 
 import logging
 from typing import Dict, List, Any
-
 
 from langchain.embeddings.base import Embeddings
 from langchain.pydantic_v1 import BaseModel, root_validator
@@ -132,7 +131,7 @@ class ZhipuAIEmbeddings(BaseModel, Embeddings):
         from zhipuai import ZhipuAI
         values["client"] = ZhipuAI()
         return values
-    
+
     def embed_query(self, text: str) -> List[float]:
         """
         生成输入文本的 embedding.
@@ -148,7 +147,7 @@ class ZhipuAIEmbeddings(BaseModel, Embeddings):
             input=text
         )
         return embeddings.data[0].embedding
-    
+
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         """
         生成输入文本列表的 embedding.
@@ -159,8 +158,8 @@ class ZhipuAIEmbeddings(BaseModel, Embeddings):
             List[List[float]]: 输入列表中每个文档的 embedding 列表。每个 embedding 都表示为一个浮点值列表。
         """
         return [self.embed_query(text) for text in texts]
-    
-    
+
+
     async def aembed_documents(self, texts: List[str]) -> List[List[float]]:
         """Asynchronous Embed search docs."""
         raise NotImplementedError("Please use `embed_documents`. Official does not support asynchronous requests")
@@ -174,4 +173,3 @@ class ZhipuAIEmbeddings(BaseModel, Embeddings):
 本文对应源代码在
 
 [llm-universe/notebook/C3 搭建知识库/附LangChain自定义Embedding封装讲解.ipynb at main · datawhalechina/llm-universe](https://github.com/datawhalechina/llm-universe/blob/main/notebook/C3%20%E6%90%AD%E5%BB%BA%E7%9F%A5%E8%AF%86%E5%BA%93/%E9%99%84LangChain%E8%87%AA%E5%AE%9A%E4%B9%89Embedding%E5%B0%81%E8%A3%85%E8%AE%B2%E8%A7%A3.ipynb)
-

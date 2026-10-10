@@ -207,7 +207,7 @@ texts = np.array([t.strip(' \n') for t in texts if t])
 print(texts[:3])
 ```
 
-<details class="lake-collapse"><summary id="u2b223628"><span class="ne-text">output：</span></summary><pre data-language="json" id="wt1Pv" class="ne-codeblock language-json"><code>['The rapid rise of AI has led to a rapid rise in AI jobs, and many people are building exciting careers in this field. A career is a decades-long journey, and the path is not always straightforward. Over many years, I’ve been privileged to see thousands of students as well as engineers in companies large and small navigate careers in AI. In this and the next few letters, I’d like to share a few thoughts that might be useful in charting your own course.'
+<details><summary>output：</summary><pre><code class="language-json"><code>['The rapid rise of AI has led to a rapid rise in AI jobs, and many people are building exciting careers in this field. A career is a decades-long journey, and the path is not always straightforward. Over many years, I’ve been privileged to see thousands of students as well as engineers in companies large and small navigate careers in AI. In this and the next few letters, I’d like to share a few thoughts that might be useful in charting your own course.'
  'Three key steps of career growth are learning (to gain technical and other skills), working on projects (to deepen skills, build a portfolio, and create impact) and searching for a job. These steps stack on top of each other:'
  'Initially, you focus on gaining foundational technical skills.\nAfter having gained foundational skills, you lean into project work. During this period, you’ll probably keep learning.\nLater, you might occasionally carry out a job search. Throughout this process, you’ll probably continue to learn and work on meaningful projects.\nThese phases apply in a wide range of professions, but AI involves unique elements. For example:']</code></pre></details>
 ##### 中文
@@ -220,7 +220,7 @@ texts_zh = np.array([t.strip(' \n') for t in texts_zh if t])
 print(texts_zh[:3])
 ```
 
-<details class="lake-collapse"><summary id="uc70a44e0"><span class="ne-text">output：</span></summary><pre data-language="json" id="vpU2t" class="ne-codeblock language-json"><code>['人工智能的迅速崛起导致了相关工作的迅速增加，许多人开始在这个领域建立起令人兴奋的职业生涯。职业生涯是一个长达几十年的旅程，且道路并不总是一帆风顺的。多年来，我有幸看到成千上万的学生以及来自不同规模公司的工程师在人工智能领域工作。在今天这封信和接下来的几封信中，我将与大家分享一些可能对你制定职业规划有用的想法。'
+<details><summary>output：</summary><pre><code class="language-json"><code>['人工智能的迅速崛起导致了相关工作的迅速增加，许多人开始在这个领域建立起令人兴奋的职业生涯。职业生涯是一个长达几十年的旅程，且道路并不总是一帆风顺的。多年来，我有幸看到成千上万的学生以及来自不同规模公司的工程师在人工智能领域工作。在今天这封信和接下来的几封信中，我将与大家分享一些可能对你制定职业规划有用的想法。'
  '职业发展的三个关键步骤是学习（获得技术和其他技能），参与项目（深化技能，建立一个组合，创造影响）和找到一份合适的工作。将这些步骤叠加在一起：'
  '最初，你需要专注于获得基本的技术技能。\n在获得基本技能之后，你开始投入项目工作。在此期间，你可能会继续学习。\n之后，你可能偶尔会进行求职。在这个过程中，你可能会继续学习并在有意义的项目上工作。\n这些阶段适用于广泛的职业，但人工智能涉及独特的元素。例如:']</code></pre></details>
 #### 生成 embedding
@@ -236,7 +236,7 @@ response = co.embed(
 ).embeddings
 ```
 
-<details class="lake-collapse"><summary id="uc93d8c96"><span class="ne-text">output：</span></summary><pre data-language="json" id="OB7WD" class="ne-codeblock language-json"><code>default model on embed will be deprecated in the future, please specify a model in the request.</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>default model on embed will be deprecated in the future, please specify a model in the request.</code></pre></details>
 ##### 中文
 ```python
 response_zh = co.embed(
@@ -276,7 +276,7 @@ search_index.build(10) # 10 trees
 search_index.save('test.ann')
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>True</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>True</code></pre></details>
 ##### 中文
 ```python
 # 将返回的响应转成 array 的数据格式，并且同时对 embedding 的维度进行校验，确保一致
@@ -292,7 +292,7 @@ search_index_zh.build(10) # 10 trees
 search_index_zh.save('test_zh.ann')
 ```
 
-<details class="lake-collapse"><summary id="u9565998f"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="TqFPI" class="ne-codeblock language-json"><code>True</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>True</code></pre></details>
 ### 搜索文章
 接下来让定义一个函数来对吴恩达老师的文章进行检索。用一个 query 在这个数据集上进行搜索。步骤：
 
@@ -526,7 +526,7 @@ default model on embed will be deprecated in the future, please specify a model 
 ```
 
 ```python
-Side projects can be a great stepping stone to something significant, especially when there is no conflict with your employer, it can stir the creative juices and strengthen bonds with collaborators. 
+Side projects can be a great stepping stone to something significant, especially when there is no conflict with your employer, it can stir the creative juices and strengthen bonds with collaborators.
 
 So, the answer is yes, side projects are a good idea when trying to build a career in AI as they offer an avenue to explore unique and potentially impactful applications and
 ```
@@ -571,8 +571,6 @@ Yes, side projects are a good idea when trying to build a career in AI. They can
 --
 ```
 
-
-
 ```python
 results = ask_andrews_article_zh(
     "在你开始探索人工智能的学习之旅时，实战项目对你的学习成效有多大的促进作用？",
@@ -592,6 +590,3 @@ for gen in results:
 答案是：人工智能的学习成效，在开始探索学习之旅时，需要通过加入现有项目，保持阅读和与人交谈，关注应用领域，开发副业等方式，来提高学习成效。
 --
 ```
-
-
-

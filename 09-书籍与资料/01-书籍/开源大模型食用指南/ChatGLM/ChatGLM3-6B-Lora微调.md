@@ -10,10 +10,8 @@ import pandas as pd
   from .autonotebook import tqdm as notebook_tqdm
 ```
 
-<br/>tips
-<font style="color:rgba(0, 0, 0, 0.87);">'/CV/xhr/xhr_project/LLM_learn/transformers-code-master/self-llm'</font>
-
-<br/>
+tips
+'/CV/xhr/xhr_project/LLM_learn/transformers-code-master/self-llm'
 
 # Step2 加载数据集
 In [2]:
@@ -52,7 +50,7 @@ Out[4]:
 
 ```plain
 ChatGLMTokenizer(name_or_path='/CV/xhr/xhr_project/LLM_learn/transformers-code-master/model/chatglm3-6b', vocab_size=64798, model_max_length=1000000000000000019884624838656, is_fast=False, padding_side='left', truncation_side='right', special_tokens={'eos_token': '</s>', 'unk_token': '<unk>', 'pad_token': '<unk>'}, clean_up_tokenization_spaces=False),  added_tokens_decoder={
-	
+
 }
 ```
 
@@ -88,10 +86,8 @@ tokenizer.get_command("[gMASK]"), tokenizer._convert_id_to_token(+tokenizer.eos_
 
 Out[7]:
 
-<br/>tips
-<font style="color:rgba(0, 0, 0, 0.87);">(64790, '')</font>
-
-<br/>
+tips
+(64790, '')
 
 ## 调用api处理数据
 In [ ]:
@@ -200,10 +196,8 @@ config
 
 Out[13]:
 
-<br/>tips
-<font style="color:rgba(0, 0, 0, 0.87);">LoraConfig(peft_type=<PeftType.LORA: 'LORA'>, auto_mapping=None, base_model_name_or_path=None, revision=None, task_type=<TaskType.CAUSAL_LM: 'CAUSAL_LM'>, inference_mode=False, r=8, target_modules={'query_key_value'}, lora_alpha=32, lora_dropout=0.0, fan_in_fan_out=False, bias='none', modules_to_save=None, init_lora_weights=True, layers_to_transform=None, layers_pattern=None, rank_pattern={}, alpha_pattern={})</font>
-
-<br/>
+tips
+LoraConfig(peft_type=<PeftType.LORA: 'LORA'>, auto_mapping=None, base_model_name_or_path=None, revision=None, task_type=<TaskType.CAUSAL_LM: 'CAUSAL_LM'>, inference_mode=False, r=8, target_modules={'query_key_value'}, lora_alpha=32, lora_dropout=0.0, fan_in_fan_out=False, bias='none', modules_to_save=None, init_lora_weights=True, layers_to_transform=None, layers_pattern=None, rank_pattern={}, alpha_pattern={})
 
 ### PEFT Step2 创建模型
 In [14]:
@@ -278,10 +272,5 @@ tokenizer.decode(model.generate(**ipt, max_length=128, do_sample=True)[0], skip_
 
 Out[61]:
 
-<br/>tips
-<font style="color:rgba(0, 0, 0, 0.87);">'[gMASK]sop <|system|>\n现在你要扮演皇帝身边的女人--甄嬛\n<|user|>\n 你是谁？<|assistant|>\n 我是甄嬛，家父是大理寺少卿甄远道。'</font>
-
-<br/>
-
- 
-
+tips
+'[gMASK]sop <|system|>\n现在你要扮演皇帝身边的女人--甄嬛\n<|user|>\n 你是谁？<|assistant|>\n 我是甄嬛，家父是大理寺少卿甄远道。'

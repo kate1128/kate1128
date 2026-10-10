@@ -5,7 +5,6 @@
 | 2024年11月12日 | mc、juice 单桶/文件 迁移 |
 | 2024年11月13日 | mc多桶迁移 |
 
-
 # 部署方式
 ## 单机
 ```bash
@@ -52,7 +51,6 @@ helm pull bitnami/minio --version 14.7.0
 
 vi values_test.yaml
 mode: distributed
-
 
 #helm 安装
 helm install minio ./minio-14.7.0 \
@@ -142,8 +140,6 @@ mc cp --recursive local/backup/kate-test cluster/restore
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731316575373-13cc3dfc-33a2-4143-aa9e-f53078d3b7de.png)
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731316662372-286df52c-b8af-4230-9b61-6631e6c69344.png)
-
-
 
 ### mc mirror
 #### 单bucket迁移
@@ -320,7 +316,7 @@ juicefs sync minio://ZvOibS01jZrYLobgDEuM:02yHO0gqgRn9vWT8DhzuS6s9OLGnF8UnnRW0F1
 
 ```
 
-# <font style="color:rgb(28, 30, 33);">迁移</font>
+# 迁移
 ## 实时增量同步
 `backup_script.sh`
 
@@ -339,8 +335,6 @@ mc mirror --watch sourceMinIO/ targetMinIO/
 
 echo "Backup completed at $(date)"
 ```
-
-
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1731479157532-9fd0c6d2-3798-49e4-9128-9512f0fc023b.png)
 
@@ -369,7 +363,7 @@ buckets=$(mc ls sourceMinIO | awk '{print $5}')
 for bucket in $buckets; do
     # mc replicate add sourceMinIO/replicate --remote-bucket targetMinIO/replicate
     mc version enable sourceMinIO/$bucket
-    mc replicate add sourceMinIO/$bucket --remote-bucket targetMinIO/$bucket 
+    mc replicate add sourceMinIO/$bucket --remote-bucket targetMinIO/$bucket
     echo "Replication configured for bucket: $bucket"
 done
 ```
@@ -506,4 +500,3 @@ done
 3. mc mirror使用参考：[https://juejin.cn/post/7388305846350446646](https://juejin.cn/post/7388305846350446646)
 4. juicesync官方：[https://juicefs.com/docs/zh/community/getting-started/installation/#%E7%B1%BB-unix-%E5%AE%A2%E6%88%B7%E7%AB%AF](https://juicefs.com/docs/zh/community/getting-started/installation/#%E7%B1%BB-unix-%E5%AE%A2%E6%88%B7%E7%AB%AF)
 5. minio用helm集群部署value修改指南：[https://github.com/bitnami/charts/tree/main/bitnami/minio](https://github.com/bitnami/charts/tree/main/bitnami/minio)
-

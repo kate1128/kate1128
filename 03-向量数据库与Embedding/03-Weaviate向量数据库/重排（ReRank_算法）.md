@@ -11,7 +11,7 @@
 安装包：
 
 ```python
-!pip install cohere 
+!pip install cohere
 !pip install weaviate-client
 ```
 
@@ -71,7 +71,7 @@ dense_retrieval_results = dense_retrieval(query_1, client)
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -150.8031}
 
 lang:en
@@ -83,7 +83,6 @@ title:Ottawa
 url:https://en.wikipedia.org/wiki?curid=22219
 
 views:2000
-
 
 item 1
 _additional:{'distance': -150.28354}
@@ -98,7 +97,6 @@ url:https://en.wikipedia.org/wiki?curid=64646
 
 views:3000
 
-
 item 2
 _additional:{'distance': -150.02524}
 
@@ -112,7 +110,6 @@ url:https://en.wikipedia.org/wiki?curid=22219
 
 views:2000
 
-
 item 3
 _additional:{'distance': -149.92365}
 
@@ -125,7 +122,6 @@ title:Quebec City
 url:https://en.wikipedia.org/wiki?curid=100727
 
 views:2000
-
 
 item 4
 _additional:{'distance': -149.71033}
@@ -153,7 +149,7 @@ dense_retrieval_results = dense_retrieval(query_1, client, 'zh')
 print_result(dense_retrieval_results)
 ```
 
-<details class="lake-collapse"><summary id="u768989d2"><span class="ne-text">output：</span></summary><pre data-language="json" id="z8wRn" class="ne-codeblock language-json"><code>item 0
+<details><summary>output：</summary><pre><code class="language-json"><code>item 0
 _additional:{'distance': -152.25616}
 
 lang:zh
@@ -165,7 +161,6 @@ title:魁北克市
 url:https://zh.wikipedia.org/wiki?curid=117192
 
 views:600
-
 
 item 1
 _additional:{'distance': -150.94444}
@@ -180,7 +175,6 @@ url:https://zh.wikipedia.org/wiki?curid=70236
 
 views:800
 
-
 item 2
 _additional:{'distance': -150.90271}
 
@@ -194,7 +188,6 @@ url:https://zh.wikipedia.org/wiki?curid=70236
 
 views:800
 
-
 item 3
 _additional:{'distance': -150.68478}
 
@@ -207,7 +200,6 @@ title:多伦多
 url:https://zh.wikipedia.org/wiki?curid=3132
 
 views:1000
-
 
 item 4
 _additional:{'distance': -150.47894}
@@ -281,8 +273,6 @@ Flag of Canada
 By the Second World War, the Red Ensign was viewed as Canada's "de facto" national flag. A joint committee of the Senate and House of Commons was appointed on November 8, 1945, to recommend a national flag to officially adopt. It received 2,409 designs from the public and was addressed by the director of the Historical Section of the Canadian Army, Fortescue Duguid, who pointed out that red and white were Canada's official colours and there was already an emblem representing the country: three joined maple leaves seen on the escutcheon of the Canadian coat of arms. By May 9 the following year, the committee reported back with a recommendation "that the national flag of Canada should be the Canadian red ensign with a maple leaf in autumn golden colours in a bordered background of white". The Legislative Assembly of Quebec had urged the committee to not include any of what it deemed as "foreign symbols", including the Union Flag, and Mackenzie King, then still prime minister, declined to act on the report; fearing it may lead to political instability. As a result, the Union Flag was kept as a national flag, and the order to fly the Canadian Red Ensign at government buildings was maintained.
 ```
 
-
-
 ```python
 query_2_zh = "加拿大 首都"
 results_zh = keyword_search(query_2_zh,
@@ -354,8 +344,6 @@ i:9
 Flag of Canada
 ```
 
-
-
 ```python
 query_1_zh = "加拿大 首都"
 results_zh = keyword_search(query_1_zh,
@@ -411,9 +399,9 @@ def rerank_responses(query, responses, num_responses=10, results_lang='en'):
     Returns:
         list: 重排序后的响应列表。
     """
-    
+
     model_name = 'rerank-english-v2.0' if results_lang=='en' else 'rerank-multilingual-v2.0'
-    
+
     reranked_responses = co.rerank(
         model=model_name,
         query=query,
@@ -683,4 +671,3 @@ RerankResult<document['text']: 艾德蒙·珀西瓦尔·希拉里爵士，KG，O
 那么，如何创建一个测试集来评估这些模型呢？一个优质的测试集应该包含查询和正确的响应。然后，您可以将这些正确的响应与模型给出的响应进行比较，就像评估分类模型的准确性、精确度或召回率一样。如果您想了解更多关于评估搜索系统的信息，我们将会在资源中提供一些文章链接供您参考。
 
 现在，您已经学会使用搜索和重排来检索包含特定问题答案的文档。下节将学习如何结合搜索系统和生成模型，以便以人类的方式输出查询的答案。
-

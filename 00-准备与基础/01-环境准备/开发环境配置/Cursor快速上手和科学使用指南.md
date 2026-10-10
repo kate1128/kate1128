@@ -37,7 +37,7 @@ Cursor 是一款功能强大的 AI 优先代码编辑器，可增强我们的开
 	  可以去2925无限邮注册一个账号，这个邮箱平台的一个优势是用户申请的邮箱之后，可以自行创建子邮箱。比方说，我创建了atguigu@2925.com这个邮箱，那么我们在申请账号的时候，可以使用atguigu123@2925.com、atguiguabc@2925.com、atguigu666@2925.COM等邮箱进行注册（也就是atguigu数字随意添加@2925.com），邮箱问题得以解决！注册地址： [https://www.2925.com/](https://www.2925.com/)
 
 #### 机器码识别破解
-	其次是机器码识别方面。Cursor的团队意识到了人们会通过换邮箱的方式投机取巧，于是加入了校验本机机器码的环节。即使用户注册了一个新的邮箱，但是机器码所属的额度用完之后，也是不能继续免费了。于是此开源项目便诞生了【yeongpin/cursor-free-vip】，可以帮我们进行重置机器码，并且快速注册新的账号等功能！	
+	其次是机器码识别方面。Cursor的团队意识到了人们会通过换邮箱的方式投机取巧，于是加入了校验本机机器码的环节。即使用户注册了一个新的邮箱，但是机器码所属的额度用完之后，也是不能继续免费了。于是此开源项目便诞生了【yeongpin/cursor-free-vip】，可以帮我们进行重置机器码，并且快速注册新的账号等功能！
 
 + [https://github.com/yeongpin/cursor-free-vip/releases](https://github.com/yeongpin/cursor-free-vip/releases)
 + 右键管理员身份运行
@@ -53,7 +53,6 @@ Cursor 是一款功能强大的 AI 优先代码编辑器，可增强我们的开
 | **继承性** | 与 VS Code 差异较大（Cursor 独有功能） | 大部分继承自 VS Code（如主题设置） |
 | **影响范围** | 影响 AI 代码生成、分析、对话的效果 | 影响代码编辑体验（如排版、颜色） |
 | **典型配置示例** | 调整 AI 模型参数、代码库索引路径 | 修改字体、启用自动保存、更改主题 |
-
 
 ## Cursor AI相关设置
 `通过齿轮图标、Cmd/Ctrl + Shift + J`  开启`光标设置，即可进行AI编程相关的定制配置：
@@ -74,8 +73,6 @@ Cursor 是一款功能强大的 AI 优先代码编辑器，可增强我们的开
 调整编辑器行为和外观，此处和VS Code一致：
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752944867432-0e2225da-2135-4ef2-b4a5-8639a75e83fe.png)
-
-
 
 **在 Cursor 编辑器设置中，“User” 和 “Workspace” 存在以下差异：**
 
@@ -183,8 +180,6 @@ Java 开发环境中，**即使已安装 JDK 和 Maven 并配置好环境变量�
 + **Project Manager for Java**：可在编辑器中管理多个 Java 项目，实现快速切换，导入本地 Java 项目，可视化展示项目模块、包和文件结构。
 + **Gradle for Java**：针对 Gradle 构建工具，能创建 Gradle 项目，运行 Gradle 任务，管理项目构建、测试流程，查看 Gradle 任务和工程依赖 。
 
-
-
 # Cursor三大核心AI功能
 ##  Tab键：智能小助手
 Cursor 的 Tab 键具有强大的代码自动补全功能，基于 AI 模型，能根据代码上下文自动预测并生成代码补全建议和代码修复重构，还可用于导航代码等！
@@ -231,7 +226,7 @@ import java.util.ArrayList;
 
 public class ArrayUtils {
 
-    public void arrayFor() {    
+    public void arrayFor() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         List<Integer> evenNumbers = new ArrayList<>();
         for (int num : numbers) {
@@ -248,7 +243,7 @@ public class ArrayUtils {
 ```java
 //在循环上方添加注释：// 使用 Stream 重构
 //光标放在循环代码块的任意位置，按 Tab 键
-public void arrayFor() {    
+public void arrayFor() {
     List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
     List<Integer> evenNumbers = numbers.stream().filter(num -> num % 2 == 0).collect(Collectors.toList());
 }
@@ -329,10 +324,10 @@ public class ArrayUtils {
 
 ```java
 public class Student {
-     
+
     private String name;
     private int  age;
-    //tab 
+    //tab
     //tab 接收完整补全
     //ctrl + -> 部分和逐步接收补全 [需要开启部分补全配置]
     //esc 或者 继续输入 拒绝补全
@@ -592,21 +587,21 @@ public class ArrayDemo {
     public static void main(String[] args) {
         // 创建一个整数数组
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        
+
         // 使用for循环输出数组内容
         System.out.println("数组内容如下：");
         for (int i = 0; i < numbers.length; i++) {
             //此处 i + 2就会出现下角标越界错误
             System.out.println("第 " + (i + 1) + " 个元素是: " + numbers[i+2]);
         }
-        
+
         // 使用增强型for循环输出数组内容
         System.out.println("\n使用增强型for循环输出：");
         for (int number : numbers) {
             System.out.print(number + " ");
         }
     }
-} 
+}
 ```
 
 2. 运行报错![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932455617-d5e7b1c2-c844-4011-96ae-216d48edf5fa.png)
@@ -706,8 +701,6 @@ Manual的配置选项：
 + **Auto Group Changes（BETA）**：自动分组聊天会话中与大语言模型（LLM ）交互产生的更改，方便集中 review，测试阶段功能。
 + **Web Search Tool（BETA）**：已勾选，允许 Agent/ask 模式聊天联网搜索信息，补充知识，让回答更全面，测试功能
 
-
-
 ## Ctrl+K: 内联智能修改
 > 内联编辑 （Cmd/Ctrl+K） 直接在编辑器窗口中生成新代码或编辑现有代码。
 >
@@ -735,7 +728,7 @@ Cmd K的模式说明：
 
     3. 实现效果![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932456680-dd5fdd57-54f0-477c-ac42-a8d83832e90a.png)
 + **内联编辑**
-    1. 继续打开刚刚main.js 
+    1. 继续打开刚刚main.js
     2. 选中init方法，按 `Cmd/Ctrl + K`，输入提示：
 
 ```java
@@ -750,8 +743,6 @@ Cmd K的模式说明：
 在 Cursor 终端中使用 Cmd K 通过提示栏界面生成和运行命令, 在内置的 Cursor 终端中，您可以按 `Ctrl/⌘ K` 打开终端底部的提示栏。此提示栏允许您在终端中描述所需的作，终端 Cmd K 将生成一个命令。您可以通过按 `esc` 接受命令，也可以立即使用 `Ctrl/⌘ + Enter` 运行命令。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932456872-fb20027c-dcc9-42d3-852a-6aafd58fed44.png)
-
-
 
 # Cursor精准上下文指定
 在 Cursor 工具里，“上下文（Context）” 可理解为 **让 AI 准确理解需求、辅助编码的 “信息参考范围”** ，是 AI 读懂代码、精准响应的关键!
@@ -827,8 +818,7 @@ Rules是给Cursor AI功能（规则适用于 Chat和 Cmd K）生成结果添加�
 | **同步方式** | 随项目代码提交到版本库（如 Git），团队共享 | 仅本地生效，不随项目同步 |
 | **适用场景** | 统一团队编码规范（如函数注释格式、依赖版本） | 个人习惯（如快捷键、AI 响应风格） |
 
-
-<font style="color:red;">注意： 项目规则和用户规则同时存在并且规则冲突，项目规则优先级更高~~</font>
+注意： 项目规则和用户规则同时存在并且规则冲突，项目规则优先级更高~~
 
 ### 项目规则配置
 1. 项目下创建规则文件
@@ -857,7 +847,7 @@ priority: 1000
 
 3. 项目规则文件生效测试
     1. 准备一个main.js文件
-    2. 进入ctrl + k 
+    2. 进入ctrl + k
     3. 内联生成函数，查看是否规则生效
 
 ```java
@@ -905,7 +895,6 @@ special_rule: "仅周一至周五生效"
 | `priority` | 规则优先级（数值越大越优先），解决规则冲突 | `1000` |
 | `version` | 规则版本号（可选） | `"1.0.0"` |
 
-
 ####  规则内容（Markdown 正文）
 用 Markdown 的标题、列表、代码块等语法写具体规则，常见结构：
 
@@ -913,23 +902,23 @@ special_rule: "仅周一至周五生效"
 
 ```java
 # 一、代码风格
-1. 函数必须包含 JSDoc 注释  
-   - 至少包含 `@param` 和 `@return` 描述  
-2. 变量命名必须使用驼峰命名法（camelCase）  
-3. 每行代码长度不超过 120 个字符  
+1. 函数必须包含 JSDoc 注释
+   - 至少包含 `@param` 和 `@return` 描述
+2. 变量命名必须使用驼峰命名法（camelCase）
+3. 每行代码长度不超过 120 个字符
 
 # 二、技术选型
-- 禁止直接使用原生 fetch，必须通过项目封装的 request 工具  
-- 优先使用 React Hooks 而非 Class 组件  
+- 禁止直接使用原生 fetch，必须通过项目封装的 request 工具
+- 优先使用 React Hooks 而非 Class 组件
 ```
 
 安全约束规则
 
 ```java
 # 安全规范
-1. 禁止使用 eval() 函数  
-2. SQL 查询必须使用参数化查询，防止注入攻击  
-3. 敏感信息（如 API 密钥）必须从环境变量读取  
+1. 禁止使用 eval() 函数
+2. SQL 查询必须使用参数化查询，防止注入攻击
+3. 敏感信息（如 API 密钥）必须从环境变量读取
 ```
 
 特殊语法：引用项目文件
@@ -938,8 +927,8 @@ special_rule: "仅周一至周五生效"
 
 ```java
 # 工具链配置
-1. ESLint 规则必须符合 @file .eslintrc.js  
-2. 测试用例必须遵循 Jest 框架规范  
+1. ESLint 规则必须符合 @file .eslintrc.js
+2. 测试用例必须遵循 Jest 框架规范
 ```
 
 #### 完整示例（TypeScript 项目规则）
@@ -951,18 +940,18 @@ priority: 1000
 ---
 
 # 一、基础规范
-1. 所有文件必须使用 UTF-8 编码  
-2. 统一使用 2 空格缩进  
+1. 所有文件必须使用 UTF-8 编码
+2. 统一使用 2 空格缩进
 
 # 二、类型约束
-1. 禁止使用隐式 any 类型  
-   - 示例：`const num: number = 123`（显式）  
-   - 禁止：`const num = 123`（隐式）  
-2. 接口命名必须以 `I` 开头（如 `interface IUser`）  
+1. 禁止使用隐式 any 类型
+   - 示例：`const num: number = 123`（显式）
+   - 禁止：`const num = 123`（隐式）
+2. 接口命名必须以 `I` 开头（如 `interface IUser`）
 
 # 三、项目约束
-- 所有 HTTP 请求必须通过 @file src/utils/request.ts 封装的工具  
-- 状态管理必须使用 Redux Toolkit，禁止直接修改 state  
+- 所有 HTTP 请求必须通过 @file src/utils/request.ts 封装的工具
+- 状态管理必须使用 Redux Toolkit，禁止直接修改 state
 ```
 
 ## @ 符号
@@ -1153,17 +1142,17 @@ public class BubbleSort {
     public static void main(String[] args) {
         // 测试数组
         int[] arr = {64, 34, 25, 12, 22, 11, 90};
-        
+
         System.out.println("排序前的数组：");
         printArray(arr);
-        
+
         // 执行冒泡排序
         bubbleSort(arr);
-        
+
         System.out.println("排序后的数组：");
         printArray(arr);
     }
-} 
+}
 ```
 
 3. 测试@Lint Errors 对话
@@ -1319,7 +1308,7 @@ Cursor官网开发指导流程：
 ## 4. 响应式设计
 - 悬浮菜单宽度：最小200px，最大400px
 - 高度自适应内容
-- 确保在各种屏幕分辨率下都能正常显示 
+- 确保在各种屏幕分辨率下都能正常显示
 ```
 
 3. 配置和导入kimi docs文档配置位置： cursor settings > Features > Docs > add new doc ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932458148-e5384268-0101-4fb7-900d-f6a583f326c5.png)
@@ -1333,7 +1322,7 @@ Cursor官网开发指导流程：
 @01_chrome插件需求和要求说明 @02_chrome插件UI设计图   基于需求和UI设计图，以及参考 @doubaoui.png 图片风格，直接在当前chrome-plugin文件夹下实现插件功能，同时提取单独配置文件用于填写kimi api url和key的位置！代码添加中文注释，实现后再次自检查，确保插件正常运行和实现功能！
 ```
 
-3. 配置kimi api key 
+3. 配置kimi api key
 
 ```java
 // API配置
@@ -1343,7 +1332,7 @@ const config = {
         apiUrl: 'https://api.moonshot.cn/v1', // 替换为实际的Kimi API URL
         apiKey: 'YOUR_KIMI_API_KEY'  // 替换为实际的Kimi API Key
     },
-    
+
     // 默认设置
     defaults: {
         translationTarget: 'zh', // 默认翻译目标语言：zh-中文，en-英文
@@ -1352,7 +1341,7 @@ const config = {
 };
 
 // 导出配置
-export default config; 
+export default config;
 ```
 
 ### 5.3 Chrome插件调试和发布
@@ -1373,4 +1362,3 @@ Uncaught SyntaxError: Cannot use import statement outside a module 解决错误�
 3. 确保添加完成![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752932458869-4ca02cc3-696b-465c-9fd4-203e86b96880.png)
 4. 测试功能和调试
 5. 实现和测试
-

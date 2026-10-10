@@ -21,7 +21,7 @@ from dotenv import load_dotenv, find_dotenv
 # 读取本地/项目的环境变量。
 
 # find_dotenv()寻找并定位.env文件的路径
-# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 
@@ -55,7 +55,7 @@ chain = prompt | model | output_parser
 chain.invoke({"topic": "熊"})
 ```
 
-<details class="lake-collapse"><summary id="uc2ab19cd"><span class="ne-text">output：</span></summary><pre data-language="json" id="GKKcB" class="ne-codeblock language-json"><code>'为什么熊不喜欢玩扑克牌？因为他总是把两个熊掌都露出来！'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'为什么熊不喜欢玩扑克牌？因为他总是把两个熊掌都露出来！'</code></pre></details>
 如果去查看`Chain`的输出，会发现，他跟定义的是一样的，一共有三部分进行组成，也就是`Chain = prompt | LLM |OutputParser `。`|`符号类似于 unix 管道操作符，它将不同的组件链接在一起，将一个组件的输出作为输入提供给下一个组件。在这个链中，用户输入被传递给提示模板，然后提示模板输出被传递给模型，然后模型输出被传递到输出解析器。
 
 ```python
@@ -63,7 +63,7 @@ chain.invoke({"topic": "熊"})
 chain
 ```
 
-<details class="lake-collapse"><summary id="u3cee97de"><span class="ne-text">output：</span></summary><pre data-language="json" id="b2xq3" class="ne-codeblock language-json"><code>ChatPromptTemplate(input_variables=['topic'], messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['topic'], template='告诉我一个关于{topic}的短笑话'))])
+<details><summary>output：</summary><pre><code class="language-json"><code>ChatPromptTemplate(input_variables=['topic'], messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['topic'], template='告诉我一个关于{topic}的短笑话'))])
 | ChatOpenAI(client=&lt;class 'openai.api_resources.chat_completion.ChatCompletion'&gt;, openai_api_key='xxx', openai_proxy='')
 | StrOutputParser()</code></pre></details>
 #  更复杂的链 More complex chain
@@ -93,7 +93,7 @@ retriever = vectorstore.as_retriever()
 retriever.get_relevant_documents("哈里森在哪里工作？")
 ```
 
-<details class="lake-collapse"><summary id="u1095f9c1"><span class="ne-text">output：</span></summary><pre data-language="json" id="T7r3Z" class="ne-codeblock language-json"><code>[Document(page_content='哈里森在肯肖工作'), Document(page_content='熊喜欢吃蜂蜜')]</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>[Document(page_content='哈里森在肯肖工作'), Document(page_content='熊喜欢吃蜂蜜')]</code></pre></details>
 如果换一个问题，比如"熊喜欢吃什么"，可以看到问题的顺序就发生了变化。
 
 ```python
@@ -101,7 +101,7 @@ retriever.get_relevant_documents("哈里森在哪里工作？")
 retriever.get_relevant_documents("熊喜欢吃什么")
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>[Document(page_content='熊喜欢吃蜂蜜'), Document(page_content='哈里森在肯肖工作')]</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>[Document(page_content='熊喜欢吃蜂蜜'), Document(page_content='哈里森在肯肖工作')]</code></pre></details>
 ## 使用RunnableMap
 上述例子返回两个结果是因为只有两个文档列表，这完全适用于更多文档情况。接下来会加入`RunnableMap`，在这个`RunnableMap`中，不仅仅有用户的问题，以及有对应的问题的文档列表，相当于这也为大模型的文档增加了上下文，这样就能完成检索增强的事情。如果正常问一个问题，可以看到，大模型正确的返回了文档里面的结果，得到了正确的输出。
 
@@ -128,10 +128,10 @@ chain = RunnableMap({
 chain.invoke({"question": "哈里森在哪里工作?"})
 ```
 
-<details class="lake-collapse"><summary id="u466505d7"><span class="ne-text">output：</span></summary><pre data-language="python" id="X5X3l" class="ne-codeblock language-python"><code>'肯肖'</code></pre></details>
-<font style="color:rgba(0, 0, 0, 0.87);">如果想更深入挖掘一下背后的工作机理，可以看一下</font>`<font style="color:rgba(0, 0, 0, 0.87);">RunnableMap</font>`<font style="color:rgba(0, 0, 0, 0.87);">，把其创建为一个输入，用一样的方式进行操作。</font>
+<details><summary>output：</summary><pre><code class="language-python"><code>'肯肖'</code></pre></details>
+如果想更深入挖掘一下背后的工作机理，可以看一下`RunnableMap`，把其创建为一个输入，用一样的方式进行操作。
 
-<font style="color:rgba(0, 0, 0, 0.87);">可以看到，在这之中，</font>`<font style="color:rgba(0, 0, 0, 0.87);">RunnableMap</font>`<font style="color:rgba(0, 0, 0, 0.87);">提供了</font>`<font style="color:rgba(0, 0, 0, 0.87);">context</font>`<font style="color:rgba(0, 0, 0, 0.87);">和</font>`<font style="color:rgba(0, 0, 0, 0.87);">question</font>`<font style="color:rgba(0, 0, 0, 0.87);">两个变量，一个是查询的文档列表，另一个是对应的问题，这个大模型就可以根据提供文档来总结回答对应的问题了。</font>
+可以看到，在这之中，`RunnableMap`提供了`context`和`question`两个变量，一个是查询的文档列表，另一个是对应的问题，这个大模型就可以根据提供文档来总结回答对应的问题了。
 
 ```python
 # 创建一个RunnableMap对象，其中包含两个键值对
@@ -147,7 +147,7 @@ inputs.invoke({"question": "哈里森在哪里工作?"})
 
 ```
 
-<details class="lake-collapse"><summary id="uead42282"><span class="ne-text">output：</span></summary><pre data-language="python" id="S0hbc" class="ne-codeblock language-python"><code>{'context': [Document(page_content='哈里森在肯肖工作'),
+<details><summary>output：</summary><pre><code class="language-python"><code>{'context': [Document(page_content='哈里森在肯肖工作'),
              Document(page_content='熊喜欢吃蜂蜜')],
  'question': '哈里森在哪里工作?'}</code></pre></details>
 #  绑定 Bind
@@ -194,7 +194,7 @@ runnable = prompt | model
 runnable.invoke({"input": "北京天气怎么样？"})
 ```
 
-<details class="lake-collapse"><summary id="uf1e63604"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="python" id="HJaEx" class="ne-codeblock language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'get_current_weather', 'arguments': '{\n  &quot;location&quot;: &quot;北京，北京市&quot;\n}'}})</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'get_current_weather', 'arguments': '{\n  &quot;location&quot;: &quot;北京，北京市&quot;\n}'}})</code></pre></details>
 ##  多个函数绑定
 同时也可以定义多个`function`，大模型在对话的时候可以自动判断使用哪一个函数。这里面定义有两个函数，第一个函数是类似于前面的`weather_search`，搜索给定机场的天气，然后还定义了一个赛事体育新闻搜索的`sports_search`，查询天气的函数`weather_search`接受的参数为`airport_code`即机场代码，体育新闻搜索函数`sports_search`接受的参数为`team_name`即体育队名。由于这里不需要运行这些函数，因为大模型是通过问的问题来自动判断是否调用这些函数，并且返回参数，并不会直接帮调用。
 
@@ -241,7 +241,7 @@ runnable = prompt | model
 runnable.invoke({"input": "爱国者队昨天表现的怎么样?"})
 ```
 
-<details class="lake-collapse"><summary id="u5ab7c42f"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="python" id="FztYh" class="ne-codeblock language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'sports_search', 'arguments': '{\n  &quot;team_name&quot;: &quot;爱国者队&quot;\n}'}})</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'sports_search', 'arguments': '{\n  &quot;team_name&quot;: &quot;爱国者队&quot;\n}'}})</code></pre></details>
 # 后备措施 `Fallbacks`
 在使用早期的OpenAI模型如"`text-davinci-001`"，这些模型在对话过程中，不支持格式化输出结果即它们都是以字符串的形式输出结果，这对有时候需要解析 LLM 的输出带来一些麻烦，比如下面这个例子，就是利用早期模型"`text-davinci-001`"来回答用户的问题，希望 llm 能以 json 格式输出结果。
 
@@ -269,14 +269,14 @@ challenge = "写三首诗，并以josn格式输出，每首诗必须包含:标�
 simple_model.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="u0c015fbe"><span class="ne-text">output：</span></summary><pre data-language="python" id="ng7yt" class="ne-codeblock language-python"><code>'\n\n{\n  &quot;title&quot;: &quot;春风&quot;,\n  &quot;author&quot;: &quot;李白&quot;,\n  &quot;first_line&quot;: &quot;春风又绿江南岸&quot;,\n  &quot;content&quot;: [\n    &quot;春风又绿江南岸&quot;,\n    &quot;花开满树柳如丝&quot;,\n    &quot;鸟儿欢唱天地宽&quot;,\n    &quot;人间春色最宜人&quot;\n  ]\n}\n\n{\n  &quot;title&quot;: &quot;夜雨&quot;,\n  &quot;author&quot;: &quot;杜甫&quot;,\n  &quot;first_line&quot;: &quot;夜雨潇潇&quot;,\n  &quot;content&quot;: [\n    &quot;夜雨潇潇&quot;,\n    &quot;孤灯照旧&quot;,\n    &quot;思念如潮&quot;,\n    &quot;泛滥心头&quot;\n  ]\n}\n\n{\n  &quot;title&quot;: &quot;山行&quot;,\n  &quot;author&quot;: &quot;王维&quot;,\n  &quot;first_line&quot;: &quot;远上寒山石径斜&quot;,\n  &quot;content&quot;: [\n    &quot;远上寒山石径斜&quot;,\n    &quot;白云生处有人家&quot;,\n    &quot;停车坐爱枫林晚&quot;,\n    &quot;霜叶红于二月花&quot;\n  ]\n}'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'\n\n{\n  &quot;title&quot;: &quot;春风&quot;,\n  &quot;author&quot;: &quot;李白&quot;,\n  &quot;first_line&quot;: &quot;春风又绿江南岸&quot;,\n  &quot;content&quot;: [\n    &quot;春风又绿江南岸&quot;,\n    &quot;花开满树柳如丝&quot;,\n    &quot;鸟儿欢唱天地宽&quot;,\n    &quot;人间春色最宜人&quot;\n  ]\n}\n\n{\n  &quot;title&quot;: &quot;夜雨&quot;,\n  &quot;author&quot;: &quot;杜甫&quot;,\n  &quot;first_line&quot;: &quot;夜雨潇潇&quot;,\n  &quot;content&quot;: [\n    &quot;夜雨潇潇&quot;,\n    &quot;孤灯照旧&quot;,\n    &quot;思念如潮&quot;,\n    &quot;泛滥心头&quot;\n  ]\n}\n\n{\n  &quot;title&quot;: &quot;山行&quot;,\n  &quot;author&quot;: &quot;王维&quot;,\n  &quot;first_line&quot;: &quot;远上寒山石径斜&quot;,\n  &quot;content&quot;: [\n    &quot;远上寒山石径斜&quot;,\n    &quot;白云生处有人家&quot;,\n    &quot;停车坐爱枫林晚&quot;,\n    &quot;霜叶红于二月花&quot;\n  ]\n}'</code></pre></details>
 如果使用`simple_chain`来运行，就会发现出现了 json 解码错误的问题，因为返回的结果就是一个字符串，无法解析，所以下面代码就会报错。
 
 ```python
-simple_chain.invoke(challenge)      
+simple_chain.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="u1fc7e60a"><span class="ne-text">output：</span></summary><pre data-language="python" id="cTSFo" class="ne-codeblock language-python"><code>---------------------------------------------------------------------------
+<details><summary>output：</summary><pre><code class="language-python"><code>---------------------------------------------------------------------------
 JSONDecodeError                           Traceback (most recent call last)
 &lt;ipython-input-17-7b2363c45b31&gt; in &lt;cell line: 1&gt;()
 ----&gt; 1 simple_chain.invoke(challenge)
@@ -306,8 +306,8 @@ JSONDecodeError                           Traceback (most recent call last)
     324     if run_manager is not None and accepts_run_manager(func):
 325         kwargs[&quot;run_manager&quot;] = run_manager
 --&gt; 326     return func(input, **kwargs)  # type: ignore[call-arg]
-327 
-328 
+327
+328
 
 /usr/local/lib/python3.10/dist-packages/langchain_core/runnables/base.py in _invoke(self, input, run_manager, config, **kwargs)
 3381                         output = chunk
@@ -320,8 +320,8 @@ JSONDecodeError                           Traceback (most recent call last)
 324     if run_manager is not None and accepts_run_manager(func):
 325         kwargs[&quot;run_manager&quot;] = run_manager
 --&gt; 326     return func(input, **kwargs)  # type: ignore[call-arg]
-327 
-328 
+327
+328
 
 /usr/lib/python3.10/json/__init__.py in loads(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)
 344             parse_int is None and parse_float is None and
@@ -335,7 +335,7 @@ JSONDecodeError                           Traceback (most recent call last)
 339         if end != len(s):
 --&gt; 340             raise JSONDecodeError(&quot;Extra data&quot;, s, end)
 341         return obj
-342 
+342
 
 JSONDecodeError: Extra data: line 15 column 1 (char 147)</code></pre></details>
 ## 使用新模型格式化输出
@@ -349,7 +349,7 @@ chain = model | StrOutputParser() | json.loads
 chain.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="u829311a2"><span class="ne-text">output：</span></summary><pre data-language="python" id="kU0M8" class="ne-codeblock language-python"><code>{'poem1': {'title': '春风',
+<details><summary>output：</summary><pre><code class="language-python"><code>{'poem1': {'title': '春风',
            'author': '李白',
            'first_line': '春风又绿江南岸。',
            'content': '春风又绿江南岸，明月何时照我还。'},
@@ -372,7 +372,7 @@ final_chain = simple_chain.with_fallbacks([chain])
 final_chain.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="ua99f050f"><span class="ne-text">output：</span></summary><pre data-language="python" id="iLN3G" class="ne-codeblock language-python"><code>{'poem1': {'title': '春风',
+<details><summary>output：</summary><pre><code class="language-python"><code>{'poem1': {'title': '春风',
            'author': '李白',
            'first_line': '春风又绿江南岸。',
            'content': '春风又绿江南岸，明月何时照我还。'},
@@ -437,15 +437,15 @@ chain = prompt | model | output_parser
 chain.invoke({"topic": "熊"})
 ```
 
-<details class="lake-collapse"><summary id="u1a621b29"><span class="ne-text">output：</span></summary><pre data-language="python" id="rNEgi" class="ne-codeblock language-python"><code>'当熊在森林里遇到一只兔子时，他问：“兔子先生，你有没有问题？”兔子回答道：“当然，先生熊，我有一个问题。你怎么会拉这么长的尾巴？”熊听后笑了起来：“兔子先生，这不是尾巴，这是我的领带！”'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'当熊在森林里遇到一只兔子时，他问：“兔子先生，你有没有问题？”兔子回答道：“当然，先生熊，我有一个问题。你怎么会拉这么长的尾巴？”熊听后笑了起来：“兔子先生，这不是尾巴，这是我的领带！”'</code></pre></details>
 ## batch接口
 再尝试使用`batch`的接口，会发现大模型可以返回两个问题的答案，会给chain一个输入的列表，列表中可以包含多个问题，最后返回多个问题的答案。
 
 ```python
-chain.batch([{"topic": "熊"}, {"topic": "狐狸"}]) 
+chain.batch([{"topic": "熊"}, {"topic": "狐狸"}])
 ```
 
-<details class="lake-collapse"><summary id="udcf4e609"><span class="ne-text">output：</span></summary><pre data-language="python" id="Z5TrO" class="ne-codeblock language-python"><code>['好的，这是一个关于熊的短笑话：\n\n有一天，一只熊走进了一家酒吧。他走到吧台前，对酒保说：“请给我一杯……蜂蜜啤酒。”\n\n酒保疑惑地看着熊，说：“对不起，这里没有蜂蜜啤酒。”\n\n熊有些失望地叹了口气，然后说：“好吧，那就给我来一杯……草莓酒吧。”\n\n酒保摇摇头，说：“抱歉，也没有草莓酒。”\n\n熊又叹了口气，然后说：“那请给我来一杯……蜜糖红酒吧。”\n\n酒保实在无法忍受了，他对熊说：“对不起，这里没有这些奇怪的酒，你是熊，你应该知道熊只能喝蜂蜜。”\n\n熊听后一愣，然后脸色一变，说：“原来你们这里没有蜂蜜啤酒，草莓酒和蜜糖红酒？那请给我来一杯……白开水吧。”',
+<details><summary>output：</summary><pre><code class="language-python"><code>['好的，这是一个关于熊的短笑话：\n\n有一天，一只熊走进了一家酒吧。他走到吧台前，对酒保说：“请给我一杯……蜂蜜啤酒。”\n\n酒保疑惑地看着熊，说：“对不起，这里没有蜂蜜啤酒。”\n\n熊有些失望地叹了口气，然后说：“好吧，那就给我来一杯……草莓酒吧。”\n\n酒保摇摇头，说：“抱歉，也没有草莓酒。”\n\n熊又叹了口气，然后说：“那请给我来一杯……蜜糖红酒吧。”\n\n酒保实在无法忍受了，他对熊说：“对不起，这里没有这些奇怪的酒，你是熊，你应该知道熊只能喝蜂蜜。”\n\n熊听后一愣，然后脸色一变，说：“原来你们这里没有蜂蜜啤酒，草莓酒和蜜糖红酒？那请给我来一杯……白开水吧。”',
  '有一天，一只狐狸在森林里遇到了一只兔子。狐狸笑嘻嘻地对兔子说：“喂，兔子，我有一个好消息和一个坏消息，你想先听哪个？”兔子有些好奇地问：“那就先告诉我好消息吧。”狐狸眯起眼睛说：“好消息是，你的智商比我高。”兔子高兴地跳了起来：“太好了，那坏消息是什么？”狐狸一脸轻松地说：“坏消息是，你的智商还比不过胡萝卜。”']</code></pre></details>
 ## stream接口
 接下来在看看`stream`接口，也就是流式输出内容，这样的功能很有必要，有时候可以免去用户等待的烦恼，让用户看到一个一个词蹦出来而不是一个空的屏幕，这样会带来更好的用户体验。
@@ -455,7 +455,7 @@ for t in chain.stream({"topic": "熊"}):
     print(t)
 ```
 
-<details class="lake-collapse"><summary id="u2f401b5e"><span class="ne-text">output：</span></summary><pre data-language="python" id="FQtUw" class="ne-codeblock language-python"><code>好
+<details><summary>output：</summary><pre><code class="language-python"><code>好
 的
 ，
 这
@@ -469,7 +469,6 @@ for t in chain.stream({"topic": "熊"}):
 笑
 话
 ：
-
 
 有
 一
@@ -510,7 +509,6 @@ for t in chain.stream({"topic": "熊"}):
 奶
 。”
 
-
 酒
 保
 惊
@@ -534,7 +532,6 @@ for t in chain.stream({"topic": "熊"}):
 奶
 ？
 ”
-
 
 小
 熊
@@ -576,7 +573,7 @@ response = await chain.ainvoke({"topic": "熊"})
 response
 ```
 
-<details class="lake-collapse"><summary id="u3ffaadaf"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="python" id="Lhj50" class="ne-codeblock language-python"><code>'好的，以下是一个关于熊的短笑话：\n\n有一只熊走进了一家餐厅，他走到柜台前，对着服务员说：“我想要一杯咖啡和......嗯，一块...牛肉三明治。”\n服务员疑惑地看着熊，然后问道：“对不起，先生，你是真的想要一块牛肉三明治吗？”\n熊点了点头。\n服务员又问：“那请问为什么你要来这里点餐呢？”\n熊回答道：“因为我是个熊啊！”'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'好的，以下是一个关于熊的短笑话：\n\n有一只熊走进了一家餐厅，他走到柜台前，对着服务员说：“我想要一杯咖啡和......嗯，一块...牛肉三明治。”\n服务员疑惑地看着熊，然后问道：“对不起，先生，你是真的想要一块牛肉三明治吗？”\n熊点了点头。\n服务员又问：“那请问为什么你要来这里点餐呢？”\n熊回答道：“因为我是个熊啊！”'</code></pre></details>
 #  英文提示词
 ## 构建简单链
 ```python
@@ -591,7 +588,7 @@ chain = prompt | model | output_parser
 chain.invoke({"topic": "bears"})
 ```
 
-<details class="lake-collapse"><summary id="ub4bd0604"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="python" id="gEmPm" class="ne-codeblock language-python"><code>'Why did the bear bring a flashlight to the party?\n\nBecause he wanted to be the &quot;light&quot; of the bearbecue!'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'Why did the bear bring a flashlight to the party?\n\nBecause he wanted to be the &quot;light&quot; of the bearbecue!'</code></pre></details>
 ## 构建简单文档数据库
 ```python
 vectorstore = DocArrayInMemorySearch.from_texts(
@@ -605,13 +602,13 @@ retriever = vectorstore.as_retriever()
 retriever.get_relevant_documents("where did harrison work?")
 ```
 
-<details class="lake-collapse"><summary id="u65178964"><span class="ne-text">output：</span></summary><pre data-language="python" id="L3vJt" class="ne-codeblock language-python"><code>[Document(page_content='harrison worked at kensho'),
+<details><summary>output：</summary><pre><code class="language-python"><code>[Document(page_content='harrison worked at kensho'),
  Document(page_content='bears like to eat honey')]</code></pre></details>
 ```python
 retriever.get_relevant_documents("what do bears like to eat")
 ```
 
-<details class="lake-collapse"><summary id="u81ae1e12"><span class="ne-text">output：</span></summary><pre data-language="python" id="gVkr8" class="ne-codeblock language-python"><code>[Document(page_content='bears like to eat honey'),
+<details><summary>output：</summary><pre><code class="language-python"><code>[Document(page_content='bears like to eat honey'),
  Document(page_content='harrison worked at kensho')]</code></pre></details>
 ```python
 template = """Answer the question based only on the following context:
@@ -629,7 +626,7 @@ chain = RunnableMap({
 chain.invoke({"question": "where did harrison work?"})
 ```
 
-<details class="lake-collapse"><summary id="u0225fd20"><span class="ne-text">output：</span></summary><pre data-language="python" id="JqOY1" class="ne-codeblock language-python"><code>'Harrison worked at Kensho.'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'Harrison worked at Kensho.'</code></pre></details>
 ## 使用RunnableMap
 ```python
 inputs = RunnableMap({
@@ -640,7 +637,7 @@ inputs = RunnableMap({
 inputs.invoke({"question": "where did harrison work?"})
 ```
 
-<details class="lake-collapse"><summary id="uabb03fcb"><span class="ne-text">output：</span></summary><pre data-language="python" id="aYPZR" class="ne-codeblock language-python"><code>{'context': [Document(page_content='harrison worked at kensho'),
+<details><summary>output：</summary><pre><code class="language-python"><code>{'context': [Document(page_content='harrison worked at kensho'),
              Document(page_content='bears like to eat honey')],
  'question': 'where did harrison work?'}</code></pre></details>
 ## 单函数绑定
@@ -676,7 +673,7 @@ runnable = prompt | model
 runnable.invoke({"input": "what is the weather in sf"})
 ```
 
-<details class="lake-collapse"><summary id="uf5f5159b"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="python" id="MG5IH" class="ne-codeblock language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'weather_search', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}})</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'weather_search', 'arguments': '{\n  &quot;airport_code&quot;: &quot;SFO&quot;\n}'}})</code></pre></details>
 ## 多个函数绑定
 ```python
 functions = [
@@ -719,7 +716,7 @@ runnable = prompt | model
 runnable.invoke({"input": "how did the patriots do yesterday?"})
 ```
 
-<details class="lake-collapse"><summary id="u0f8abbc7"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="python" id="jaJQQ" class="ne-codeblock language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'sports_search', 'arguments': '{\n  &quot;team_name&quot;: &quot;patriots&quot;\n}'}})</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>AIMessage(content='', additional_kwargs={'function_call': {'name': 'sports_search', 'arguments': '{\n  &quot;team_name&quot;: &quot;patriots&quot;\n}'}})</code></pre></details>
 ## 使用早期模型格式化输出
 ```python
 simple_model = OpenAI(
@@ -734,14 +731,14 @@ challenge = "write three poems in a json blob, where each poem is a json blob of
 simple_model.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="u4cbc8a95"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="python" id="kDTUI" class="ne-codeblock language-python"><code>'\n\n{\n    &quot;title&quot;: &quot;Autumn Leaves&quot;,\n    &quot;author&quot;: &quot;Emily Dickinson&quot;,\n    &quot;first_line&quot;: &quot;The leaves are falling, one by one&quot;\n}\n\n{\n    &quot;title&quot;: &quot;The Ocean\'s Song&quot;,\n    &quot;author&quot;: &quot;Pablo Neruda&quot;,\n    &quot;first_line&quot;: &quot;I hear the ocean\'s song, a symphony of waves&quot;\n}\n\n{\n    &quot;title&quot;: &quot;A Winter\'s Night&quot;,\n    &quot;author&quot;: &quot;Robert Frost&quot;,\n    &quot;first_line&quot;: &quot;The snow falls softly, covering the ground&quot;\n}'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'\n\n{\n    &quot;title&quot;: &quot;Autumn Leaves&quot;,\n    &quot;author&quot;: &quot;Emily Dickinson&quot;,\n    &quot;first_line&quot;: &quot;The leaves are falling, one by one&quot;\n}\n\n{\n    &quot;title&quot;: &quot;The Ocean\'s Song&quot;,\n    &quot;author&quot;: &quot;Pablo Neruda&quot;,\n    &quot;first_line&quot;: &quot;I hear the ocean\'s song, a symphony of waves&quot;\n}\n\n{\n    &quot;title&quot;: &quot;A Winter\'s Night&quot;,\n    &quot;author&quot;: &quot;Robert Frost&quot;,\n    &quot;first_line&quot;: &quot;The snow falls softly, covering the ground&quot;\n}'</code></pre></details>
 **早期模型不支持，会出现解码错误**
 
 ```python
- simple_chain.invoke(challenge)      
+ simple_chain.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="ua1b0ea57"><span class="ne-text">output：</span></summary><pre data-language="python" id="C8Kd2" class="ne-codeblock language-python"><code>---------------------------------------------------------------------------
+<details><summary>output：</summary><pre><code class="language-python"><code>---------------------------------------------------------------------------
 JSONDecodeError                           Traceback (most recent call last)
 &lt;ipython-input-39-7b2363c45b31&gt; in &lt;cell line: 1&gt;()
 ----&gt; 1 simple_chain.invoke(challenge)
@@ -771,8 +768,8 @@ JSONDecodeError                           Traceback (most recent call last)
     324     if run_manager is not None and accepts_run_manager(func):
 325         kwargs[&quot;run_manager&quot;] = run_manager
 --&gt; 326     return func(input, **kwargs)  # type: ignore[call-arg]
-327 
-328 
+327
+328
 
 /usr/local/lib/python3.10/dist-packages/langchain_core/runnables/base.py in _invoke(self, input, run_manager, config, **kwargs)
 3381                         output = chunk
@@ -785,8 +782,8 @@ JSONDecodeError                           Traceback (most recent call last)
 324     if run_manager is not None and accepts_run_manager(func):
 325         kwargs[&quot;run_manager&quot;] = run_manager
 --&gt; 326     return func(input, **kwargs)  # type: ignore[call-arg]
-327 
-328 
+327
+328
 
 /usr/lib/python3.10/json/__init__.py in loads(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)
 344             parse_int is None and parse_float is None and
@@ -800,7 +797,7 @@ JSONDecodeError                           Traceback (most recent call last)
 339         if end != len(s):
 --&gt; 340             raise JSONDecodeError(&quot;Extra data&quot;, s, end)
 341         return obj
-342 
+342
 
 JSONDecodeError: Extra data: line 9 column 1 (char 125)</code></pre></details>
 ## 较新的模型能够格式化输出
@@ -811,7 +808,7 @@ chain = model | StrOutputParser() | json.loads
 chain.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="ue9128691"><span class="ne-text">output：</span></summary><pre data-language="python" id="rx8Uw" class="ne-codeblock language-python"><code>{'poem1': {'title': 'Whispers of the Wind',
+<details><summary>output：</summary><pre><code class="language-python"><code>{'poem1': {'title': 'Whispers of the Wind',
   'author': 'Emily Rivers',
   'first_line': 'Softly it comes, the whisper of the wind'},
  'poem2': {'title': 'Silent Serenade',
@@ -827,7 +824,7 @@ final_chain = simple_chain.with_fallbacks([chain])
 final_chain.invoke(challenge)
 ```
 
-<details class="lake-collapse"><summary id="ub381834a"><span class="ne-text">output：</span></summary><pre data-language="python" id="qGpWi" class="ne-codeblock language-python"><code>{'poem1': {'title': 'Whispers of the Wind',
+<details><summary>output：</summary><pre><code class="language-python"><code>{'poem1': {'title': 'Whispers of the Wind',
   'author': 'Emily Rivers',
   'first_line': 'Softly it comes, the whisper of the wind'},
  'poem2': {'title': 'Silent Serenade',
@@ -852,13 +849,13 @@ chain = prompt | model | output_parser
 chain.invoke({"topic": "bears"})
 ```
 
-<details class="lake-collapse"><summary id="u86678713"><span class="ne-text">output：</span></summary><pre data-language="python" id="i81jA" class="ne-codeblock language-python"><code>&quot;Why don't bears wear shoes?\n\nBecause they have bear feet!&quot;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>&quot;Why don't bears wear shoes?\n\nBecause they have bear feet!&quot;</code></pre></details>
 ### batch接口
 ```python
 chain.batch([{"topic": "bears"}, {"topic": "frogs"}])
 ```
 
-<details class="lake-collapse"><summary id="u7216c573"><span class="ne-text">output：</span></summary><pre data-language="python" id="DE2T0" class="ne-codeblock language-python"><code>[&quot;Why don't bears wear shoes?\n\nBecause they have bear feet!&quot;,
+<details><summary>output：</summary><pre><code class="language-python"><code>[&quot;Why don't bears wear shoes?\n\nBecause they have bear feet!&quot;,
  'Why did the frog take the bus to work?\n\nBecause his car got toad away!']</code></pre></details>
 ### stream接口
 ```python
@@ -866,14 +863,13 @@ for t in chain.stream({"topic": "bears"}):
     print(t)
 ```
 
-<details class="lake-collapse"><summary id="ue6499764"><span class="ne-text">output：</span></summary><pre data-language="python" id="u9Ql6" class="ne-codeblock language-python"><code>Why
+<details><summary>output：</summary><pre><code class="language-python"><code>Why
  don
 't
  bears
  wear
  shoes
 ?
-
 
 Because
  they
@@ -887,4 +883,4 @@ response = await chain.ainvoke({"topic": "bears"})
 response
 ```
 
-<details class="lake-collapse"><summary id="ucc31cb81"><span class="ne-text">output：</span></summary><pre data-language="python" id="yCewl" class="ne-codeblock language-python"><code>&quot;Why don't bears wear shoes?\n\nBecause they have bear feet!&quot;</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>&quot;Why don't bears wear shoes?\n\nBecause they have bear feet!&quot;</code></pre></details>

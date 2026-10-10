@@ -20,14 +20,10 @@ coze有两个版本
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752995460881-c8eebaf3-c898-4c08-916d-04f6a710ec3c.png)
 
-
-
 ## 搭建一个PPT智能体
 	在coze的插件市场中提供的有一个`iSilde`的插件，专门为我们提供PPT的生成功能，他提供了5个具体的插件功能
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752995460957-8310629a-424c-43cc-8cc0-cd25bca93f80.png)
-
-
 
 | 插件名称 | 说明 |
 | --- | --- |
@@ -37,12 +33,9 @@ coze有两个版本
 | `get_thumbnail` | 根据模版id和大纲id获取PPT的缩略图，并输出生成ppt的任务id。 |
 | `get_themes` | 根据关键字获取模版。 |
 
-
 具体的案例实现
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752995461005-b760e587-ebef-44b3-846b-2966e027e2df.png)
-
-
 
 对应的提示词
 
@@ -73,8 +66,6 @@ coze有两个版本
         - 生成的内容不得违法国家政策
 ```
 
-
-
 ## 创建工作流
 	上面我们创建一个PPT是通过智能体来实现的。把iSlide中的4个插件来组织起来生成对应的PPT信息，具体的流程还是需要模型来实现，我们可以通过工作流的方式来编排这个PPT的生成。
 
@@ -88,8 +79,6 @@ coze有两个版本
 
 + 主题
 + 样式
-
-
 
 通过输入的主题获取PPT的大纲信息
 
@@ -107,7 +96,7 @@ coze有两个版本
 # 在这里，您可以通过 ‘args’  获取节点中的输入变量，并通过 'ret' 输出结果
 # 'args' 和 'ret' 已经被正确地注入到环境中
 # 下面是一个示例，首先获取节点的全部输入参数params，其次获取其中参数名为‘input’的值：
-# params = args.params; 
+# params = args.params;
 # input = params.input;
 # 下面是一个示例，输出一个包含多种数据类型的 'ret' 对象：
 # ret: Output =  { "name": ‘小明’, "hobbies": [“看书”, “旅游”] };
@@ -144,8 +133,6 @@ return ret
 生成的效果
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752995461662-18538f44-a468-416b-9916-c9f5a79c83ee.png)
-
-
 
 ## 搭建一个PPT应用
 然后我们也可以通过coze中的应用来构建我们的PPT生成工具，效果如下
@@ -198,14 +185,12 @@ PPT的样式:{{style}}
 和提供的和关键字相关的内容生成符合格式的PPT大纲
 ```
 
-
-
 ### 两个代码中的处理方法
 ```python
 # 在这里，您可以通过 ‘args’  获取节点中的输入变量，并通过 'ret' 输出结果
 # 'args' 和 'ret' 已经被正确地注入到环境中
 # 下面是一个示例，首先获取节点的全部输入参数params，其次获取其中参数名为‘input’的值：
-# params = args.params; 
+# params = args.params;
 # input = params.input;
 # 下面是一个示例，输出一个包含多种数据类型的 'ret' 对象：
 # ret: Output =  { "name": ‘小明’, "hobbies": [“看书”, “旅游”] };
@@ -224,7 +209,7 @@ return ret
 # 在这里，您可以通过 ‘args’  获取节点中的输入变量，并通过 'ret' 输出结果
 # 'args' 和 'ret' 已经被正确地注入到环境中
 # 下面是一个示例，首先获取节点的全部输入参数params，其次获取其中参数名为‘input’的值：
-# params = args.params; 
+# params = args.params;
 # input = params.input;
 # 下面是一个示例，输出一个包含多种数据类型的 'ret' 对象：
 # ret: Output =  { "name": ‘小明’, "hobbies": [“看书”, “旅游”] };
@@ -241,4 +226,3 @@ return ret
 在设置应用的时候需要注意的是事件的设置
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752995461846-1b0288e6-27a1-4396-b29f-4ce600b1b941.png)
-

@@ -1,9 +1,7 @@
 [分类和实体的提取](https://www.yuque.com/qiaokate/su87gb/sxlni0st18qafuye)，已经介绍了各种分类和实体提取的用法。这里是更具体、常见的任务。
 
-<br/>success
+success
 首先是主题分类，简单来说就是给定文本，判断属于哪一类主题。
-
-<br/>
 
 ### 分类
 找一个新闻主题分类的数据集看看，数据集取自：[CLUEbenchmark/CLUE](https://github.com/CLUEbenchmark/CLUE)，共15个类别。
@@ -16,8 +14,7 @@ lines = pnlp.read_file_to_list_dict("./dataset/tnews.json")
 len(lines)
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>10000</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>10000</code></pre></details>
 
 ```python
 from collections import Counter
@@ -28,7 +25,7 @@ ct = Counter([v["label_desc"] for v in lines])
 ct.most_common()
 ```
 
-<details class="lake-collapse"><summary id="u3624e5fd"><span class="ne-text">output：</span></summary><pre data-language="json" id="VdsMm" class="ne-codeblock language-json"><code>[('news_tech', 1089),
+<details><summary>output：</summary><pre><code class="language-json"><code>[('news_tech', 1089),
  ('news_finance', 956),
  ('news_entertainment', 910),
  ('news_world', 905),
@@ -44,7 +41,6 @@ ct.most_common()
  ('news_story', 215),
  ('news_stock', 45)]</code></pre></details>
 
-
 `stock`这个类别太少了，先给它去掉：
 
 ```python
@@ -52,8 +48,7 @@ lines = [v for v in lines if v["label_desc"] != "news_stock"]
 len(lines)
 ```
 
-<details class="lake-collapse"><summary id="ub1eafb89"><span class="ne-text">output：</span></summary><pre data-language="json" id="HWE7p" class="ne-codeblock language-json"><code>9955</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>9955</code></pre></details>
 
 ```python
 def get_prompt(text):
@@ -70,23 +65,21 @@ def get_prompt(text):
 lines[59]
 ```
 
-<details class="lake-collapse"><summary id="u8a465312"><span class="ne-text">output：</span></summary><pre data-language="json" id="aPTgC" class="ne-codeblock language-json"><code>{'label': '101',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'label': '101',
  'label_desc': 'news_culture',
  'sentence': '上联：银笛吹开云天月，下联怎么对？',
  'keywords': ''}</code></pre></details>
-
 
 ```python
 prompt = get_prompt(lines[59]["sentence"])
 print(prompt)
 ```
 
-<details class="lake-collapse"><summary id="u8db02a23"><span class="ne-text">output：</span></summary><pre data-language="json" id="EfokA" class="ne-codeblock language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
+<details><summary>output：</summary><pre><code class="language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
 
 给定文本：
 上联：银笛吹开云天月，下联怎么对？
 类别：</code></pre></details>
-
 
 ```python
 from openai import OpenAI
@@ -99,7 +92,7 @@ zhipu_client = ZhipuAI(api_key="YOUR ZHIPU KEY")
 ```python
 def ask(content, model="gpt-3.5-turbo"):
     response = client.chat.completions.create(
-        model=model, 
+        model=model,
         messages=[{"role": "user", "content": content}],
         temperature=0,
         max_tokens=300,
@@ -113,7 +106,7 @@ def ask(content, model="gpt-3.5-turbo"):
 
 def ask_zhipu(content, model="glm-3-turbo"):
     response = zhipu_client.chat.completions.create(
-        model=model, 
+        model=model,
         messages=[{"role": "user", "content": content}],
         temperature=0.1,
         max_tokens=300,
@@ -128,15 +121,13 @@ def ask_zhipu(content, model="glm-3-turbo"):
 ask(prompt)
 ```
 
-<details class="lake-collapse"><summary id="u6b7fc72e"><span class="ne-text">output：</span></summary><pre data-language="json" id="J6iAk" class="ne-codeblock language-json"><code>'文化'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'文化'</code></pre></details>
 
 ```python
 ask_zhipu(prompt)
 ```
 
-<details class="lake-collapse"><summary id="ubc96f6ab"><span class="ne-text">output：</span></summary><pre data-language="json" id="Vvq1Q" class="ne-codeblock language-json"><code>'给定文本“上联：银笛吹开云天月，下联怎么对？”属于文化类别。这是因为文本涉及对联的创作，对联是中国传统文化中的一种文学形式，体现了中国的语言艺术和文学修养。'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'给定文本“上联：银笛吹开云天月，下联怎么对？”属于文化类别。这是因为文本涉及对联的创作，对联是中国传统文化中的一种文学形式，体现了中国的语言艺术和文学修养。'</code></pre></details>
 
 再试几个其他类别的：
 
@@ -144,58 +135,53 @@ ask_zhipu(prompt)
 lines[1]
 ```
 
-<details class="lake-collapse"><summary id="u30dc6dbf"><span class="ne-text">output：</span></summary><pre data-language="json" id="rmCXz" class="ne-codeblock language-json"><code>{'label': '110',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'label': '110',
  'label_desc': 'news_military',
  'sentence': '以色列大规模空袭开始！伊朗多个军事目标遭遇打击，誓言对等反击',
  'keywords': '伊朗,圣城军,叙利亚,以色列国防军,以色列'}</code></pre></details>
-
 
 ```python
 prompt = get_prompt(lines[1]["sentence"])
 print(prompt)
 ```
 
-<details class="lake-collapse"><summary id="u9be334a8"><span class="ne-text">output：</span></summary><pre data-language="json" id="ii7jq" class="ne-codeblock language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
+<details><summary>output：</summary><pre><code class="language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
 
 给定文本：
 以色列大规模空袭开始！伊朗多个军事目标遭遇打击，誓言对等反击
 类别：</code></pre></details>
 
-
 ```python
 ask(prompt)
 ```
 
-<details class="lake-collapse"><summary id="u73341abb"><span class="ne-text">output：</span></summary><pre data-language="json" id="Q6ZGe" class="ne-codeblock language-json"><code>'军事'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'军事'</code></pre></details>
 
 ```python
 lines[2]
 ```
 
-<details class="lake-collapse"><summary id="u4a56b451"><span class="ne-text">output：</span></summary><pre data-language="json" id="tPNVV" class="ne-codeblock language-json"><code>{'label': '104',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'label': '104',
  'label_desc': 'news_finance',
  'sentence': '出栏一头猪亏损300元，究竟谁能笑到最后！',
  'keywords': '商品猪,养猪,猪价,仔猪,饲料'}</code></pre></details>
-
 
 ```python
 prompt = get_prompt(lines[2]["sentence"])
 print(prompt)
 ```
 
-<details class="lake-collapse"><summary id="u5bede74b"><span class="ne-text">output：</span></summary><pre data-language="json" id="WMgyN" class="ne-codeblock language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
+<details><summary>output：</summary><pre><code class="language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
 
 给定文本：
 出栏一头猪亏损300元，究竟谁能笑到最后！
 类别：</code></pre></details>
 
-
 ```python
 ask_zhipu(prompt)
 ```
 
-<details class="lake-collapse"><summary id="uf96be6c4"><span class="ne-text">output：</span></summary><pre data-language="json" id="R7juX" class="ne-codeblock language-json"><code>'给定文本“出栏一头猪亏损300元，究竟谁能笑到最后！”可以被归类为“农业”类别。这是因为文本内容涉及农业生产和养殖业的情况，亏损300元反映的是农业领域的经济现象，而“谁能笑到最后”可能指的是在当前情况下，养殖业者如何通过各种方式转亏为盈，保持竞争力。'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'给定文本“出栏一头猪亏损300元，究竟谁能笑到最后！”可以被归类为“农业”类别。这是因为文本内容涉及农业生产和养殖业的情况，亏损300元反映的是农业领域的经济现象，而“谁能笑到最后”可能指的是在当前情况下，养殖业者如何通过各种方式转亏为盈，保持竞争力。'</code></pre></details>
 这个有点迷糊，不过「农业」这个类别感觉也没问题。当然，遇到有错误的情况，起码还有两种手段来解决：
 
 + `Few-Shot`，可以每次随机从数据集里抽几条出来作为`Prompt`的一部分。
@@ -208,14 +194,11 @@ ask_zhipu(prompt)
 ### 微调（Fine-Tuning）
 不过，还可以使用微调（Fine-Tuning）方法在自己的数据集上对模型进行微调，简单来说就是让模型「熟悉」独特的数据，进而让其具备在类似数据集上识别出类别的能力。
 
-<br/>color2
 接下来，就让看看具体怎么做，一般包括三个主要步骤：
 
 1. **准备数据**：按接口要求的格式把数据准备好，这里的数据就是自己的数据集，至少包含一段文本和一个类别。
 2. **微调**：使用微调接口将刚刚的数据传递过去，由服务器自动完成微调，微调完成后可以得到一个新的model_id。注意，这个model_id只属于你自己，不要将它公开给其他人。
 3. **使用新的模型进行推理**：嗯，这个很简单，把原来接口里的`model`参数内容换成的model_id即可。
-
-<br/>
 
 咱们接下来就来调调这个多分类模型，只取后100条作为训练集。
 
@@ -232,8 +215,7 @@ train = pd.DataFrame(train_lines)
 train.shape
 ```
 
-<details class="lake-collapse"><summary id="ucb436364"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="OptVo" class="ne-codeblock language-json"><code>(100, 4)</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>(100, 4)</code></pre></details>
 
 ```python
 train.head()
@@ -243,13 +225,11 @@ Output:
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1735611415716-40b2d0d4-fe73-4c93-aee6-c561f84bc82a.png)
 
-
-
 ```python
 train.label_desc.value_counts()
 ```
 
-<details class="lake-collapse"><summary id="u6df4c7b4"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="A2Ily" class="ne-codeblock language-json"><code>label_desc
+<details><summary>output：</summary><pre><code class="language-json"><code>label_desc
 news_world            12
 news_tech             11
 news_finance          11
@@ -265,7 +245,6 @@ news_car               3
 news_story             2
 news_culture           2
 Name: count, dtype: int64</code></pre></details>
-
 
 #### Step1：准备数据
 要保证有两列为：`role`和`content`，支持多轮。具体可以进一步参考：[Fine-tuning - OpenAI API](https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset)
@@ -340,28 +319,28 @@ for ex in data_lines:
     if not isinstance(ex, dict):
         format_errors["data_type"] += 1
         continue
-        
+
     messages = ex.get("messages", None)
     if not messages:
         format_errors["missing_messages_list"] += 1
         continue
-        
+
     for message in messages:
         if "role" not in message or "content" not in message:
             format_errors["message_missing_key"] += 1
-        
+
         if any(k not in ("role", "content", "name", "function_call", "weight") for k in message):
             format_errors["message_unrecognized_key"] += 1
-        
+
         if message.get("role", None) not in ("system", "user", "assistant", "function"):
             format_errors["unrecognized_role"] += 1
-            
+
         content = message.get("content", None)
         function_call = message.get("function_call", None)
-        
+
         if (not content and not function_call) or not isinstance(content, str):
             format_errors["missing_content"] += 1
-    
+
     if not any(message.get("role", None) == "assistant" for message in messages):
         format_errors["example_missing_assistant_message"] += 1
 
@@ -373,8 +352,7 @@ else:
     print("No errors found")
 ```
 
-<details class="lake-collapse"><summary id="ue840535a"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="Trl8E" class="ne-codeblock language-json"><code>No errors found</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>No errors found</code></pre></details>
 
 ```python
 encoding = tiktoken.get_encoding("cl100k_base")
@@ -404,8 +382,6 @@ def print_distribution(values, name):
     print(f"p5 / p95: {np.quantile(values, 0.1)}, {np.quantile(values, 0.9)}")
 ```
 
-
-
 ```python
 # Warnings and tokens counts
 n_missing_system = 0
@@ -423,7 +399,7 @@ for ex in data_lines:
     n_messages.append(len(messages))
     convo_lens.append(num_tokens_from_messages(messages))
     assistant_message_lens.append(num_assistant_tokens_from_messages(messages))
-    
+
 print("Num examples missing system message:", n_missing_system)
 print("Num examples missing user message:", n_missing_user)
 print_distribution(n_messages, "num_messages_per_example")
@@ -433,7 +409,7 @@ n_too_long = sum(l > 4096 for l in convo_lens)
 print(f"\n{n_too_long} examples may be over the 4096 token limit, they will be truncated during fine-tuning")
 ```
 
-<details class="lake-collapse"><summary id="ud5c2bd99"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="ZF840" class="ne-codeblock language-json"><code>Num examples missing system message: 100
+<details><summary>output：</summary><pre><code class="language-json"><code>Num examples missing system message: 100
 Num examples missing user message: 0
 
 #### Distribution of num_messages_per_example:
@@ -452,7 +428,6 @@ mean / median: 3.04, 3.0
 p5 / p95: 2.0, 4.0
 
 0 examples may be over the 4096 token limit, they will be truncated during fine-tuning</code></pre></details>
-
 
 ```python
 # Pricing and default n_epochs estimate
@@ -477,10 +452,9 @@ print(f"By default, you'll train for {n_epochs} epochs on this dataset")
 print(f"By default, you'll be charged for ~{n_epochs * n_billing_tokens_in_dataset} tokens")
 ```
 
-<details class="lake-collapse"><summary id="u4ef8f7df"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="auXGg" class="ne-codeblock language-json"><code>Dataset has ~11990 tokens that will be charged for during training
+<details><summary>output：</summary><pre><code class="language-json"><code>Dataset has ~11990 tokens that will be charged for during training
 By default, you'll train for 3 epochs on this dataset
 By default, you'll be charged for ~35970 tokens</code></pre></details>
-
 
 #### Step2：微调（OpenAI）
 相关文档：
@@ -497,8 +471,6 @@ file = client.files.create(
 )
 ```
 
-
-
 ```python
 job = client.fine_tuning.jobs.create(
     training_file=file.id,
@@ -508,8 +480,6 @@ job = client.fine_tuning.jobs.create(
     }
 )
 ```
-
-
 
 ```python
 # 列出10个事件
@@ -528,8 +498,6 @@ job = client.fine_tuning.jobs.create(
 # client.models.delete("ft:gpt-3.5-turbo:acemeco:suffix:abc123")
 ```
 
-
-
 ```python
 # 可以用这个命令不定时获取状态，与之前版本一致。
 # 可重复执行，注意观察其中的“status”字段
@@ -537,8 +505,7 @@ ft_job = client.fine_tuning.jobs.retrieve(job.id)
 ft_job
 ```
 
-<details class="lake-collapse"><summary id="u4178ed2a"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="aV56G" class="ne-codeblock language-json"><code>FineTuningJob(id='ftjob-hQpExgNbOsnnOV4DLZn1SDUk', created_at=1716303071, error=Error(code=None, message=None, param=None), fine_tuned_model='ft:gpt-3.5-turbo-0125:personal::9RLH3nut', finished_at=1716303660, hyperparameters=Hyperparameters(n_epochs=2, batch_size=1, learning_rate_multiplier=2), model='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-U35hu1wdD7w3HnkgJ5fdBW8m', result_files=['file-PhKdwGbqzf5IjiecDe1kiU4M'], seed=1873867419, status='succeeded', trained_tokens=23580, training_file='file-XCZvA9drMr1UebtoGN1vGM5D', validation_file=None, estimated_finish=None, integrations=[], user_provided_suffix=None)</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>FineTuningJob(id='ftjob-hQpExgNbOsnnOV4DLZn1SDUk', created_at=1716303071, error=Error(code=None, message=None, param=None), fine_tuned_model='ft:gpt-3.5-turbo-0125:personal::9RLH3nut', finished_at=1716303660, hyperparameters=Hyperparameters(n_epochs=2, batch_size=1, learning_rate_multiplier=2), model='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-U35hu1wdD7w3HnkgJ5fdBW8m', result_files=['file-PhKdwGbqzf5IjiecDe1kiU4M'], seed=1873867419, status='succeeded', trained_tokens=23580, training_file='file-XCZvA9drMr1UebtoGN1vGM5D', validation_file=None, estimated_finish=None, integrations=[], user_provided_suffix=None)</code></pre></details>
 
 大概等待10-15分钟（视数据量和排队情况，可能会更久）后，就得到了上面的结果。还可以通过下面的API获取checkpoint。
 
@@ -561,7 +528,7 @@ resp = requests.get(
 resp.json()
 ```
 
-<details class="lake-collapse"><summary id="uf40f2501"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="bVeNf" class="ne-codeblock language-json"><code>{'object': 'list',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'object': 'list',
  'data': [{'object': 'fine_tuning.job.checkpoint',
    'id': 'ftckpt_0iu99HCJW9FllVqvrD16hBER',
    'created_at': 1716303657,
@@ -584,7 +551,6 @@ resp.json()
  'first_id': 'ftckpt_0iu99HCJW9FllVqvrD16hBER',
  'last_id': 'ftckpt_4QVDvsnDl1QdaabczYpi0nuI'}</code></pre></details>
 
-
 **📢****注意：如果你微调的是babbage-002anddavinci-002，可以在GitHub首页切换到v1.0分支，参考那里的代码。**
 
 更多信息可参考文档：[https://platform.openai.com/docs/guides/fine-tuning/use-a-fine-tuned-model](https://platform.openai.com/docs/guides/fine-tuning/use-a-fine-tuned-model)
@@ -593,7 +559,7 @@ resp.json()
 ```python
 def ask(content, model="gpt-3.5-turbo", max_tokens=5):
     response = client.chat.completions.create(
-        model=model, 
+        model=model,
         messages=[{"role": "user", "content": content}],
         temperature=0,
         max_tokens=max_tokens,
@@ -607,7 +573,7 @@ def ask(content, model="gpt-3.5-turbo", max_tokens=5):
 
 def ask_zhipu(content, model="glm-3-turbo", max_tokens=5):
     response = zhipu_client.chat.completions.create(
-        model=model, 
+        model=model,
         messages=[{"role": "user", "content": content}],
         temperature=0.1,
         max_tokens=max_tokens,
@@ -625,31 +591,27 @@ print(prompt)
 print("\nTrue label:", desc_map[lines[idx]["label_desc"]])
 ```
 
-<details class="lake-collapse"><summary id="u2db5c8a0"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="Um8H8" class="ne-codeblock language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
+<details><summary>output：</summary><pre><code class="language-json"><code>对给定文本进行分类，类别包括：科技、金融、娱乐、世界、汽车、运动、文化、军事、旅游、游戏、教育、农业、房产、社会。
 
 给定文本：
 日本虎视眈眈“武力夺岛”, 美军向俄后院开火，普京终不再忍！
 类别：
 
-
 True label: 世界</code></pre></details>
-
 
 ```python
 # 原来的，微调之前的
 ask(prompt)
 ```
 
-<details class="lake-collapse"><summary id="u2bc2d794"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="Cuyoy" class="ne-codeblock language-json"><code>'军事'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'军事'</code></pre></details>
 
 ```python
 # 微调之后的
 ask(prompt, ft_job.fine_tuned_model)
 ```
 
-<details class="lake-collapse"><summary id="u7fcf05b5"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="zCcIy" class="ne-codeblock language-json"><code>'世界'</code></pre></details>
-
+<details><summary>output：</summary><pre><code class="language-json"><code>'世界'</code></pre></details>
 
 可以看到，微调后输出的是训练集里的真实类别。
 
@@ -657,7 +619,7 @@ ask(prompt, ft_job.fine_tuned_model)
 
 ```python
 item = {
-    "prompt":"请抽取给定Text中的实体，实体包括人名和地名。\nText:<任意文本>\n", 
+    "prompt":"请抽取给定Text中的实体，实体包括人名和地名。\nText:<任意文本>\n",
     "completion":" <想要的实体列表>"
 }
 ```
@@ -669,7 +631,7 @@ item = {
 ]
 ```
 
-<details class="lake-collapse"><summary id="uedec4fd6"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="Eb7z7" class="ne-codeblock language-json"><code>[{'role': 'user', 'content': '请抽取给定Text中的实体，实体包括人名和地名。\nText:&lt;任意文本&gt;\n'},
+<details><summary>output：</summary><pre><code class="language-json"><code>[{'role': 'user', 'content': '请抽取给定Text中的实体，实体包括人名和地名。\nText:&lt;任意文本&gt;\n'},
  {'role': 'assistant', 'content': ' &lt;想要的实体列表&gt;'}]</code></pre></details>
 当然，也可以指定输出类型、格式等，就像前面提示词所示的那样。相信大家应该很容易理解，不妨自己做一些尝试。尤其是给一些专业领域的实体进行微调，对比一下微调前后的效果。当然，你也可以指定输出格式等。
 
@@ -678,6 +640,3 @@ item = {
 [Fine-tuning - OpenAI API](https://platform.openai.com/docs/guides/fine-tuning)
 
 [[PUBLIC] Best practices for fine-tuning GPT-3 to classify text - Google Docs](https://docs.google.com/document/d/1rqj7dkuvl7Byd5KQPUJRxc19BJt8wo0yHNwK84KfU3Q/edit)
-
-
-

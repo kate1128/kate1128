@@ -34,7 +34,6 @@ from langchain_experimental.pal_chain import PALChain
 from langchain_openai import ChatOpenAI
 from langchain.chains.llm import LLMChain
 
-
 # 从环境变量中获取 OpenAI API Key 或者直接赋值
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 OPENAI_API_KEY = "sk-...你的 OpenAI API Key"
@@ -89,13 +88,11 @@ def solution():
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>{'question': '罗杰有 5 个网球。他又买了 2 罐网球。每罐有 3 个网球。他现在有多少个网球？\n', 'result': '11'}
+<details><summary>output：</summary><pre><code class="language-json"><code>{'question': '罗杰有 5 个网球。他又买了 2 罐网球。每罐有 3 个网球。他现在有多少个网球？\n', 'result': '11'}
 </code></pre></details>
-
 
 ```python
 pal_chain = PALChain.from_math_prompt(llm, verbose=True)
-
 
 prompt_English = """Roger has 5 tennis balls. \
 He buys 2 more cans of tennis balls. \
@@ -108,8 +105,6 @@ pal_chain.invoke(prompt_English)
 
 ```python
 英文 Prompt：Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?
-
-
 
 > Entering new PALChain chain...
 def solution():
@@ -124,7 +119,7 @@ def solution():
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="u2f02dde5"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="RJbO6" class="ne-codeblock language-json"><code>{'question': 'Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?\n',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'question': 'Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?\n',
  'result': '11'}</code></pre></details>
 在 `LangChain` 的 `langchain_experimental/pal_chain/math_prompt.py` 源码中，我们可以看到一个专为数学问题设计的 `Prompt 模板`。其主要目的是通过提供示例来促进上下文学习。如下图所示：
 
@@ -148,8 +143,6 @@ pal_chain.invoke(prompt_Chinese)
 
 ```python
 中文 Prompt：在桌子上，你看到一堆物品排列成一排：紫色回形针、粉色压力球、棕色钥匙扣、绿色抓握式手机充电器、淡紫色小飞虫和酒红色钢笔。压力球右边的物体是什么颜色的？
-
-
 
 > Entering new PALChain chain...
 # 将物品放入一个列表中记录顺序
@@ -178,9 +171,8 @@ answer = right_object_color
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="u042698f0"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="UXZqR" class="ne-codeblock language-json"><code>{'question': '在桌子上，你看到一堆物品排列成一排：紫色回形针、粉色压力球、棕色钥匙扣、绿色抓握式手机充电器、淡紫色小飞虫和酒红色钢笔。压力球右边的物体是什么颜色的？\n',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'question': '在桌子上，你看到一堆物品排列成一排：紫色回形针、粉色压力球、棕色钥匙扣、绿色抓握式手机充电器、淡紫色小飞虫和酒红色钢笔。压力球右边的物体是什么颜色的？\n',
  'result': '棕色'}</code></pre></details>
-
 
 ```python
 pal_chain = PALChain.from_colored_object_prompt(llm, verbose=True)
@@ -196,8 +188,6 @@ pal_chain.invoke(prompt_English)
 
 ```python
 英文 Prompt：On the table, you see a bunch of objects arranged in a row: a purple paperclip, a pink stress ball, a brown keychain, a green scrunchiephone charger, a mauve fidget spinner, and a burgundy pen. What is the color of the object directly to the right of the stress ball?
-
-
 
 > Entering new PALChain chain...
 # Put objects into a list to record ordering
@@ -226,7 +216,7 @@ answer = direct_right_color
 > Finished chain.
 ```
 
-<details class="lake-collapse"><summary id="u62ad56d1"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="vBjIZ" class="ne-codeblock language-json"><code>{'question': 'On the table, you see a bunch of objects arranged in a row: a purple paperclip, a pink stress ball, a brown keychain, a green scrunchiephone charger, a mauve fidget spinner, and a burgundy pen. What is the color of the object directly to the right of the stress ball?\n',
+<details><summary>output：</summary><pre><code class="language-json"><code>{'question': 'On the table, you see a bunch of objects arranged in a row: a purple paperclip, a pink stress ball, a brown keychain, a green scrunchiephone charger, a mauve fidget spinner, and a burgundy pen. What is the color of the object directly to the right of the stress ball?\n',
  'result': 'brown'}</code></pre></details>
 在 `LangChain` 的 `langchain_experimental/pal_chain/colored_object_prompt.py` 源码中，我们可以看到一个专为颜色物体问题设计的 `Prompt 模板`。其主要目的是通过提供示例来促进上下文学习。如下图所示：
 
@@ -258,4 +248,3 @@ LLM 代码生成质量高的原因：
 # 参考
 + ICML 2023 - PAL: Program-aided Language Models，[https://icml.cc/virtual/2023/poster/23864](https://icml.cc/virtual/2023/poster/23864)
 + LangChain langchain_experimental pal_chain 源码，[https://github.com/langchain-ai/langchain/tree/master/libs/experimental/langchain_experimental/pal_chain](https://github.com/langchain-ai/langchain/tree/master/libs/experimental/langchain_experimental/pal_chain)
-

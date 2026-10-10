@@ -1,17 +1,17 @@
-<font style="color:rgb(0, 0, 0);">这两个概念是用于调节生成模型（比如 GPT）输出的多样性和创造性的参数。通常，</font>**<font style="color:rgb(0, 0, 0);">Temperature</font>**<font style="color:rgb(0, 0, 0);"> 和 </font>**<font style="color:rgb(0, 0, 0);">Top-p</font>**<font style="color:rgb(0, 0, 0);"> 可以联合使用，调整模型输出的创造性和流畅度。</font>
+这两个概念是用于调节生成模型（比如 GPT）输出的多样性和创造性的参数。通常，**Temperature** 和 **Top-p** 可以联合使用，调整模型输出的创造性和流畅度。
 
-## <font style="color:rgb(0, 0, 0);">Temperature（温度）</font>
-+ **<font style="color:rgb(0, 0, 0);">定义</font>**<font style="color:rgb(0, 0, 0);">：温度是控制模型输出随机性的参数。它影响模型预测下一个词时的“概率分布”。</font>
-+ **<font style="color:rgb(0, 0, 0);">作用</font>**<font style="color:rgb(0, 0, 0);">：</font>
-    - **<font style="color:rgb(0, 0, 0);">低温度（</font>****接近 0****<font style="color:rgb(0, 0, 0);">）</font>**<font style="color:rgb(0, 0, 0);">：</font>预测的随机性会较低，产生更**保守、可预测**的文本，<font style="color:rgb(0, 0, 0);">不太可能生成意想不到或不寻常的词。</font>
-    - **<font style="color:rgb(0, 0, 0);">高温度（</font>****接近 1****<font style="color:rgb(0, 0, 0);">）</font>**<font style="color:rgb(0, 0, 0);">：</font>预测的随机性会较高，所有词被选择的可能性更大，会产生更有创意、多样化的文本<font style="color:rgb(0, 0, 0);">，更有可能生成不寻常或意想不到的词。</font>
+## Temperature（温度）
++ **定义**：温度是控制模型输出随机性的参数。它影响模型预测下一个词时的“概率分布”。
++ **作用**：
+    - **低温度（****接近 0****）**：预测的随机性会较低，产生更**保守、可预测**的文本，不太可能生成意想不到或不寻常的词。
+    - **高温度（****接近 1****）**：预测的随机性会较高，所有词被选择的可能性更大，会产生更有创意、多样化的文本，更有可能生成不寻常或意想不到的词。
 
-## <font style="color:rgb(0, 0, 0);">Top-p（顶点采样）</font>
-+ **<font style="color:rgb(0, 0, 0);">定义</font>**<font style="color:rgb(0, 0, 0);">：Top-p 采样（也叫做</font>**<font style="color:rgb(0, 0, 0);">核采样</font>**<font style="color:rgb(0, 0, 0);">）是一种根据概率分布进行采样的方法。在每次预测时，模型会选择一个总概率大于等于 p 的最小集合，并在其中进行采样。</font>
-+ **<font style="color:rgb(0, 0, 0);">作用</font>**<font style="color:rgb(0, 0, 0);">：</font>
-    - **<font style="color:rgb(0, 0, 0);">p 越小</font>**<font style="color:rgb(0, 0, 0);">：生成的文本会变得</font>**<font style="color:rgb(0, 0, 0);">更加保守</font>**<font style="color:rgb(0, 0, 0);">和一致，因为模型仅在最可能的几个词中选择。</font>
-    - **<font style="color:rgb(0, 0, 0);">p 越大</font>**<font style="color:rgb(0, 0, 0);">：生成的文本更加多样化，因为模型有更大的选择空间。</font>
-+ <font style="color:rgb(0, 0, 0);">例如，如果 p=0.9，那么模型会将所有累计概率超过 90% 的词汇作为候选，从中随机选一个。</font>
+## Top-p（顶点采样）
++ **定义**：Top-p 采样（也叫做**核采样**）是一种根据概率分布进行采样的方法。在每次预测时，模型会选择一个总概率大于等于 p 的最小集合，并在其中进行采样。
++ **作用**：
+    - **p 越小**：生成的文本会变得**更加保守**和一致，因为模型仅在最可能的几个词中选择。
+    - **p 越大**：生成的文本更加多样化，因为模型有更大的选择空间。
++ 例如，如果 p=0.9，那么模型会将所有累计概率超过 90% 的词汇作为候选，从中随机选一个。
 
 ##  示例 1
 [第二步：参数调整](https://www.yuque.com/qiaokate/su87gb/num7da5sb4xg7iri)
@@ -81,14 +81,8 @@
 选择适合自己兴趣和研究方向的选题，并与导师进行深入讨论和确认。
 ```
 
-<br/>color2
 对于不同的问题与应用场景，可能需要设置不同的 temperature。
-
-<br/>
 
 + 在搭建的**个人知识库助手项目**中，一般将 temperature **设置为 0**，从而保证助手对知识库内容的稳定使用，规避错误内容、模型幻觉；
 + 在**产品智能客服、科研论文写作**等场景中，同样更需要**稳定性**而不是创造性；
 + 但在**个性化 AI、创意营销文案生成**等场景中，就**更需要创意性**，从而更倾向于将 temperature 设置为较高的值。
-
-
-

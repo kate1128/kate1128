@@ -28,7 +28,6 @@ import re
 from openai import OpenAI
 from concurrent.futures import ThreadPoolExecutor
 
-
 # 从环境变量中获取 OpenAI API Key 或者直接赋值
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 OPENAI_API_KEY = "sk-...你的 OpenAI API Key"
@@ -39,15 +38,11 @@ BASE_URL = "https://api.openai.com/v1"
 # BASE_URL = "https://api.xxx.../v1"
 ```
 
-
-
 ```python
 # 实例化 OpenAI 对象
 # 传入参数：OpenAI API Key（必需）、Base URL 和最大重试次数
 client = OpenAI(api_key=OPENAI_API_KEY, base_url=BASE_URL, max_retries=3)
 ```
-
-
 
 ```python
 # 参数 n，整数或 Null，可选项，默认为 1。为每条输入信息生成多少个聊天完成选项。
@@ -195,8 +190,6 @@ print(key_point_skeleton_Chinese)
 [('1', '增强心肺功能。'), ('2', '控制体重。'), ('3', '提高免疫力。'), ('4', '改善睡眠质量。'), ('5', '减少患疾病风险。'), ('6', '提升心情和情绪。'), ('7', '延缓衰老。')]
 ```
 
-
-
 ```python
 def expand_point_English(point_data):
     point_index, key_point = point_data
@@ -214,7 +207,6 @@ Write it accurately and concisely in 2∼4 sentences, and do not continue with o
     point_expanding = get_completions(point_expanding_prompt, llm)
 
     return (point_index, point_expanding)
-
 
 def expand_point_Chinese(point_data):
     point_index, key_point = point_data
@@ -382,13 +374,13 @@ prompt_SoT_Chinese = f"""您的任务是分两步回答下面的问题。\
 您的任务是回答：```{question_Chinese}```
 
 骨架：
-1. 
-2. 
+1.
+2.
 ...
 
 要点扩展后的答案：
-1. 
-2. 
+1.
+2.
 ...
 """
 
@@ -451,13 +443,13 @@ Expanded Answer:
 Your task is to answer: ```{question_English}```
 
 Skeleton:
-1. 
-2. 
+1.
+2.
 ...
 
 Expanded Answer:
-1. 
-2. 
+1.
+2.
 ...
 """
 
@@ -502,4 +494,3 @@ Skeleton:
 + ICLR 2024 - Skeleton-of-Thought: Large Language Models Can Do Parallel Decoding，[https://openreview.net/forum?id=mqVgBbNCm9](https://openreview.net/forum?id=mqVgBbNCm9)
 + 大模型速度狂飙 2.39 倍！清华联手微软首提 SoT，让 LLM 思考更像人类，[https://mp.weixin.qq.com/s/9t1opfhUYm3yJuEoKPvVuQ，](https://mp.weixin.qq.com/s/9t1opfhUYm3yJuEoKPvVuQ%EF%BC%8C)
 + 思维骨架 SoT 如何提升 LLM 的速度？丨论文解读，[https://juejin.cn/post/7269607286195699727](https://juejin.cn/post/7269607286195699727)
-

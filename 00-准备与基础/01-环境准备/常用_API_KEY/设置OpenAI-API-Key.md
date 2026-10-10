@@ -8,7 +8,7 @@
 
 ```python
 # 替换"your_api_key"为你自己的 API Key
-OPENAI_API_KEY="your_api_key" 
+OPENAI_API_KEY="your_api_key"
 ```
 
 操作：
@@ -32,7 +32,6 @@ from dotenv import load_dotenv, find_dotenv
 2.load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中
 3.如果你设置的是全局的环境变量，这行代码则没有任何作用
 """
-_ = load_dotenv(find_dotenv()) 
+_ = load_dotenv(find_dotenv())
 openai.api_key = os.environ['OPENAI_API_KEY']
 ```
-

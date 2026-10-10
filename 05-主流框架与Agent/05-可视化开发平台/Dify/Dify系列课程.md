@@ -36,8 +36,6 @@ docker-compose --version
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984596203-f5608581-ef54-4533-bb2f-bed2fdc18f0e.png)
 
-
-
 说明安装成功了
 
 docker-compse拉取镜像很慢
@@ -76,7 +74,7 @@ docker-compose up -d
 	在Windows环境下我们可以通过DockerDesktop 来安装。直接去官网下载对应的版本即可。同样的我们需要拉取dify的GitHub的代码。然后进入到Docker目录，同样的执行这个代码
 
 ```bash
-docker-compose up 
+docker-compose up
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984596281-d0bed8a7-a3d6-4342-96b7-66084994979f.png)
@@ -224,11 +222,9 @@ Embedding模型默认是前面配置的模型，参数信息配置完，点击�
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984597830-29f94a49-87c5-4faf-a881-ca3e916c3311.png)
 
-
-
 ## 知识库应用
 ### 添加知识库
-	在Dify主界面，回到刚才的应用聊天页面，工作室--智能聊天机器人--添加知识库，如下图：  
+	在Dify主界面，回到刚才的应用聊天页面，工作室--智能聊天机器人--添加知识库，如下图：
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984597885-033a773d-d2db-49b3-babc-9c921803ca65.png)
 
 选择前面上面的知识库作为对话的上下文，保存当前应用设置，就可以进行测试了
@@ -239,10 +235,6 @@ Embedding模型默认是前面配置的模型，参数信息配置完，点击�
 此时输入问题，就可以看到相关的回复了。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984597987-69e6dda2-1904-4e31-abbe-a242e4e0ab30.png)
-
-
-
-
 
 ## AI图片生成工具
 	随着图像生成技术的兴起，涌现了许多优秀的图像生成产品，比如 Dall-e、Flux、Stable Diffusion 等，我们借助Stable Diffusion来在dify中构建一个智能生成图片的Agent。
@@ -258,8 +250,6 @@ Embedding模型默认是前面配置的模型，参数信息配置完，点击�
  然后我们需要进入dify的工具市场下载安装 Stable 插件。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984598102-eb540285-a07f-4bd9-bb2a-c898cc417588.png)
-
-
 
 ### 创建Agent
 	然后我们就可以创建一个空白的Agent。输入对应的提示词
@@ -280,16 +270,12 @@ Embedding模型默认是前面配置的模型，参数信息配置完，点击�
 
 注意这个是一个付费的工具。提供的有一个免费的，后面需要付费购买了：[https://platform.stability.ai/account/credits](https://platform.stability.ai/account/credits)
 
-
-
 ## 旅游助手
 进入[SerpAPI - API Key](https://serpapi.com/manage-api-key)，如果你尚未注册，会被跳转至进入注册页。
 
 SerpAPI提供一个月100次的免费调用次数，这足够我们完成本次实验了。如果你需要更多的额度，可以增加余额，或者使用其他的开源方案。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984598327-ac539131-d2e1-47a9-92b0-d98b2021dc34.png)
-
-
 
 ## SQL执行器
 	我们可以通过工作流来创建一个SQL语句的执行器，也就是我们可以输入相关的SQL语句然后通过工作流来连接数据库执行对应的SQL代码，具体的设计如下：
@@ -368,7 +354,6 @@ def execute_sql(sql,connection_info):
         if connection:
             connection.close()
 
-
 @app.route('/execute_sql', methods=['POST'])
 def execute_sql_api():
     """
@@ -396,7 +381,6 @@ def execute_sql_api():
     result = execute_sql(sql, connection_info)
     return jsonify({"result": result})
 
-
 if __name__ == '__main__':
     # 开发环境下可以设置 debug=True，默认在本地5000端口启动服务
     app.run(debug=True)
@@ -407,7 +391,6 @@ if __name__ == '__main__':
 ```python
 import json
 import requests
-
 
 def call_execute_sql_api(sql, connection_info):
     """
@@ -449,7 +432,6 @@ def call_execute_sql_api(sql, connection_info):
             return {"result": f"请求失败，状态码: {response.status_code}"}
     except Exception as e:
         return {"result": str(e)}
-
 
 # 示例调用
 if __name__ == "__main__":
@@ -524,8 +506,6 @@ http://host.docker.internal:5000/execute_sql
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984598557-d92c0a0b-ccad-49c7-9ad5-7d71d87e74ba.png)
 
 如果调用接口的组件是 urllib3 的话有可能出现上面的问题，这个原因可能是版本兼容的问题，这里推进用的是requests组件
-
-
 
 ## 科研论文翻译
 	我可以在工作流案例中结合聊天大模型来实现翻译工具的功能，具体的设计如下
@@ -607,8 +587,6 @@ http://host.docker.internal:5000/execute_sql
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984598755-d71c5b7b-761e-4001-bdfd-21ead5d6cbb9.png)
 
-
-
 ## SEO翻译
 	我们在写文章的时候需要想一个满足SEO要求的标题，这样有可能被更多的人检索到，有时候我们可能需要把文章翻译为英文，这时标题同样比较重要，这时我们可以在dify中创建这样的一个工具来帮助我们实现这个功能。
 
@@ -626,10 +604,6 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 这个GPT可以将输入的标题或内容转换为对SEO友好的英文URL片段。这些片段将清晰地传达原始含义，同时保持简洁，且不超过60个字符。如果输入内容过长，GPT将首先将其缩减为一个不超过60个字符的英文短语，然后生成片段。如果标题过短，GPT将提示用户输入更长的标题。输入中的特殊字符将被直接移除。
 ```
 
-
-
-
-
 ## 标题党
 	有时候我们发表一些文章的时候，因为标题不够吸引人而造成没有什么关注度还是非常可惜的，这时我们可以借助AI来帮助我们生成有吸引力的标题，具体如下
 
@@ -642,8 +616,8 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 ## 创作技巧
 1.标题将感受、范围、结果、程度等夸张夸大描述，造成耸人听闻的效果。使用「震惊」、「惊爆」、「传疯」、「吓掉半条命」等，言过其实地表达情绪/状态/感受
 
-案例1：《兰州竟然引起了全国的羡慕！西安疯了，天水哭了，嘉峪关伤了...》     ** 故意引用其他城市做夸张对比 ** 
-案例2：《中国部署新型秘密武器，配备自杀敢死队，巴铁成功仿制吓坏印度》    ** 用“吓坏X国”的耸动表述故意诱导用户点击 ** 
+案例1：《兰州竟然引起了全国的羡慕！西安疯了，天水哭了，嘉峪关伤了...》     ** 故意引用其他城市做夸张对比 **
+案例2：《中国部署新型秘密武器，配备自杀敢死队，巴铁成功仿制吓坏印度》    ** 用“吓坏X国”的耸动表述故意诱导用户点击 **
 案例3：《气垫一打开就直接涂？几乎所有女人都错了，怪不得总脱妆又卡粉！》  ** “几乎所有女人都”对女性群体做全部包含的范围夸张，诱导用户点击 **
 案例4： 《全网无人能解释，看懂的全中国不超过2个！》  ** “全网”、“全中国”故意用整体范围概念，但“无人”、“不超过2个”又极端缩小范围形成夸张对比 **
 
@@ -682,8 +656,6 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984598973-da8b89c2-5f0c-4b2d-8a5a-8d2c675ffed1.png)
 
-
-
 ## 知识库图像检索和展示
 	我们可以利用工作流来实现知识库加大模型实现RAG的案例，同时在展示结果上可以把图片展示出来，这样效果会更加的直观些
 
@@ -693,7 +665,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 
 ```bash
 
-## 
+##
 亲子运动项目名称: 拔河小勇士
 适合年龄：5~12岁
 运动时间：10~15分钟
@@ -702,7 +674,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：使用一条结实的绳子，中间划一条线，双方用力拉绳，将对方拉过中线即为胜利。
 特别提示：注意孩子手部保护，避免摩擦受伤。
 运动图片链接：[点击查看](https://img1.baidu.com/it/u=2633321814,4120475802&fm=253&fmt=auto&app=138&f=PNG?w=286&h=229)
-## 
+##
 亲子运动项目名称: 跳绳接力
 适合年龄：6~12岁
 运动时间：15~20分钟
@@ -711,7 +683,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：设定一个跳绳次数目标，家长和孩子轮流跳，直到完成目标。
 特别提示：选择适合孩子高度的跳绳，注意跳绳场地的平整。
 运动图片链接：[点击查看](https://img2.baidu.com/it/u=1175898262,1254664272&fm=253&fmt=auto&app=120&f=JPEG?w=608&h=450)
-## 
+##
 亲子运动项目名称: 滚雪球大赛
 适合年龄：4~10岁
 运动时间：10~15分钟
@@ -720,7 +692,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：在规定时间内，看谁滚的雪球最大或者最快。
 特别提示：注意保暖，避免孩子受寒。
 运动图片链接：[点击查看](https://img1.baidu.com/it/u=2495318208,4233708303&fm=253&fmt=auto&app=138&f=JPEG?w=708&h=500)
-## 
+##
 亲子运动项目名称: 家庭篮球赛
 适合年龄：7~14岁
 运动时间：20~30分钟
@@ -729,7 +701,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：简化篮球规则，进行半场3对3或1对1比赛。
 特别提示：穿着合适的运动装备，注意安全。
 运动图片链接：[点击查看](https://img0.baidu.com/it/u=3195478262,213097067&fm=253&fmt=auto&app=138&f=JPEG?w=700&h=467)
-## 
+##
 亲子运动项目名称: 亲子瑜伽
 适合年龄：5~12岁
 运动时间：15~20分钟
@@ -738,7 +710,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：跟随瑜伽教程，一起完成一系列瑜伽动作。
 特别提示：穿着舒适，保持呼吸均匀。
 运动图片链接：[点击查看](https://img1.baidu.com/it/u=2561021092,817698414&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500)
-## 
+##
 亲子运动项目名称: 家庭接力跑
 适合年龄：6~12岁
 运动时间：15~20分钟
@@ -747,7 +719,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：设定一个跑道，每队成员依次完成接力。
 特别提示：确保跑道平整，避免跌倒。
 运动图片链接：[点击查看](https://img1.baidu.com/it/u=975344947,3030921339&fm=253&fmt=auto&app=138&f=JPEG?w=720&h=480)
-## 
+##
 亲子运动项目名称: 飞盘争夺战
 适合年龄：6~12岁
 运动时间：15~20分钟
@@ -756,7 +728,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：在规定区域内，通过飞盘传递，争取让对方接不住飞盘。
 特别提示：选择开阔的场地，避免飞盘伤人。
 运动图片链接：[点击查看](https://img0.baidu.com/it/u=3788427895,2518031093&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500)
-## 
+##
 亲子运动项目名称: 家庭足球赛
 适合年龄：5~12岁
 运动时间：20~30分钟
@@ -765,7 +737,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：简化足球规则，进行小场地比赛。
 特别提示：穿着足球鞋，注意场地安全。
 运动图片链接：[点击查看](https://example.com/images/soccer.jpg)
-## 
+##
 亲子运动项目名称: 亲子攀岩
 适合年龄：8~14岁
 运动时间：30~45分钟
@@ -774,7 +746,7 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 运动规则：在专业人员的指导下，完成攀岩墙的挑战。
 特别提示：确保安全装备穿戴正确，听从指导员指挥。
 运动图片链接：[点击查看](https://example.com/images/rockclimbing.jpg)
-## 
+##
 亲子运动项目名称: 家庭自行车赛
 适合年龄：7~14岁
 运动时间：30~45分钟
@@ -815,10 +787,6 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984599161-dd639790-4307-4558-b5af-936f48f18677.png)
 
-
-
-
-
 ## 自然语言生成SQL
 	演示的效果
 
@@ -831,9 +799,9 @@ This GPT will convert input titles or content into SEO-friendly English URL slug
 ```bash
 帮我设计一个电商系统的数据库。
 需要有:
-    goods:商品表 
-    orders:订单表 
-    inventory:库存表 
+    goods:商品表
+    orders:订单表
+    inventory:库存表
     vendors:商家表
     customers:客户表，
 表结构的关联关系：
@@ -964,44 +932,42 @@ INSERT INTO orders (customer_id, goods_id, goods_name, shipping_address, vendor_
 
 然后我们可以创建对应的工作流
 
-
-
 对应的表结构的说明
 
 ```plsql
-以下是每张表的数据结构说明：  
+以下是每张表的数据结构说明：
 
-### **商家表（vendors）**  
-- **id**：商家ID，整数类型，主键，自增。  
-- **name**：商家名称，字符串类型，非空。  
-- **contact_info**：联系方式，字符串类型，可为空。  
+### **商家表（vendors）**
+- **id**：商家ID，整数类型，主键，自增。
+- **name**：商家名称，字符串类型，非空。
+- **contact_info**：联系方式，字符串类型，可为空。
 
-### **客户表（customers）**  
-- **id**：客户ID，整数类型，主键，自增。  
-- **name**：客户名称，字符串类型，非空。  
-- **email**：电子邮件，字符串类型，可为空。  
-- **address**：收货地址，字符串类型，可为空。  
+### **客户表（customers）**
+- **id**：客户ID，整数类型，主键，自增。
+- **name**：客户名称，字符串类型，非空。
+- **email**：电子邮件，字符串类型，可为空。
+- **address**：收货地址，字符串类型，可为空。
 
-### **商品表（goods）**  
-- **id**：商品ID，整数类型，主键，自增。  
-- **name**：商品名称，字符串类型，非空。  
-- **price**：商品价格，十进制(10,2)类型，非空。  
-- **image_url**：商品图片URL，字符串类型，可为空。  
-- **vendor_id**：商家ID，整数类型，外键，关联 `vendors(id)`。  
+### **商品表（goods）**
+- **id**：商品ID，整数类型，主键，自增。
+- **name**：商品名称，字符串类型，非空。
+- **price**：商品价格，十进制(10,2)类型，非空。
+- **image_url**：商品图片URL，字符串类型，可为空。
+- **vendor_id**：商家ID，整数类型，外键，关联 `vendors(id)`。
 
-### **库存表（inventory）**  
-- **id**：库存ID，整数类型，主键，自增。  
-- **goods_id**：商品ID，整数类型，外键，关联 `goods(id)`。  
-- **stock**：库存数量，整数类型，非空。  
+### **库存表（inventory）**
+- **id**：库存ID，整数类型，主键，自增。
+- **goods_id**：商品ID，整数类型，外键，关联 `goods(id)`。
+- **stock**：库存数量，整数类型，非空。
 
-### **订单表（orders）**  
-- **id**：订单ID，整数类型，主键，自增。  
-- **customer_id**：客户ID，整数类型，外键，关联 `customers(id)`。  
-- **goods_id**：商品ID，整数类型，外键，关联 `goods(id)`。  
-- **goods_name**：商品名称，字符串类型，冗余存储，便于查询。  
-- **shipping_address**：收货地址，字符串类型，非空。  
-- **vendor_id**：商家ID，整数类型，外键，关联 `vendors(id)`。  
-- **order_time**：订单时间，日期时间类型，非空。  
+### **订单表（orders）**
+- **id**：订单ID，整数类型，主键，自增。
+- **customer_id**：客户ID，整数类型，外键，关联 `customers(id)`。
+- **goods_id**：商品ID，整数类型，外键，关联 `goods(id)`。
+- **goods_name**：商品名称，字符串类型，冗余存储，便于查询。
+- **shipping_address**：收货地址，字符串类型，非空。
+- **vendor_id**：商家ID，整数类型，外键，关联 `vendors(id)`。
+- **order_time**：订单时间，日期时间类型，非空。
 
 这样，每张表的数据结构清晰，符合关系型数据库的设计规范。你需要进一步优化或者修改吗？
 ```
@@ -1139,10 +1105,6 @@ User
 4.最后附上查询的sql语句
 ```
 
-
-
-
-
 ## Echarts可视化助手
 	我们希望通过Echars 来是实现可视化的展示各种统计数据。我们通过具体的案例来给大家介绍下，具体的效果如下：
 
@@ -1156,7 +1118,6 @@ User
 | 2022 | 《长津湖之水门桥》 | 56.2 | 56.1 | 1 |
 | 2023 | 《流浪地球2》 | 60 | 45 | 1.33 |
 | 2024 | 《抓娃娃》 | 65 | 42.1 | 1.54 |
-
 
 然后创建一个工作流。在开始节点我们可以上传一个文件
 
@@ -1179,8 +1140,6 @@ User
 把数据转换为csv格式
 ```
 
-
-
 然后是参数提取器：需要从上一步中的格式转换数据中获取到csv的数据
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984599660-b5819bda-2e77-47be-809f-6e78060021ca.png)
@@ -1192,8 +1151,6 @@ User
 提取csv格式的字符串
 ```
 
-
-
 然后是通过执行一段 Python代码生成 满足 echarts 规范的代码
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984599724-66347b9d-ebea-4a63-9477-95254649de34.png)
@@ -1203,7 +1160,6 @@ User
 ```python
 import csv
 import json
-
 
 def main(csv_string):
     # 将CSV字符串分割成行
@@ -1268,7 +1224,7 @@ def main(csv_string):
 
 ```bash
 {{#1741943512414.csvdata#}}
-<br>
+
 {{#1741945375879.result#}}
 ```
 
@@ -1277,8 +1233,6 @@ def main(csv_string):
 然后就可以测试运行了
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984599846-944e5ecc-d026-4273-9746-bedd053b4a3b.png)
-
-
 
 ## 文生图工作流
 	我们前面有介绍过文生图的案例，是在Dify中通过相关的工具来实现的。不过这种效果不是特别的高效，会被平台控制的比较严格。我们可以直接通过文生图的模型提供的API来直接访问生成。这样的效果会更好一些。我们来看看具体怎么实现吧。
@@ -1297,8 +1251,6 @@ def main(csv_string):
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984600123-5b46fc63-fe59-41df-a85e-2a519d8fd275.png)
 
-
-
 ## 生成小说和角色
 	我们接下来看一个基于大模型来生成小说和相关角色的案例
 
@@ -1309,4 +1261,3 @@ def main(csv_string):
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984600247-d20d43a2-2737-462c-a6e6-08efbbd49467.png)
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1752984600303-44c59896-5bfe-45d3-b757-8feb3f95da81.png)
-

@@ -1,9 +1,6 @@
-<br/>color2
-<font style="color:rgb(51, 51, 51);">展示一个相似问题的推理过程，告诉ChatGPT应该这么来（推荐使用</font><font style="color:rgb(51, 51, 51);">👍</font><font style="color:rgb(51, 51, 51);">）</font>
+展示一个相似问题的推理过程，告诉ChatGPT应该这么来（推荐使用👍）
 
 通过向LLM展示一些少量的典范，在样例中解释推理过程，大语言模型在回答提示时也会跟着进行推理。
-
-<br/>
 
 思维链（CoT）提示是一种最近开发的提示方法，旨在鼓励大语言模型解释其推理过程。下图显示了 `few shot standard prompt`（左）与 `COT` 过程（右）的比较。
 
@@ -39,7 +36,7 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="ufd0086bc"><span class="ne-text">output：</span></summary><pre data-language="json" id="PSBLE" class="ne-codeblock language-json"><code>这些数字中，有3个奇数（3、35、923）和7个偶数（56、96、40、10、84、32、20）。</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>这些数字中，有3个奇数（3、35、923）和7个偶数（56、96、40、10、84、32、20）。</code></pre></details>
 下面加上`Let's think step by step`
 
 ```python
@@ -54,7 +51,7 @@ response = openai.ChatCompletion.create(
 print(response['choices'][0]['message']['content'])
 ```
 
-<details class="lake-collapse"><summary id="u2bccf1e0"><span class="ne-text">output：</span></summary><pre data-language="json" id="fyYrI" class="ne-codeblock language-json"><code>'Step 1: Identify odd and even numbers \n\nOdd numbers: 3, 35, 96, 923\nEven numbers: 56, 40, 10, 84, 32, 20\n\nStep 2: Count the number of odd and even numbers\n\nNumber of odd numbers: 4\nNumber of even numbers: 6\n\nTherefore, there are 4 odd numbers and 6 even numbers in the list provided.'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'Step 1: Identify odd and even numbers \n\nOdd numbers: 3, 35, 96, 923\nEven numbers: 56, 40, 10, 84, 32, 20\n\nStep 2: Count the number of odd and even numbers\n\nNumber of odd numbers: 4\nNumber of even numbers: 6\n\nTherefore, there are 4 odd numbers and 6 even numbers in the list provided.'</code></pre></details>
 错了，既然`“Let's think step by step.”`失效了，换个手段，给ChatGPT例子学习一下
 
 ```python
@@ -87,12 +84,9 @@ response =  client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-<details class="lake-collapse"><summary id="uaffa97ea"><span class="ne-text">output：</span></summary><pre data-language="json" id="FX8UF" class="ne-codeblock language-json"><code>'一个一个数：\n1. 3是奇数，此时累计：偶数0个，奇数1个；\n2. 56是偶数，此时累计：偶数1个，奇数1个；\n3. 35是奇数，此时累计：偶数1个，奇数2个；\n4. 96是偶数，此时累计：偶数2个，奇数2个；\n5. 40是偶数，此时累计：偶数3个，奇数2个；\n6. 10是偶数，此时累计：偶数4个，奇数2个；\n7. 84是偶数，此时累计：偶数5个，奇数2个；\n8. 923是奇数，此时累计：偶数5个，奇数3个；\n9. 32是偶数，此时累计：偶数6个，奇数3个；\n10. 20是偶数，此时累计：偶数7个，奇数3个；\n\n所以，一共有7个偶数，3个奇数。'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>'一个一个数：\n1. 3是奇数，此时累计：偶数0个，奇数1个；\n2. 56是偶数，此时累计：偶数1个，奇数1个；\n3. 35是奇数，此时累计：偶数1个，奇数2个；\n4. 96是偶数，此时累计：偶数2个，奇数2个；\n5. 40是偶数，此时累计：偶数3个，奇数2个；\n6. 10是偶数，此时累计：偶数4个，奇数2个；\n7. 84是偶数，此时累计：偶数5个，奇数2个；\n8. 923是奇数，此时累计：偶数5个，奇数3个；\n9. 32是偶数，此时累计：偶数6个，奇数3个；\n10. 20是偶数，此时累计：偶数7个，奇数3个；\n\n所以，一共有7个偶数，3个奇数。'</code></pre></details>
 思维链已被证明对于算术、常识和符号推理等任务的结果有所改进。特别是，在GSM8K基准测试上，PaLM 540B通过提示达到了57%的准确性。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1737687790377-0d537be1-3a57-4183-b44d-4f80867e703d.png)
 
 本图来源于[Source:Chain of Thought Prompting Elicits Reasoning in Large Language ModelsJason Wei and Denny Zhou et al. (2022)](https://arxiv.org/pdf/2201.11903)
-
-
-

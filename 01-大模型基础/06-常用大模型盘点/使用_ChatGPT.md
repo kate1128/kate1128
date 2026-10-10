@@ -11,7 +11,7 @@ from dotenv import load_dotenv, find_dotenv
 # 读取本地/项目的环境变量。
 
 # find_dotenv() 寻找并定位 .env 文件的路径
-# load_dotenv() 读取该 .env 文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv() 读取该 .env 文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 
@@ -54,15 +54,16 @@ completion = client.chat.completions.create(
 completion
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="python" id="iOXbm" class="ne-codeblock language-python"><code>ChatCompletion(id='chatcmpl-9FA5aO72SD9X0XTpc1HCNZkSFCf7C', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='Hello! How can I assist you today?', role='assistant', function_call=None, tool_calls=None))], created=1713400730, model='gpt-3.5-turbo-0125', object='chat.completion', system_fingerprint='fp_c2295e73ad', usage=CompletionUsage(completion_tokens=9, prompt_tokens=19, total_tokens=28))</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>ChatCompletion(id='chatcmpl-9FA5aO72SD9X0XTpc1HCNZkSFCf7C', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='Hello! How can I assist you today?', role='assistant', function_call=None, tool_calls=None))], created=1713400730, model='gpt-3.5-turbo-0125', object='chat.completion', system_fingerprint='fp_c2295e73ad', usage=CompletionUsage(completion_tokens=9, prompt_tokens=19, total_tokens=28))</code></pre></details>
 #### 打印 返回值
 ```python
 print(completion.choices[0].message.content)
 ```
 
-<details class="lake-collapse"><summary id="uf37dadb2"><span class="ne-text">output：</span></summary><pre data-language="python" id="Bp6I9" class="ne-codeblock language-python"><code>Hello! How can I assist you today?</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>Hello! How can I assist you today?</code></pre></details>
 #### 常用参数
-<br/>success
+
+success
 此处详细介绍调用 API 常会用到的几个参数：
 
 1. `**model**`**：调用的模型**，一般取值包括`“gpt-3.5-turbo”（ChatGPT-3.5）、“gpt-3.5-turbo-16k-0613”（ChatGPT-3.5 16K 版本）、“gpt-4”（ChatGPT-4）`。注意，不同模型的成本是不一样的。
@@ -76,8 +77,6 @@ print(completion.choices[0].message.content)
 4. `**max_tokens**`**：最大 **`**token**`** 数，即模型输出的最大 **`**token**`** 数**。
 
 `OpenAI` 计算 `token` 数是合并计算 `Prompt` 和 `Completion` 的总 `token` 数，要求总 `token`  数不能超过模型上限（如默认模型 `token`  上限为 4096）。因此，如果输入的 `prompt` 较长，需要设置较大的 `max_token` 值，否则会报错超出限制长度。
-
-<br/>
 
 ### 用户和助手的消息交替出现
 通常情况下，对话会以一个告诉助手如何行事的系统消息开始，然后是用户和助手的消息交替出现，但可以不遵循这种格式。
@@ -110,8 +109,7 @@ response
 
 测试一下，显示这个
 
-<details class="lake-collapse"><summary id="u5daffd42"><span class="ne-text" style="color: var(--jp-content-font-color1)">output：</span></summary><pre data-language="json" id="MwYEs" class="ne-codeblock language-json"><code>ChatCompletion(id='chatcmpl-yagqlvRBo9sQEyZrHyHZEFoOIggqO', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='Orange who?', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None))], created=1736231646, model='gpt-3.5-turbo', object='chat.completion', service_tier=None, system_fingerprint='fp_808245b034', usage=CompletionUsage(completion_tokens=3, prompt_tokens=35, total_tokens=38, completion_tokens_details=None, prompt_tokens_details=None))</code></pre></details>
-<br/>color2
+<details><summary>output：</summary><pre><code class="language-json"><code>ChatCompletion(id='chatcmpl-yagqlvRBo9sQEyZrHyHZEFoOIggqO', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='Orange who?', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None))], created=1736231646, model='gpt-3.5-turbo', object='chat.completion', service_tier=None, system_fingerprint='fp_808245b034', usage=CompletionUsage(completion_tokens=3, prompt_tokens=35, total_tokens=38, completion_tokens_details=None, prompt_tokens_details=None))</code></pre></details>
 响应对象包括下面几个字段：
 
 + `id`: 请求的ID
@@ -123,8 +121,6 @@ response
     - `message`: 由模型生成的消息对象，包括角色和内容
     - `finish_reason`: 模型停止生成文本的原因（要么是停止，要么是长度，如果达到`max_tokens`的限制）
     - `index`: 选择列表中的完成度的索引
-
-<br/>
 
 转成 json 看一下
 
@@ -172,17 +168,15 @@ client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
-
 def gen_gpt_messages(prompt):
     '''
     构造 GPT 模型请求参数 messages
-    
+
     请求参数：
         prompt: 对应的用户提示词
     '''
     messages = [{"role": "user", "content": prompt}]
     return messages
-
 
 def get_completion(prompt, model="gpt-3.5-turbo", temperature = 0):
     '''
@@ -200,7 +194,7 @@ def get_completion(prompt, model="gpt-3.5-turbo", temperature = 0):
     )
     if len(response.choices) > 0:
         return response.choices[0].message.content
-        
+
     return "generate answer error"
 ```
 
@@ -209,8 +203,5 @@ def get_completion(prompt, model="gpt-3.5-turbo", temperature = 0):
 get_completion("你好")
 ```
 
-<details class="lake-collapse"><summary id="ufc828dc7"><span class="ne-text">output：</span></summary><pre data-language="python" id="xpfre" class="ne-codeblock language-python"><code>'你好！有什么可以帮助你的吗？'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'你好！有什么可以帮助你的吗？'</code></pre></details>
 在上述函数中，封装了 `messages` 的细节，仅使用 `user prompt`来实现调用。在简单场景中，该函数足够满足使用需求。
-
-
-

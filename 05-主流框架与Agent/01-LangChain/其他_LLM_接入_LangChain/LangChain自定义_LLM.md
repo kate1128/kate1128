@@ -130,7 +130,6 @@ def _default_params(self) -> Dict[str, Any]:
     }
     return {**normal_params}
 
-
 @property
 def _identifying_params(self) -> Mapping[str, Any]:
     """Get the identifying parameters."""
@@ -161,8 +160,6 @@ class Wenxin_LLM(LLM):
     # 系统消息
     system : str = None
 
-
-
     def _call(self, prompt : str, stop: Optional[List[str]] = None,
                 run_manager: Optional[CallbackManagerForLLMRun] = None,
                 **kwargs: Any):
@@ -175,17 +172,17 @@ class Wenxin_LLM(LLM):
             '''
             messages = [{"role": "user", "content": prompt}]
             return messages
-        
+
         chat_comp = qianfan.ChatCompletion(ak=self.api_key,sk=self.secret_key)
         message = gen_wenxin_messages(prompt)
 
-        resp = chat_comp.do(messages = message, 
+        resp = chat_comp.do(messages = message,
                             model= self.model,
                             temperature = self.temperature,
                             system = self.system)
 
         return resp["result"]
-        
+
     # 首先定义一个返回默认参数的方法
     @property
     def _default_params(self) -> Dict[str, Any]:
@@ -205,4 +202,3 @@ class Wenxin_LLM(LLM):
         """Get the identifying parameters."""
         return {**{"model": self.model}, **self._default_params}
 ```
-

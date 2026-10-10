@@ -1,7 +1,7 @@
 [GLM 系列](https://www.yuque.com/qiaokate/su87gb/bkrzpcwz1waw3m50)
 
 ## API 申请指引
-首先进入到 
+首先进入到
 
 [智谱AI开放平台](https://open.bigmodel.cn/overview)
 
@@ -31,7 +31,7 @@ from dotenv import load_dotenv, find_dotenv
 # 读取本地/项目的环境变量。
 
 # find_dotenv() 寻找并定位 .env 文件的路径
-# load_dotenv() 读取该 .env 文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv() 读取该 .env 文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 ```
@@ -54,7 +54,6 @@ def gen_glm_params(prompt):
     '''
     messages = [{"role": "user", "content": prompt}]
     return messages
-
 
 def get_completion(prompt, model="glm-4", temperature=0.95):
     '''
@@ -83,8 +82,7 @@ def get_completion(prompt, model="glm-4", temperature=0.95):
 get_completion("你好")
 ```
 
-<details class="lake-collapse"><summary id="ubee11590"><span class="ne-text">output：</span></summary><pre data-language="python" id="vrwkk" class="ne-codeblock language-python"><code>'你好！有什么可以帮助你的吗？如果有任何问题或需要咨询的事情，请随时告诉我。'</code></pre></details>
-<br/>color2
+<details><summary>output：</summary><pre><code class="language-python"><code>'你好！有什么可以帮助你的吗？如果有任何问题或需要咨询的事情，请随时告诉我。'</code></pre></details>
 这里对传入 `zhipuai` 的参数进行简单介绍：
 
 + `**messages (list)**`**，调用对话模型时，将当前对话信息列表作为提示输入给模型**；按照 `{"role": "user", "content": "你好"}` 的键值对形式进行传参；总长度超过模型最长输入限制后会自动截断，需按时间由旧到新排序
@@ -92,8 +90,3 @@ get_completion("你好")
 + `**top_p (float)**`**，用温度取样的另一种方法，称为核取样**。取值范围是：`(0.0, 1.0)` 开区间，不能等于 `0 `或` 1`，默认值为 `0.7`。模型考虑具有 `top_p` 概率质量 `tokens` 的结果。例如：`0.1 `意味着模型解码器只考虑从前 `10%` 的概率的候选集中取 `tokens`
 + `**request_id (string)**`**，由用户端传参，需保证唯一性**；用于区分每次请求的唯一标识，用户端不传时平台会默认生成
 + **建议您根据应用场景调整 **`**top_p**`** 或 **`**temperature**`** 参数，但不要同时调整两个参数**
-
-<br/>
-
-
-

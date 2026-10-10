@@ -1,3 +1,5 @@
+# 04-Learning Resources 学习资料
+
 + [动手学深度学习（Dive into Deep Learning，D2L.ai）](https://github.com/d2l-ai/d2l-zh) ![](https://img.shields.io/github/stars/d2l-ai/d2l-zh?style=social) : 《动手学深度学习》：面向中文读者、能运行、可讨论。中英文版被70多个国家的500多所大学用于教学。[zh.d2l.ai](http://zh.d2l.ai/)
 + [mlabonne/llm-course](https://github.com/mlabonne/llm-course) ![](https://img.shields.io/github/stars/mlabonne/llm-course?style=social) : Course to get into Large Language Models (LLMs) with roadmaps and Colab notebooks.[mlabonne.github.io/blog/](https://mlabonne.github.io/blog/)
 + [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) ![](https://img.shields.io/github/stars/rasbt/LLMs-from-scratch?style=social) : Implementing a ChatGPT-like LLM from scratch, step by step. [https://www.manning.com/books/build-a-large-language-model-from-scratch](https://www.manning.com/books/build-a-large-language-model-from-scratch)
@@ -23,4 +25,3 @@
 + [langchain-ai/rag-from-scratch](https://github.com/langchain-ai/rag-from-scratch) ![](https://img.shields.io/github/stars/langchain-ai/rag-from-scratch?style=social) : Retrieval augmented generation (RAG) comes is a general methodology for connecting LLMs with external data sources. These notebooks accompany a video series will build up an understanding of RAG from scratch, starting with the basics of indexing, retrieval, and generation.
 + [phodal/aigc](https://github.com/phodal/aigc) ![](https://img.shields.io/github/stars/phodal/aigc?style=social) : 《构筑大语言模型应用：应用开发与架构设计》一本关于 LLM 在真实世界应用的开源电子书，介绍了大语言模型的基础知识和应用，以及如何构建自己的模型。其中包括Prompt的编写、开发和管理，探索最好的大语言模型能带来什么，以及LLM应用开发的模式和架构设计。
 + [cystanford/aigc_LLM_engineering](https://github.com/cystanford/aigc_LLM_engineering) ![](https://img.shields.io/github/stars/cystanford/aigc_LLM_engineering?style=social) : aigc_LLM_engineering.
-

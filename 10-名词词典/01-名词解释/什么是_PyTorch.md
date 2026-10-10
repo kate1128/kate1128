@@ -1,31 +1,49 @@
-**PyTorch** 和 **TensorFlow** 是目前最广泛使用的两个深度学习框架。它们都提供了丰富的功能，支持神经网络的构建、训练和推理，但在设计理念、使用方式、性能优化等方面有一些不同。
+<!-- type: glossary -->
+# PyTorch
 
-### **1. PyTorch：概述和特点**
-#### **PyTorch 简介**
-PyTorch 是由 Facebook（现 Meta）人工智能研究院（FAIR）开发的深度学习框架，最早发布于 2016 年。它以其简洁的 API、灵活性、动态计算图等特点，快速成为研究人员和开发者的首选。
+> 由 Meta（Facebook）开发的**开源深度学习框架**，以动态计算图和 Pythonic API 著称。目前是 AI 研究和 LLM 开发领域使用最广泛的框架。
 
-#### **PyTorch 的主要特点**
-1. **动态计算图（Dynamic Computation Graph）**
-    - PyTorch 使用动态计算图（也叫即时计算图）。这意味着，计算图在每次前向传播时都会动态构建。你可以在训练过程中改变计算图的结构。
-    - 动态计算图使得 PyTorch 更加灵活，尤其适合研究性工作。研究人员可以根据不同的输入数据或实验需求灵活调整模型结构。
-2. **易用性与调试**
-    - PyTorch 的 API 设计更接近 Python 的标准语法，使得上手难度较低，尤其对于 Python 开发者来说。它支持常见的 Python 库，比如 NumPy，且代码结构直观、易于理解。
-    - 在调试时，PyTorch 更容易使用 Python 自带的调试工具（如 `pdb`），可以通过逐行调试来查找错误。
-3. **GPU 加速**
-    - PyTorch 原生支持 GPU 加速，利用 NVIDIA CUDA 加速计算，支持显卡运算，能够在训练时大大提高效率。
-    - 只需通过 `.to(device)` 将模型和数据移到 GPU 上，就可以使用 GPU 加速进行计算。
-4. **自动微分（Autograd）**
-    - PyTorch 提供了自动微分库 `autograd`，可以自动计算梯度。它在训练神经网络时，基于计算图自动跟踪和计算梯度。
-5. **深度集成与灵活性**
-    - PyTorch 不仅支持深度学习的常规操作，还可以方便地与其他库（如 OpenCV、SciPy、Scikit-learn 等）集成。
-    - 你可以轻松自定义模型和层，进行各种复杂的操作，如循环神经网络（RNN）和生成对抗网络（GAN）等。
-6. **生态系统和工具**
-    - PyTorch 的生态系统逐渐完善，出现了如 **Torchvision**（计算机视觉）、**Torchtext**（自然语言处理）、**Torchaudio**（音频处理）等子库，帮助开发者快速实现常见的任务。
-    - **PyTorch Lightning**：一个高层次的接口，帮助简化和抽象化训练循环，减少样板代码。
-    - **TorchServe**：PyTorch 的推理服务框架，可以方便地进行模型部署。
+## 是什么
 
-#### **适用场景**
-+ **研究和原型开发**：由于其灵活性和易用性，PyTorch 非常适合快速实验和创新。
-+ **学术界**：PyTorch 在学术界尤其受欢迎，许多最新的论文和研究成果都首先在 PyTorch 中实现。
-+ **生产环境**：虽然 PyTorch 在生产环境的部署上相较于 TensorFlow 略显薄弱，但随着 TorchScript（PyTorch 的静态图模块）和 PyTorch 1.0 的发布，生产部署问题逐步得到解决。
+PyTorch 和 TensorFlow 是深度学习领域的两大框架。PyTorch 的核心优势在于：
 
+- **动态计算图（Define-by-Run）**：计算图随代码执行动态构建，可以像写普通 Python 一样写模型，调试时直接加 `pdb` 断点
+- **Python 原生风格**：API 设计与 NumPy 高度一致，学习曲线平滑
+- **自动微分引擎（Autograd）**：自动计算梯度，反向传播全自动化
+
+简单的 PyTorch 训练循环：
+```python
+for epoch in range(epochs):
+    # 前向计算
+    output = model(input_data)
+    loss = loss_fn(output, target)
+    # 反向传播
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+```
+
+## 为什么重要
+
+- **LLM 的土壤**：Transformer、Llama、Mistral——几乎所有现代 LLM 的模型代码都是 PyTorch 实现的
+- **学术标准**：90% 以上的 AI/ML 顶会论文用 PyTorch 实现
+- **生态完善**：Hugging Face Transformers、PyTorch Lightning、TorchServe、TorchVision/Audio/Text 等生态工具覆盖全流程
+
+## 关键要点
+
+- **PyTorch vs TensorFlow**：2024 年，PyTorch 在研究和开源领域占绝对主导。TensorFlow 仍存在于部分生产环境和 Google 内部
+- **PyTorch Lightning**：PyTorch 的高级封装，减少训练循环样板代码——适合快速实验
+- **TorchScript / TorchDynamo**：PyTorch 的静态图/编译方案，用于生产部署加速
+- **与 LLM 的关系**：你用 Hugging Face 加载一个 LLaMA 模型，底层跑的就是 PyTorch
+
+## 相关概念
+
+- [[深度学习]] — PyTorch 所服务的领域
+- [[HuggingFace]] — 基于 PyTorch 的模型生态，LLM 使用的主要入口
+- [[TensorFlow]] — PyTorch 的主要竞品
+- [[LoRA 微调]] — 常见的 LLM 微调方法，通过 PEFT 库在 PyTorch 上实现
+
+## 参考
+
+- [PyTorch 官方文档](https://pytorch.org/docs/)
+- [PyTorch 入门教程](https://pytorch.org/tutorials/)

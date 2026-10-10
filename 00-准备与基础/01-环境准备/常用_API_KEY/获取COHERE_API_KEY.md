@@ -94,6 +94,3 @@ except CohereAPIError as e:
 通过以上步骤，您应该能够验证并测试 **Cohere API 密钥** 是否可以正常工作。
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736910285298-681b3382-f316-4235-84ef-883feed5f708.png)
-
-
-

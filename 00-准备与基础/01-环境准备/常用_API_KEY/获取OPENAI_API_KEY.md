@@ -1,3 +1,5 @@
+# 获取OPENAI API KEY
+
 01月02日[@凯佳er](undefined/qiaokate)
 
 1. 能登录 openAI 官网：[https://platform.openai.com/](https://platform.openai.com/)
@@ -33,4 +35,3 @@ completion = client.chat.completions.create(
 )
 print(completion.choices[0].message)
 ```
-

@@ -1,11 +1,13 @@
+# 什么是 dify
+
 > search("dify是什么")
 >
 
 Dify 是一个开源的大语言模型（LLM）应用开发平台，旨在帮助开发者快速构建生产级的生成式 AI 应用。 > [欢迎使用 Dify | Dify](https://docs.dify.ai/zh-hans?utm_source=chatgpt.com) · _docs.dify.ai_
 
-> Dify 是一款融合了后端即服务和 LLMOps 的理念的平台，可以快速搭建生产级的生成式 AI 应用。Dify 提供了内置的模型支持、Prompt 编排、RAG 引擎、Agent 框架、流程编排等技术栈，以及易用的界面和 API，让开发者可以专注在创新和业务需求上。  
-它融合了后端即服务（Backend as a Service，BaaS）和 LLMOps 的理念，提供从原型设计到生产部署的全流程支持。 > [Dify 是什么？使用教程 - CodeNews](https://codenews.cc/view/277613?utm_source=chatgpt.com) · _codenews.cc_  
-Dify 是什么？Dify 是一个开源的大语言模型（LLM）应用开发平台，旨在帮助开发者快速构建生成式AI应用。它融合了后端即服务（Backend as a Service, BaaS）和LLMOps的理念，提供了从原型设计到生产部署的全流程支持。Dify 的核心优势在于其直观的界面和强大的功能模块，如AI工作流...  
+> Dify 是一款融合了后端即服务和 LLMOps 的理念的平台，可以快速搭建生产级的生成式 AI 应用。Dify 提供了内置的模型支持、Prompt 编排、RAG 引擎、Agent 框架、流程编排等技术栈，以及易用的界面和 API，让开发者可以专注在创新和业务需求上。
+它融合了后端即服务（Backend as a Service，BaaS）和 LLMOps 的理念，提供从原型设计到生产部署的全流程支持。 > [Dify 是什么？使用教程 - CodeNews](https://codenews.cc/view/277613?utm_source=chatgpt.com) · _codenews.cc_
+Dify 是什么？Dify 是一个开源的大语言模型（LLM）应用开发平台，旨在帮助开发者快速构建生成式AI应用。它融合了后端即服务（Backend as a Service, BaaS）和LLMOps的理念，提供了从原型设计到生产部署的全流程支持。Dify 的核心优势在于其直观的界面和强大的功能模块，如AI工作流...
 Dify 的核心功能包括：
 >
 
@@ -44,12 +46,9 @@ Dify 的核心功能包括：
 > Dify 是一个开源的 AI 应用开发平台，旨在帮助开发者简化大语言模型 (LLM) 应用的开发、部署和管理。 无论开发者是否拥有机器学习背景，Dify 通过友好的界面和强大的工具，帮助快速实现 AI 应用的构建与交付。 它具备丰富的功能模块，涵盖提示工程、数据集管理、模型集成、API 部署以及 LLMOps 功能 ...
 >
 
-
-
 通过这些功能，Dify 为开发者提供了一个完整的解决方案，使其能够专注于创新和业务需求，而无需从零开始构建基础设施。 > [欢迎使用 Dify | Dify](https://docs.dify.ai/zh-hans?utm_source=chatgpt.com) · _Dify Docs_
 
-> Dify 是一款融合了后端即服务和 LLMOps 的理念的平台，可以快速搭建生产级的生成式 AI 应用。Dify 提供了内置的模型支持、Prompt 编排、RAG 引擎、Agent 框架、流程编排等技术栈，以及易用的界面和 API，让开发者可以专注在创新和业务需求上。  
-此外，Dify 还支持私有化部署，确保数据的安全性和可控性，适用于企业级应用场景。 > [Dify.AI · 生成式 AI 应用创新引擎](https://dify.ai/zh?utm_source=chatgpt.com) · _dify.ai_  
+> Dify 是一款融合了后端即服务和 LLMOps 的理念的平台，可以快速搭建生产级的生成式 AI 应用。Dify 提供了内置的模型支持、Prompt 编排、RAG 引擎、Agent 框架、流程编排等技术栈，以及易用的界面和 API，让开发者可以专注在创新和业务需求上。
+此外，Dify 还支持私有化部署，确保数据的安全性和可控性，适用于企业级应用场景。 > [Dify.AI · 生成式 AI 应用创新引擎](https://dify.ai/zh?utm_source=chatgpt.com) · _dify.ai_
 Dify 为开发者提供了健全的应用模版和编排框架，你可以基于它们快速构建大型语言模型驱动的生成式 AI 应用，将创意变为现实，也可以随时按需无缝扩展，驱动业务增长。 ...
 >
-

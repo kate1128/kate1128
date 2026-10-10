@@ -38,7 +38,7 @@ models = openai.Model.list()
 print([x.id for x in models.data])
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>['babbage', 'davinci', 'text-davinci-edit-001', 'babbage-code-search-code', 'text-similarity-babbage-001', 'code-davinci-edit-001', 'text-davinci-001', 'ada', 'babbage-code-search-text', 'babbage-similarity', 'code-search-babbage-text-001', 'text-curie-001', 'code-search-babbage-code-001', 'text-ada-001', 'text-embedding-ada-002', 'text-similarity-ada-001', 'curie-instruct-beta', 'ada-code-search-code', 'ada-similarity', 'code-search-ada-text-001', 'text-search-ada-query-001', 'davinci-search-document', 'ada-code-search-text', 'text-search-ada-doc-001', 'davinci-instruct-beta', 'gpt-3.5-turbo', 'text-similarity-curie-001', 'code-search-ada-code-001', 'ada-search-query', 'text-search-davinci-query-001', 'curie-search-query', 'gpt-3.5-turbo-0301', 'davinci-search-query', 'babbage-search-document', 'ada-search-document', 'text-search-curie-query-001', 'whisper-1', 'text-search-babbage-doc-001', 'curie-search-document', 'text-davinci-003', 'text-search-curie-doc-001', 'babbage-search-query', 'text-babbage-001', 'text-search-davinci-doc-001', 'text-search-babbage-query-001', 'curie-similarity', 'curie', 'text-similarity-davinci-001', 'text-davinci-002', 'davinci-similarity', 'cushman:2020-05-03', 'ada:2020-05-03', 'babbage:2020-05-03', 'curie:2020-05-03', 'davinci:2020-05-03', 'if-davinci-v2', 'if-curie-v2', 'if-davinci:3.0.0', 'davinci-if:3.0.0', 'davinci-instruct-beta:2.0.0', 'text-ada:001', 'text-davinci:001', 'text-curie:001', 'text-babbage:001', 'ada:ft-personal-2023-05-07-07-50-50', 'ada:ft-personal-2023-04-15-13-19-25', 'ada:ft-personal-2023-04-15-13-29-50']</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>['babbage', 'davinci', 'text-davinci-edit-001', 'babbage-code-search-code', 'text-similarity-babbage-001', 'code-davinci-edit-001', 'text-davinci-001', 'ada', 'babbage-code-search-text', 'babbage-similarity', 'code-search-babbage-text-001', 'text-curie-001', 'code-search-babbage-code-001', 'text-ada-001', 'text-embedding-ada-002', 'text-similarity-ada-001', 'curie-instruct-beta', 'ada-code-search-code', 'ada-similarity', 'code-search-ada-text-001', 'text-search-ada-query-001', 'davinci-search-document', 'ada-code-search-text', 'text-search-ada-doc-001', 'davinci-instruct-beta', 'gpt-3.5-turbo', 'text-similarity-curie-001', 'code-search-ada-code-001', 'ada-search-query', 'text-search-davinci-query-001', 'curie-search-query', 'gpt-3.5-turbo-0301', 'davinci-search-query', 'babbage-search-document', 'ada-search-document', 'text-search-curie-query-001', 'whisper-1', 'text-search-babbage-doc-001', 'curie-search-document', 'text-davinci-003', 'text-search-curie-doc-001', 'babbage-search-query', 'text-babbage-001', 'text-search-davinci-doc-001', 'text-search-babbage-query-001', 'curie-similarity', 'curie', 'text-similarity-davinci-001', 'text-davinci-002', 'davinci-similarity', 'cushman:2020-05-03', 'ada:2020-05-03', 'babbage:2020-05-03', 'curie:2020-05-03', 'davinci:2020-05-03', 'if-davinci-v2', 'if-curie-v2', 'if-davinci:3.0.0', 'davinci-if:3.0.0', 'davinci-instruct-beta:2.0.0', 'text-ada:001', 'text-davinci:001', 'text-curie:001', 'text-babbage:001', 'ada:ft-personal-2023-05-07-07-50-50', 'ada:ft-personal-2023-04-15-13-19-25', 'ada:ft-personal-2023-04-15-13-29-50']</code></pre></details>
 模型列表中包含内置的60多个可用模型，以及自己`fine tune`的模型，`fine tune`模型以"`ft-personal`"开头。
 
 ### `openai.Model.delete`
@@ -49,7 +49,7 @@ print([x.id for x in models.data])
 openai.Model.delete('ada:ft-personal-2023-04-15-12-54-03')
 ```
 
-<details class="lake-collapse"><summary id="u71d0d9de"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="oTKnP" class="ne-codeblock language-json"><code>&lt;Model model id=ada:ft-personal-2023-04-15-12-54-03 at 0x20506421090&gt; JSON: {
+<details><summary>output：</summary><pre><code class="language-json"><code>&lt;Model model id=ada:ft-personal-2023-04-15-12-54-03 at 0x20506421090&gt; JSON: {
     &quot;deleted&quot;: true,
     &quot;id&quot;: &quot;ada:ft-personal-2023-04-15-12-54-03&quot;,
     &quot;object&quot;: &quot;model&quot;
@@ -60,7 +60,7 @@ models = openai.Model.list()
 print([x.id for x in models.data if x.id.find('ft-personal') != -1])
 ```
 
-<details class="lake-collapse"><summary id="u8edbbc10"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="bSDny" class="ne-codeblock language-json"><code>['ada:ft-personal-2023-04-15-13-19-25', 'ada:ft-personal-2023-04-15-13-29-50']</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>['ada:ft-personal-2023-04-15-13-19-25', 'ada:ft-personal-2023-04-15-13-29-50']</code></pre></details>
 # 文本摘要任务
 [文本摘要任务](https://www.yuque.com/qiaokate/su87gb/el9t8anaouxw8y25)
 
@@ -78,4 +78,3 @@ print([x.id for x in models.data if x.id.find('ft-personal') != -1])
 + 【5】[中文文本纠错任务简介](https://zhuanlan.zhihu.com/p/545776580)
 + 【6】[pycorrector介绍](https://github.com/shibing624/pycorrector)
 + 【7】[长文本英翻中tutorial](https://github.com/openai/openai-cookbook/blob/main/examples/book_translation/translate_latex_book.ipynb)
-

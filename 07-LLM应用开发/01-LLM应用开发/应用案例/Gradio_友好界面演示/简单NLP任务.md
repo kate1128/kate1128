@@ -10,7 +10,7 @@ import os
 import io
 from IPython.display import Image, display, HTML
 from PIL import Image
-import base64 
+import base64
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv()) # read local .env file
 hf_api_key = os.environ['HF_API_KEY']
@@ -24,7 +24,7 @@ hf_api_key = os.environ['HF_API_KEY']
 import requests, json
 
 #总结函数
-def get_completion(inputs, parameters=None,ENDPOINT_URL=os.environ['HF_API_SUMMARY_BASE']): 
+def get_completion(inputs, parameters=None,ENDPOINT_URL=os.environ['HF_API_SUMMARY_BASE']):
     headers = {
         "Authorization": f"Bearer {hf_api_key}",
         "Content-Type": "application/json"
@@ -75,7 +75,7 @@ text_zh = '''这座塔高324米（1,063英尺），与一座81层楼高的建筑
 pprint.pprint(get_completion(text_zh))
 ```
 
-<details class="lake-collapse"><summary id="ub23163a2"><span class="ne-text">output：</span></summary><pre data-language="json" id="xkIth" class="ne-codeblock language-json"><code>[{'summary_text': ' 这座塔 高324米（1,063英尺）   \xa0\xa0- \xa0‘�predered’ \xa0- 是巴 '
+<details><summary>output：</summary><pre><code class="language-json"><code>[{'summary_text': ' 这座塔 高324米（1,063英尺）   \xa0\xa0- \xa0‘�predered’ \xa0- 是巴 '
   '��最 \xa0augmented\xa0a\xa0gave’s \xa0agility\xa0-\xa0“I’m '
   &quot;not sure what happened to me.”   ‘’�s”: “”. “\xa0” . ‘'”’ &quot;
   '‘�\u2009’’: \u2009\xa0\u2009 \u2009'}]</code></pre></details>
@@ -110,7 +110,6 @@ demo.launch()
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736145012416-7386a82d-c81c-46ce-bcb6-57d94f35e541.png)
 
-<br/>color2
 也可以添加`demo.launch(share=True)`来创建一个公共链接，以便与朋友分享。
 
 + `fn=summarize`: 这是要应用于用户输入的函数，即生成文本摘要的函数。
@@ -119,8 +118,6 @@ demo.launch()
 + `title="Text summarization with distilbart-cnn"`: 这是界面的标题，将显示在界面的顶部。
 + `description="Summarize any text using the shleifer/distilbart-cnn-12-6 model under the hood!"`: 这是界面的描述，提供有关界面功能的更多信息。
 + `demo.launch(share=True)`: 启动 Gradio 界面，并通过共享模式使其他用户能够访问该界面。
-
-<br/>
 
 ```python
 # 导入所需的库
@@ -170,7 +167,7 @@ def ner(input):
     return {"text": input, "entities": output}
 ```
 
-<details class="lake-collapse"><summary id="ued3a9318"><span class="ne-text">output：</span></summary><pre data-language="json" id="OT4tf" class="ne-codeblock language-json"><code>Some weights of the model checkpoint at dslimbert-base-NER were not used when initializing BertForTokenClassification: ['bert.pooler.dense.weight', 'bert.pooler.dense.bias']
+<details><summary>output：</summary><pre><code class="language-json"><code>Some weights of the model checkpoint at dslimbert-base-NER were not used when initializing BertForTokenClassification: ['bert.pooler.dense.weight', 'bert.pooler.dense.bias']
 - This IS expected if you are initializing BertForTokenClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing BertForTokenClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).</code></pre></details>
 如果想使用在线api，那请使用以下代码
@@ -184,14 +181,11 @@ def ner(input):
     return {"text": input, "entities": output}
 ```
 
-<br/>color2
 这里相对上面的`gr.Interface`有几个参数不同，稍微解释一下：
 
 + `allow_flagging="never"`: 这将禁止用户标记内容，不允许标记不良或不恰当的内容。
 + `examples=["My name is Andrew and I live in California", "My name is Poli and work at HuggingFace"]`: 这里提供了两个示例输入，用于展示界面功能。用户可以在文本框中直接加载这些示例文本，以查看命名实体识别的效果。
 + `gr.HighlightedText` 是 Gradio 中的一个部件（widget），用于在文本中高亮显示特定文本片段。在这个场景中，它被用来显示带有标记实体的文本。
-
-<br/>
 
 ```python
 # 导入所需的库
@@ -283,26 +277,24 @@ gr.close_all()
 import pprint
 
 text_en = '''The tower is 324 metres (1,063 ft) tall, about the same height
-        as an 81-storey building, and the tallest structure in Paris. 
-        Its base is square, measuring 125 metres (410 ft) on each side. 
-        During its construction, the Eiffel Tower surpassed the Washington 
+        as an 81-storey building, and the tallest structure in Paris.
+        Its base is square, measuring 125 metres (410 ft) on each side.
+        During its construction, the Eiffel Tower surpassed the Washington
         Monument to become the tallest man-made structure in the world,
         a title it held for 41 years until the Chrysler Building
-        in New York City was finished in 1930. It was the first structure 
-        to reach a height of 300 metres. Due to the addition of a broadcasting 
-        aerial at the top of the tower in 1957, it is now taller than the 
-        Chrysler Building by 5.2 metres (17 ft). Excluding transmitters, the 
-        Eiffel Tower is the second tallest free-standing structure in France 
+        in New York City was finished in 1930. It was the first structure
+        to reach a height of 300 metres. Due to the addition of a broadcasting
+        aerial at the top of the tower in 1957, it is now taller than the
+        Chrysler Building by 5.2 metres (17 ft). Excluding transmitters, the
+        Eiffel Tower is the second tallest free-standing structure in France
         after the Millau Viaduct.'''
 
 pprint.pprint(get_completion(text_en))
 ```
 
-<details class="lake-collapse"><summary id="u038ef177"><span class="ne-text">output：</span></summary><pre data-language="json" id="xIJMU" class="ne-codeblock language-json"><code>[{'summary_text': ' The tower is 324 metres (1,063 ft) tall, about the same '
+<details><summary>output：</summary><pre><code class="language-json"><code>[{'summary_text': ' The tower is 324 metres (1,063 ft) tall, about the same '
   'height as an 81-storey building . It is the tallest '
   'structure in Paris and the second tallest free-standing '
   'structure in France after the Millau Viaduct . It was the '
   'first structure in the world to reach a height of 300 '
   'metres .'}]</code></pre></details>
-
-

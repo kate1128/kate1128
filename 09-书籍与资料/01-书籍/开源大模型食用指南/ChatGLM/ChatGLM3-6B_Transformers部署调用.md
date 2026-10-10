@@ -77,6 +77,5 @@ cd /root/autodl-tmp
 python trans.py
 ```
 
-观察命令行中loading checkpoint表示模型正在加载，等待模型加载完成产生对话，如下图所示  
+观察命令行中loading checkpoint表示模型正在加载，等待模型加载完成产生对话，如下图所示
 ![](https://github.com/datawhalechina/self-llm/raw/master/models/ChatGLM/images/image-6.png)
-

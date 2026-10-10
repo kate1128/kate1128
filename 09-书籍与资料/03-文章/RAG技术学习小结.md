@@ -18,7 +18,6 @@
 | 降低幻觉 | 通过检索到的真实信息生成回答，降低了产生幻觉的概率。 | 模型学习特定领域的数据有助于减少幻觉，但面对未见过的输入时仍可能出现幻觉。 |
 | 伦理隐私 | 检索和使用外部数据可能引发伦理和隐私方面的问题。 | 训练数据中的敏感信息需要妥善处理，以防泄露。 |
 
-
 ## RAG是什么？
 从上文可以看出，RAG 的诞生就是其实为了尽量补充大模型的一些缺点，简单概括一下基础的 RAG 它的几个阶段：
 
@@ -154,4 +153,3 @@ KAG 的核心功能包括：
 6. KAG 的 github：[https://github.com/OpenSPG/KAG/blob/master/README_cn.md](https://github.com/OpenSPG/KAG/blob/master/README_cn.md)
 7. KAG 的用户手册：[https://openspg.yuque.com/ndx6g9/0.6/quzq24g4esal7q17#JQH6Y](https://openspg.yuque.com/ndx6g9/0.6/quzq24g4esal7q17#JQH6Y)
 8. 其他参考图片：![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1744878555905-1779bda7-2b20-40ea-9825-d4a0c2117bce.png)
-

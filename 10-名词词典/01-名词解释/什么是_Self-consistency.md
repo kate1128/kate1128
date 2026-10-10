@@ -1,13 +1,10 @@
 Google 在 ICLR 2023 发表的一篇论文 [Self-Consistency Improves Chain of Thought Reasoning in Language Models](https://arxiv.org/abs/2203.11171) 提出了一种新的解码策略：自我一致性（Self-consistency），**以替代思维链提示中的朴素贪婪解码**。
 
-<br/>color2
 如下图所示。自一致性方法包括三个步骤：
 
 1. 使用思维链提示的大语言模型;
 2. 通过从语言模型的解码器中采样来生成不同的推理路径集合，以取代 CoT 提示中的 “贪心解码”
 3. 边缘化推理路径，并通过选择最终答案集中最一致的答案进行聚合。
-
-<br/>
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1739936520687-5978d434-4752-44de-95c6-b03f10cc1562.png)
 
@@ -54,13 +51,11 @@ for response_num, con in enumerate(result_Chinese, start=1):
     print(f"思维链-中文-{response_num}：\n{result}\n")
 ```
 
-<details class="lake-collapse"><summary id="u2969e175"><span class="ne-text">思维链-中文-1：</span></summary><p id="ua0b85286" class="ne-p"><span class="ne-text">每天鸭子下 16 个蛋，李莉每天早餐吃 3 个，每天用 4 个给朋友烤松饼，所以她每天剩下 16 - 3 - 4 = 9 个蛋。她以每个 2 美元的价格出售，所以她每天能赚 9 * 2 = 18 美元。答案是 18 美元。</span></p></details>
+<details><summary>思维链-中文-1：</summary>每天鸭子下 16 个蛋，李莉每天早餐吃 3 个，每天用 4 个给朋友烤松饼，所以她每天剩下 16 - 3 - 4 = 9 个蛋。她以每个 2 美元的价格出售，所以她每天能赚 9 * 2 = 18 美元。答案是 18 美元。</details>
 
+<details><summary>思维链-中文-2：</summary>李莉的鸭子每天下 16 个蛋。她每天早餐吃 3 个，每天用 4 个给朋友烤松饼，剩下的蛋她以每个 2 美元的价格出售。剩下的蛋数量为 16 - 3 - 4 = 9 个。她以每个 2 美元的价格出售这 9 个蛋，所以她每天能赚取的金额为 9 * 2 = 18 美元。所以，她每天能赚 18 美元。</details>
 
-<details class="lake-collapse"><summary id="u9a9d8c7b"><span class="ne-text">思维链-中文-2：</span></summary><p id="u0c15a4cc" class="ne-p"><span class="ne-text">李莉的鸭子每天下 16 个蛋。她每天早餐吃 3 个，每天用 4 个给朋友烤松饼，剩下的蛋她以每个 2 美元的价格出售。</span></p><p id="u8d0c47ce" class="ne-p"><span class="ne-text"></span></p><p id="u81e83597" class="ne-p"><span class="ne-text">剩下的蛋数量为 16 - 3 - 4 = 9 个。</span></p><p id="u86fd6785" class="ne-p"><span class="ne-text"></span></p><p id="u2d4845d3" class="ne-p"><span class="ne-text">她以每个 2 美元的价格出售这 9 个蛋，所以她每天能赚取的金额为 9 * 2 = 18 美元。所以，她每天能赚 18 美元。</span></p></details>
-
-
-<details class="lake-collapse"><summary id="u57017869"><span class="ne-text">思维链-中文-3：</span></summary><p id="u41798cae" class="ne-p"><span class="ne-text">首先，李莉的鸭子每天下 16 个蛋。她每天早餐吃 3 个，每天用 4 个给朋友烤松饼，所以每天剩下 16 - 3 - 4 = 9 个蛋。她以每个 2 美元的价格出售蛋，所以每天能赚 9 * 2 = 18 美元。李莉每天能赚 18 美元。</span></p></details>
+<details><summary>思维链-中文-3：</summary>首先，李莉的鸭子每天下 16 个蛋。她每天早餐吃 3 个，每天用 4 个给朋友烤松饼，所以每天剩下 16 - 3 - 4 = 9 个蛋。她以每个 2 美元的价格出售蛋，所以每天能赚 9 * 2 = 18 美元。李莉每天能赚 18 美元。</details>
 ```python
 llm = "gpt-3.5-turbo-0125"
 
@@ -75,7 +70,7 @@ A: He bought 5 cupcakes for $3 each and spent a total of 3 * 5 = $15. So, he has
 Q: When I was 6 years old, my sister was half my age. Now that I am 24 years old, what is my sister's age now?
 A: When you were 6 years old, your sister was 6 / 2 = 3 years old. Now you are 24, so your sister's age is 24 - (6 - 3) = 21.
 Q: Lily's duck lays 16 eggs a day. She eats 3 each day for breakfast and uses 4 each day to bake muffins for her friends. She sells the remaining eggs for $2 each. How much money does she make each day?
-A: 
+A:
 """
 
 result_English, tokens_count = get_completions(system_instruction, prompt, llm)
@@ -84,7 +79,6 @@ for response_num, con in enumerate(result_English, start=1):
     print(f"思维链-英文-{response_num}：\n{result}\n")
 ```
 
-<details class="lake-collapse"><summary id="ua8f247ef"><span class="ne-text">思维链-英文-1：</span></summary><p id="u1c234d14" class="ne-p"><span class="ne-text">To calculate how much money Lily makes each day, we first need to determine how many eggs are left after she uses some for breakfast and baking:</span></p><p id="u54518d3a" class="ne-p"><span class="ne-text"></span></p><p id="udd5ba147" class="ne-p"><span class="ne-text">Total eggs laid per day: 16</span></p><p id="u6fb87d07" class="ne-p"><span class="ne-text">Eggs eaten for breakfast: 3</span></p><p id="u2d130b66" class="ne-p"><span class="ne-text">Eggs used for baking: 4</span></p><p id="u1c29857b" class="ne-p"><span class="ne-text"></span></p><p id="uaf24f703" class="ne-p"><span class="ne-text">Remaining eggs: 16 - 3 - 4 = 9</span></p><p id="u4c8c4836" class="ne-p"><span class="ne-text"></span></p><p id="u62bd6c7c" class="ne-p"><span class="ne-text">Now, we can calculate how much money Lily makes by selling the remaining eggs:</span></p><p id="u7d5e3842" class="ne-p"><span class="ne-text"></span></p><p id="ua5f6df04" class="ne-p"><span class="ne-text">Number of eggs sold: 9</span></p><p id="u98ea2af4" class="ne-p"><span class="ne-text">Price per egg: $2</span></p><p id="u8e0c48a7" class="ne-p"><span class="ne-text"></span></p><p id="u0a85808b" class="ne-p"><span class="ne-text">Total money made: 9 * 2 = $18</span></p><p id="u9f0cbfe6" class="ne-p"><span class="ne-text"></span></p><p id="u800eaa0f" class="ne-p"><span class="ne-text">Therefore, Lily makes $18 each day by selling the remaining eggs.</span></p></details>
+<details><summary>思维链-英文-1：</summary>To calculate how much money Lily makes each day, we first need to determine how many eggs are left after she uses some for breakfast and baking:Total eggs laid per day: 16Eggs eaten for breakfast: 3Eggs used for baking: 4Remaining eggs: 16 - 3 - 4 = 9Now, we can calculate how much money Lily makes by selling the remaining eggs:Number of eggs sold: 9Price per egg: $2Total money made: 9 * 2 = $18Therefore, Lily makes $18 each day by selling the remaining eggs.</details>
 
-
-<details class="lake-collapse"><summary id="u940156c4"><span class="ne-text">思维链-英文-2：</span></summary><p id="u11ec69f8" class="ne-p"><span class="ne-text">To calculate how much money Lily makes each day, we first need to determine how many eggs she has left after using some for breakfast and baking muffins.</span></p><p id="u4d844b7d" class="ne-p"><span class="ne-text"></span></p><p id="u476e996e" class="ne-p"><span class="ne-text">If the duck lays 16 eggs a day and Lily uses 3 for breakfast and 4 for baking muffins, she uses a total of 3 + 4 = 7 eggs.</span></p><p id="ue4b651cd" class="ne-p"><span class="ne-text"></span></p><p id="ub9ce1776" class="ne-p"><span class="ne-text">So, the number of eggs remaining for sale is 16 - 7 = 9 eggs.</span></p><p id="u8b0de29b" class="ne-p"><span class="ne-text">...</span></p><p id="uf2b9d1ff" class="ne-p"><span class="ne-text">Multiplying the number of eggs sold by the price per egg gives us the daily earnings: 9 * $2 = $18.</span></p><p id="u238431e6" class="ne-p"><span class="ne-text"></span></p><p id="uac07c7e1" class="ne-p"><span class="ne-text">Therefore, Lily makes $18 each day selling duck eggs.</span></p><p id="u0667cf66" class="ne-p"><span class="ne-text"></span></p><p id="u7d3aeff8" class="ne-p"><span class="ne-text">Output is truncated. View as a scrollable element or open in a text editor. Adjust cell output settings...</span></p></details>
+<details><summary>思维链-英文-2：</summary>To calculate how much money Lily makes each day, we first need to determine how many eggs she has left after using some for breakfast and baking muffins.If the duck lays 16 eggs a day and Lily uses 3 for breakfast and 4 for baking muffins, she uses a total of 3 + 4 = 7 eggs.So, the number of eggs remaining for sale is 16 - 7 = 9 eggs....Multiplying the number of eggs sold by the price per egg gives us the daily earnings: 9 * $2 = $18.Therefore, Lily makes $18 each day selling duck eggs.Output is truncated. View as a scrollable element or open in a text editor. Adjust cell output settings...</details>

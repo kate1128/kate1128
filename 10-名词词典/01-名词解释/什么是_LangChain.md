@@ -5,10 +5,7 @@ ChatGPT 的巨大成功激发了越来越多的开发者兴趣，他们希望利
 
 为了解决这个问题，从 2022 年开始，许多机构和个人相继推出了多个开源项目，旨在**帮助开发者们快速构建基于大型语言模型的端到端应用程序或工作流程**。其中一个备受关注的项目就是 LangChain 框架。
 
-<br/>color2
 **LangChain 框架是一个开源工具，充分利用了大型语言模型的强大能力，以便开发各种下游应用。它的目标是为各种大型语言模型应用提供通用接口，从而简化应用程序的开发流程**。具体来说，LangChain 框架可以实现数据感知和环境互动，也就是说，它能够让语言模型与其他数据来源连接，并且允许语言模型与其所处的环境进行互动。
-
-<br/>
 
 ##  六大组件
 ![画板](https://cdn.nlark.com/yuque/0/2025/jpeg/2639475/1736750325286-fd218ed1-758b-456b-ac31-fc16cc2c96dc.jpeg)
@@ -36,8 +33,6 @@ ChatGPT 的巨大成功激发了越来越多的开发者兴趣，他们希望利
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736750014300-6a532cea-71bc-4e3d-ba62-d4d917fa2ee4.png)
 
 使用 **LangChain** 构建 **RAG（Retrieval-Augmented Generation）** 应用的基本思路是将一个信息检索模块（如向量数据库）与生成模型（如 GPT-3 或其他 LLM）结合在一起，以便生成更高质量、更准确的文本内容。
-
-
 
 构建 RAG 应用的步骤：
 
@@ -94,7 +89,7 @@ qa_chain = load_qa_chain(llm, chain_type="stuff")
 def rag_query(query):
     # 检索相关文档
     docs = retriever.get_relevant_documents(query)
-    
+
     # 使用 RAG 链生成答案
     answer = qa_chain.run(input_documents=docs, question=query)
     return answer
@@ -130,8 +125,3 @@ print(answer)
 + **优化和调优**：根据实际需求，可以进一步优化检索部分（比如使用更复杂的向量数据库）或调整生成模型的参数（如 `temperature` 和 `max_tokens`）。
 
 通过这种方式，可以构建一个强大的 RAG 应用，能够根据大量的文档信息生成高质量的答案。
-
-
-
-
-

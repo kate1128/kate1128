@@ -16,4 +16,3 @@
 
 ## Node.js API
 + [transitive-bullshit/chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api) ![](https://img.shields.io/github/stars/transitive-bullshit/chatgpt-api?style=social) : Node.js client for the unofficial ChatGPT API. 🔥
-

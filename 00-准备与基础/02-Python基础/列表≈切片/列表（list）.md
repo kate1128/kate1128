@@ -10,7 +10,6 @@
 | **容量概念** | 无显式容量（自动管理） | `cap(slice)` 显式容量 |
 | **值传递行为** | 浅拷贝（传递引用） | 引用语义（底层数组共享） |
 
-
 #  核心操作对比
 ## 创建与初始化
 **Python**：
@@ -110,9 +109,9 @@ fmt.Println(s[1:4]) // [1 2 3]
 ## 迭代遍历
 **Python**：
 
-`<font style="color:#DF2A3F;">enumerate</font>`<font style="color:#DF2A3F;"> 是啥？</font>
+`enumerate` 是啥？
 
-`<font style="color:#DF2A3F;">for xx in xx</font>`<font style="color:#DF2A3F;">，</font>`<font style="color:#DF2A3F;">range</font>`<font style="color:#DF2A3F;"> 在哪？</font>
+`for xx in xx`，`range` 在哪？
 
 ```python
 lst = ["a", "b", "c"]
@@ -221,7 +220,6 @@ type slice struct {
 | **插入/删除** | O(n) | O(n) |
 | **内存占用** | 较高（存储对象指针 + 类型信息） | 较低（连续内存 + 类型统一） |
 
-
 # 最佳实践总结
 ## Python 列表使用建议：
 1. **优先选择列表推导式**：简化代码逻辑
@@ -267,7 +265,7 @@ func Process() {
     result := make([]byte, 100)
     copy(result, hugeData[:100])
     // 清空不再需要的大切片
-    hugeData = nil 
+    hugeData = nil
 }
 ```
 
@@ -280,4 +278,3 @@ s = append(s, []int{1,2,3,4,5}...)
 ```
 
 Python 列表在快速开发和混合类型场景下更高效，Go 切片在性能敏感和类型统一场景下更优。
-

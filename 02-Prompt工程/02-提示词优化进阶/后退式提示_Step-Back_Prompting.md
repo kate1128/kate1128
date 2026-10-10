@@ -10,13 +10,10 @@
 
 研究者针对 PaLM-2L、GPT-4 和 Llama 2-70B 模型进行了 Step-Back Prompting 实验，在多种具有挑战性的推理密集型任务（包括 STEM 领域、知识问答和多跳推理等）上观察到了显著的性能提升。例如，Step-Back Prompting 在 PaLM-2L 模型上分别将 MMLU 物理和化学任务的性能提高了 7% 和 11%，TimeQA 任务提高了27%，以及 MuSiQue 任务提高了 7%。
 
-<br/>color2
 **检索增强生成 RAG 与 Step Back Prompting 的不同之处在于**：
 
 + **RAG 先检索相关文档，再结合文档与问题生成答案；**
 + **Step Back Prompting 是先对问题做抽象，使用 LLM 生成出相关背景知识及原理，再结合原问题进行推理。**
-
-<br/>
 
 # 后退式提示的核心要点
 ## 什么是 Step-Back Prompting？
@@ -51,7 +48,6 @@ Step-Back Prompting 是指向模型提供额外提示的技术，以便在回答
 ```python
 import os
 from openai import OpenAI
-
 
 # 从环境变量中获取 OpenAI API Key 或者直接赋值
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
@@ -142,7 +138,7 @@ result_Chinese = get_completions(system_instruction, prompt, llm)
 print(f"生成结果-中文：\n{result_Chinese}")
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>中文问题：为什么可解释的人工智能对许多领域都极为重要？
+<details><summary>output：</summary><pre><code class="language-json"><code>中文问题：为什么可解释的人工智能对许多领域都极为重要？
 
 生成结果-中文：
 第 1 步 - 抽象出与原始问题相关的关键概念和基本原理：
@@ -192,7 +188,7 @@ result_English = get_completions(system_instruction, prompt, llm)
 print(f"生成结果-英文：\n{result_English}")
 ```
 
-<details class="lake-collapse"><summary id="uc6dffb66"><span class="ne-text">output：</span></summary><pre data-language="json" id="qNIE4" class="ne-codeblock language-json"><code>英文问题：Why explainable artificial intelligence is extremely important for many fields?
+<details><summary>output：</summary><pre><code class="language-json"><code>英文问题：Why explainable artificial intelligence is extremely important for many fields?
 
 生成结果-英文：
 Step 1 - Abstract the key concepts and principles relevant to this question:
@@ -268,7 +264,7 @@ system_instruction = "You are an expert at world knowledge."
 
 # 本质是利用上下文学习（In-Context Learning）  提供一些演示
 prompt = f"""Your task is to step back and paraphrase a question to a more generic step-back question, \
-which is easier to answer. 
+which is easier to answer.
 Here are a few examples:
 Original Question: Zhi-Hua Zhou went to which school between September 1996 and June 1999?
 Stepback Question: What was the education history of Zhi-Hua Zhou?
@@ -277,7 +273,7 @@ Stepback Question: What are the physics principles behind this question?
 Original Question: Do the anchors on Rede Globo speak Chinese?
 Stepback Question: What languages do the anchors on Rede Globo speak?
 Original Question: How to use the large language model to successfully publish high quality SCI papers?
-Stepback Question: 
+Stepback Question:
 """
 
 result_English = get_completions(system_instruction, prompt, llm)
@@ -354,7 +350,7 @@ print(f"生成结果-英文：\n{result_English}")
 
 ```python
 生成结果-英文：
-The atomic number of an element determines the number of protons in its nucleus. In the case of potassium-40 (K), it has an atomic number of 19, which means it has 19 protons. 
+The atomic number of an element determines the number of protons in its nucleus. In the case of potassium-40 (K), it has an atomic number of 19, which means it has 19 protons.
 
 In a neutral atom, the number of protons is equal to the number of electrons. Since potassium-40 is part of K2SO4, it forms an ion with a +1 charge. This means it loses one electron, so it will have 18 electrons.
 
@@ -385,4 +381,3 @@ Step-Back Prompting 的创新性和简单性鼓励我们更广泛地考虑像人
 + ICLR 2024 - Step-Back Prompting Enables Reasoning Via Abstraction in Large Language Models，[https://openreview.net/forum?id=3bq3jsvcQ1](https://openreview.net/forum?id=3bq3jsvcQ1)
 + 知乎 - 退一步，看得更远：通过抽象引发大型语言模型中的推理，[https://zhuanlan.zhihu.com/p/663680218](https://zhuanlan.zhihu.com/p/663680218)
 + Lilian Weng - LLM Powered Autonomous Agents，[https://lilianweng.github.io/posts/2023-06-23-agent/](https://lilianweng.github.io/posts/2023-06-23-agent/)
-

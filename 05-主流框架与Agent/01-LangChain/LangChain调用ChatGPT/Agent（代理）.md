@@ -7,12 +7,12 @@ from dotenv import load_dotenv, find_dotenv
 # 读取本地/项目的环境变量。
 
 # find_dotenv()寻找并定位.env文件的路径
-# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv()读取该.env文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 
 # 获取环境变量 OPENAI_API_KEY
-openai.api_key = os.environ['OPENAI_API_KEY']  
+openai.api_key = os.environ['OPENAI_API_KEY']
 ```
 
 # LangChain 内置工具
@@ -39,7 +39,7 @@ llm = ChatOpenAI(temperature=0,openai_api_base="https://xiaoai.plus/v1")
 
 ```python
 tools = load_tools(
-    ["llm-math","wikipedia"], 
+    ["llm-math","wikipedia"],
     llm=llm #第一步初始化的模型
 )
 ```
@@ -61,32 +61,32 @@ agent= initialize_agent(
 
 ## 使用代理回答数学问题
 ```python
-agent("计算300的25%，思考过程请使用中文。") 
+agent("计算300的25%，思考过程请使用中文。")
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736503357108-5a103689-61dd-41ce-abf1-a48bfb0c522d.png)
 
 ✅ **总结**
 
-1. 模型对于接下来需要做什么，给出思考（Thought） 
+1. 模型对于接下来需要做什么，给出思考（Thought）
 
-**<font style="color:green;">思考</font>**<font style="color:green;">：我们需要计算300的25%，这个过程中需要用到乘法和除法。</font>
+**思考**：我们需要计算300的25%，这个过程中需要用到乘法和除法。
 
 2. 模型基于思考采取行动（Action）
 
-**<font style="color:green;">行动</font>**<font style="color:green;">: 使用计算器（calculator），输入300*0.25</font>
+**行动**: 使用计算器（calculator），输入300*0.25
 
 3. 模型得到观察（Observation）
 
-**<font style="color:green;">观察</font>**<font style="color:green;">：答案: 75.0</font>
+**观察**：答案: 75.0
 
 4. 基于观察，模型对于接下来需要做什么，给出思考（Thought）
 
-**<font style="color:green;">思考</font>**<font style="color:green;">: 我们的问题有了答案 </font>
+**思考**: 我们的问题有了答案
 
 5. 给出最终答案（Final Answer）
 
-**<font style="color:green;">最终答案</font>**<font style="color:green;">: 75.0 </font>
+**最终答案**: 75.0
 
 6. 以字典的形式给出最终答案。
 
@@ -95,36 +95,34 @@ agent("计算300的25%，思考过程请使用中文。")
 question = "Tom M. Mitchell is an American computer scientist \
 and the Founders University Professor at Carnegie Mellon University (CMU)\
 what book did he write?"
-agent(question) 
+agent(question)
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736503438628-e97c15f6-a339-40e2-8d83-d2b4c1a42462.png)
 
 ✅ **总结**
 
-1. 模型对于接下来需要做什么，给出思考（Thought） 
+1. 模型对于接下来需要做什么，给出思考（Thought）
 
-**<font style="color:green;">思考</font>**<font style="color:green;">：我应该使用维基百科去搜索。</font>
+**思考**：我应该使用维基百科去搜索。
 
 2. 模型基于思考采取行动（Action）
 
-**<font style="color:green;">行动</font>**<font style="color:green;">: 使用维基百科，输入Tom M. Mitchell</font>
+**行动**: 使用维基百科，输入Tom M. Mitchell
 
 3. 模型得到观察（Observation）
 
-**<font style="color:green;">观测</font>**<font style="color:green;">: 页面: Tom M. Mitchell，页面: Tom Mitchell (澳大利亚足球运动员)</font>
+**观测**: 页面: Tom M. Mitchell，页面: Tom Mitchell (澳大利亚足球运动员)
 
 4. 基于观察，模型对于接下来需要做什么，给出思考（Thought）
 
-**<font style="color:green;">思考</font>**<font style="color:green;">: Tom M. Mitchell写的书是Machine Learning </font>
+**思考**: Tom M. Mitchell写的书是Machine Learning
 
 5. 给出最终答案（Final Answer）
 
-**<font style="color:green;">最终答案</font>**<font style="color:green;">: Machine Learning </font>
+**最终答案**: Machine Learning
 
 6. 以字典的形式给出最终答案。
-
-
 
 值得注意的是，模型每次运行推理的过程可能存在差异，但最终的结果一致。
 
@@ -149,7 +147,7 @@ customer_list = ["小明","小黄","小红","小蓝","小橘","小绿",]
 ```python
 agent.run(f"""在这些客户名字转换为拼音\
 并打印输出列表： {customer_list}\
-思考过程请使用中文。""") 
+思考过程请使用中文。""")
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736735065882-a75af654-3f91-42dd-897d-7def1636aeb9.png)
@@ -158,30 +156,30 @@ agent.run(f"""在这些客户名字转换为拼音\
 在调试（debug）模式下再次运行，我们可以把上面的6步分别对应到下面的具体流程
 
 1. 模型对于接下来需要做什么，给出思考（Thought）
-    - <font style="color:green;">[chain/start] [1:chain:AgentExecutor] Entering Chain run with input</font>
-    - <font style="color:green;">[chain/start] [1:chain:AgentExecutor > 2:chain:LLMChain] Entering Chain run with input</font>
-    - <font style="color:green;">[llm/start] [1:chain:AgentExecutor > 2:chain:LLMChain > 3:llm:ChatOpenAI] Entering LLM run with input</font>
-    - <font style="color:green;">[llm/end] [1:chain:AgentExecutor > 2:chain:LLMChain > 3:llm:ChatOpenAI] [12.25s] Exiting LLM run with output</font>
-    - <font style="color:green;">[chain/end] [1:chain:AgentExecutor > 2:chain:LLMChain] [12.25s] Exiting Chain run with output</font>
+    - [chain/start] [1:chain:AgentExecutor] Entering Chain run with input
+    - [chain/start] [1:chain:AgentExecutor > 2:chain:LLMChain] Entering Chain run with input
+    - [llm/start] [1:chain:AgentExecutor > 2:chain:LLMChain > 3:llm:ChatOpenAI] Entering LLM run with input
+    - [llm/end] [1:chain:AgentExecutor > 2:chain:LLMChain > 3:llm:ChatOpenAI] [12.25s] Exiting LLM run with output
+    - [chain/end] [1:chain:AgentExecutor > 2:chain:LLMChain] [12.25s] Exiting Chain run with output
 2. 模型基于思考采取行动（Action), 因为使用的工具不同，Action的输出也和之前有所不同，这里输出的为python代码
-    - <font style="color:green;">[tool/start] [1:chain:AgentExecutor > 4:tool:Python REPL] Entering Tool run with input</font>
-    - <font style="color:green;">[tool/end] [1:chain:AgentExecutor > 4:tool:Python REPL] [2.2239999999999998ms] Exiting Tool run with output</font>
-3. 模型得到观察（Observation）   
-    - <font style="color:green;">[chain/start] [1:chain:AgentExecutor > 5:chain:LLMChain] Entering Chain run with input</font>
-4. 基于观察，模型对于接下来需要做什么，给出思考（Thought）   
-    - <font style="color:green;">[llm/start] [1:chain:AgentExecutor > 5:chain:LLMChain > 6:llm:ChatOpenAI] Entering LLM run with input</font>
-    - <font style="color:green;">[llm/end] [1:chain:AgentExecutor > 5:chain:LLMChain > 6:llm:ChatOpenAI] [6.94s] Exiting LLM run with output</font>
-5. 给出最终答案（Final Answer） 
-    - <font style="color:green;">[chain/end] [1:chain:AgentExecutor > 5:chain:LLMChain] [6.94s] Exiting Chain run with output</font>
+    - [tool/start] [1:chain:AgentExecutor > 4:tool:Python REPL] Entering Tool run with input
+    - [tool/end] [1:chain:AgentExecutor > 4:tool:Python REPL] [2.2239999999999998ms] Exiting Tool run with output
+3. 模型得到观察（Observation）
+    - [chain/start] [1:chain:AgentExecutor > 5:chain:LLMChain] Entering Chain run with input
+4. 基于观察，模型对于接下来需要做什么，给出思考（Thought）
+    - [llm/start] [1:chain:AgentExecutor > 5:chain:LLMChain > 6:llm:ChatOpenAI] Entering LLM run with input
+    - [llm/end] [1:chain:AgentExecutor > 5:chain:LLMChain > 6:llm:ChatOpenAI] [6.94s] Exiting LLM run with output
+5. 给出最终答案（Final Answer）
+    - [chain/end] [1:chain:AgentExecutor > 5:chain:LLMChain] [6.94s] Exiting Chain run with output
 6. 返回最终答案。
-    - <font style="color:green;">[chain/end] [1:chain:AgentExecutor] [19.20s] Exiting Chain run with output</font>
+    - [chain/end] [1:chain:AgentExecutor] [19.20s] Exiting Chain run with output
 
 ```python
 import langchain
 langchain.debug=True
 agent.run(f"""在这些客户名字转换为拼音\
 并打印输出列表： {customer_list}\
-思考过程请使用中文。""") 
+思考过程请使用中文。""")
 langchain.debug=False
 ```
 
@@ -235,35 +233,31 @@ agent= initialize_agent(
 
 ## 使用代理访问今天的日期
 ```python
-agent("今天的日期是？") 
+agent("今天的日期是？")
 ```
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736503786171-770ab362-c3ee-4a18-8634-e548ebfcdffb.png)
 
 ✅ 总结
 
-<br/>color2
-1. 模型对于接下来需要做什么，给出思考（Thought） 
+1. 模型对于接下来需要做什么，给出思考（Thought）
 
-**<font style="color:green;">思考</font>**<font style="color:green;">：我需要使用 time 工具来获取今天的日期</font>
+**思考**：我需要使用 time 工具来获取今天的日期
 
 2. 模型基于思考采取行动（Action), 因为使用的工具不同，Action的输出也和之前有所不同，这里输出的为python代码
 
-**<font style="color:green;">行动</font>**<font style="color:green;">: 使用time工具，输入为空字符串</font>
+**行动**: 使用time工具，输入为空字符串
 
 3. 模型得到观察（Observation）
 
-**<font style="color:green;">观测</font>**<font style="color:green;">: 2025-01-10</font>
+**观测**: 2025-01-10
 
 4. 基于观察，模型对于接下来需要做什么，给出思考（Thought）
 
-**<font style="color:green;">思考</font>**<font style="color:green;">: 我已成功使用 time 工具检索到了今天的日期</font>
+**思考**: 我已成功使用 time 工具检索到了今天的日期
 
 5. 给出最终答案（Final Answer）
 
-**<font style="color:green;">最终答案</font>**<font style="color:green;">: 今天的日期是2025-01-10.</font>
+**最终答案**: 今天的日期是2025-01-10.
 
 6. 返回最终答案。
-
-<br/>
-

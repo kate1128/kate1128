@@ -81,7 +81,7 @@ ReAct 的提示设计直观、灵活，并在各种任务中实现了最先进�
 
 ```python
 from dotenv import load_dotenv
-load_dotenv()  
+load_dotenv()
 
 # 导入LangChain Hub
 from langchain import hub
@@ -148,9 +148,8 @@ from langchain.agents import AgentType
 from langchain.agents import load_tools
 from langchain.agents import initialize_agent
 
-
 # find_dotenv() 寻找并定位 .env 文件的路径
-# load_dotenv() 读取该 .env 文件，并将其中的环境变量加载到当前的运行环境中  
+# load_dotenv() 读取该 .env 文件，并将其中的环境变量加载到当前的运行环境中
 # 如果你设置的是全局的环境变量，这行代码则没有任何作用。
 _ = load_dotenv(find_dotenv())
 
@@ -204,7 +203,7 @@ agent_ReAct = initialize_agent(tools, llm, verbose=True,
 print(agent_ReAct.agent.llm_chain.prompt.template)
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>Answer the following questions as best you can. You have access to the following tools:
+<details><summary>output：</summary><pre><code class="language-json"><code>Answer the following questions as best you can. You have access to the following tools:
 
 Search: A search engine. Useful for when you need to answer questions about current events. Input should be a search query.
 
@@ -253,7 +252,7 @@ result_no_ReAct = get_completions(prompt, "gpt-3.5-turbo-0125")
 print(f"\n生成结果-中文：\n{result_no_ReAct}")
 ```
 
-<details class="lake-collapse"><summary id="u933bc219"><span class="ne-text">output：</span></summary><pre data-language="json" id="WTQgu" class="ne-codeblock language-json"><code>生成结果-中文：
+<details><summary>output：</summary><pre><code class="language-json"><code>生成结果-中文：
 南瓜书的核心作者是 Datawhale 团队的成员，包括但不限于以下几位：
 
 1. 陈旸
@@ -297,7 +296,7 @@ result_Chinese = agent_ReAct.run(question_Chinese)
 print(f"\n生成结果-中文：\n{result_Chinese}")
 ```
 
-<details class="lake-collapse"><summary id="ua546e61d"><span class="ne-text">output：</span></summary><pre data-language="json" id="cREgR" class="ne-codeblock language-json"><code>&gt; Entering new AgentExecutor chain...
+<details><summary>output：</summary><pre><code class="language-json"><code>&gt; Entering new AgentExecutor chain...
 我需要搜索Datawhale南瓜书的开源项目来找到核心作者的姓名。
 Action: Search
 Action Input: Datawhale 南瓜书 开源项目
@@ -318,7 +317,7 @@ Thought:我需要查看Datawhale南瓜书项目GitHub仓库中的主要贡献者
 Action: Search
 Action Input: Datawhale 南瓜书 GitHub 主要贡献者
 Observation: ['文档采用 Markdown 语法编写，数学公式采用 LaTeX 语法编写，数学符号规范参见西瓜书目录前一页《主要符号表》。 ... 主要贡献者（按首字母排名）. @awyd234 @feijuan @ ...', '... GitHub的Issues（ 地址：https://github.com/datawhalechina/pumpkin-book/issues ... 南瓜书所做的贡献。 关注我们. 扫描下方二维码关注公众号：Datawhale，然后回复 ...', '主要贡献者（按首字母排名）. 关注我们; LICENSE. 南瓜书PumpkinBook. 周志华老师的《机器学习》（西瓜书）是机器学习领域的经典入门教材之一，周老师为了使尽可能多的读者 ...', '南瓜书仅仅是西瓜书的一些细微补充而已，里面的内容都是以西瓜书的内容为前置 ... 主要贡献者（按首字母排名）. @awyd234@feijuan@Ggmatch@Heitao5200 ...', '该仓库拥有者Datawhale是一个非盈利的开源学习组织，致力于构建一个纯粹的学习圈子，帮助学习者更好地成长。目前已经更新完15章（仅规则学习这里有少部分没完成），并 ...', '主要特色为力求数码结合，即数学公式与相关代码的形神对应，能够帮助读者加深对公式的理解以及代码的熟练。 目前已完成基于sklearn包的相关用法撰写，基于numpy包实现算法 ...', '... 贡献者的参与。 开源地址. https://github.com/datawhalechina/team-learning. 什么是组 ... 机器学习. 1 /吃瓜教程—西瓜书+南瓜书. 开源贡献：谢文睿、秦州、刘琳. 内容说明 ...', '言归正传，南瓜书来源于西瓜书，由开源组织Datawhale 发起，团队成员谢文睿牵头，带领6位成员，历时1个月，将西瓜书中1-7章节的公式进行了整理，对西瓜书 ...', '当初在学习周志华《机器学习》教材的过程中，遇到了公式推导的难题，苦于没有人答疑解惑，于是发起了Datawhale南瓜书开源项目，希望再也没有难推的公式， ...', '截止今日，Datawhale已经开源50多门学习内容，涉及编程、数据科学、cv、nlp、强化学习和推荐系统6大模块，这源自每一个开源贡献者的参与。']
-Thought:我现在知道了Datawhale南瓜书项目的核心作者是谢文睿。 
+Thought:我现在知道了Datawhale南瓜书项目的核心作者是谢文睿。
 Final Answer: 谢文睿
 
 &gt; Finished chain.
@@ -333,7 +332,7 @@ result_English = agent_ReAct.run(question_English)
 print(f"\n生成结果-英文：\n{result_English}")
 ```
 
-<details class="lake-collapse"><summary id="u8b47e907"><span class="ne-text">output：</span></summary><pre data-language="json" id="wGcSp" class="ne-codeblock language-json"><code>&gt; Entering new AgentExecutor chain...
+<details><summary>output：</summary><pre><code class="language-json"><code>&gt; Entering new AgentExecutor chain...
 I need to find out who the core authors of Datawhale's Pumpkin Book are.
 Action: Search
 Action Input: &quot;Datawhale Pumpkin Book core authors&quot;
@@ -429,7 +428,7 @@ print(f"\n生成结果-英文：\n{result_no_ReAct}")
 
 ```python
 生成结果-英文：
-The current price of the Reinforcement Learning Tutorial (The Mushroom Book) is $50. 
+The current price of the Reinforcement Learning Tutorial (The Mushroom Book) is $50.
 
 If you sell it with a 15% price reduction on top of that, the new price would be calculated as follows:
 
@@ -660,4 +659,3 @@ ReAct 的优点是它很灵活，就像我们可以用乐高积木建造各种�
 # 参考资料
 + ICLR 2023 - ReAct: Synergizing Reasoning and Acting in Language Models，[https://openreview.net/forum?id=WE_vluYUL-X](https://openreview.net/forum?id=WE_vluYUL-X)
 + Lilian Weng - LLM Powered Autonomous Agents，[https://lilianweng.github.io/posts/2023-06-23-agent/](https://lilianweng.github.io/posts/2023-06-23-agent/)
-

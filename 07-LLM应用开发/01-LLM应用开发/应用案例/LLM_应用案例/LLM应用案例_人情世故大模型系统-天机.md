@@ -8,8 +8,6 @@
 
 来事儿AI构建并开源了常见的大模型应用范例，涉及prompt、Agent、知识库、模型训练等多种技术。
 
-
-
 # 目标与意义
 在人工智能的发展历程中，我们一直在探索如何让机器更加智能，如何使它们不仅仅能够理解复杂的数据和逻辑，更能够理解人类的情感、文化乃至人情世故。这一追求不仅仅是技术的突破，更是对人类智慧的一种致敬。
 
@@ -24,27 +22,27 @@ _我们坚信，只有人情世故才是未来AI的核心技术，只有会来�
 
 ![](https://github.com/kate1128/llm-universe/raw/main/docs/figures/C6-2-%E5%8C%96%E8%A7%A3%E5%B0%B4%E5%B0%AC.png)
 
-<font style="color:rgb(31, 35, 40);">图</font><font style="color:rgb(31, 35, 40);">1</font><font style="color:rgb(31, 35, 40);">：</font><font style="color:rgb(31, 35, 40);">化</font><font style="color:rgb(31, 35, 40);">解</font><font style="color:rgb(31, 35, 40);">尴</font><font style="color:rgb(31, 35, 40);">尬</font>
+图1：化解尴尬
 
 ![](https://github.com/kate1128/llm-universe/raw/main/docs/figures/C6-2-%E6%95%AC%E9%85%92.png)
 
-<font style="color:rgb(31, 35, 40);">图</font><font style="color:rgb(31, 35, 40);">2</font><font style="color:rgb(31, 35, 40);">：</font><font style="color:rgb(31, 35, 40);">敬</font><font style="color:rgb(31, 35, 40);">酒</font>
+图2：敬酒
 
 ![](https://github.com/kate1128/llm-universe/raw/main/docs/figures/C6-2-%E8%AF%B7%E5%AE%A2.png)
 
-<font style="color:rgb(31, 35, 40);">图</font><font style="color:rgb(31, 35, 40);">3</font><font style="color:rgb(31, 35, 40);">：</font><font style="color:rgb(31, 35, 40);">请</font><font style="color:rgb(31, 35, 40);">客</font>
+图3：请客
 
 ![](https://github.com/kate1128/llm-universe/raw/main/docs/figures/C6-2-%E4%BA%BA%E9%99%85%E4%BA%A4%E6%B5%81.png)
 
-<font style="color:rgb(31, 35, 40);">图</font><font style="color:rgb(31, 35, 40);">4</font><font style="color:rgb(31, 35, 40);">：</font><font style="color:rgb(31, 35, 40);">人</font><font style="color:rgb(31, 35, 40);">际</font><font style="color:rgb(31, 35, 40);">交</font><font style="color:rgb(31, 35, 40);">流</font>
+图4：人际交流
 
 ![](https://github.com/kate1128/llm-universe/raw/main/docs/figures/C6-2-%E9%80%81%E7%A4%BC.png)
 
-<font style="color:rgb(31, 35, 40);">图</font><font style="color:rgb(31, 35, 40);">5</font><font style="color:rgb(31, 35, 40);">：</font><font style="color:rgb(31, 35, 40);">送</font><font style="color:rgb(31, 35, 40);">礼</font>
+图5：送礼
 
 ![](https://github.com/kate1128/llm-universe/raw/main/docs/figures/C6-2-%E9%80%81%E7%A5%9D%E7%A6%8F.png)
 
-<font style="color:rgb(31, 35, 40);">图6：送祝福</font>
+图6：送祝福
 
 # 技术实现
 天机，我们可以使用以下四种方法（任何一种皆可实现）来进行实现：
@@ -57,11 +55,7 @@ _我们坚信，只有人情世故才是未来AI的核心技术，只有会来�
 
 + Agent（MetaGPT等）：利用 Agent 架构得到更丰富、更定制化详细的回答。
 
-
-
 + 知识库：使用向量数据库，直接检索人情世故法则（比如餐桌上一般怎么喝酒）。
-
-
 
 + 模型训练：基于不同优秀的模型基座，在积累大量数据的情况下进行Lora微调或全量微调。（目前天机只有送祝福功能）
 
@@ -69,7 +63,7 @@ _我们坚信，只有人情世故才是未来AI的核心技术，只有会来�
 
 # 环境要求
 ## 计算资源要求
-天机涉及到的技术路线共有四种：Prompt、Agent，知识库，模型训练。  
+天机涉及到的技术路线共有四种：Prompt、Agent，知识库，模型训练。
 其中，Prompt和Agent只需要配置大模型秘钥，不需要显卡，使用常规笔记本电脑即可运行。
 
 | 技术路线 | 电脑配置 |
@@ -78,7 +72,6 @@ _我们坚信，只有人情世故才是未来AI的核心技术，只有会来�
 | Agent | 只需要配置大模型KEY |
 | 知识库 | / |
 | 模型训练 | 基于InternLM2进行 |
-
 
 ## 开发环境要求
 + 操作系统：Windows，Linux，Mac皆可
@@ -126,7 +119,6 @@ HF_TOKEN=
 | Agent | [hugging-multi-agent](https://github.com/datawhalechina/hugging-multi-agent) |
 | 知识库 | [LLM Universe](../../notebook/C3 搭建知识库) |
 | 模型训练 | [self-llm](https://github.com/datawhalechina/self-llm) |
-
 
 # 应用架构
 RAG的主要组成依次是数据提取——embedding（向量化）——创建索引——检索——自动排序（Rerank）——LLM归纳生成。
@@ -605,7 +597,6 @@ system_prompt = """你是一名AI助手名为天机（SocialAI），也可称为
     def _llm_type(self) -> str:
         return "ZhipuLM"
 
-
 class OpenAI_LLM(LLM):
     tokenizer: AutoTokenizer = None
     model: AutoModelForCausalLM = None
@@ -710,4 +701,3 @@ if __name__ == "__main__":
 天机项目链接：[Tianji](https://github.com/SocialAI-tianji/Tianji)，欢迎大家给天机项目Star!
 
 感谢天机团队的开源付出，让我们从多个角度学习如何使用大模型解决我们生活中的问题。
-

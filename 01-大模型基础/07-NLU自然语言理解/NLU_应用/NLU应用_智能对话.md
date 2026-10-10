@@ -5,14 +5,11 @@
 + `NLG`：Natural Language Generation，自然语言生成。就是生成最终要回复给用户的输出。
 
 ##  分类
-<br/>color2
 对话机器人一般包括三种，不同类型的技术方案侧重有所不同。常见的类型如下：
 
 + 任务型机器人
 + 问答型机器人
 + 闲聊型机器人
-
-<br/>
 
 ### 任务型机器人
 任务型机器人主要用来完成特定的任务，比如订机票、订餐等，这一类机器人最关键的是要获取完成任务所需的各种信息（专业术语叫：槽位）。整个对话过程其实可以看作是一个填槽过程，通过与用户不断对话获取到需要的槽位信息。比如订餐这个任务，就餐人数、就餐时间、联系人电话等就是基本信息，机器人就要想办法获取到这些信息。这里NLU就是重头，DM一般使用两种方法：模型控制或流程图控制。前者通过模型自动学习来实现流转，后者则根据意图类型进行流转控制。
@@ -24,13 +21,10 @@
 闲聊机器人就是和客户瞎扯淡的机器人，没啥实际作用。
 
 ## 主动发起/被动接受
-<br/>color2
 以上是大致的分类，但真实场景中的对话机器人往往是多种功能的结合体。更加适合从主动发起/被动接受这个角度来划分。
 
 + 主动发起对话的机器人
 + 被动接受对话的机器人
-
-<br/>
 
 ### 主动发起对话的机器人
 前者一般是以外呼的方式进行，营销、催款、通知等都是常见的场景。这种对话机器人一般不闲聊，电话费不允许。它们基本都是带着特定任务或目的走流程，流程走完就挂断结束。与用户的互动更多是以QA的形式完成，因为主动权在机器人手里，所以流程一遍都是固定控制的，甚至QA的数量、回答次数也会控制。
@@ -67,13 +61,10 @@ ChatGPT时代，智能对话机器人会有什么新变化吗？接下来，我�
 
 只有当这些都能满足你的期望时，才应该选择。始终记住，人才是关键，不要被任何工具绑架。
 
-<br/>color2
 注：关于In-Context方式和微调方式的通俗解释
 
-In-Context主要是利用ChatGPT的理解能力，把它当做超级大脑，我们把相关上下文给它，让它根据上下文回答问题，就类似前面的[NLU应用 文档问答](https://www.yuque.com/qiaokate/su87gb/zueypw7kgd30hmf0)。对于不确定的问题，还可以设计兜底话术。  
+In-Context主要是利用ChatGPT的理解能力，把它当做超级大脑，我们把相关上下文给它，让它根据上下文回答问题，就类似前面的[NLU应用 文档问答](https://www.yuque.com/qiaokate/su87gb/zueypw7kgd30hmf0)。对于不确定的问题，还可以设计兜底话术。
 	微调方式则是直接将自定义数据喂给ChatGPT的微调接口（现在没有开放，但理论上可行），让它学习这些自定义内容，之后直接问就好了，就像我们现在直接问它「中国的首都是哪里」，它可以正确回答一样。
-
-<br/>
 
 ## 实现一个对话机器人
 下面，我们一起使用ChatGPT来实现一个对话机器人。设计阶段首先至少需要考虑以下一些因素（这并不包括上面提到的那些）：
@@ -107,7 +98,7 @@ from zhipuai import ZhipuAI
 zhipu_client = ZhipuAI(api_key="YOUR ZHIPU KEY")
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>/usr/local/lib/python3.8/site-packages/requests/__init__.py:89: RequestsDependencyWarning: urllib3 (1.26.15) or chardet (3.0.4) doesn't match a supported version!
+<details><summary>output：</summary><pre><code class="language-json"><code>/usr/local/lib/python3.8/site-packages/requests/__init__.py:89: RequestsDependencyWarning: urllib3 (1.26.15) or chardet (3.0.4) doesn't match a supported version!
   warnings.warn(&quot;urllib3 ({}) or chardet ({}) doesn't match a supported &quot;</code></pre></details>
 ### 敏感性检查
 先看一下敏感性检查，这个接口比较多，openai提供了一个相关的接口，国内几大厂商也有相关API。这个本身是和对话无关的。我们以openai接口为例。
@@ -123,7 +114,7 @@ def check_risk(inp: str):
 check_risk("good")
 ```
 
-<details class="lake-collapse"><summary id="uf2154ff4"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="GtXNP" class="ne-codeblock language-json"><code>False</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>False</code></pre></details>
 ### 构造接口的输入
 接下来我们考虑如何构造接口的输入，这里有两个事情要做：
 
@@ -142,7 +133,7 @@ import re
 ```python
 @dataclass
 class User:
-    
+
     user_id: str
     user_name: str
 ```
@@ -150,7 +141,7 @@ class User:
 ```python
 @dataclass
 class ChatSession:
-    
+
     user_id: str
     session_id: str
     cellphone: str
@@ -158,10 +149,9 @@ class ChatSession:
     meal_time: str
     chat_at: datetime
 
-
 @dataclass
 class ChatRecord:
-    
+
     user_id: str
     session_id: str
     user_input: str
@@ -177,7 +167,7 @@ class ChatRecord:
 ```python
 def ask(msg):
     response = openai_client.chat.completions.create(
-        model="gpt-3.5-turbo", 
+        model="gpt-3.5-turbo",
         temperature=0.2,
         max_tokens=100,
         top_p=1,
@@ -188,10 +178,9 @@ def ask(msg):
     ans = response.choices[0].message.content
     return ans
 
-
 def ask_zhipu(msg):
     response = zhipu_client.chat.completions.create(
-        model="glm-3-turbo", 
+        model="glm-3-turbo",
         temperature=0.1,
         max_tokens=100,
         top_p=0.9,
@@ -210,7 +199,7 @@ def ask_zhipu(msg):
 from sqlalchemy import insert
 
 class Chatbot:
-    
+
     def __init__(self, api: str="openai"):
         self.system_inp = """现在你是一个订餐机器人（角色是assistant），你的目的是向用户获取手机号码、用餐人数量和用餐时间三个信息。你可以自由回复用户消息，但牢记你的目的。每一轮你需要输出给用户的回复，以及获取到的信息，信息应该以JSON方式存储，包括三个key：cellphone表示手机号码，people_number表示用餐人数，meal_time表示用餐时间储。
 
@@ -229,16 +218,15 @@ class Chatbot:
         else:
             raise ValueError(f"Invalid api: {api}")
 
-
     def check_over(self, slot_dict: dict):
         for label in self.slot_labels:
             if slot_dict.get(label) is None:
                 return False
         return True
-    
+
     def send_msg(self, msg: str):
         print(f"机器人：{msg}")
-    
+
     def chat(self, user_id: str):
         sess_id = uuid.uuid4().hex
         chat_at = datetime.now()
@@ -246,7 +234,7 @@ class Chatbot:
             {"role": "user", "content": self.system_inp},
         ]
         n_round = 0
-        
+
         history = []
         slot = {"cellphone": None, "people_number": None, "meal_time": None}
         while True:
@@ -254,7 +242,7 @@ class Chatbot:
                 bot_msg = "非常感谢您对我们的支持，再见。"
                 self.send_msg(bot_msg)
                 break
-            
+
             try:
                 # 智谱AI改成ask_zhipu
                 bot_inp = self.ask_func(msg)
@@ -263,7 +251,7 @@ class Chatbot:
                 bot_msg = "机器人出错，稍后将由人工与您联系，谢谢。"
                 self.send_msg(bot_msg)
                 break
-            
+
             tmp = self.reg_msg.split(bot_inp)
             bot_msg = tmp[0].strip("给用户的回复：")
             self.send_msg(bot_msg)
@@ -272,27 +260,27 @@ class Chatbot:
                 slot = json.loads(slot_str)
                 print(f"\tslot: {slot}")
             n_round += 1
-            
+
             if self.check_over(slot):
                 break
 
             user_inp = input()
-            
+
             msg += [
                 {"role": "assistant", "content": bot_inp},
                 {"role": "user", "content": user_inp},
             ]
-            
+
             record = ChatRecord(user_id, sess_id, bot_inp, user_inp, datetime.now())
             history.append(record)
-            
+
             if check_risk(user_inp):
                 break
-        
+
         chat_sess = ChatSession(user_id, sess_id, **slot, chat_at=chat_at)
         self.store(history, chat_sess)
-    
-    
+
+
     def store(self, history: List[ChatRecord], chat: ChatSession):
         with SessionLocal.begin() as sess:
             q = insert(
@@ -318,7 +306,6 @@ from sqlalchemy import Table, Column, Integer, String, DateTime, Text, MetaData,
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
-
 
 db_file = "chatbot.db"
 
@@ -379,7 +366,7 @@ chatbot = Chatbot("zhipu")
 chatbot.chat(user.user_id)
 ```
 
-<details class="lake-collapse"><summary id="u847f9ff9"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="QbIRD" class="ne-codeblock language-json"><code>机器人：您好！非常感谢您选择我们的订餐服务。为了更好地为您服务，请问您能提供一下您的手机号码吗？这样我们才能及时通知您订单的状态。
+<details><summary>output：</summary><pre><code class="language-json"><code>机器人：您好！非常感谢您选择我们的订餐服务。为了更好地为您服务，请问您能提供一下您的手机号码吗？这样我们才能及时通知您订单的状态。
 	slot: {'cellphone': None, 'people_number': None, 'meal_time': None}
 是13712345678
 机器人：好的，您的手机号码已经记录为13712345678。接下来，请问您需要预订几人份的餐品呢？
@@ -391,7 +378,6 @@ chatbot.chat(user.user_id)
 机器人：好的，您的用餐时间为今天晚上8点。我们已经为您记录了预订信息，正在为您准备餐品。如有需要，我们会通过手机号码13712345678与您联系。祝您用餐愉快！
 	slot: {'cellphone': '13712345678', 'people_number': 5, 'meal_time': '今天晚上8点'}</code></pre></details>
 
-
 ```python
 import pnlp
 nick = "长琴"
@@ -400,7 +386,7 @@ chatbot = Chatbot("openai")
 chatbot.chat(user.user_id)
 ```
 
-<details class="lake-collapse"><summary id="u31453434"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="L0xU6" class="ne-codeblock language-json"><code>机器人：请问您的手机号码是多少呢？
+<details><summary>output：</summary><pre><code class="language-json"><code>机器人：请问您的手机号码是多少呢？
 	slot: {'cellphone': None, 'people_number': None, 'meal_time': None}
 我的手机是13788889999
 机器人：好的，您的手机号码是13788889999，请问用餐人数是几位呢？
@@ -413,7 +399,6 @@ chatbot.chat(user.user_id)
 好了，明天下午7点，谢谢
 机器人：好的，您们的用餐时间是明天下午7点，我们已经为您记录好了，请问还有其他需要帮助的吗？
 	slot: {'cellphone': '13788889999', 'people_number': 5, 'meal_time': '明天下午7点'}</code></pre></details>
-
 
 查表看看刚刚的记录：
 
@@ -433,7 +418,7 @@ def query_table(table: str):
 query_table("chat_session_table")
 ```
 
-<details class="lake-collapse"><summary id="uca8f7f0a"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="ANHQZ" class="ne-codeblock language-json"><code>[(1,
+<details><summary>output：</summary><pre><code class="language-json"><code>[(1,
   'dc3be3b3516555d3b0b6a77a1d9c7e82',
   '05a88a8e3db8490eacf14b8bb9800fcc',
   '13788889999',
@@ -456,4 +441,3 @@ query_table("chat_session_table")
 第三点，充分考虑安全性，**根据实际情况合理设计架构**（但不要过度设计）。
 
 最后，值得一提的是，上面只是利用了ChatGPT的一丢丢功能，大家完全可以结合自己的业务，或者大开脑洞，开发更多有用、有趣的产品和应用。
-

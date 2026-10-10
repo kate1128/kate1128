@@ -3,7 +3,7 @@
 
 本节所讲述的代码脚本在同级目录 [ChatGLM3-6B-chat Lora 微调](./06-ChatGLM3-6B-Lora微调.py) 下，运行该脚本来执行微调过程，但注意，本文代码未使用分布式框架，微调 ChatGLM3-6B-Chat 模型至少需要 21G 及以上的显存，且需要修改脚本文件中的模型路径和数据集路径。
 
-这个教程会在同目录下给大家提供一个 [nodebook](./06-ChatGLM3-6B-Lora微调.ipynb) 文件，来让大家更好的学习。  
+这个教程会在同目录下给大家提供一个 [nodebook](./06-ChatGLM3-6B-Lora微调.ipynb) 文件，来让大家更好的学习。
 鸣谢大佬的详细讲解与教程: [transformers-code](https://github.com/zyds/transformers-code)
 
 # 环境配置
@@ -51,7 +51,7 @@ QA是指一问一答的形式，通常是用户提问，模型给出回答。而
 + 问答（QA）格式:
 
 ```plain
-指令（Instruction）： 
+指令（Instruction）：
 输入（Input）：VC银翘片和双黄连口服液之间的区别是什么？
 ```
 
@@ -71,7 +71,7 @@ QA是指一问一答的形式，通常是用户提问，模型给出回答。而
 def process_func(example):
     MAX_LENGTH = 512
     input_ids, labels = [], []
-    instruction = tokenizer.encode(text="\n".join(["<|system|>", "现在你要扮演皇帝身边的女人--甄嬛", "<|user|>", 
+    instruction = tokenizer.encode(text="\n".join(["<|system|>", "现在你要扮演皇帝身边的女人--甄嬛", "<|user|>",
                                     example["instruction"] + example["input"] + "<|assistant|>"]).strip() + "\n",
                                     add_special_tokens=True, truncation=True, max_length=MAX_LENGTH)
 
@@ -103,10 +103,8 @@ def process_func(example):
 
 为什么会是这个形态呢？好问题！不同模型所对应的格式化输入都不一样，所以需要我们深度模型的训练源码来查看，因为按照原本模型指令微调的形式进行Lora微调效果应该是最好的，所以我们依然遵循原本模型的输入格式。OK，这里我给大家放一下源码的链接，各位如果感兴趣可以自行探索一下：
 
-[hugging face ChatGLM3仓库](https://github.com/THUDM/ChatGLM3/blob/main/finetune_chatmodel_demo/preprocess_utils.py)：其中的`InputOutputDataset`类。  
+[hugging face ChatGLM3仓库](https://github.com/THUDM/ChatGLM3/blob/main/finetune_chatmodel_demo/preprocess_utils.py)：其中的`InputOutputDataset`类。
 此外，还可以参考这个仓库对ChatGLM的数据处理[LLaMA-Factory](https://github.com/KMnO4-zx/LLaMA-Factory/blob/main/src/llmtuner/data/template.py)。
-
-
 
 # 加载tokenizer和半精度模型
 模型以半精度形式加载，如果你的显卡比较新的话，可以用`torch.bfolat`形式加载。对于自定义的模型一定要指定`trust_remote_code`参数为`True`。
@@ -124,15 +122,15 @@ model = AutoModelForCausalLM.from_pretrained('./model/chatglm3-6b', trust_remote
 + `task_type`：模型类型
 + `target_modules`：需要训练的模型层的名字，主要就是`attention`部分的层，不同的模型对应的层的名字不同，可以传入数组，也可以字符串，也可以正则表达式。
 + `r`：`lora`的秩，具体可以看`Lora`原理
-+ `lora_alpha`：`Lora alaph`，具体作用参见 `Lora` 原理 
++ `lora_alpha`：`Lora alaph`，具体作用参见 `Lora` 原理
 + `modules_to_save`指定的是除了拆成lora的模块，其他的模块可以完整的指定训练。
 
-`Lora`的缩放是啥嘞？当然不是`r`（秩），这个缩放就是`lora_alpha/r`, 在这个`LoraConfig`中缩放就是4倍。  
+`Lora`的缩放是啥嘞？当然不是`r`（秩），这个缩放就是`lora_alpha/r`, 在这个`LoraConfig`中缩放就是4倍。
 	这个缩放的本质并没有改变LoRa的参数量大小,本质在于将里面的参数数值做广播乘法,进行线性的缩放。
 
 ```bash
 config = LoraConfig(
-    task_type=TaskType.CAUSAL_LM, 
+    task_type=TaskType.CAUSAL_LM,
     target_modules=["query_key_value"],
     inference_mode=False, # 训练模式
     r=8, # Lora 秩
@@ -215,4 +213,3 @@ ipt = tokenizer("<|system|>\n现在你要扮演皇帝身边的女人--甄嬛\n<|
 tokenizer.decode(p_model.generate(**ipt, max_length=128, do_sample=True)[0], skip_special_tokens=True)
 
 ```
-

@@ -13,7 +13,7 @@ chain.invoke({"input_language":"中文", "output_language":"英文","text": text
 
 ```
 
-<details class="lake-collapse"><summary id="u812b972c"><span class="ne-text">output：</span></summary><pre data-language="python" id="kpBZC" class="ne-codeblock language-python"><code>'I carried luggage heavier than my body and dived into the bottom of the Nile River. After passing through several flashes of lightning, I saw a pile of halos, not sure if this is the place.'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'I carried luggage heavier than my body and dived into the bottom of the Nile River. After passing through several flashes of lightning, I saw a pile of halos, not sure if this is the place.'</code></pre></details>
 再测试一个样例：
 
 ```python
@@ -21,14 +21,11 @@ text = 'I carried luggage heavier than my body and dived into the bottom of the 
 chain.invoke({"input_language":"英文", "output_language":"中文","text": text})
 ```
 
-<details class="lake-collapse"><summary id="u5972394d"><span class="ne-text">output：</span></summary><pre data-language="python" id="eYN92" class="ne-codeblock language-python"><code>'我扛着比我的身体还重的行李，潜入尼罗河的底部。穿过几道闪电后，我看到一堆光环，不确定这是否就是目的地。'</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-python"><code>'我扛着比我的身体还重的行李，潜入尼罗河的底部。穿过几道闪电后，我看到一堆光环，不确定这是否就是目的地。'</code></pre></details>
 ## 什么是 LCEL
 [什么是 LCEL](https://www.yuque.com/qiaokate/su87gb/fpwp7u1tggmac2yb)
 
-<br/>color2
 LCEL（LangChain Expression Language，Langchain的表达式语言），LCEL是一种新的语法，是LangChain工具包的重要补充，他有许多优点，使得处理LangChain和代理更加简单方便。
-
-<br/>
 
 + LCEL提供了异步、批处理和流处理支持，使代码可以快速在不同服务器中移植。
 + LCEL拥有后备措施，解决LLM格式输出的问题。
@@ -37,10 +34,7 @@ LCEL（LangChain Expression Language，Langchain的表达式语言），LCEL是�
 
 用法示例：
 
-<br/>color2
 `chain = prompt | model | output_parser`
-
-<br/>
 
 上面代码中使用 LCEL 将不同的组件拼凑成一个链，在此链中，用户输入传递到提示模板，然后提示模板输出传递到模型，然后模型输出传递到输出解析器。`| `的符号类似于 Unix 管道运算符，它将不同的组件链接在一起，将一个组件的输出作为下一个组件的输入。
 
@@ -61,7 +55,7 @@ output_parser = StrOutputParser()
 '''使用管道操作符（|）连接各个处理步骤，创建一个处理链
    其中prompt用于生成具体的提示文本，
    model用于根据提示文本生成回应，
-   output_parser用于处理回应并将其转换为字符串''' 
+   output_parser用于处理回应并将其转换为字符串'''
 chain = prompt | model | output_parser
 
 # 调用处理链，传入话题"水仙花"，执行生成故事的操作
@@ -73,4 +67,3 @@ print(message)
 
 ##  其他：
 [LCEL 高级](https://www.yuque.com/qiaokate/su87gb/zzduwpgld8ut3qwc)
-

@@ -1,19 +1,39 @@
-> `<font style="color:rgb(70, 70, 70);">In-Context learning</font>`<font style="color:rgb(70, 70, 70);"> (</font>`<font style="color:rgb(70, 70, 70);">Prompt Design</font>`<font style="color:rgb(70, 70, 70);">)</font>
->
+<!-- type: glossary -->
+# In-Context Learning（上下文学习 / 情境学习）
 
-![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736840236152-125b7fce-e812-4a07-8343-7b8a7e5b4f34.png)
+> LLM 的一项核心涌现能力：**无需任何梯度更新（微调），仅通过在 Prompt 中提供几个示例，模型就能学会执行全新的任务**。
 
-<font style="color:rgb(70, 70, 70);">In-Context learning中的范例其实包含四个不同面向：输入标签映射、输入文本的分布、标签空间以及将输入标签配对。</font>
+## 是什么
 
-<font style="color:rgb(70, 70, 70);">少样本情境学习（In-Context learning）使预先训练的语言模型能够在没有任何基于梯度的训练的情况下执行先前未见过的任务，方法是将少量的训练示例作为输入的一部分。 In-Context learning 产生相当大的计算、记忆体和存储成本，因为它涉及在每次进行预测时处理所有的训练示例。</font>
+传统机器学习：收集标注数据 → 训练模型 → 部署。新任务 = 重新训练。
 
-## <font style="color:rgb(70, 70, 70);">In-Context learning的优点</font>
-`<font style="color:rgb(70, 70, 70);">In-Context learning</font>`<font style="color:rgb(70, 70, 70);">方法允许模型马上执行许多任务，并且无须微调。 </font>`<font style="color:rgb(70, 70, 70);">In-Context learning</font>`<font style="color:rgb(70, 70, 70);">通常适用于受限标记资料的任务类型(又称</font>`<font style="color:rgb(70, 70, 70);">few-shot learning</font>`<font style="color:rgb(70, 70, 70);">)。</font>`<font style="color:rgb(70, 70, 70);"> In-Context learning</font>`<font style="color:rgb(70, 70, 70);">具有</font>`<font style="color:rgb(70, 70, 70);">data-efficient</font>`<font style="color:rgb(70, 70, 70);">。</font>
+In-Context Learning：直接把几个示例写在 Prompt 里，模型当场就"学会"了。
 
-## <font style="color:rgb(70, 70, 70);">In-Context learning 的缺点</font>
-<font style="color:rgb(70, 70, 70);">首先，处理所有的提示输入会使模型产生高昂的计算成本。其次，通常情况下，使用</font>`<font style="color:rgb(70, 70, 70);">In-Context learning</font>`<font style="color:rgb(70, 70, 70);">只能提供比微调性能稍次的结果。最后，输入格式或提供的范例的不同可能极大地影响模型的性能，使得一些模型行为变得难以预测。</font>
+在 Prompt 中提供 0 个示例 → Zero-shot，1 个 → One-shot，几个 → Few-shot。模型在读取这些示例时，实际上是在**利用注意力机制临时构建一个"任务模板"**——它没有修改自身参数，但通过上下文中的模式识别，学会了这个任务怎么做。
 
-![](https://cdn.nlark.com/yuque/0/2025/png/2639475/1736840236161-06f92b34-648d-4406-b5a5-06ba9e9b840a.png)
+ICL 的本质是**语言模型将示例视为指令的补充**：示例不仅展示了"输入→输出"的映射，还隐含地传递了任务定义、输出格式和期望风格。
 
-<font style="color:rgb(70, 70, 70);">在IA3的文献中提到，</font>`<font style="color:rgb(70, 70, 70);">PEFT</font>`<font style="color:rgb(70, 70, 70);">方法(表中T-Few )比</font>`<font style="color:rgb(70, 70, 70);">In-Context learning</font>`<font style="color:rgb(70, 70, 70);">需要的计算力更低。 即便算上训练算力，在</font>`<font style="color:rgb(70, 70, 70);">In-Context learning</font>`<font style="color:rgb(70, 70, 70);">使用超过</font>`<font style="color:rgb(70, 70, 70);">20</font>`<font style="color:rgb(70, 70, 70);">个</font>`<font style="color:rgb(70, 70, 70);">few-shot sample</font>`<font style="color:rgb(70, 70, 70);"> 后优势便不存在。</font>
+## 为什么重要
 
+- **零成本任务切换**：不微调就能让同一个模型做翻译、分类、抽取、推理——切换任务只需换 Prompt
+- **LLM 区别于传统 DL 的核心特性**：传统 NLP 模型每个任务要单独训练一个模型，LLM 一个模型通吃所有任务
+- **Prompt 工程的科学基础**：理解了 ICL，你就理解了为什么示例的顺序、格式、数量会影响模型表现
+
+## 关键要点
+
+- **示例格式至关重要**：一致性（输入输出格式统一）> 数量（多一两个效果差不多）
+- **示例顺序敏感**：同一个示例集，排列顺序不同可能导致 10%+ 的性能差异
+- **Scaling 效应**：模型越大，ICL 能力越强。GPT-2（1.5B）几乎没有 ICL；GPT-3（175B）ICL 能力显著
+- **vs Fine-tuning**：ICL 适合快速实验和频繁切换任务；Fine-tuning 适合稳定任务和更高精度（但需要数据和算力）
+
+## 相关概念
+
+- [[Few-shot 样本提示]] — ICL 的 Few-shot 形式，提供少量示例
+- [[思维链 CoT]] — ICL 的一种特殊形式，示例中包含逐步推理
+- [[Fine-tuning 微调]] — ICL 的替代方案：通过训练让模型学会新任务（性能更好但成本更高）
+- [[Prompt 工程]] — ICL 为 Prompt 设计提供了科学基础
+
+## 参考
+
+- [Language Models are Few-Shot Learners (GPT-3 paper)](https://arxiv.org/abs/2005.14165)
+- [Rethinking the Role of Demonstrations](https://arxiv.org/abs/2202.12837)

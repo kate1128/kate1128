@@ -9,8 +9,6 @@
 
 [Milvus Command-Line Interface Milvus v2.3.x documentation](https://milvus.io/docs/v2.3.x/cli_overview.md)
 
-
-
 # 使用
 ```bash
 milvus_cli
@@ -76,8 +74,6 @@ curl --request POST \
   }'
 ```
 
-
-
 ```bash
 #!/bin/bash
 
@@ -113,8 +109,3 @@ for collection in $collections_clean; do
 done
 
 ```
-
-
-
-
-

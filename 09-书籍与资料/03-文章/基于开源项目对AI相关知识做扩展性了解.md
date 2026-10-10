@@ -5,12 +5,12 @@
 
 有一些example，后续再可以做了解：
 
-+ Speech and Audio Field 语音和音频领域：[flinkerlab/neural_speech_decoding](https://github.com/flinkerlab/neural_speech_decoding) 
-+ Humor Generation 讲幽默笑话： [CLoT](https://github.com/sail-sg/CLoT) 
++ Speech and Audio Field 语音和音频领域：[flinkerlab/neural_speech_decoding](https://github.com/flinkerlab/neural_speech_decoding)
++ Humor Generation 讲幽默笑话： [CLoT](https://github.com/sail-sg/CLoT)
 + Animation Field 动漫领域：[SaaRaaS-1300/InternLM2_horowag](https://github.com/SaaRaaS-1300/InternLM2_horowag)
-+ Food Field 食品领域：[SmartFlowAI/TheGodOfCookery](https://github.com/SmartFlowAI/TheGodOfCookery)  
-+ Tool Learning 工具学习：[ToolBench](https://github.com/OpenBMB/ToolBench) 
-+ Autonomous Driving Field 自动驾驶领域：[DriveVLM](https://tsinghua-mars-lab.github.io/DriveVLM/) 
++ Food Field 食品领域：[SmartFlowAI/TheGodOfCookery](https://github.com/SmartFlowAI/TheGodOfCookery)
++ Tool Learning 工具学习：[ToolBench](https://github.com/OpenBMB/ToolBench)
++ Autonomous Driving Field 自动驾驶领域：[DriveVLM](https://tsinghua-mars-lab.github.io/DriveVLM/)
 + ...
 
 # 开源项目
@@ -61,7 +61,7 @@
 
 随着行业发展这种方案形成了很多框架，其中很著名的就是 LangChain。如果自己想实现的话，也可以使用 LangChain 来实现上述的整个流程。那LangChain具体是什么？
 
-# LangChain 
+# LangChain
 LangChain是一个框架，用于开发由LLM驱动的应用程序。可以简单认为是LLM领域的Spring，以及开源版的ChatGPT插件系统。核心的2个功能为：
 
 1. 可以将 LLM 模型与外部数据源进行连接。
@@ -157,12 +157,7 @@ LLM 通过在海量文本数据上进行训练，学习到语言的复杂模式�
 4. 代码走读：[https://mp.weixin.qq.com/s/bYzNNL3F0998Do2Jl0PQtw](https://mp.weixin.qq.com/s/bYzNNL3F0998Do2Jl0PQtw)
 5. ...
 
-
-
 # 其他问题
 1. GPU的相关知识，HAMI（Huawei AI Matrix Interface），卡的拆分，多卡使用（TODO）
-2. 
-3. 
-
-
-
+2.
+3.

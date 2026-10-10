@@ -102,4 +102,3 @@ cd ${MilvusBackUpFiles}
 # 发送
 scp ${MilvusBackUpFiles}/MilvusBackup_${DATE} root@172.16.101.209:/DATA/milvus/test
 ```
-

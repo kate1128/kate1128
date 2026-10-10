@@ -15,15 +15,11 @@
     1. **实体抽取**：提取出给定文本中的实体。实体一般指具有特定意义的实词，如人名、地名、作品、品牌等等；很多时候也是业务直接相关的词。
     2. **关系抽取**：实体之间往往有一定的关系，比如「刘亦菲」出演「天龙八部」，其中「刘亦菲」就是人名、「天龙八部」是作品名，其中的关系就是「出演」，一般会和实体作为三元组来表示。
 
-<br/>color2
 一般经过以上这些分析后，机器人就可以对用户的输入有一个比较清晰的理解，便于接下来据此做出响应。另外值得一提的是，上面的过程并不一定只用在对话中，只要涉及到用户输入`Query`需要给出响应的场景，都需要这个`NLU`的过程，一般也叫`**Query**`**解析**。
-
-<br/>
 
 # 算法的角度分类
 一般意义上的`NLU`常指与**理解给定句子意思**相关的**意图识别、实体抽取、指代关系**等任务，在智能对话中应用比较广泛。如果从算法的角度看，其实就两种：
 
-<br/>color2
 1. **句子级别的分类**
 
 如情感分析、意图识别、关系抽取等。也就是给一个句子，给出一个或多个`Label`。
@@ -31,8 +27,6 @@
 2. **Token级别的分类**
 
 如实体抽取、阅读理解（就是给一段文本和一个问题，然后在文本中找到问题的答案）。也就是给一个句子，给出对应实体的位置。
-
-<br/>
 
 ## 举例说明
 Token级别的分类不太好理解，我们举个例子，比如下面这句话：
@@ -69,15 +63,12 @@ Token级别的分类不太好理解，我们举个例子，比如下面这句话
 ## 句子级别的分类
 接下来，我们简单介绍一下这些分类具体是怎么做的，先说句子级别的分类。回忆上一章的`Embedding`，那可以算是整个`DeepLearning NLP`的基石，我们这部分的内容也会用到`Embedding`。
 
-<br/>color2
 具体过程如下：
 
 1. 将**给定句子或文本表征成**`**Embedding**`
 2. **将**`**Embedding**`**传入一个神经网络**，计算得到不同`Label`的概率分布
 3. 将上一步的`Label`**概率分布与真实的分布做比较**，并将误差回传，修改神经网络的参数，即训练
 4. 得到训练好的神经网络，即模型
-
-<br/>
 
 举个例子，简单起见，假设`Embedding`维度为 32 维（上一章 OpenAI 返回的维度比较大）：
 
@@ -103,7 +94,7 @@ z = emd @ W
 z
 ```
 
-<details class="lake-collapse"><summary id="ud90c2766"><span class="ne-text">output：</span></summary><pre data-language="json" id="iOXbm" class="ne-codeblock language-json"><code>array([[6.93930177, 5.96232449, 3.96168115]])</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>array([[6.93930177, 5.96232449, 3.96168115]])</code></pre></details>
 上面得到的z一般被称为logits，如果想要概率分布，则需要对其归一化，也就是将logits变成0-1之间的概率值，并且每一行加起来为1（即100%），如下所示。
 
 ```python
@@ -117,14 +108,14 @@ y = norm(z)
 y
 ```
 
-<details class="lake-collapse"><summary id="u01d20316"><span class="ne-text">output：</span></summary><pre data-language="json" id="r5Vi8" class="ne-codeblock language-json"><code>array([[0.70059356, 0.26373654, 0.0356699 ]])</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>array([[0.70059356, 0.26373654, 0.0356699 ]])</code></pre></details>
 根据给出的y，就知道预测的标签是第0个位置的标签，因为那个位置的概率最大（70.06%）。如果真实的标签是第1个位置的标签，那第1个位置的标签实际就是1（100%），但它目前预测的概率只有26.37%，这个误差就会回传来调整W参数。下次计算时，第0个位置的概率就会变小，第1个位置的概率则会变大。这样通过标注的数据样本不断循环迭代的过程其实就是模型训练的过程，也就是通过标注数据，让模型W尽可能正确预测出标签。
 
 ```python
 np.sum(y)
 ```
 
-<details class="lake-collapse"><summary id="u1ad4e5d9"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="IUQL1" class="ne-codeblock language-json"><code>1.0</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>1.0</code></pre></details>
 实际中，W往往更加复杂，可以包含任意的数组，只要最后输出变成1×3的大小即可，比如下面这个复杂点的：
 
 可以看到，现在有三个数组的模型参数，形式上虽然复杂了些，但结果是一样的，依然是一个1×3大小的数组。接下来的过程就和前面一样了。
@@ -140,7 +131,7 @@ y = norm(norm(norm(emd @ w1) @ w2) @ w3)
 y
 ```
 
-<details class="lake-collapse"><summary id="u7029818a"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="x4wAc" class="ne-codeblock language-json"><code>array([[0.35549151, 0.31975607, 0.32475242]])</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>array([[0.35549151, 0.31975607, 0.32475242]])</code></pre></details>
 稍微复杂点的是多标签分类和层次分类，这俩因为输出的都是多个标签，处理起来要麻烦一些，不过它们的处理方式是类似的。我们以多标签分类来说明，假设有10个标签，给定输入文本，可能是其中任意多个标签。这就意味着我们需要将10个标签的概率分布都表示出来。可以针对每个标签做个二分类，也就是说输出的大小是10×2的，每一行表示「是否是该标签」的概率分布。
 
 ```python
@@ -159,14 +150,14 @@ y = norm(emd @ W)
 y.shape
 ```
 
-<details class="lake-collapse"><summary id="u5bff6d01"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="g6t8U" class="ne-codeblock language-json"><code>(10, 1, 2)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(10, 1, 2)</code></pre></details>
 这里的输出每一行有两个值，分别表示标签「`是/0`」和「`是/1`」的概率，比如第一行，`0`的概率为`0.66`，`1`的概率为`0.34`。需要注意的是归一化时，要指定维度，否则就变成所有的值加起来为`1`了，这就不对了。
 
 ```python
 y
 ```
 
-<details class="lake-collapse"><summary id="u2ed70172"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="MwR9C" class="ne-codeblock language-json"><code>array([[[0.66293305, 0.33706695]],
+<details><summary>output：</summary><pre><code class="language-json"><code>array([[[0.66293305, 0.33706695]],
 
        [[0.76852603, 0.23147397]],
 
@@ -211,14 +202,14 @@ y = norm(z)
 y.shape
 ```
 
-<details class="lake-collapse"><summary id="u11f908e6"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="rFydT" class="ne-codeblock language-json"><code>(1, 10, 5)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(1, 10, 5)</code></pre></details>
 注意看，每一行表示一个Token是某个标签的概率分布（每一行加起来为1），比如第一行。
 
 ```python
 y
 ```
 
-<details class="lake-collapse"><summary id="ub88e02ed"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="Uonp0" class="ne-codeblock language-json"><code>array([[[0.23850186, 0.04651826, 0.12495322, 0.28764271, 0.30238396],
+<details><summary>output：</summary><pre><code class="language-json"><code>array([[[0.23850186, 0.04651826, 0.12495322, 0.28764271, 0.30238396],
         [0.06401011, 0.3422055 , 0.54911626, 0.01179874, 0.03286939],
         [0.18309536, 0.62132479, 0.09037235, 0.06016401, 0.04504349],
         [0.01570559, 0.0271437 , 0.20159052, 0.12386611, 0.63169408],
@@ -236,4 +227,4 @@ y
 sum((0.23850186, 0.04651826, 0.12495322, 0.28764271, 0.30238396))
 ```
 
-<details class="lake-collapse"><summary id="u3650896c"><span class="ne-text" style="color: rgba(0, 0, 0, 0.87)">output：</span></summary><pre data-language="json" id="dEKK6" class="ne-codeblock language-json"><code>1.00000001</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>1.00000001</code></pre></details>

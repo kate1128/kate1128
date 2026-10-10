@@ -46,7 +46,6 @@ attu：[http://10.0.5.73:8086/#/](http://10.0.5.73:8086/#/)
 $ mc alias set standalone http://192.169.153.2:9000 minioadmin minioadmin
 Added `standalone` successfully.
 
-
 ```
 
 #### 查看备份环境的二进制日志的位置，配置到`backup.yaml`
@@ -166,7 +165,6 @@ backup:
     seconds: 7200
     address: http://192.169.222.187:9091
 
-
 ```
 
 #### 执行备份任务
@@ -260,7 +258,6 @@ $ mc mirror standalone/minio-backup-bucket distributed/minio-backup-bucket
 
 # 或者将刚才的任务目录导过来
 $ mc cp --recursive standalone/minio-backup-bucket/backup-path/backup_standalone/ distributed/minio-backup-bucket/backup-path/backup_standalone/
-
 
 ```
 
@@ -381,7 +378,6 @@ backup:
     seconds: 7200
     address: http://192.169.20.106:9091
 
-
 ```
 
 #### 执行恢复任务
@@ -404,6 +400,3 @@ $ mc ls --versions distributed/my-release/files/
 [2024-11-20 10:07:07 UTC]     0B insert_log/
 [2024-11-20 10:07:07 UTC]     0B stats_log/
 ```
-
-
-

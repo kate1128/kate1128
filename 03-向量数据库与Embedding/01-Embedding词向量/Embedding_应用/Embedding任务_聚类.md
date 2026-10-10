@@ -15,7 +15,7 @@ df = pd.read_csv("./dataset/DBPEDIA_val.csv")
 df.shape
 ```
 
-<details class="lake-collapse"><summary id="u42fba397"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="cC3n7" class="ne-codeblock language-json"><code>(36003, 4)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(36003, 4)</code></pre></details>
 ```python
 df.head()
 ```
@@ -28,7 +28,7 @@ df.head()
 df.l1.value_counts()
 ```
 
-<details class="lake-collapse"><summary id="u591c6063"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="k8Wwy" class="ne-codeblock language-json"><code>l1
+<details><summary>output：</summary><pre><code class="language-json"><code>l1
 Agent             18647
 Place              6855
 Species            3210
@@ -46,7 +46,7 @@ sdf = df.sample(200)
 sdf.l1.value_counts()
 ```
 
-<details class="lake-collapse"><summary id="ud7a9e487"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="kc3ph" class="ne-codeblock language-json"><code>l1
+<details><summary>output：</summary><pre><code class="language-json"><code>l1
 Agent             107
 Place              36
 Species            21
@@ -65,7 +65,7 @@ cdf = sdf[
 cdf.shape
 ```
 
-<details class="lake-collapse"><summary id="u4e36db29"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="fEy4c" class="ne-codeblock language-json"><code>(71, 4)</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>(71, 4)</code></pre></details>
 接下来先把文本变成向量：
 
 ```python
@@ -86,13 +86,13 @@ cdf["embed_vis"] = vis_dims.tolist()
 arr.shape, vis_dims.shape
 ```
 
-<details class="lake-collapse"><summary id="u30851911"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="KMX4f" class="ne-codeblock language-json"><code>/var/folders/xt/mpcnl_9151dbq43hptdlv2jr0000gn/T/ipykernel_69847/3198218742.py:5: SettingWithCopyWarning: 
+<details><summary>output：</summary><pre><code class="language-json"><code>/var/folders/xt/mpcnl_9151dbq43hptdlv2jr0000gn/T/ipykernel_69847/3198218742.py:5: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   cdf[&quot;embed_vis&quot;] = vis_dims.tolist()</code></pre></details>
-<details class="lake-collapse"><summary id="u9806757c"><span class="ne-text" style="color: var(--jp-cell-prompt-not-active-font-color)">output：</span></summary><pre data-language="json" id="uvzA2" class="ne-codeblock language-json"><code>((71, 1536), (71, 3))</code></pre></details>
+<details><summary>output：</summary><pre><code class="language-json"><code>((71, 1536), (71, 3))</code></pre></details>
 ```python
 %matplotlib inline
 import matplotlib.pyplot as plt
@@ -118,6 +118,3 @@ plt.show();
 ![](https://cdn.nlark.com/yuque/0/2024/png/2639475/1735615896417-f91034f5-0490-4969-8a2c-b9c68881c4c9.png)
 
 可以比较明显的看出，三个不同类型的数据分别在不同的位置。
-
-
-

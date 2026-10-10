@@ -94,4 +94,3 @@ Hugging Face还提供了一种部署模型的解决方案，通过**Hugging Face
 
 ### 总结
 Hugging Face平台为开发者和研究人员提供了一个强大的生态系统，帮助他们快速下载、使用、训练和部署各种AI模型。其Transformers库、Model Hub、Inference API等功能极大地降低了开发门槛，用户只需关注应用逻辑，而不需要关注模型训练和优化等复杂细节。对于LLaMAX等大语言模型的私有化部署，Hugging Face的模型和工具可以为实现这一目标提供强有力的支持。
-

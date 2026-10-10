@@ -1,3 +1,5 @@
+# hami
+
 1. 中文文档：
 
 [HAMi/README_cn.md at master · Project-HAMi/HAMi](https://github.com/Project-HAMi/HAMi/blob/master/README_cn.md)
@@ -30,11 +32,9 @@ HAMi和虚拟内存的概念在某些方面是相似的，因为它们都涉及�
 
 总结来说，HAMi可以被看作是针对GPU资源的虚拟化技术，它提供了对GPU内存资源的细粒度控制和管理，类似于虚拟内存提供了对系统级内存资源的控制，但它们的应用场景和优化目标不同。
 
-
-
 ---
 
-<font style="color:rgb(28, 30, 33);">异构 AI 计算虚拟化中间件 (HAMi)，原名</font>`<font style="color:rgb(28, 30, 33);"> k8s-vGPU-scheduler</font>`<font style="color:rgb(28, 30, 33);">，是一个“一体化”图表，旨在管理 k8s 集群中的</font>**<font style="color:rgb(28, 30, 33);">异构 </font>**<font style="color:rgb(28, 30, 33);">AI 计算设备。它可以提供在任务之间共享</font>**<font style="color:rgb(28, 30, 33);">异构 </font>**<font style="color:rgb(28, 30, 33);">AI 设备的能力。</font>
+异构 AI 计算虚拟化中间件 (HAMi)，原名` k8s-vGPU-scheduler`，是一个“一体化”图表，旨在管理 k8s 集群中的**异构 **AI 计算设备。它可以提供在任务之间共享**异构 **AI 设备的能力。
 
 ![画板](https://cdn.nlark.com/yuque/0/2024/jpeg/2639475/1728976159467-22fa14d2-6701-440f-8ec2-eb13d8d59a88.jpeg)
 
@@ -46,4 +46,3 @@ HAMi和虚拟内存的概念在某些方面是相似的，因为它们都涉及�
 >
 > 但是没有任何device资源，也没有resources的限制？？？
 >
-
